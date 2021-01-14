@@ -1,9 +1,10 @@
 .zod-logincard{
     position: absolute;
-    width: 509px;
-    height: 430px;
+    width: 450px;
+    height: 455px;
     left: 789px;
-    top: 200px;
+    top: 130px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .zod-login-inputs{
@@ -13,7 +14,7 @@
 
 input {
     margin: 10px;
-    width: 409px;
+    width: 320px;
     height: 50px;
     border-radius: 5px;
     border: 1px solid #8F8F8F;
@@ -26,11 +27,11 @@ input {
 
 hr {
     width: 260px;
-    margin-left: 20%;
+    margin-left: 12%;
 }
 
 button {
-    width: 409px;
+    width: 320px;
     height: 50px;
     border-radius: 5px;
     border: 1px solid #8F8F8F;
@@ -44,8 +45,8 @@ button > img {
 
 .zod-signuptxt{
     position: absolute;
-    left: 62vw;
-    top: 42vw;
+    left: 58vw;
+    top: 40vw;
 }
 
 .zod-title{
@@ -89,4 +90,9 @@ footer > ul {
 footer > ul > li {
     margin: 8px;
     color: #8F8F8F;
+}
+
+.card-title {
+    margin: 10px !important;
+    font-weight: bold;
 }
