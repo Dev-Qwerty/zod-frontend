@@ -4,9 +4,7 @@ import HomePage from './components/Home/Home';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link,
-  NavLink
+  Route
 } from "react-router-dom";
 
 function App() {
