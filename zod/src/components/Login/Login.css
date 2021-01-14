@@ -41,3 +41,40 @@ button > img {
     height: 25px;
     margin: 10px;
 }
+
+.zod-signuptxt{
+    position: absolute;
+    left: 62vw;
+    top: 42vw;
+}
+
+.zod-title{
+    height: 242px;
+    width: 192px;
+    left: 231px;
+    top: 175px;
+    position: absolute;
+    font-family: Pacifico;
+    font-size: 138px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 242px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #4CBF53;
+}
+
+.zod-tagline {
+    height: 147px;
+    width: 661px;
+    left: 79px;
+    top: 385px;
+    font-family: Roboto;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 49px;
+    letter-spacing: 0em;
+    text-align: left;
+    position: absolute;
+}
