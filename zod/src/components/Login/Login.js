@@ -17,6 +17,12 @@ function LoginPage() {
                     </div>
                 </div>
             <span className="zod-signuptxt">Don't have an account? Sign Up</span>
+            <footer>
+                <ul>
+                    <li>Privacy & Terms</li>
+                    <li>Contact Us</li>
+                </ul>
+            </footer>
         </div>
     );
 }
