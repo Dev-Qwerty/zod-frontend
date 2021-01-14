@@ -1,0 +1,43 @@
+.zod-logincard{
+    position: absolute;
+    width: 509px;
+    height: 430px;
+    left: 789px;
+    top: 200px;
+}
+
+.zod-login-inputs{
+    display: inline-grid;
+    margin: 40px;
+}
+
+input {
+    margin: 10px;
+    width: 409px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #8F8F8F;
+}
+
+.zod-login-btn{
+    background: #4CBF53;
+    color: #fff;
+}
+
+hr {
+    width: 260px;
+    margin-left: 20%;
+}
+
+button {
+    width: 409px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #8F8F8F;
+    background: #fff;
+    color: #8f8f8f;
+}
+button > img {
+    height: 25px;
+    margin: 10px;
+}
