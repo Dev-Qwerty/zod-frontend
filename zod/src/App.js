@@ -1,6 +1,7 @@
 import './App.css';
 import LoginPage from './components/Login/Login';
 import HomePage from './components/Home/Home';
+import ProjectPage from './components/Dashboard/Project/ProjectPage';
 import {
   BrowserRouter as Router,
   Route
@@ -16,6 +17,9 @@ function App() {
         <Route path = "/login">
           <LoginPage/>
         </Route> 
+        <Route path = "/dashboard/projectpage">
+          <ProjectPage/>
+        </Route>        
       </div>
     </Router>
   );
