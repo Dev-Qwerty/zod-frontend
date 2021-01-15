@@ -1,0 +1,98 @@
+.zod-logincard{
+    position: absolute;
+    width: 450px;
+    height: 455px;
+    left: 789px;
+    top: 130px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.zod-login-inputs{
+    display: inline-grid;
+    margin: 40px;
+}
+
+input {
+    margin: 10px;
+    width: 320px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #8F8F8F;
+}
+
+.zod-login-btn{
+    background: #4CBF53;
+    color: #fff;
+}
+
+hr {
+    width: 260px;
+    margin-left: 12%;
+}
+
+button {
+    width: 320px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #8F8F8F;
+    background: #fff;
+    color: #8f8f8f;
+}
+button > img {
+    height: 25px;
+    margin: 10px;
+}
+
+.zod-signuptxt{
+    position: absolute;
+    left: 58vw;
+    top: 40vw;
+}
+
+.zod-title{
+    height: 242px;
+    width: 192px;
+    left: 231px;
+    top: 175px;
+    position: absolute;
+    font-family: Pacifico;
+    font-size: 138px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 242px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #4CBF53;
+}
+
+.zod-tagline {
+    height: 147px;
+    width: 661px;
+    left: 79px;
+    top: 385px;
+    font-family: Roboto;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 49px;
+    letter-spacing: 0em;
+    text-align: left;
+    position: absolute;
+}
+
+footer > ul {
+    display: flex;
+    margin-top: 45vw;
+    margin-left: 40vw;
+    list-style-type: none;
+}
+
+footer > ul > li {
+    margin: 8px;
+    color: #8F8F8F;
+}
+
+.card-title {
+    margin: 10px !important;
+    font-weight: bold;
+}
