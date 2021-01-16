@@ -19,11 +19,11 @@ function SignUpPage() {
                             <input type="password" placeholder="Confirm Password" className="zod-signup-grp form-control"></input>
                             <input type="submit" value="Sign Up" className="zod-signup-btn zod-signup-grp"/>
                             <hr/>
-                            <button type="submit" className="zod-google-btn-1"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"></img>Sign up with Google</button>
+                            <button type="submit" className="zod-google-btn-1"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo"></img>Sign up with Google</button>
                         </div>
                     </div>
                 </div>
-            <span className="zod-signuptxt">Already have an account? <Link to="/login">Login</Link></span>
+            <span className="zod-signuptxt">Already have an account? <Link to="/login" style={{ textDecoration: 'none', color: '#000', fontWeight: 'bold' }}>Login</Link></span>
             <footer className="zod-footer">
                 <ul>
                     <li>Privacy & Terms</li>
