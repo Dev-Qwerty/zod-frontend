@@ -1,4 +1,5 @@
 import './SignUp.css';
+import {Link} from 'react-router-dom';
 function SignUpPage() {
     return (
         <div className="SignUpPage">
@@ -22,7 +23,7 @@ function SignUpPage() {
                         </div>
                     </div>
                 </div>
-            <span className="zod-signuptxt">Already have an account? Login</span>
+            <span className="zod-signuptxt">Already have an account? <Link to="/login">Login</Link></span>
             <footer className="zod-footer">
                 <ul>
                     <li>Privacy & Terms</li>
