@@ -3,9 +3,7 @@ import './Project.css';
 function ProjectPg() {
     return (
         <div className="ProjectPg">
-
             <div className="top-nav">
-
                 <div className="left-wrapper-tn">
                     <p className="title">zode</p>
                 </div>
@@ -15,7 +13,9 @@ function ProjectPg() {
                         <p className="profile-text">JD</p>
                     </div>
                 </div>
+
             </div>
+            
         </div>
     );
 }
