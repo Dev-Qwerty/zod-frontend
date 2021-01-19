@@ -30,11 +30,38 @@ function ProjectPg() {
             </div>
 
             <div className="status-etc-hdn">
-                <p className="project-name">Project Name</p>
-                <p className="status">Status</p>
-                <p className="deadline">Deadline</p>
-                <p className="team-lead">Team Lead</p>
+                <div className="free-box">
+                            
+                </div>   
+                             
+                <div className="wrapper-x">
+                    <p className="project-name-x">Project Name</p>
+                    <p className="status-x">Status</p>
+                    <p className="deadline-x">Deadline</p>
+                    <p className="team-lead-x">Team Lead</p>
+                </div>  
             </div>
+
+            <div className="full-boxes-wrapper">
+                <div className="single-box-wrapper">
+                    <div className="rocket-svg">
+
+                    </div>
+                    
+                    <div className="inbox-wrapper">
+                        <div className="wrapper-y">
+                            <p className="project-name">Project Name</p>
+                            <p className="status">Status</p>
+                            <p className="deadline">Deadline</p>
+                            <p className="team-lead">Team Lead</p>
+                        </div> 
+
+                        <div className="line-wrapper">
+                            <div className="progress-line"></div>
+                        </div> 
+                    </div>                  
+                </div>
+            </div>                
         </div>
     );
 }
