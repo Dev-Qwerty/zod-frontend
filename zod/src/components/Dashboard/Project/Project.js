@@ -11,7 +11,9 @@ function ProjectPg() {
                 </div>
 
                 <div className="right-wrapper-tn">
-
+                    <div className="profile-circle">
+                        <p className="profile-text">JD</p>
+                    </div>
                 </div>
             </div>
         </div>
