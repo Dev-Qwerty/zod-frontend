@@ -13,9 +13,25 @@ function ProjectPg() {
                         <p className="profile-text">JD</p>
                     </div>
                 </div>
-
             </div>
-            
+
+            <div className="search-etc-section">
+                <div className="heading-wrapper">
+                    <p className="heading">PROJECTS</p>
+                </div>
+
+                <div className="search-wrapper">
+                    <input type="text" className="search"></input>
+                </div>
+
+                <div className="">
+                    <input type="submit" value="New Project" className="new-project-btn"></input>
+                </div>                                
+            </div>
+
+            <div>
+                
+            </div>
         </div>
     );
 }
