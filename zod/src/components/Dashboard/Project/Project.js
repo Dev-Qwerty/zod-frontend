@@ -29,8 +29,11 @@ function ProjectPg() {
                 </div>                                
             </div>
 
-            <div>
-                
+            <div className="status-etc-hdn">
+                <p className="project-name">Project Name</p>
+                <p className="status">Status</p>
+                <p className="deadline">Deadline</p>
+                <p className="team-lead">Team Lead</p>
             </div>
         </div>
     );

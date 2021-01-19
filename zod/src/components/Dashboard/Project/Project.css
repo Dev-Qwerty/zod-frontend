@@ -81,3 +81,22 @@
    height: 40px;
    border-radius: 15px; 
 }
+
+.status-etc-hdn {
+    padding-top: 15px;
+    height: 50px;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 3px solid #B5B0B0;  
+    color: #898686;
+    font-size: 20px;    
+}
+
+.shdn {
+    color: #898686;
+    font-size: 30px;
+}
