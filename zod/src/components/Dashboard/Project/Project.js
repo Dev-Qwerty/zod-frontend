@@ -44,8 +44,10 @@ function ProjectPg() {
 
             <div className="full-boxes-wrapper">
                 <div className="single-box-wrapper">
-                    <div className="rocket-svg">
-
+                    <div className="rocket-svg-wrapper">
+                        <div className="rocket-svg">
+                            
+                        </div>
                     </div>
                     
                     <div className="inbox-wrapper">

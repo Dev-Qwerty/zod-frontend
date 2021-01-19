@@ -116,8 +116,21 @@
     grid-template-columns: 10% 90%;
 }
 
+.rocket-svg-wrapper {
+    
+}
+
 .rocket-svg {
-    background-color: #4CBF53;
+    margin-top: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    width: 50px;  
+    background-image: url('../../../assets/rocket.svg');
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;      
 }
 
 .inbox-wrapper {
