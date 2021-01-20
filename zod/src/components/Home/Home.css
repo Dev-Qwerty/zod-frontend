@@ -1,0 +1,55 @@
+.zod-top-nav {
+    width: 100%;
+    height: 90px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.left-wrapper-tn {
+    text-align: left;
+    padding-top: 5px;
+}
+
+.right-wrapper-tn {
+    padding-left: 85%;
+    padding-top: 20px;
+}
+
+.profile-circle {
+    width: 50px;
+    height: 50px;
+    border: 3px #1F89C5 solid;
+    border-radius: 50%;
+    padding-top: 5%;
+    box-sizing: border-box;
+}
+
+.profile-text {
+    font: Fira Code;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.zod-nav-items {
+    display: inline-flex;
+    list-style: none;
+    margin-top: -5px;
+}
+.zod-nav-items> li {
+    margin: 30px;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 48px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #4CBF53;
+}
+.zod-signup-navbtn {
+    background-color: #4CBF53;
+    border: none;
+    color: #fff;
+    width: 215px;
+    height: 45px;
+    border-radius: 11px;
+}
