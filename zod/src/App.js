@@ -2,7 +2,7 @@ import './App.css';
 import LoginPage from './components/Login/Login';
 import HomePage from './components/Home/Home';
 import SignUpPage from './components/SignUp/SignUp';
-import ProjectPage from './components/Dashboard/Project/ProjectPage';
+import Project from './components/Dashboard/Project/Project';
 import {
   BrowserRouter as Router,
   Route
@@ -21,8 +21,8 @@ function App() {
         <Route path = "/signup">
           <SignUpPage/>
         </Route> 
-        <Route path = "/dashboard/projectpage">
-          <ProjectPage/>
+        <Route path = "/dashboard/project">
+          <Project/>
         </Route>        
       </div>
     </Router>
