@@ -37,6 +37,7 @@
 }
 .zod-nav-items> li {
     margin: 30px;
+    font-family: 'Nunito', sans-serif;
     font-size: 25px;
     font-style: normal;
     font-weight: 600;
@@ -52,4 +53,60 @@
     width: 215px;
     height: 45px;
     border-radius: 11px;
+}
+
+.zod-homecard-1 {
+    height: 597px;
+    width: 100%;
+    left: 42px;
+    top: 174px;
+    border-radius: [object Object]px;
+}
+
+.zod-tagline-1 {
+    left: 15vw;
+    position: absolute;
+    top: 21vw;
+    width: 415px;
+    font-size: 40px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.zod-start-btn {
+    position: absolute;
+    left: 7vw;
+    top: 10vw;
+    border: none;
+    background-color: #4CBF53;
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    height: 60px;
+    width: 200px;
+    color: #fff;
+}
+
+.green-dot-homebg {
+    background: url('../../assets/green-dot-1.png');
+    width: 310px;
+    height: 280px;
+    left: 70vw;
+    position: absolute;
+    top: 7vw;
+}
+
+.project-svg {
+    height: 300px;
+    position: absolute;
+    top: 16vw;
+    left: 50vw;
+}
+
+.green-dot-homebg-down {
+    background: url('../../assets/green-dot-1.png');
+    width: 310px;
+    height: 280px;
+    left: 43vw;
+    position: absolute;
+    top: 27vw;
+    rotate: 180deg;
 }
