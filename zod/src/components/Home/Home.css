@@ -60,7 +60,6 @@
     width: 100%;
     left: 42px;
     top: 174px;
-    border-radius: [object Object]px;
 }
 
 .zod-tagline-1 {
@@ -109,4 +108,48 @@
     position: absolute;
     top: 27vw;
     rotate: 180deg;
+}
+
+.zod-homecard-2{
+    height: 919px;
+}
+
+.yellow-svg-1 {
+    width: 110vw;
+}
+
+.zod-incard-2 {
+    height: 808px;
+    width: 95vw;
+    left: 42px;
+    top: 964px;
+    border-radius: 13px;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 4px 38px -8px #000000 29%;
+}
+
+.roadmap-img {
+    height: auto;
+    width: 630px;
+    top: 12vw;
+    position: absolute;
+    left: -3vw;
+}
+
+.zod-tagline-2 {
+    position: absolute;
+    left: 42vw;
+    top: 15vw;
+    font-family: 'Nunito';
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.zod-tagline-3 {
+    position: absolute;
+    left: 52vw;
+    top: 22vw;
+    font-family: 'Nunito';
+    font-size: 30px;
 }
