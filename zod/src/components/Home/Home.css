@@ -153,3 +153,75 @@
     font-family: 'Nunito';
     font-size: 30px;
 }
+
+.grey-svg-1 {
+    position: absolute;
+    top: 130vw;
+    left: -1vw;
+    width: 101%;
+}
+
+.zod-incard-3 {
+    height: 808px;
+    width: 95vw;
+    left: 42px;
+    top: 121vw;
+    border-radius: 13px;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 4px 38px -8px #000000 29%;
+}
+
+.chat-img {
+    height: auto;
+    width: 630px;
+    position: absolute;
+    top: 10vw;
+    left: 56vw;
+}
+
+.zod-tagline-4 {
+    position: absolute;
+    left: 1vw;
+    top: 15vw;
+    font-family: 'Nunito';
+    font-weight: bold;
+    font-size: 45px;
+}
+
+.zod-tagline-5 {
+    position: absolute;
+    left: 5vw;
+    top: 22vw;
+    font-family: 'Nunito';
+    font-size: 30px;
+}
+
+.yellow-dot {
+    height: auto;
+    width: 200px;
+    position: absolute;
+    top: 41vw;
+    left: 82vw;
+}
+
+.yellow-line {
+    height: 260px;
+    width: auto;
+    position: absolute;
+    left: 83vw;
+}
+
+.grey-dot {
+    height: auto;
+    width: 200px;
+    position: absolute;
+    top: 42vw;
+    left: -1vw;
+}
+
+.grey-line {
+    height: 260px;
+    width: auto;
+    position: absolute;
+}

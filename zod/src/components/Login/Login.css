@@ -97,18 +97,3 @@ hr {
     margin: 10px !important;
     font-weight: bold;
 }
-
-.yellow-dot {
-    height: auto;
-    width: 300px;
-    position: absolute;
-    top: 35vw;
-    left: 75vw;
-}
-
-.yellow-line {
-    height: 260px;
-    width: auto;
-    position: absolute;
-    left: 83vw;
-}
