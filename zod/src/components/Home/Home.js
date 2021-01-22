@@ -7,8 +7,12 @@ import yellowline from '../../assets/yellow-line.svg';
 import greyv from '../../assets/grey-vector.svg';
 import greydot from '../../assets/grey-dot-1.svg';
 import greyline from '../../assets/grey-line.svg';
+import bluev from '../../assets/blue-vector.svg';
 import chatimg from '../../assets/chat-img.png';
 import plantrack from '../../assets/plan-track-1.png';
+import bluedot from '../../assets/blue-dot-1.svg';
+import blueline from '../../assets/blue-line.svg';
+
 
 function HomePage() {
     return (
@@ -54,6 +58,18 @@ function HomePage() {
                     <span className="zod-tagline-4">Communication made easier</span>
                     <span className="zod-tagline-5">Chat with other teammate using<br></br>1-to-1 chat. Group them into<br></br>teams for better communication </span>
                     <img src= {greydot} alt="grey dots" className="grey-dot"></img>
+                </div>
+            </div>
+            <div className="zod-homecard-4">
+                <img src= {bluev} alt="blue svg" className="blue-svg-1"></img>
+                <div className="card zod-incard-4">
+                    <img src= {plantrack} alt="plantrack img" className="roadmap-img"></img>
+                    <img src= {blueline} alt="blue line" className="yellow-line"></img> 
+                    <span className="zod-tagline-2">Discuss features and Issues</span>
+                    <span className="zod-tagline-3">Manage your project issues and<br></br>discuss new project features</span>
+                    <img src= {bluedot} alt="blue dots" className="yellow-dot"></img>
+                    <span className="zod-tagline-6">Experience the new way of teaming</span>
+                    <button className="zod-start-btn-2">Get started for free</button>
                 </div>
             </div>
         </div>

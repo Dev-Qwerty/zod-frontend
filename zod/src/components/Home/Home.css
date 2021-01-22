@@ -225,3 +225,43 @@
     width: auto;
     position: absolute;
 }
+
+.zod-incard-4 {
+    height: 808px;
+    width: 95vw;
+    left: 42px;
+    top: 180vw;
+    border-radius: 13px;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 4px 38px -8px #000000 29%;
+}
+
+.blue-svg-1 {
+    position: absolute;
+    top: 185vw;
+    width: 101%;
+    left: -1vw;
+}
+
+.zod-tagline-6 {
+    position: absolute;
+    top: 65vw;
+    font-size: 45px;
+    left: 25vw;
+    font-family: 'Nunito';
+    color: #fff;
+}
+
+.zod-start-btn-2 {
+    position: absolute;
+    top: 71vw;
+    left: 40vw;
+    background: white;
+    color: #4CBF53;
+    font-weight: bold;
+    border-radius: 13px;
+    width: 250px;
+    height: 50px;
+    border: none;
+}
