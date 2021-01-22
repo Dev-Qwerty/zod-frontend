@@ -12,7 +12,10 @@ import chatimg from '../../assets/chat-img.png';
 import plantrack from '../../assets/plan-track-1.png';
 import bluedot from '../../assets/blue-dot-1.svg';
 import blueline from '../../assets/blue-line.svg';
-
+import tw from '../../assets/twitter-1.png';
+import fb from '../../assets/facebook-1.png';
+import lin from '../../assets/linkedin-1.png';
+import inst from '../../assets/instagram-1.png';
 
 function HomePage() {
     return (
@@ -71,6 +74,29 @@ function HomePage() {
                     <span className="zod-tagline-6">Experience the new way of teaming</span>
                     <button className="zod-start-btn-2">Get started for free</button>
                 </div>
+            </div>
+            <div className="footer zod-footer-1">
+                <span className="title">zode</span>
+                <ul className="zod-footer-list1">
+                    <li>About us</li>
+                    <li>Contact</li>
+                    <li>Careers</li>
+                    <li>Terms</li>
+                    <li>Privacy</li>
+                </ul>
+                <ul className="zod-footer-list2">
+                    <li>Features</li>
+                    <li>Downloads</li>
+                    <li>Pricing</li>
+                </ul>
+                <ul className="zod-footer-list3">
+                    <li>Join us on<br></br></li>
+                    <li><img src={tw} alt="twitter logo"></img></li>
+                    <li><img src={fb} alt="facebook logo"></img></li>
+                    <li><img src={lin} alt="linkedin logo"></img></li>
+                    <li><img src={inst} alt="instagram logo"></img></li>
+                </ul>
+                <span className="zod-copyright-txt">Copyright 2020 @Zod Inc.</span>
             </div>
         </div>
     );

@@ -265,3 +265,66 @@
     height: 50px;
     border: none;
 }
+
+.zod-footer-1 {
+    height: 150px;
+    position: absolute;
+    top: 275vw;
+}
+
+.zod-footer-list1 {
+    list-style: none;
+    position: absolute;
+    left: 20vw;
+    top: -2vw;
+    width: 115px;
+}
+
+.zod-footer-list1 > li {
+    margin: 5px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.zod-footer-list1 > li:hover {
+    cursor: pointer;
+}
+
+.zod-footer-list2 {
+    list-style: none;
+    position: absolute;
+    top: -2vw;
+    left: 45vw;
+    font-family: 'Nunito';
+}
+
+.zod-footer-list2 > li {
+    margin: 5px;
+}
+
+.zod-footer-list2 > li:hover {
+    cursor: pointer;
+}
+
+.zod-footer-list3 {
+    list-style: none;
+    display: flex;
+    position: absolute;
+    top: 1vw;
+    left: 70vw;
+    width: 320px;
+}
+
+.zod-footer-list3 > li {
+    margin: 5px;
+}
+
+.zod-footer-list3 > li:hover {
+    cursor: pointer;
+}
+
+.zod-copyright-txt {
+    position: absolute;
+    width: 200px;
+    left: 45vw;
+    top: 8vw;
+}
