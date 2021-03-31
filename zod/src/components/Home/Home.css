@@ -1,0 +1,330 @@
+.zod-top-nav {
+    width: 100%;
+    height: 90px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.left-wrapper-tn {
+    text-align: left;
+    padding-top: 5px;
+}
+
+.right-wrapper-tn {
+    padding-left: 85%;
+    padding-top: 20px;
+}
+
+.profile-circle {
+    width: 50px;
+    height: 50px;
+    border: 3px #1F89C5 solid;
+    border-radius: 50%;
+    padding-top: 5%;
+    box-sizing: border-box;
+}
+
+.profile-text {
+    font: Fira Code;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.zod-nav-items {
+    display: inline-flex;
+    list-style: none;
+    margin-top: -5px;
+}
+.zod-nav-items> li {
+    margin: 30px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 48px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #4CBF53;
+}
+.zod-signup-navbtn {
+    background-color: #4CBF53;
+    border: none;
+    color: #fff;
+    width: 215px;
+    height: 45px;
+    border-radius: 11px;
+}
+
+.zod-homecard-1 {
+    height: 597px;
+    width: 100%;
+    left: 42px;
+    top: 174px;
+}
+
+.zod-tagline-1 {
+    left: 15vw;
+    position: absolute;
+    top: 21vw;
+    width: 415px;
+    font-size: 40px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.zod-start-btn {
+    position: absolute;
+    left: 7vw;
+    top: 10vw;
+    border: none;
+    background-color: #4CBF53;
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    height: 60px;
+    width: 200px;
+    color: #fff;
+}
+
+.green-dot-homebg {
+    background: url('../../assets/green-dot-1.png');
+    width: 310px;
+    height: 280px;
+    left: 70vw;
+    position: absolute;
+    top: 7vw;
+}
+
+.project-svg {
+    height: 300px;
+    position: absolute;
+    top: 16vw;
+    left: 50vw;
+}
+
+.green-dot-homebg-down {
+    background: url('../../assets/green-dot-1.png');
+    width: 310px;
+    height: 280px;
+    left: 43vw;
+    position: absolute;
+    top: 27vw;
+    rotate: 180deg;
+}
+
+.zod-homecard-2{
+    height: 919px;
+}
+
+.yellow-svg-1 {
+    width: 110vw;
+}
+
+.zod-incard-2 {
+    height: 808px;
+    width: 95vw;
+    left: 42px;
+    top: 964px;
+    border-radius: 13px;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 4px 38px -8px #000000 29%;
+}
+
+.roadmap-img {
+    height: auto;
+    width: 630px;
+    top: 12vw;
+    position: absolute;
+    left: -3vw;
+}
+
+.zod-tagline-2 {
+    position: absolute;
+    left: 42vw;
+    top: 15vw;
+    font-family: 'Nunito';
+    font-weight: bold;
+    font-size: 60px;
+}
+
+.zod-tagline-3 {
+    position: absolute;
+    left: 52vw;
+    top: 22vw;
+    font-family: 'Nunito';
+    font-size: 30px;
+}
+
+.grey-svg-1 {
+    position: absolute;
+    top: 130vw;
+    left: -1vw;
+    width: 101%;
+}
+
+.zod-incard-3 {
+    height: 808px;
+    width: 95vw;
+    left: 42px;
+    top: 121vw;
+    border-radius: 13px;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 4px 38px -8px #000000 29%;
+}
+
+.chat-img {
+    height: auto;
+    width: 630px;
+    position: absolute;
+    top: 10vw;
+    left: 56vw;
+}
+
+.zod-tagline-4 {
+    position: absolute;
+    left: 1vw;
+    top: 15vw;
+    font-family: 'Nunito';
+    font-weight: bold;
+    font-size: 45px;
+}
+
+.zod-tagline-5 {
+    position: absolute;
+    left: 5vw;
+    top: 22vw;
+    font-family: 'Nunito';
+    font-size: 30px;
+}
+
+.yellow-dot {
+    height: auto;
+    width: 200px;
+    position: absolute;
+    top: 41vw;
+    left: 82vw;
+}
+
+.yellow-line {
+    height: 260px;
+    width: auto;
+    position: absolute;
+    left: 83vw;
+}
+
+.grey-dot {
+    height: auto;
+    width: 200px;
+    position: absolute;
+    top: 42vw;
+    left: -1vw;
+}
+
+.grey-line {
+    height: 260px;
+    width: auto;
+    position: absolute;
+}
+
+.zod-incard-4 {
+    height: 808px;
+    width: 95vw;
+    left: 42px;
+    top: 180vw;
+    border-radius: 13px;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 4px 38px -8px #000000 29%;
+}
+
+.blue-svg-1 {
+    position: absolute;
+    top: 185vw;
+    width: 101%;
+    left: -1vw;
+}
+
+.zod-tagline-6 {
+    position: absolute;
+    top: 65vw;
+    font-size: 45px;
+    left: 25vw;
+    font-family: 'Nunito';
+    color: #fff;
+}
+
+.zod-start-btn-2 {
+    position: absolute;
+    top: 71vw;
+    left: 40vw;
+    background: white;
+    color: #4CBF53;
+    font-weight: bold;
+    border-radius: 13px;
+    width: 250px;
+    height: 50px;
+    border: none;
+}
+
+.zod-footer-1 {
+    height: 150px;
+    position: absolute;
+    top: 275vw;
+}
+
+.zod-footer-list1 {
+    list-style: none;
+    position: absolute;
+    left: 20vw;
+    top: -2vw;
+    width: 115px;
+}
+
+.zod-footer-list1 > li {
+    margin: 5px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.zod-footer-list1 > li:hover {
+    cursor: pointer;
+}
+
+.zod-footer-list2 {
+    list-style: none;
+    position: absolute;
+    top: -2vw;
+    left: 45vw;
+    font-family: 'Nunito';
+}
+
+.zod-footer-list2 > li {
+    margin: 5px;
+}
+
+.zod-footer-list2 > li:hover {
+    cursor: pointer;
+}
+
+.zod-footer-list3 {
+    list-style: none;
+    display: flex;
+    position: absolute;
+    top: 1vw;
+    left: 70vw;
+    width: 320px;
+}
+
+.zod-footer-list3 > li {
+    margin: 5px;
+}
+
+.zod-footer-list3 > li:hover {
+    cursor: pointer;
+}
+
+.zod-copyright-txt {
+    position: absolute;
+    width: 200px;
+    left: 45vw;
+    top: 8vw;
+}
