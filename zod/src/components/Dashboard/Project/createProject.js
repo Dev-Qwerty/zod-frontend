@@ -9,7 +9,7 @@ function CreateProject() {
                     <p className="title">zode</p>
                 </div>
 
-                <div className="right-wrapper-tn">
+                <div className="right-wrapper-tn">                    
                     <div className="profile-circle">
                         <p className="profile-text">JD</p>
                     </div>
