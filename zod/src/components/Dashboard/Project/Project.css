@@ -24,24 +24,57 @@
 }
 
 .right-wrapper-tn {
-    padding-left: 85%;
+    padding-left: 70%;
     padding-top: 20px;
 }
 
-.profile-circle {
+.pro-dropbtn {
     width: 50px;
     height: 50px;
     border: 3px #1F89C5 solid;
     border-radius: 50%;
-    padding-top: 5%;
+    padding-top: 10%;
     box-sizing: border-box;
-}
+    cursor: pointer;
+    background-color: #fff;
+  }
 
-.profile-text {
+  .pro-profile-text {
     font: Fira Code;
     font-size: 22px;
     font-weight: bold;
-}
+  }  
+
+  .pro-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .pro-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding-top: 15px;
+  }
+  
+  .pro-dropdown-content p {
+    color: black;
+    padding: 0px;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+  }
+  
+  .pro-dropdown-content p:hover {
+    background-color: #f1f1f1
+  }
+  
+  .pro-dropdown:hover .pro-dropdown-content {
+    display: block;
+  }
 
 .search-etc-section {
     margin-top: 40px;
