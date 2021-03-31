@@ -1,4 +1,5 @@
 import './Project.css';
+import Project from './components/Dashboard/Project/createProject';
 
 function ProjectPg() {
     return (
