@@ -1,6 +1,6 @@
 import './Project.css';
-import Project from './components/Dashboard/Project/createProject';
-
+import { Link } from "react-router-dom";
+ 
 function ProjectPg() {
     return (
         <div className="ProjectPg">
@@ -27,7 +27,7 @@ function ProjectPg() {
                 </div>
 
                 <div className="">
-                    <input type="submit" value="New Project" className="new-project-btn"></input>
+                    <Link to="/dashboard/create-project"> <input type="submit" value="New Project" className="new-project-btn"></input></Link>                     
                 </div>
 
             </div>
