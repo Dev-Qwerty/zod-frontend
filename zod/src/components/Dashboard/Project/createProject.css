@@ -1,9 +1,9 @@
-.createPro {
+  .createPro {
     margin: 0;
     padding: 0;
   }
   
-  .top-nav {
+  .cp-top-nav {
       width: 100%;
       height: 90px;
       display: grid;
@@ -11,34 +11,37 @@
       box-shadow: 0 10px 6px -9px #707070;
   }
   
-  .left-wrapper-tn {
+  .cp-left-wrapper-tn {
       text-align: left;
       padding-top: 5px;
   }
   
-  .title {
+  .cp-title {
       margin-left: 30px;
       font-family: Pacifico;
       font-size: 50px;
       color: #4CBF53;    
   }
   
-  .right-wrapper-tn {
-      padding-left: 85%;
+  .cp-right-wrapper-tn {
+      padding-left: 76%;
       padding-top: 20px;
   }
   
-  .profile-circle {
+  .cp-profile-circle {
       width: 50px;
       height: 50px;
       border: 3px #1F89C5 solid;
       border-radius: 50%;
-      padding-top: 5%;
+      padding-top: 6px;
+      padding-left: 8px;
+      background-color: #fff;
       box-sizing: border-box;
   }
   
-  .profile-text {
+  .cp-profile-text {
       font: Fira Code;
       font-size: 22px;
       font-weight: bold;
+      color: #000;
   }
