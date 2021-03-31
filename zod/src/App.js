@@ -4,6 +4,7 @@ import HomePage from './components/Home/Home';
 import SignUpPage from './components/SignUp/SignUp';
 import Project from './components/Dashboard/Project/Project';
 import CreateProject from './components/Dashboard/Project/CreateProject';
+import MyProfile from './components/Dashboard/Project/MyProfile';
 
 import {
   BrowserRouter as Router,
@@ -28,7 +29,10 @@ function App() {
         </Route>
         <Route path="/dashboard/create-project">
           <CreateProject/>
-        </Route>                          
+        </Route>
+        <Route path="/dashboard/myprofile">
+          <MyProfile/>
+        </Route>                                   
       </div>
     </Router>
   );
