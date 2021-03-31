@@ -33,9 +33,10 @@
     height: 50px;
     border: 3px #1F89C5 solid;
     border-radius: 50%;
-    padding-top: 5%;
+    padding-top: 10%;
     box-sizing: border-box;
     cursor: pointer;
+    background-color: #fff;
   }
 
   .cp-profile-text {
@@ -67,7 +68,7 @@
     font-size: 15px;
   }
   
-  .cp-dropdown-content a:hover {
+  .cp-dropdown-content p:hover {
     background-color: #f1f1f1
   }
   

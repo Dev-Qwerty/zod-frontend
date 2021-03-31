@@ -1,4 +1,5 @@
 import './CreateProject.css';
+import { Link } from "react-router-dom";
 import { Dropdown } from 'react-bootstrap';
 
 function CreateProject() {
@@ -18,9 +19,9 @@ function CreateProject() {
                         </button>
 
                         <div class="cp-dropdown-content">
-                            <p>My Profile</p>
-                            <p>Dashboard</p>
-                            <p>Logout</p>
+                            <Link to="/dashboard/myprofile"><p>My Profile</p></Link>
+                            <Link to="/dashboard/project"><p>Dashboard</p></Link>
+                            <Link to="/login"><p>Logout</p></Link>
                         </div>
 
                     </div>
