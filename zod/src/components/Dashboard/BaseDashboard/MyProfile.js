@@ -17,15 +17,22 @@ function MyProfile() {
                         </button>
 
                         <div className="mp-dropdown-content">
-                            <Link to="/dashboard/project"><p>Dashboard</p></Link>
+                            <Link to="/basedashboard/home"><p>Home</p></Link>
                             <Link to="/login"><p>Logout</p></Link>
                         </div>
                     </div>
                 </div>
             </div>        
 
-            <div>
-                <h1></h1>
+            <div className="mp-outermostbox">
+                <div className="mp-box-hdn">
+                    <p>My Profile</p>
+                </div>
+                <div className="mp-box-contents">
+                    <p>Name:&nbsp;&nbsp;&nbsp;Zack Snyder</p>
+                    <p>Email ID:&nbsp;&nbsp;&nbsp;snyderzack@gmail.com</p>
+                    <p>Current Projects:</p>
+                </div>
             </div>
             
         </div>

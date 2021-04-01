@@ -1,4 +1,4 @@
-import './Project.css';
+import './Base.css';
 import { Link } from "react-router-dom";
  
 function ProjectPg() {
@@ -16,7 +16,7 @@ function ProjectPg() {
                         </button>
 
                         <div className="pro-dropdown-content">
-                            <Link to="/dashboard/myprofile"><p>My Profile</p></Link>
+                            <Link to="/basedashboard/myprofile"><p>My Profile</p></Link>
                             <Link to="/login"><p>Logout</p></Link>
                         </div>
                     </div>
@@ -34,7 +34,7 @@ function ProjectPg() {
                 </div>
 
                 <div className="">
-                    <Link to="/dashboard/create-project"> <input type="submit" value="New Project" className="new-project-btn"></input></Link>                     
+                    <Link to="/basedashboard/createproject"> <input type="submit" value="New Project" className="new-project-btn"></input></Link>                     
                 </div>
 
             </div>
