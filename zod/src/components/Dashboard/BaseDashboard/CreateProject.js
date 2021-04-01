@@ -34,11 +34,11 @@ function CreateProject() {
                     <p>Create New Project</p>
                 </div>
                 <div className="cp-box-contents">
-                    <div className="zod-login-inputs">
-                        <input type="text" placeholder="Project Name"></input>
-                        <input type="text" placeholder="Deadline"></input>
-                        <input type="submit" value="Add Member" className=""/>
-                        <input type="submit" value="Submit" className=""/>
+                    <div className="cp-inp-wrapper">
+                        <div><input type="text" placeholder="Project Name" className="cp-inp-pname"></input></div>
+                        <div><input type="text" placeholder="Deadline" className="cp-inp-deadline"></input></div>
+                        <div><input type="submit" value="Add Member" className="cp-inp-addmember"/></div>
+                        <div><input type="submit" value="Submit" className=""/></div>
                     </div>
                 </div>
             </div>
