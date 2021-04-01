@@ -10,12 +10,12 @@ function ProjectPg() {
                 </div>
 
                 <div className="right-wrapper-tn">
-                    <div class="pro-dropdown">
-                        <button class="pro-dropbtn">
+                    <div className="pro-dropdown">
+                        <button className="pro-dropbtn">
                             <p className="pro-profile-text">JD</p> 
                         </button>
 
-                        <div class="pro-dropdown-content">
+                        <div className="pro-dropdown-content">
                             <Link to="/dashboard/myprofile"><p>My Profile</p></Link>
                             <Link to="/login"><p>Logout</p></Link>
                         </div>

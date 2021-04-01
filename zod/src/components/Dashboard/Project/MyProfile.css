@@ -72,6 +72,6 @@
     background-color: #f1f1f1
   }
   
-  .mp-dropdown:hover .cp-dropdown-content {
+  .mp-dropdown:hover .mp-dropdown-content {
     display: block;
   }

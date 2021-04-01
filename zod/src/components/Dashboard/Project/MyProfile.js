@@ -11,13 +11,12 @@ function MyProfile() {
                 </div>
 
                 <div className="mp-right-wrapper-tn">  
-                    <div class="mp-dropdown">
-                        <button class="mp-dropbtn">
+                    <div className="mp-dropdown">
+                        <button className="mp-dropbtn">
                             <p className="mp-profile-text">JD</p> 
                         </button>
 
-                        <div class="mp-dropdown-content">
-                            <Link to="/dashboard/myprofile"><p>My Profile</p></Link>
+                        <div className="mp-dropdown-content">
                             <Link to="/dashboard/project"><p>Dashboard</p></Link>
                             <Link to="/login"><p>Logout</p></Link>
                         </div>
