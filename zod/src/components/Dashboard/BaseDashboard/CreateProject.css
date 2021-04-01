@@ -102,13 +102,8 @@
 
 .cp-box-contents {
   margin-top: 5%;
-  margin-left: 15%;
-}
-.cp-box-contents p {
-  text-align: left;
-  padding-left: 0px;
-  padding-top: 5px;
-  font-size: 17px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cp-box-hdn {
