@@ -101,9 +101,7 @@
 }
 
 .cp-box-contents {
-  margin-top: 5%;
-  margin-left: auto;
-  margin-right: auto;
+
 }
 
 .cp-box-hdn {
@@ -120,4 +118,25 @@
   padding-top: 2px;
   color: #fff;
   padding-left: 1px;
+}
+
+.cp-inp-wrapper {
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;  
+}
+
+.cp-inp-pname {
+  width: 30%;
+  margin-bottom: 20px;  
+}
+
+.cp-inp-deadline {
+  width: 30%;
+  margin-bottom: 20px;
+}
+
+.cp-inp-addmember {
+  margin-left: -18%;
 }
