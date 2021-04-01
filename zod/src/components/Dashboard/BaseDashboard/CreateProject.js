@@ -10,6 +10,10 @@ function CreateProject() {
                     <p className="cp-title">zode</p>
                 </div>
 
+                <div className="base-mid-wrapper">
+                    <p>BASE&nbsp;&nbsp;DASHBOARD</p>
+                </div>
+
                 <div className="cp-right-wrapper-tn">  
                     <div className="cp-dropdown">
                         <button className="cp-dropbtn">

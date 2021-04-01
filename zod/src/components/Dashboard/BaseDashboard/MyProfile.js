@@ -10,6 +10,10 @@ function MyProfile() {
                     <p className="mp-title">zode</p>
                 </div>
 
+                <div className="base-mid-wrapper">
+                    <p>BASE&nbsp;&nbsp;DASHBOARD</p>
+                </div>
+
                 <div className="mp-right-wrapper-tn">  
                     <div className="mp-dropdown">
                         <button className="mp-dropbtn">

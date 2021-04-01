@@ -9,6 +9,10 @@ function ProjectPg() {
                     <p className="title">zode</p>
                 </div>
 
+                <div className="base-mid-wrapper">
+                    <p>BASE&nbsp;&nbsp;DASHBOARD</p>
+                </div>
+
                 <div className="right-wrapper-tn">
                     <div className="pro-dropdown">
                         <button className="pro-dropbtn">

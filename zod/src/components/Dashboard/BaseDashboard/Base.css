@@ -4,39 +4,53 @@
 }
 
 .top-nav {
-    width: 100%;
-    height: 90px;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    box-shadow: 0 10px 6px -9px #707070;
+  width: 100%;
+  height: 90px;
+  display: grid;
+  grid-template-columns: 44% 12% 44%;
+  box-shadow: 0 10px 6px -9px #707070;
 }
 
 .left-wrapper-tn {
-    text-align: left;
-    padding-top: 5px;
+  text-align: left;
+  padding-top: 5px;
 }
 
 .title {
-    margin-left: 30px;
-    font-family: Pacifico;
-    font-size: 50px;
-    color: #4CBF53;    
+  margin-left: 30px;
+  font-family: Pacifico;
+  font-size: 50px;
+  color: #4CBF53;    
+}
+
+.base-mid-wrapper {
+  border: 1px solid #DBDBDB;;
+  width: 100%;
+  height: 32px;
+  /*background-color: #4CBF53;*/    
+}
+
+.base-mid-wrapper p {
+  /*color: #fff;*/
+  color: #707070;
+  font-size: 15px;
+  padding-top: 3px;
 }
 
 .right-wrapper-tn {
-    padding-left: 70%;
-    padding-top: 20px;
+  padding-left: 50%;
+  padding-top: 20px;
 }
 
 .pro-dropbtn {
-    width: 50px;
-    height: 50px;
-    border: 3px #1F89C5 solid;
-    border-radius: 50%;
-    padding-top: 10%;
-    box-sizing: border-box;
-    cursor: pointer;
-    background-color: #fff;
+  width: 50px;
+  height: 50px;
+  border: 3px #1F89C5 solid;
+  border-radius: 50%;
+  padding-top: 10%;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: #fff;
   }
 
   .pro-profile-text {
@@ -83,72 +97,72 @@
 }
 
 .heading-wrapper {
-    text-align: left;
-    padding-left: 10%;
+  text-align: left;
+  padding-left: 10%;
 }
 
 .heading {
-    font-size: 30px;
-    color: rgba(0, 0, 0, 0.35);
-    font-weight: 700;
+  font-size: 30px;
+  color: rgba(0, 0, 0, 0.35);
+  font-weight: 700;
 }
 
 .search-wrapper {
-    padding-left: 35%;
-    padding-top: 4px;
+  padding-left: 35%;
+  padding-top: 4px;
 }
 
 .search {
-    padding-left: 20px;
-    width: 400px;
-    height: 35px;
-    color: #908F8F;
-    font-size: 15px;
+  padding-left: 20px;
+  width: 400px;
+  height: 35px;
+  color: #908F8F;
+  font-size: 15px;
 }
 
 .new-project-btn {
-   border: none;
-   color: #fff;
-   background-color: #189FFA;
-   width: 160px;
-   height: 40px;
-   border-radius: 15px; 
+  border: none;
+  color: #fff;
+  background-color: #189FFA;
+  width: 160px;
+  height: 40px;
+  border-radius: 15px; 
 }
 
 .status-etc-hdn {
-    padding-top: 15px;
-    height: 50px;
-    margin-top: 30px;
-    display: grid;
-    grid-template-columns: 9% 91%;
-    width: 85%;
-    margin-left: auto;
-    margin-right: auto;
-    border-bottom: 3px solid #B5B0B0;  
-    color: #898686;
-    font-size: 20px;    
+  padding-top: 15px;
+  height: 50px;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 9% 91%;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 3px solid #B5B0B0;  
+  color: #898686;
+  font-size: 20px;    
 }
 
 .wrapper-x {
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;    
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;    
 }
 
 .full-boxes-wrapper {
-    margin-top: 30px;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;      
+  margin-top: 30px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;      
 }
 
 .single-box-wrapper {
-    width: 100%;
-    height: 80px;
-    border: 1px solid #C4C4C4;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: 10% 90%;
-    margin-bottom: 20px;
+  width: 100%;
+  height: 80px;
+  border: 1px solid #C4C4C4;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  margin-bottom: 20px;
 }
 
 .rocket-svg-wrapper {
@@ -156,42 +170,42 @@
 }
 
 .rocket-svg {
-    margin-top: 14px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 50px;
-    width: 50px;  
-    background-image: url('../../../assets/rocket.svg');
-    background-blend-mode: overlay;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;      
+  margin-top: 14px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50px;
+  width: 50px;  
+  background-image: url('../../../assets/rocket.svg');
+  background-blend-mode: overlay;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;      
 }
 
 .inbox-wrapper {
-    display: grid;
-    grid-template-rows: 60% 40%;
+  display: grid;
+  grid-template-rows: 60% 40%;
 }
 
 .wrapper-y {
-    padding-top: 8px;
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    color: #898686;
-    font-size: 20px;    
+  padding-top: 8px;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  color: #898686;
+  font-size: 20px;    
 }
 
 .project-name {
-    font-weight: bold;
-    color: #000;
+  font-weight: bold;
+  color: #000;
 }
 
 .line-wrapper {
-    padding-left: 60px;
+  padding-left: 60px;
 }
 
 .progress-line {
-    height: 5px;
-    background-color: #C4C4C4;
-    width: 95%;
+  height: 5px;
+  background-color: #C4C4C4;
+  width: 95%;
 }
