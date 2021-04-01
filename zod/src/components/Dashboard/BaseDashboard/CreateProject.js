@@ -29,10 +29,19 @@ function CreateProject() {
                 </div>
             </div>        
 
-            <div>
-                <h4>Create a new project...</h4>
+            <div className="cp-outermostbox">
+                <div className="cp-box-hdn">
+                    <p>Create New Project</p>
+                </div>
+                <div className="cp-box-contents">
+                    <div className="zod-login-inputs">
+                        <input type="text" placeholder="Project Name"></input>
+                        <input type="text" placeholder="Deadline"></input>
+                        <input type="submit" value="Add Member" className=""/>
+                        <input type="submit" value="Submit" className=""/>
+                    </div>
+                </div>
             </div>
-            
         </div>
     );
 }

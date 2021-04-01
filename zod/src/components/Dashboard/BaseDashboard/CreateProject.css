@@ -1,33 +1,33 @@
-  .createPro {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .cp-top-nav {
-    width: 100%;
-    height: 90px;
-    display: grid;
-    grid-template-columns: 44% 12% 44%;
-    box-shadow: 0 10px 6px -9px #707070;
-  }
-  
-  .cp-left-wrapper-tn {
-    text-align: left;
-    padding-top: 5px;
-  }
-  
-  .cp-title {
-    margin-left: 30px;
-    font-family: Pacifico;
-    font-size: 50px;
-    color: #4CBF53;    
-  }
+.createPro {
+  margin: 0;
+  padding: 0;
+}
 
-  .base-mid-wrapper {
-    border: 1px solid #DBDBDB;;
-    width: 100%;
-    height: 32px;
-    /*background-color: #4CBF53;*/    
+.cp-top-nav {
+  width: 100%;
+  height: 90px;
+  display: grid;
+  grid-template-columns: 44% 12% 44%;
+  box-shadow: 0 10px 6px -9px #707070;
+}
+
+.cp-left-wrapper-tn {
+  text-align: left;
+  padding-top: 5px;
+}
+
+.cp-title {
+  margin-left: 30px;
+  font-family: Pacifico;
+  font-size: 50px;
+  color: #4CBF53;    
+}
+
+.base-mid-wrapper {
+  border: 1px solid #DBDBDB;;
+  width: 100%;
+  height: 32px;
+  /*background-color: #4CBF53;*/    
 }
 
 .base-mid-wrapper p {
@@ -37,55 +37,92 @@
   padding-top: 3px;
 }  
 
-  .cp-right-wrapper-tn {
-    padding-left: 70%;
-    padding-top: 20px;
-  }
+.cp-right-wrapper-tn {
+  padding-left: 50%;
+  padding-top: 20px;
+}
 
-  .cp-dropbtn {
-    width: 50px;
-    height: 50px;
-    border: 3px #1F89C5 solid;
-    border-radius: 50%;
-    padding-top: 10%;
-    box-sizing: border-box;
-    cursor: pointer;
-    background-color: #fff;
-  }
+.cp-dropbtn {
+  width: 50px;
+  height: 50px;
+  border: 3px #1F89C5 solid;
+  border-radius: 50%;
+  padding-top: 10%;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: #fff;
+}
 
-  .cp-profile-text {
-    font: Fira Code;
-    font-size: 22px;
-    font-weight: bold;
-  }  
+.cp-profile-text {
+  font: Fira Code;
+  font-size: 22px;
+  font-weight: bold;
+}  
 
-  .cp-dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .cp-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    padding-top: 15px;
-  }
-  
-  .cp-dropdown-content p {
-    color: black;
-    padding: 0px;
-    text-decoration: none;
-    display: block;
-    font-size: 15px;
-  }
-  
-  .cp-dropdown-content p:hover {
-    background-color: #f1f1f1
-  }
-  
-  .cp-dropdown:hover .cp-dropdown-content {
-    display: block;
-  }
+.cp-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.cp-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding-top: 15px;
+}
+
+.cp-dropdown-content p {
+  color: black;
+  padding: 0px;
+  text-decoration: none;
+  display: block;
+  font-size: 15px;
+}
+
+.cp-dropdown-content p:hover {
+  background-color: #f1f1f1
+}
+
+.cp-dropdown:hover .cp-dropdown-content {
+  display: block;
+}
+
+.cp-outermostbox {
+  width: 60%;
+  height: 400px;
+  border: 1px solid #DBDBDB;
+  box-shadow: 0 0 8px #DBDBDB;
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cp-box-contents {
+  margin-top: 5%;
+  margin-left: 15%;
+}
+.cp-box-contents p {
+  text-align: left;
+  padding-left: 0px;
+  padding-top: 5px;
+  font-size: 17px;
+}
+
+.cp-box-hdn {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  border: 1px solid #4CBF53;
+  width: 180px;
+  height: 31px;
+  background-color: #4CBF53;
+}
+
+.cp-box-hdn p {
+  padding-top: 2px;
+  color: #fff;
+  padding-left: 1px;
+}
