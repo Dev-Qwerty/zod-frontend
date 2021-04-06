@@ -5,17 +5,33 @@ import { Link } from "react-router-dom";
 
 function CreateProject() {
 
-    const [pname, setemailValue] = useState('');
-    const [deadline, setdeadlineValue] = useState('');
+    const [email, setEmailValue] = useState('');
+    const [deadline, setDeadlineValue] = useState('');
     const [memberList, setMemberList] = useState([{ email: "", role: "" }]);
 
-    // handle input change
-    const handleInputChange = (e, index) => {
-        const { nme, val } = e.target;
+    // handle input change - pname, deadline
+    const handleEmailChange = (e) => setEmailValue(e.target.value);
+    const handleDeadlineChange = (e) => setDeadlineValue(e.target.value);
+   
+    // handle input change - memberList
+    const handleMemberInputChange = (e, index) => {
+        const { name, value } = e.target;
         const list = [...memberList];
-        list[index][nme] = val;
+        list[index][name] = value;
         setMemberList(list);
     };    
+
+    // handle click event - Remove button
+    const handleRemoveBtn = index => {
+        const list = [...memberList];
+        list.splice(index, 1);
+        setMemberList(list);
+    };
+    
+    // Handle click event - Add button
+    const handleAddBtn = () => {
+        setMemberList([...memberList, { email: "", role: "" }]);
+      };   
 
     return (
         <div className="createPro">   
@@ -50,10 +66,23 @@ function CreateProject() {
                 </div>
                 <div className="cp-box-contents">
                     <div className="cp-inp-wrapper">
-                        <div><input type="text" placeholder="Project Name" className="cp-inp-pname"></input></div>
-                        <div><input type="text" placeholder="Deadline" className="cp-inp-deadline"></input></div>
-                        <div><input type="submit" value="Add Member" className="cp-inp-addmember"/></div>
-                        <div><input type="submit" value="Submit" className=""/></div>
+                        <div><input type="text" placeholder="Project Name" className="cp-inp-pname" onChange={handleEmailChange}></input></div>
+                        <div><input type="text" placeholder="Deadline" className="cp-inp-deadline" onChange={handleDeadlineChange}></input></div>
+                        <div><p>Add Members:-</p></div>
+                    
+                        {memberList.map((x, i) => {
+                            return (
+                                <div className="cpm-box">
+                                    <input type="text" placeholder="Email" classNAme="cpm-email" name="email" onChange={e => handleMemberInputChange(e, i)}/>
+                                    <input type="text" placeholder="Role" className="cpm-role" name="role" onChange={e => handleMemberInputChange(e, i)}/>
+                                    <span className="cpm-btn-box">
+                                        {memberList.length !== 1 && <button onClick={() => handleRemoveBtn(i)} className="cpm-remove-btn">Remove</button>}
+                                        {memberList.length - 1 === i && <button onClick={handleAddBtn} className="cpm-add-btn">Add</button>}
+                                    </span>
+                                </div>
+                            );
+                        })}   
+                        <div>{JSON.stringify(memberList)}</div>                 
                     </div>
                 </div>
             </div>
@@ -61,48 +90,4 @@ function CreateProject() {
     );
 }
 
-/*function Appz() {
-    //eslint-disable-next-line
-    const [inputList, setInputList] = useState([{ firstName: "", lastName: "" }]);
-
-// handle input change
-const handleInputChange = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...inputList];
-    list[index][name] = value;
-    setInputList(list);
-  };
-   
-  // handle click event of the Remove button
-  const handleRemoveClick = index => {
-    const list = [...inputList];
-    list.splice(index, 1);
-    setInputList(list);
-  };
-   
-  // handle click event of the Add button
-  const handleAddClick = () => {
-    setInputList([...inputList, { firstName: "", lastName: "" }]);
-  };    
-   
-    return (
-      <div className="App">
-        <h1>Hello</h1>
-        {inputList.map((x, i) => {
-          return (
-            <div className="cpp-box">
-                <input type="text" placeholder="First Name" classNAme="cpp-fname" name="firstName" onChange={e => handleInputChange(e, i)}/>
-                <input type="text" placeholder="Last Name" className="cpp-lname" name="lastName" onChange={e => handleInputChange(e, i)}/>
-                <div className="btn-box">
-                    {inputList.length !== 1 && <button onClick={() => handleRemoveClick(i)} className="mr10">Remove</button>}
-                    {inputList.length - 1 === i && <button onClick={handleAddClick}>Add</button>}
-                </div>
-            </div>
-          );
-        })}
-        <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div>
-      </div>
-    );
-
-}*/
 export default CreateProject;
