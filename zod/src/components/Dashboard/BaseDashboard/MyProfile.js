@@ -1,6 +1,11 @@
 import './MyProfile.css';
 import { Link } from "react-router-dom";
 
+/* 
+    ClassName Convention Used:-
+        Eg: mp-top-nav -> MyProfile-top-nav ..
+*/
+
 function MyProfile() {
     return (
         <div className="MyProfile">   
@@ -27,7 +32,7 @@ function MyProfile() {
                     </div>
                 </div>
             </div>        
-
+    
             <div className="mp-outermostbox">
                 <div className="mp-box-hdn">
                     <p>My Profile</p>

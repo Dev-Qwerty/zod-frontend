@@ -1,25 +1,26 @@
 import './Base.css';
 import { Link } from "react-router-dom";
  
-function ProjectPg() {
+function BaseDashboard() {
     return (
-        <div className="ProjectPg">
-            <div className="top-nav">
-                <div className="left-wrapper-tn">
-                    <p className="title">zode</p>
+        <div className="BaseDashboard">
+            <div className="bd-top-nav">
+                <div className="bd-left-wrapper">
+                    <p className="bd-title">zode</p>
                 </div>
 
-                <div className="base-mid-wrapper">
+                <div className="bd-mid-wrapper">
                     <p>BASE&nbsp;&nbsp;DASHBOARD</p>
                 </div>
 
-                <div className="right-wrapper-tn">
-                    <div className="pro-dropdown">
-                        <button className="pro-dropbtn">
-                            <p className="pro-profile-text">JD</p> 
-                        </button>
+                <div className="bd-right-wrapper">
 
-                        <div className="pro-dropdown-content">
+                    <div className="bd-profile-icon-wrapper">
+                        <div className="bd-icon">
+                            <p className="bd-icon-txt">JD</p> 
+                        </div>
+
+                        <div className="bd-dropdown-content">
                             <Link to="/basedashboard/myprofile"><p>My Profile</p></Link>
                             <Link to="/login"><p>Logout</p></Link>
                         </div>
@@ -159,4 +160,4 @@ function ProjectPg() {
     );
 }
 
-export default ProjectPg;
+export default BaseDashboard;
