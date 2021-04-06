@@ -1,10 +1,17 @@
 import './Base.css';
 import { Link } from "react-router-dom";
  
+/* 
+    ClassName Convention Used:-
+        Eg: mp-top-nav -> MyProfile-top-nav ..
+*/
+
 function BaseDashboard() {
     return (
         <div className="BaseDashboard">
+
             <div className="bd-top-nav">
+
                 <div className="bd-left-wrapper">
                     <p className="bd-title">zode</p>
                 </div>
@@ -16,6 +23,7 @@ function BaseDashboard() {
                 <div className="bd-right-wrapper">
 
                     <div className="bd-profile-icon-wrapper">
+
                         <div className="bd-icon">
                             <p className="bd-icon-txt">JD</p> 
                         </div>
@@ -30,6 +38,7 @@ function BaseDashboard() {
             </div>
 
             <div className="search-etc-section">
+
                 <div className="heading-wrapper">
                     <p className="heading">PROJECTS</p>
                 </div>
@@ -41,12 +50,11 @@ function BaseDashboard() {
                 <div className="">
                     <Link to="/basedashboard/createproject"> <input type="submit" value="New Project" className="new-project-btn"></input></Link>                     
                 </div>
-
             </div>
 
             <div className="status-etc-hdn">
-                <div className="free-box">
-                            
+
+                <div className="free-box">      
                 </div>   
                              
                 <div className="wrapper-x">
@@ -55,19 +63,19 @@ function BaseDashboard() {
                     <p className="deadline-x">Deadline</p>
                     <p className="team-lead-x">Team Lead</p>
                 </div>
-
             </div>
 
             <div className="full-boxes-wrapper">
+
                 <div className="single-box-wrapper">
+
                     <div className="rocket-svg-wrapper">
                         <div className="rocket-svg">
                             
                         </div>
-
                     </div>
                     
-                    <div className="inbox-wrapper">
+                    <div className="inbox-wrapper">    
                         <div className="wrapper-y">
                             <p className="project-name">Project Name 1</p>
                             <p className="status">Tasks 2/5</p>
@@ -78,20 +86,20 @@ function BaseDashboard() {
                         <div className="line-wrapper">
                             <div className="progress-line"></div>
                         </div> 
-
                     </div>
 
                 </div>
 
                 <div className="single-box-wrapper">
+                    
                     <div className="rocket-svg-wrapper">
                         <div className="rocket-svg">
                             
                         </div>
-
                     </div>
                     
                     <div className="inbox-wrapper">
+                
                         <div className="wrapper-y">
                             <p className="project-name">Project Name 1</p>
                             <p className="status">Tasks 2/5</p>
@@ -102,12 +110,12 @@ function BaseDashboard() {
                         <div className="line-wrapper">
                             <div className="progress-line"></div>
                         </div> 
-
                     </div>                  
 
                 </div>
 
                 <div className="single-box-wrapper">
+                    
                     <div className="rocket-svg-wrapper">
                         <div className="rocket-svg">
                             
@@ -116,6 +124,7 @@ function BaseDashboard() {
                     </div>
                     
                     <div className="inbox-wrapper">
+                        
                         <div className="wrapper-y">
                             <p className="project-name">Project Name 1</p>
                             <p className="status">Tasks 2/5</p>
@@ -126,11 +135,12 @@ function BaseDashboard() {
                         <div className="line-wrapper">
                             <div className="progress-line"></div>
                         </div> 
+                    </div>
 
-                    </div>                  
                 </div>
 
                 <div className="single-box-wrapper">
+                    
                     <div className="rocket-svg-wrapper">
                         <div className="rocket-svg">
                             
@@ -139,6 +149,7 @@ function BaseDashboard() {
                     </div>
                     
                     <div className="inbox-wrapper">
+                       
                         <div className="wrapper-y">
                             <p className="project-name">Project Name 1</p>
                             <p className="status">Tasks 2/5</p>
@@ -148,10 +159,9 @@ function BaseDashboard() {
 
                         <div className="line-wrapper">
                             <div className="progress-line"></div>
-                        </div> 
-
+                        </div>
+                         
                     </div>     
-
                 </div>    
 
             </div> 

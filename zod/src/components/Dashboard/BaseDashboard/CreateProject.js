@@ -10,12 +10,12 @@ import { Link } from "react-router-dom";
 
 function CreateProject() {
 
-    const [email, setEmailValue] = useState('');
+    const [email, setPnameValue] = useState('');
     const [deadline, setDeadlineValue] = useState('');
     const [memberList, setMemberList] = useState([{ email: "", role: "" }]);
 
     // handle input change - pname, deadline
-    const handleEmailChange = (e) => setEmailValue(e.target.value);
+    const handlePnameChange = (e) => setPnameValue(e.target.value);
     const handleDeadlineChange = (e) => setDeadlineValue(e.target.value);
    
     // handle input change - memberList
@@ -42,58 +42,73 @@ function CreateProject() {
         <div className="createPro">   
 
             <div className="cp-top-nav">
-                <div className="cp-left-wrapper-tn">
+
+                <div className="cp-left-wrapper">
                     <p className="cp-title">zode</p>
                 </div>
 
-                <div className="base-mid-wrapper">
+                <div className="cp-mid-wrapper">
                     <p>BASE&nbsp;&nbsp;DASHBOARD</p>
                 </div>
 
-                <div className="cp-right-wrapper-tn">  
-                    <div className="cp-dropdown">
-                        <button className="cp-dropbtn">
-                            <p className="cp-profile-text">JD</p> 
-                        </button>
+                <div className="cp-right-wrapper">
+
+                    <div className="cp-profile-icon-wrapper">
+
+                        <div className="cp-icon">
+                            <p className="cp-icon-txt">JD</p> 
+                        </div>
 
                         <div className="cp-dropdown-content">
                             <Link to="/basedashboard/home"><p>Home</p></Link>
-                            <Link to="/basedashboard/myprofile"><p>My Profile</p></Link>
                             <Link to="/login"><p>Logout</p></Link>
                         </div>
                     </div>
                 </div>
-            </div>        
-            <h1>hello</h1>
-            <div className="cp-outermostbox">
-                <h1>heloooo</h1>
+            </div>   
+
+            <div className="cp-box">
+                
                 <div className="cp-box-hdn">
                     <p>Create New Project</p>
                 </div>
-                <p>Hellooo</p>
+                
                 <div className="cp-box-contents">
+
                     <div className="cp-inp-wrapper">
-                        <h1>Hello</h1>
-                        <div><input type="text" placeholder="Project Name" className="cp-inp-pname" onChange={handleEmailChange}></input></div>
-                        <div><input type="text" placeholder="Deadline" className="cp-inp-deadline" onChange={handleDeadlineChange}></input></div>
-                        <div><p>Add Members:-</p></div>
+                        
+                        <div><input type="text" placeholder="Project Name" className="cp-pname" onChange={handlePnameChange}></input></div>
+                        <div><input type="text" placeholder="Deadline" className="cp-deadline" onChange={handleDeadlineChange}></input></div>
+                        
+                        <div><p className="cp-addMembers">Add Members:-</p></div>
                     
                         {memberList.map((x, i) => {
+                            
                             return (
                                 <div className="cpm-box">
-                                    <input type="text" placeholder="Email" classNAme="cpm-email" name="email" onChange={e => handleMemberInputChange(e, i)}/>
+                                    
+                                    <div className="cpm-one-row-wrapper">
+                                    <input type="text" placeholder="Email" className="cpm-email" name="email" onChange={e => handleMemberInputChange(e, i)}/>
                                     <input type="text" placeholder="Role" className="cpm-role" name="role" onChange={e => handleMemberInputChange(e, i)}/>
+                                    
                                     <span className="cpm-btn-box">
                                         {memberList.length !== 1 && <button onClick={() => handleRemoveBtn(i)} className="cpm-remove-btn">Remove</button>}
                                         {memberList.length - 1 === i && <button onClick={handleAddBtn} className="cpm-add-btn">Add</button>}
                                     </span>
+                                    </div>
+
                                 </div>
                             );
                         })}   
-                        <div>{JSON.stringify(memberList)}</div>                 
+                        
+                        <div>{JSON.stringify(memberList)}</div> 
+                        <div><input type="submit" className="cp-submit"></input></div>                
                     </div>
+
                 </div>
+
             </div>
+
         </div>
     );
 }
