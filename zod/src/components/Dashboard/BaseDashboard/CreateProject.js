@@ -1,7 +1,8 @@
 import './CreateProject.css';
-import React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 /* 
     ClassName Convention Used:-
@@ -10,9 +11,9 @@ import { Link } from "react-router-dom";
 
 function CreateProject() {
 
-    const [email, setPnameValue] = useState('');
+    const [pname, setPnameValue] = useState('');
     const [deadline, setDeadlineValue] = useState('');
-    const [memberList, setMemberList] = useState([{ email: "", role: "" }]);
+    const [memberList, setMemberList] = useState([{ email: "", userRole: "" }]);
 
     // handle input change - pname, deadline
     const handlePnameChange = (e) => setPnameValue(e.target.value);
@@ -77,8 +78,8 @@ function CreateProject() {
 
                     <div className="cp-inp-wrapper">
                         
-                        <div><input type="text" placeholder="Project Name" className="cp-pname" onChange={handlePnameChange}></input></div>
-                        <div><input type="text" placeholder="Deadline" className="cp-deadline" onChange={handleDeadlineChange}></input></div>
+                        <div><input type="text" placeholder="Project Name" className="cp-pname" onChange={handlePnameChange}  value={pname}></input></div>
+                        <div><input type="date" placeholder="Deadline" className="cp-deadline" onChange={handleDeadlineChange}  value={deadline}></input></div>
                         
                         <div><p className="cp-addMembers">Add Members:-</p></div>
                     
@@ -89,8 +90,13 @@ function CreateProject() {
                                     
                                     <div className="cpm-one-row-wrapper">
                                     <input type="text" placeholder="Email" className="cpm-email" name="email" onChange={e => handleMemberInputChange(e, i)}/>
-                                    <input type="text" placeholder="Role" className="cpm-role" name="role" onChange={e => handleMemberInputChange(e, i)}/>
-                                    
+
+                                    <input list="roles" placeholder="Role" className="cpm-role" name="role" onChange={e => handleMemberInputChange(e, i)}/>
+                                    <datalist id="roles">
+                                        <option value="Owner"/>
+                                        <option value="Member"/>
+                                    </datalist>
+
                                     <span className="cpm-btn-box">
                                         {memberList.length !== 1 && <button onClick={() => handleRemoveBtn(i)} className="cpm-remove-btn">Remove</button>}
                                         {memberList.length - 1 === i && <button onClick={handleAddBtn} className="cpm-add-btn">Add</button>}
@@ -102,7 +108,7 @@ function CreateProject() {
                         })}   
                         
                         <div>{JSON.stringify(memberList)}</div> 
-                        <div><input type="submit" className="cp-submit"></input></div>                
+                        <div><input type="submit" className="cp-submit" onClick={createProjectFn.bind(this, pname, deadline, memberList)}></input></div>                
                     </div>
 
                 </div>
@@ -111,6 +117,26 @@ function CreateProject() {
 
         </div>
     );
+}
+
+async function createProjectFn(pname, deadline, memberList) {
+    const reqBody = {
+        "projectName": pname,
+        "deadline": deadline,
+        "pendingInvites": JSON.stringify(memberList)
+    }
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin' : '*'
+        }
+    }
+    console.log(reqBody);
+    axios.post('https://projectservice-zode-test.herokuapp.com/api/projects/createproject', reqBody, config).then((res) => {
+        if(res.status === 201) {
+            alert("Success!!! BRAVO");
+        }
+    });
 }
 
 export default CreateProject;
