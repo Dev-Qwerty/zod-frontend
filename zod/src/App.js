@@ -5,11 +5,21 @@ import SignUpPage from './components/SignUp/SignUp';
 import Base from './components/Dashboard/BaseDashboard/Base';
 import CreateProject from './components/Dashboard/BaseDashboard/CreateProject';
 import MyProfile from './components/Dashboard/BaseDashboard/MyProfile';
-
+import firebase from 'firebase';
 import {
   BrowserRouter as Router,
   Route
 } from "react-router-dom";
+require('dotenv').config()
+
+firebase.initializeApp({
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: "zode-project.firebaseapp.com",
+  projectId: "zode-project",
+  storageBucket: "zode-project.appspot.com",
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MSG_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
+})
 
 function App() {
   return (
