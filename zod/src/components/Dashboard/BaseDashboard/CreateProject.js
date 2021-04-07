@@ -36,7 +36,7 @@ function CreateProject() {
     
     // Handle click event - Add button
     const handleAddBtn = () => {
-        setMemberList([...memberList, { email: "", role: "" }]);
+        setMemberList([...memberList, { email: "", userRole: "" }]);
       };   
 
     return (
