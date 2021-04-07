@@ -5,6 +5,7 @@ import SignUpPage from './components/SignUp/SignUp';
 import Base from './components/Dashboard/BaseDashboard/Base';
 import CreateProject from './components/Dashboard/BaseDashboard/CreateProject';
 import MyProfile from './components/Dashboard/BaseDashboard/MyProfile';
+import ConfirmEmail from './components/ConfirmEmail/ConfirmEmail';
 import firebase from 'firebase';
 import {
   BrowserRouter as Router,
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route path = "/signup">
           <SignUpPage/>
+        </Route>
+        <Route path = "/confirmEmail">
+          <ConfirmEmail/>
         </Route>
         <Route path = "/basedashboard/home">
           <Base/>
