@@ -91,8 +91,8 @@ function CreateProject() {
                                     <div className="cpm-one-row-wrapper">
                                     <input type="text" placeholder="Email" className="cpm-email" name="email" onChange={e => handleMemberInputChange(e, i)}/>
 
-                                    <input list="roles" placeholder="Role" className="cpm-role" name="role" onChange={e => handleMemberInputChange(e, i)}/>
-                                    <datalist id="roles">
+                                    <input list="userroles" placeholder="Role" className="cpm-role" name="userRole" onChange={e => handleMemberInputChange(e, i)}/>
+                                    <datalist id="userroles">
                                         <option value="Owner"/>
                                         <option value="Member"/>
                                     </datalist>
@@ -135,6 +135,8 @@ async function createProjectFn(pname, deadline, memberList) {
     axios.post('https://projectservice-zode-test.herokuapp.com/api/projects/createproject', reqBody, config).then((res) => {
         if(res.status === 201) {
             alert("Success!!! BRAVO");
+        } else {
+            alert('Nope')
         }
     });
 }
