@@ -1,9 +1,9 @@
-.ProjectPg {
+ .BaseDashboard {
   margin: 0;
   padding: 0;
 }
 
-.top-nav {
+.bd-top-nav {
   width: 100%;
   height: 90px;
   display: grid;
@@ -11,89 +11,90 @@
   box-shadow: 0 10px 6px -9px #707070;
 }
 
-.left-wrapper-tn {
+.bd-left-wrapper {
   text-align: left;
   padding-top: 5px;
 }
 
-.title {
+.bd-title {
   margin-left: 30px;
   font-family: Pacifico;
   font-size: 50px;
   color: #4CBF53;    
 }
 
-.base-mid-wrapper {
+.bd-mid-wrapper {
   border: 1px solid #DBDBDB;;
   width: 100%;
   height: 32px;
-  /*background-color: #4CBF53;*/    
+  text-align: center;
 }
 
-.base-mid-wrapper p {
-  /*color: #fff;*/
+.bd-mid-wrapper p {
   color: #707070;
   font-size: 15px;
   padding-top: 3px;
 }
 
-.right-wrapper-tn {
-  padding-left: 50%;
+.bd-right-wrapper {
+  padding-left: 70%;
   padding-top: 20px;
 }
 
-.pro-dropbtn {
+.bd-profile-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.bd-icon {
   width: 50px;
   height: 50px;
   border: 3px #1F89C5 solid;
   border-radius: 50%;
   padding-top: 10%;
+  padding-left: 15%;
   box-sizing: border-box;
   cursor: pointer;
   background-color: #fff;
-  }
+}
 
-  .pro-profile-text {
-    font: Fira Code;
-    font-size: 22px;
-    font-weight: bold;
-  }  
-
-  .pro-dropdown {
-    position: relative;
-    display: inline-block;
-  }
+.bd-icon-txt {
+  font: Fira Code;
+  font-size: 22px;
+  font-weight: bold;
+}  
   
-  .pro-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    padding-top: 15px;
-  }
+.bd-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding-top: 15px;
+  text-align: center;
+}
   
-  .pro-dropdown-content p {
-    color: black;
-    padding: 0px;
-    text-decoration: none;
-    display: block;
-    font-size: 15px;
-  }
+.bd-dropdown-content p {
+  color: black;
+  padding: 0px;
+  text-decoration: none;
+  display: block;
+  font-size: 15px;
+}
   
-  .pro-dropdown-content p:hover {
-    background-color: #f1f1f1
-  }
+.bd-dropdown-content p:hover {
+  background-color: #f1f1f1
+}
   
-  .pro-dropdown:hover .pro-dropdown-content {
-    display: block;
-  }
+.bd-profile-icon-wrapper:hover .bd-dropdown-content {
+  display: block;
+}
 
 .search-etc-section {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: 40% 45% 15%;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 40% 45% 15%;
 }
 
 .heading-wrapper {

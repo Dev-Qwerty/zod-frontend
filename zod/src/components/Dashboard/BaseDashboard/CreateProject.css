@@ -11,7 +11,7 @@
   box-shadow: 0 10px 6px -9px #707070;
 }
 
-.cp-left-wrapper-tn {
+.cp-left-wrapper {
   text-align: left;
   padding-top: 5px;
 }
@@ -23,47 +23,47 @@
   color: #4CBF53;    
 }
 
-.base-mid-wrapper {
+.cp-mid-wrapper {
   border: 1px solid #DBDBDB;;
   width: 100%;
   height: 32px;
-  /*background-color: #4CBF53;*/    
+  text-align: center;
 }
 
-.base-mid-wrapper p {
-  /*color: #fff;*/
+.cp-mid-wrapper p {
   color: #707070;
   font-size: 15px;
   padding-top: 3px;
-}  
+}
 
-.cp-right-wrapper-tn {
-  padding-left: 50%;
+.cp-right-wrapper {
+  padding-left: 70%;
   padding-top: 20px;
 }
 
-.cp-dropbtn {
+.cp-profile-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cp-icon {
   width: 50px;
   height: 50px;
   border: 3px #1F89C5 solid;
   border-radius: 50%;
   padding-top: 10%;
+  padding-left: 15%;
   box-sizing: border-box;
   cursor: pointer;
   background-color: #fff;
 }
 
-.cp-profile-text {
+.cp-icon-txt {
   font: Fira Code;
   font-size: 22px;
   font-weight: bold;
 }  
-
-.cp-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
+  
 .cp-dropdown-content {
   display: none;
   position: absolute;
@@ -72,8 +72,9 @@
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   padding-top: 15px;
+  text-align: center;
 }
-
+  
 .cp-dropdown-content p {
   color: black;
   padding: 0px;
@@ -81,27 +82,25 @@
   display: block;
   font-size: 15px;
 }
-
+  
 .cp-dropdown-content p:hover {
   background-color: #f1f1f1
 }
-
-.cp-dropdown:hover .cp-dropdown-content {
+  
+.cp-profile-icon-wrapper:hover .cp-dropdown-content {
   display: block;
 }
 
-.cp-outermostbox {
+
+.cp-box {
   width: 60%;
-  height: 400px;
+  /*height: 500px;*/
   border: 1px solid #DBDBDB;
   box-shadow: 0 0 8px #DBDBDB;
-  margin-top: 5%;
+  margin-top: 4%;
   margin-left: auto;
   margin-right: auto;
-}
-
-.cp-box-contents {
-
+  margin-bottom: 30px;
 }
 
 .cp-box-hdn {
@@ -117,26 +116,86 @@
 .cp-box-hdn p {
   padding-top: 2px;
   color: #fff;
-  padding-left: 1px;
+  text-align: center;
+  font-size: 17px;
+}
+
+.cp-box-contents {
+  margin-bottom: 50px;
+  width: 90%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cp-inp-wrapper {
-  margin-top: 5%;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;  
+  padding: 30px;
 }
 
-.cp-inp-pname {
-  width: 30%;
-  margin-bottom: 20px;  
+.cp-pname {
+  margin-bottom: 20px;
+  width: 50%;
+  height: 35px;
+  padding-left: 10px;
+  font-size: 16px;
 }
 
-.cp-inp-deadline {
-  width: 30%;
+.cp-deadline {
+  width: 50%;
+  height: 35px;  
+  padding-left: 10px;
+  font-size: 16px;
+}
+
+.cp-addMembers {
+  font-size: 17px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.cpm-box {
+  
+}
+
+.cpm-email {
+  width: 250px;
+  height: 35px;
+  padding-left: 10px;
+  font-size: 16px;  
+}
+
+.cpm-role {
+  margin-left: 15px;
+  width: 250px;
+  height: 35px;
+  padding-left: 10px;
+  font-size: 16px;  
+}
+
+.cpm-add-btn {
+  width: 50px;
+  height: 35px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+.cpm-remove-btn {
+  width: 100px;
+  height: 35px;
+  margin-left: 20px;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+.cpm-one-row-wrapper {
   margin-bottom: 20px;
 }
 
-.cp-inp-addmember {
-  margin-left: -18%;
+.cp-submit {
+  width: 100px;
+  height: 35px;
+  margin-top: 20px;
 }
