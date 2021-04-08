@@ -39,3 +39,9 @@
     top: 15vw;
     left: 40vw;
 }
+
+.zod-mail-timer button {
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+}
