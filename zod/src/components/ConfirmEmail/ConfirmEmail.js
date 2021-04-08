@@ -19,7 +19,6 @@ function ConfirmEmail({email}) {
         btn.setAttribute("disabled","");
         setSeconds(30);
         setTimeout(()=> {
-            console.log("Timeout");
             document.getElementById('resend-btn').removeAttribute('disabled');
         }, 30000);
     }
