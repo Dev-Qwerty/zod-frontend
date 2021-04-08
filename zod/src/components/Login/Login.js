@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import React from 'react';
 import { useCookies } from 'react-cookie';
 
+
 const { useState } = React;
 function LoginPage() {
     const [email, setemailValue] = useState('');
@@ -45,8 +46,15 @@ function LoginRequest(email, password, setCookie) {
     .then((userCredential) => {
         // Signed in
         var user = userCredential.user;
-        setCookie('token', user.refreshToken, {maxAge: 1200});
-        window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';
+        console.log(user.za);
+        if(user.emailVerified) {
+            setCookie('token', user.za, {maxAge: 1200});
+            window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';
+        }
+        else {
+            setCookie('token', email);
+            window.location.href = window.location.protocol + '//' + window.location.host + '/confirmEmail';
+        }
         
     })
     .catch((error) => {
