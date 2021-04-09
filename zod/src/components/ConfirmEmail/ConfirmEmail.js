@@ -2,6 +2,7 @@ import './ConfirmEmail.css';
 import sendMsgSVG from '../../assets/send-message.svg';
 import React from 'react';
 import { useCookies } from 'react-cookie';
+import axios from 'axios';
 
 function ConfirmEmail() {
     const [seconds, setSeconds] = React.useState(30);
@@ -26,6 +27,20 @@ function ConfirmEmail() {
     });
 
     async function handleBtnClicked() {
+        const reqBody = {
+            "email": cookies.token, 
+        }
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+        axios.post('https://userservice-zode.herokuapp.com/api/user/resendverificationemail', reqBody, config).then((response) => {
+            if(response.status === 200) {
+                alert("Verification Email sent to your mail. Please check.");
+            }
+        })
+        
         btn.setAttribute("disabled","");
         setSeconds(30);
         setTimeout(()=> {
