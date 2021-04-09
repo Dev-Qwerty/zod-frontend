@@ -1,0 +1,47 @@
+.zod-ctitle{
+    height: 242px;
+    width: 192px;
+    left: 50px;
+    top: -67px;
+    position: absolute;
+    font-family: Pacifico;
+    font-size: 75px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 242px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #4CBF53;
+}
+
+.send-svg {
+    left: 42vw;
+    position: relative;
+    top: 10vw;
+}
+.zod-cheading h1{
+    color: #545454, 100%;
+    position: relative;
+    top: 12vw;
+    left: 33vw;
+    font-size: 4rem !important;
+}
+
+.zod-cheading p {
+    position: relative;
+    top: 12vw;
+    left: 33vw;
+    font-size: 25px;
+}
+
+.zod-mail-timer p {
+    position: relative;
+    top: 15vw;
+    left: 40vw;
+}
+
+.zod-mail-timer button {
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+}

@@ -4,6 +4,22 @@
     display: grid;
     grid-template-columns: 50% 50%;
 }
+.title{
+    height: 242px;
+    width: 192px;
+    left: 50px;
+    top: -67px;
+    position: absolute;
+    font-family: Pacifico;
+    font-size: 75px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 242px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #4CBF53;
+}
+
 
 .left-wrapper-tn {
     text-align: left;
@@ -46,6 +62,24 @@
     text-align: left;
     color: #4CBF53;
 }
+
+.zod-nav-items> li {
+    cursor: pointer;
+}
+
+.zod-nav-items> a {
+    margin: 30px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 48px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #4CBF53;
+    text-decoration: none;
+}
+
 .zod-signup-navbtn {
     background-color: #4CBF53;
     border: none;

@@ -96,4 +96,5 @@ hr {
 .card-title {
     margin: 10px !important;
     font-weight: bold;
+    text-align: center;
 }
