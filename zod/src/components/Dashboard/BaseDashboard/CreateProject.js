@@ -120,23 +120,25 @@ function CreateProject() {
 }
 
 async function createProjectFn(pname, deadline, memberList) {
+
     const reqBody = {
         "projectName": pname,
         "deadline": deadline,
-        "pendingInvites": JSON.stringify(memberList)
+        "pendingInvites": memberList
     }
     const config = {
         headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin' : '*'
-        }
+            'Access-Control-Allow-Origin' : '*',
+        },
+        withCredentials: true
     }
     console.log(reqBody);
     axios.post('https://projectservice-zode-test.herokuapp.com/api/projects/createproject', reqBody, config).then((res) => {
         if(res.status === 201) {
-            alert("Success!!! BRAVO");
+            alert('Project Created!');
         } else {
-            alert('Nope')
+            alert('Some Error Ocuured!')
         }
     });
 }
