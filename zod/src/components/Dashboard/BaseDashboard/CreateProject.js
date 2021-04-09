@@ -124,7 +124,7 @@ async function createProjectFn(pname, deadline, memberList) {
     const reqBody = {
         "projectName": pname,
         "deadline": deadline,
-        "pendingInvites": JSON.stringify(memberList)
+        "pendingInvites": memberList
     }
     const config = {
         headers: {
