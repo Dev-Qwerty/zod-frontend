@@ -16,6 +16,7 @@ import tw from '../../assets/twitter-1.png';
 import fb from '../../assets/facebook-1.png';
 import lin from '../../assets/linkedin-1.png';
 import inst from '../../assets/instagram-1.png';
+import { Link } from "react-router-dom";
 
 function HomePage() {
     return (
@@ -28,8 +29,8 @@ function HomePage() {
                     <ul className = "zod-nav-items">
                         <li>Features</li>
                         <li>Pricing</li>
-                        <li>Login</li>
-                        <li><button className="zod-signup-navbtn">Sign Up</button></li>
+                        <Link to="/login"><li>Login</li></Link>
+                        <Link to="/signup"><li><button className="zod-signup-navbtn">Sign Up</button></li></Link>
                     </ul>
             </div>
             <div className="zod-homecard-1">
