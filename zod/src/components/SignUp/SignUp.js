@@ -26,7 +26,7 @@ function SignUpPage() {
             <p className="zod-tagline">Collaboration platform for software development teams</p>
                 <div className="card zod-signupcard">
                     <div className="card-body">
-                        <h5 className="card-title">Create new account</h5>
+                        <h5 className="card-title">Create a new account</h5>
                         <div className="zod-signup-inputs">
                             <div className="input-group"> 
                                 <input type="text" className="form-control input-sm zod-name-grp" placeholder="First Name" value={fname} onChange={handlefNameChange}/> 
