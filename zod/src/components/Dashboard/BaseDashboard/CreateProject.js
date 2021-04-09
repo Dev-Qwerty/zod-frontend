@@ -136,9 +136,9 @@ async function createProjectFn(pname, deadline, memberList) {
     console.log(reqBody);
     axios.post('https://projectservice-zode-test.herokuapp.com/api/projects/createproject', reqBody, config).then((res) => {
         if(res.status === 201) {
-            alert("Success!!! BRAVO");
+            alert('Project Created!');
         } else {
-            alert('Nope')
+            alert('Some Error Ocuured!')
         }
     });
 }
