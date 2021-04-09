@@ -120,6 +120,7 @@ function CreateProject() {
 }
 
 async function createProjectFn(pname, deadline, memberList) {
+
     const reqBody = {
         "projectName": pname,
         "deadline": deadline,
@@ -128,8 +129,9 @@ async function createProjectFn(pname, deadline, memberList) {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin' : '*'
-        }
+            'Access-Control-Allow-Origin' : '*',
+        },
+        withCredentials: true
     }
     console.log(reqBody);
     axios.post('https://projectservice-zode-test.herokuapp.com/api/projects/createproject', reqBody, config).then((res) => {
