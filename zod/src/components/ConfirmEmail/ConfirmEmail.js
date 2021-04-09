@@ -21,9 +21,9 @@ function ConfirmEmail() {
             removeCookie("token");
         }
         
-          window.addEventListener('beforeunload', cleanup);
+        window.addEventListener('beforeunload', cleanup);
         
-    }, []);
+    });
 
     async function handleBtnClicked() {
         btn.setAttribute("disabled","");
