@@ -6,6 +6,7 @@ import Base from './components/Dashboard/BaseDashboard/Base';
 import CreateProject from './components/Dashboard/BaseDashboard/CreateProject';
 import MyProfile from './components/Dashboard/BaseDashboard/MyProfile';
 import ConfirmEmail from './components/ConfirmEmail/ConfirmEmail';
+import ResetPassword from './components/ResetPassword/ResetPassword';
 import firebase from 'firebase';
 import {
   BrowserRouter as Router,
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route path = "/confirmEmail">
           <ConfirmEmail/>
+        </Route>
+        <Route path = "/resetPassword">
+          <ResetPassword/>
         </Route>
         <Route path = "/basedashboard/home">
           <Base/>
