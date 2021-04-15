@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Cookies } from 'react-cookie';
 
 /* 
     ClassName Convention Used:-
@@ -120,7 +121,9 @@ function CreateProject() {
 }
 
 async function createProjectFn(pname, deadline, memberList) {
-
+    
+    const token = Cookies.get('token');
+    console.log(token);
     const reqBody = {
         "projectName": pname,
         "deadline": deadline,
@@ -128,6 +131,7 @@ async function createProjectFn(pname, deadline, memberList) {
     }
     const config = {
         headers: {
+            'authorization': token,
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*',
         },
