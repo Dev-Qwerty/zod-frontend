@@ -49,7 +49,7 @@ function LoginRequest(email, password, setCookie) {
         console.log(user.za);
         if(user.emailVerified) {
             //setCookie('token', user.za, {maxAge: 1200});
-            setCookie('token', user.za);
+            setCookie('token', user.za, {maxAge: 60000});
             window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';
         }
         else {
