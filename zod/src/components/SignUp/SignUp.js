@@ -66,7 +66,7 @@ async function SignUpRequest(fname, lname, email, password, setCookie) {
             'Access-Control-Allow-Origin' : '*'
         }
     }
-    axios.post('https://userservice-zode-test.herokuapp.com/api/user/signup', reqBody, config).then((response) => {
+    axios.post('https://userservice-zode.herokuapp.com/api/user/signup', reqBody, config).then((response) => {
         if(response.status === 201) {
             alert("Success! User Created.");
             setCookie('token', email);
