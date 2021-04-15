@@ -3,6 +3,9 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
+ 
+const cookies = new Cookies();
 
 /* 
     ClassName Convention Used:-
@@ -120,7 +123,9 @@ function CreateProject() {
 }
 
 async function createProjectFn(pname, deadline, memberList) {
-
+    
+    const token = cookies.get('token');
+    alert(token);
     const reqBody = {
         "projectName": pname,
         "deadline": deadline,
@@ -128,19 +133,27 @@ async function createProjectFn(pname, deadline, memberList) {
     }
     const config = {
         headers: {
+            'authorization': token,
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*',
         },
-        withCredentials: true
+        withCredentials: true,
+        SameSite: 'none',
+        Secure: true
     }
     console.log(reqBody);
-    axios.post('https://projectservice-zode-test.herokuapp.com/api/projects/createproject', reqBody, config).then((res) => {
-        if(res.status === 201) {
+    
+    axios.post('https://projectservice-zode.herokuapp.com/api/projects/createproject', reqBody, config)
+    .then((res) => {
+        /*if(res.status === 201) {
             alert('Project Created!');
         } else {
             alert('Some Error Ocuured!')
-        }
-    });
+        }*/
+    })
+    .catch(function (error) {
+        console.log(error);
+    });    
 }
 
 export default CreateProject;
