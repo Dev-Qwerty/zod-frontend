@@ -3,7 +3,9 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Cookies } from 'react-cookie';
+import Cookies from 'universal-cookie';
+ 
+const cookies = new Cookies();
 
 /* 
     ClassName Convention Used:-
@@ -122,8 +124,8 @@ function CreateProject() {
 
 async function createProjectFn(pname, deadline, memberList) {
     
-    const token = Cookies.get('token');
-    console.log(token);
+    const token = cookies.get('token');
+    alert(token);
     const reqBody = {
         "projectName": pname,
         "deadline": deadline,

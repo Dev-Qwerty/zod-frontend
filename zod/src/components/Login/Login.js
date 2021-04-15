@@ -48,12 +48,7 @@ function LoginRequest(email, password, setCookie) {
         var user = userCredential.user;
         console.log(user.za);
         if(user.emailVerified) {
-            //setCookie('token', user.za, {maxAge: 1200});
-<<<<<<< HEAD
             setCookie('token', user.za, {maxAge: 60000});
-=======
-            setCookie('token', user.za, {sameSite: "none", secure: true});
->>>>>>> 677220c2b80d56217b5c2a85d56bb9350fd7fbf4
             window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';
         }
         else {
