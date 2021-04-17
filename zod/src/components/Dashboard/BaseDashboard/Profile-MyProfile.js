@@ -1,4 +1,4 @@
-import './MyProfile-Profile.css';
+import './Profile-MyProfile.css';
 import CmpProfile from './CmpProfile'
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
         Eg: mp-top-nav -> MyProfile-top-nav ..
 */
 
-function MyProfile() {
+function MyProfileP() {
 
     return (
         <div className="MyProfile">   
@@ -46,7 +46,7 @@ function MyProfile() {
                             <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p className="p-label">Profile</p></Link>
                         </div>
                         <div className="mpb-col1-item2">
-                            <Link to="/login" style={{ textDecoration: 'none' }}><p className="p-label">Pending Invites</p></Link>
+                            <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p className="p-label">Pending Invites</p></Link>
                         </div>
                     </div>
                 </div>
@@ -59,4 +59,4 @@ function MyProfile() {
     );
 }
 
-export default MyProfile;
+export default MyProfileP;

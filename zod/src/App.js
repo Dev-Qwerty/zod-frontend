@@ -4,7 +4,8 @@ import HomePage from './components/Home/Home';
 import SignUpPage from './components/SignUp/SignUp';
 import Base from './components/Dashboard/BaseDashboard/Base';
 import CreateProject from './components/Dashboard/BaseDashboard/CreateProject';
-import MyProfileP from './components/Dashboard/BaseDashboard/MyProfile-Profile';
+import MyProfileP from './components/Dashboard/BaseDashboard/Profile-MyProfile';
+import MyProfilePI from './components/Dashboard/BaseDashboard/PendingInvites-MyProfile';
 import ConfirmEmail from './components/ConfirmEmail/ConfirmEmail';
 import ResetPassword from './components/ResetPassword/ResetPassword';
 import firebase from 'firebase';
@@ -50,7 +51,10 @@ function App() {
         </Route>
         <Route path="/basedashboard/myprofile/profile">
           <MyProfileP/>
-        </Route>                                   
+        </Route>   
+        <Route path="/basedashboard/myprofile/pendinginvites">
+          <MyProfilePI />  
+        </Route>                                
       </div>
     </Router>
   );

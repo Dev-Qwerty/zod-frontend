@@ -1,0 +1,57 @@
+.cpi-wrapper {
+    margin: 60px;
+}
+
+.cpi-box {
+    width: 50%;
+    height: 100px;
+    border: 1px solid #aaa;
+    display: grid;
+    grid-template-columns: 50% 25% 25%;
+    margin-bottom: 30px;
+}
+
+.cpi-box-item1 {
+
+}
+
+.cpi-box-item1-wrapper {
+  margin-top: 22px;
+  margin-left: 20px;
+}
+
+.cpiY {
+  font-size: 17px; 
+}
+
+.qw {
+  margin-top: -10px;
+}
+
+.cpi-box-item2 {
+
+}
+
+.cpi-box-item3 {
+
+}
+
+.cpi-acceptBtn {
+  height: 35px;
+  background-color: #52D066;
+  width: 70%;
+  border: none;
+  margin-top: 32px;
+  margin-left: 20px;
+  color: #fff;
+}
+
+.cpi-rejectBtn {
+  height: 35px;
+  background-color: #E43535;
+  width: 70%;
+  border: none;
+  margin-top: 32px;
+  margin-left: 20px;
+  color: #fff;
+}
