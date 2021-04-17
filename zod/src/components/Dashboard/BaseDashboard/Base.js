@@ -29,7 +29,7 @@ function BaseDashboard() {
                         </div>
 
                         <div className="bd-dropdown-content">
-                            <Link to="/basedashboard/myprofile"><p>My Profile</p></Link>
+                            <Link to="/basedashboard/myprofile/profile"><p>My Profile</p></Link>
                             <Link to="/login"><p>Logout</p></Link>
                         </div>
                     </div>

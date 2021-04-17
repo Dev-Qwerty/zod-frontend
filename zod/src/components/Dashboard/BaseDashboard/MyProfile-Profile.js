@@ -1,4 +1,4 @@
-import './MyProfile.css';
+import './MyProfile-Profile.css';
 import CmpProfile from './CmpProfile'
 import { Link } from "react-router-dom";
 
@@ -43,10 +43,10 @@ function MyProfile() {
                 <div className="mpb-col1">
                     <div className="mpb-col1-items">
                         <div className="mpb-col1-item1">
-                            <p className="p-label">Profile</p>
+                            <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p className="p-label">Profile</p></Link>
                         </div>
                         <div className="mpb-col1-item2">
-                            <p className="p-label">Pending Invites</p>
+                            <Link to="/login" style={{ textDecoration: 'none' }}><p className="p-label">Pending Invites</p></Link>
                         </div>
                     </div>
                 </div>

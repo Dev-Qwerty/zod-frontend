@@ -4,7 +4,7 @@ import HomePage from './components/Home/Home';
 import SignUpPage from './components/SignUp/SignUp';
 import Base from './components/Dashboard/BaseDashboard/Base';
 import CreateProject from './components/Dashboard/BaseDashboard/CreateProject';
-import MyProfile from './components/Dashboard/BaseDashboard/MyProfile';
+import MyProfileP from './components/Dashboard/BaseDashboard/MyProfile-Profile';
 import ConfirmEmail from './components/ConfirmEmail/ConfirmEmail';
 import ResetPassword from './components/ResetPassword/ResetPassword';
 import firebase from 'firebase';
@@ -48,8 +48,8 @@ function App() {
         <Route path="/basedashboard/createproject">
           <CreateProject/>
         </Route>
-        <Route path="/basedashboard/myprofile">
-          <MyProfile/>
+        <Route path="/basedashboard/myprofile/profile">
+          <MyProfileP/>
         </Route>                                   
       </div>
     </Router>
