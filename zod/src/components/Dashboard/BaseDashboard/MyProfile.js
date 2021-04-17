@@ -1,4 +1,5 @@
 import './MyProfile.css';
+import CmpProfile from './CmpProfile'
 import { Link } from "react-router-dom";
 
 /* 
@@ -7,6 +8,7 @@ import { Link } from "react-router-dom";
 */
 
 function MyProfile() {
+
     return (
         <div className="MyProfile">   
 
@@ -49,7 +51,7 @@ function MyProfile() {
                     </div>
                 </div>
                 <div className="mpb-col2">
-
+                    <CmpProfile />
                 </div>
             </div>
             
