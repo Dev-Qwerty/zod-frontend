@@ -138,7 +138,6 @@ async function createProjectFn(pname, deadline, memberList) {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*',
         },
-        withCredentials: true,
         SameSite: 'none',
         Secure: true
     }
@@ -146,11 +145,11 @@ async function createProjectFn(pname, deadline, memberList) {
     
     axios.post('https://projectservice-zode.herokuapp.com/api/projects/createproject', reqBody, config)
     .then((res) => {
-        /*if(res.status === 201) {
+        if(res.status === 201) {
             alert('Project Created!');
         } else {
             alert('Some Error Ocuured!')
-        }*/
+        }
     })
     .catch(function (error) {
         console.log(error);
