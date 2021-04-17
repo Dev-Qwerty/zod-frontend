@@ -1,0 +1,51 @@
+.mp-wrapper {
+  
+}
+
+.mp-profile-img {
+  background-image: url('../../../assets/profile.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;  
+  width: 150px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+.mp-inp-wrapper {
+  margin-top: 30px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mp-x {
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  padding-top: 10px;
+  padding-left: 23px;
+}
+
+.mp-label {
+  font-size: 17px;
+  margin-bottom: 10px;
+
+}
+
+.mp-inp {
+  width: 350px;
+  margin-bottom: 20px;
+}
+
+.mp-submit {
+  font-size: 17px;
+  color: #fff;
+  margin-top: 20px;
+  width: 200px;
+  height: 40px;
+  border: none;
+  background-color: #52D066;
+}

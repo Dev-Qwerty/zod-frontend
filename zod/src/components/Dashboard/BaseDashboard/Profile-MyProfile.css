@@ -1,0 +1,140 @@
+.MyProfile {
+  margin: 0;
+  padding: 0;
+}
+
+.mp-top-nav {
+  width: 100%;
+  height: 90px;
+  display: grid;
+  grid-template-columns: 44% 12% 44%;
+  box-shadow: 0 10px 6px -9px #707070;
+}
+
+.mp-left-wrapper {
+  text-align: left;
+  padding-top: 5px;
+}
+
+.mp-title {
+  margin-left: 30px;
+  font-family: Pacifico;
+  font-size: 50px;
+  color: #4CBF53;    
+}
+
+.mp-mid-wrapper {
+  border: 1px solid #DBDBDB;;
+  width: 100%;
+  height: 32px;
+  text-align: center;
+}
+
+.mp-mid-wrapper p {
+  color: #707070;
+  font-size: 15px;
+  padding-top: 3px;
+}
+
+.mp-right-wrapper {
+  padding-left: 70%;
+  padding-top: 20px;
+}
+
+.mp-profile-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.mp-icon {
+  width: 50px;
+  height: 50px;
+  border: 3px #1F89C5 solid;
+  border-radius: 50%;
+  padding-top: 10%;
+  padding-left: 15%;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.mp-icon-txt {
+  font: Fira Code;
+  font-size: 22px;
+  font-weight: bold;
+}  
+  
+.mp-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding-top: 15px;
+  text-align: center;
+}
+  
+.mp-dropdown-content p {
+  color: black;
+  padding: 0px;
+  text-decoration: none;
+  display: block;
+  font-size: 15px;
+}
+  
+.mp-dropdown-content p:hover {
+  background-color: #f1f1f1
+}
+  
+.mp-profile-icon-wrapper:hover .mp-dropdown-content {
+  display: block;
+}
+
+.mp-body {
+  width: 100%;
+  height: 650px;
+  display: grid;
+  grid-template-columns: 12% 88%;
+}
+
+.mpb-col1 {
+  background-color:#52D066;
+}
+
+.mpb-col1-items {
+  margin-top: 50px;
+  height: 100px;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  color: #fff;
+  font-size: 18px;
+}
+
+.mpb-col1-item1 {
+  
+}
+
+.mpb-col1-item1 :hover {
+  background-color: #45BC58;;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.mpb-col1-item2 :hover {
+  background-color: #45BC58;;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.p-label {
+  padding-left: 25px;
+  padding-top: 12px;
+  color: #fff;
+}
+
+.mpb-col2 {
+  
+}

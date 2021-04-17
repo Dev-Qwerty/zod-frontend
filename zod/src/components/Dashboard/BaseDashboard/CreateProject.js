@@ -71,20 +71,22 @@ function CreateProject() {
                 </div>
             </div>   
 
+            <div className="cp-rect-border-bottom">
+                <p>Create New Project</p>
+            </div>
+
             <div className="cp-box">
-                
-                <div className="cp-box-hdn">
-                    <p>Create New Project</p>
-                </div>
                 
                 <div className="cp-box-contents">
 
                     <div className="cp-inp-wrapper">
-                        
-                        <div><input type="text" placeholder="Project Name" className="cp-pname" onChange={handlePnameChange}  value={pname}></input></div>
+
+                        <p className="cp-label">Project Name</p>
+                        <div><input type="text" placeholder="" className="cp-pname" onChange={handlePnameChange}  value={pname}></input></div>
+                        <p className="cp-label">Due Date</p>
                         <div><input type="date" placeholder="Deadline" className="cp-deadline" onChange={handleDeadlineChange}  value={deadline}></input></div>
                         
-                        <div><p className="cp-addMembers">Add Members:-</p></div>
+                        <div><p className="cp-addMembers">Add Members</p></div>
                     
                         {memberList.map((x, i) => {
                             
@@ -110,8 +112,7 @@ function CreateProject() {
                             );
                         })}   
                         
-                        <div>{JSON.stringify(memberList)}</div> 
-                        <div><input type="submit" className="cp-submit" onClick={createProjectFn.bind(this, pname, deadline, memberList)}></input></div>                
+                        <div><input value="Create" type="submit" className="cp-submit" onClick={createProjectFn.bind(this, pname, deadline, memberList)}></input></div>                
                     </div>
 
                 </div>
@@ -137,7 +138,6 @@ async function createProjectFn(pname, deadline, memberList) {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*',
         },
-        withCredentials: true,
         SameSite: 'none',
         Secure: true
     }
@@ -145,11 +145,11 @@ async function createProjectFn(pname, deadline, memberList) {
     
     axios.post('https://projectservice-zode.herokuapp.com/api/projects/createproject', reqBody, config)
     .then((res) => {
-        /*if(res.status === 201) {
+        if(res.status === 201) {
             alert('Project Created!');
         } else {
             alert('Some Error Ocuured!')
-        }*/
+        }
     })
     .catch(function (error) {
         console.log(error);

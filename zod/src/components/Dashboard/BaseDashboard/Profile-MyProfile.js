@@ -1,4 +1,5 @@
-import './MyProfile.css';
+import './Profile-MyProfile.css';
+import CmpProfile from './CmpProfile'
 import { Link } from "react-router-dom";
 
 /* 
@@ -6,7 +7,8 @@ import { Link } from "react-router-dom";
         Eg: mp-top-nav -> MyProfile-top-nav ..
 */
 
-function MyProfile() {
+function MyProfileP() {
+
     return (
         <div className="MyProfile">   
 
@@ -37,16 +39,19 @@ function MyProfile() {
 
             </div>        
     
-            <div className="mp-outermostbox">
-
-                <div className="mp-box-hdn">
-                    <p>My Profile</p>
+            <div className="mp-body">
+                <div className="mpb-col1">
+                    <div className="mpb-col1-items">
+                        <div className="mpb-col1-item1">
+                            <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p className="p-label">Profile</p></Link>
+                        </div>
+                        <div className="mpb-col1-item2">
+                            <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p className="p-label">Pending Invites</p></Link>
+                        </div>
+                    </div>
                 </div>
-
-                <div className="mp-box-contents">
-                    <p>Name:&nbsp;&nbsp;&nbsp;Zack Snyder</p>
-                    <p>Email ID:&nbsp;&nbsp;&nbsp;snyderzack@gmail.com</p>
-                    <p>Current Projects:</p>
+                <div className="mpb-col2">
+                    <CmpProfile />
                 </div>
             </div>
             
@@ -54,4 +59,4 @@ function MyProfile() {
     );
 }
 
-export default MyProfile;
+export default MyProfileP;
