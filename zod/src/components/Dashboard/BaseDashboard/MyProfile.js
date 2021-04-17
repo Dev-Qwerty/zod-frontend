@@ -39,7 +39,14 @@ function MyProfile() {
     
             <div className="mp-body">
                 <div className="mpb-col1">
-
+                    <div className="mpb-col1-items">
+                        <div className="mpb-col1-item1">
+                            <p className="p-label">Profile</p>
+                        </div>
+                        <div className="mpb-col1-item2">
+                            <p className="p-label">Pending Invites</p>
+                        </div>
+                    </div>
                 </div>
                 <div className="mpb-col2">
 

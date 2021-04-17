@@ -93,14 +93,44 @@
 
 .mp-body {
   width: 100%;
-  height: 680px;
+  height: 650px;
   display: grid;
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 12% 88%;
 }
 
 .mpb-col1 {
   background-color:#52D066;
-  ;
+}
+
+.mpb-col1-items {
+  margin-top: 50px;
+  height: 100px;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  color: #fff;
+  font-size: 18px;
+}
+
+.mpb-col1-item1 {
+  
+}
+
+.mpb-col1-item1 :hover {
+  background-color: #45BC58;;
+  width: 100%;
+  height: 100%;
+}
+
+.mpb-col1-item2 :hover {
+  background-color: #45BC58;;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.p-label {
+  padding-left: 25px;
+  padding-top: 12px;
 }
 
 .mpb-col2 {
