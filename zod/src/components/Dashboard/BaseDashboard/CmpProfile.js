@@ -9,9 +9,8 @@ import { Link } from "react-router-dom";
 function CmpProfile() {
     return (
         <div className="MyProfile">   
-            <h1>Hello Guysss....</h1>
-            <div className="ohoo">
-
+            <div className="mp-wrapper">
+                <div className="mp-profile-img"></div>
             </div>
         </div>
     );
