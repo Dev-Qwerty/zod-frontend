@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
  
 const cookies = new Cookies();
 
@@ -113,6 +115,7 @@ function CreateProject() {
                         })}   
                         
                         <div><input value="Create" type="submit" className="cp-submit" onClick={createProjectFn.bind(this, pname, deadline, memberList)}></input></div>                
+                        <ToastContainer />
                     </div>
 
                 </div>
@@ -126,7 +129,7 @@ function CreateProject() {
 async function createProjectFn(pname, deadline, memberList) {
     
     const token = cookies.get('token');
-    alert(token);
+    
     const reqBody = {
         "projectName": pname,
         "deadline": deadline,
@@ -134,26 +137,48 @@ async function createProjectFn(pname, deadline, memberList) {
     }
     const config = {
         headers: {
-            'authorization': token,
+            'Authorization': token,
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*',
-        },
-        SameSite: 'none',
-        Secure: true
+        }
     }
-    console.log(reqBody);
-    
+
+    //toast("Project Createed :)");
+
     axios.post('https://projectservice-zode.herokuapp.com/api/projects/createproject', reqBody, config)
     .then((res) => {
+
         if(res.status === 201) {
-            alert('Project Created!');
+
+            toast.info('Project Created!', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            setTimeout(() => {
+                window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';
+              }, 3500);
+
         } else {
-            alert('Some Error Ocuured!')
+
+            toast.error('Some Error Occured!', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     })
     .catch(function (error) {
         console.log(error);
-    });    
+    });   
 }
 
 export default CreateProject;
