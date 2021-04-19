@@ -24,7 +24,7 @@ function CmpProfile() {
 
     const deleteAccount = () => {
         
-        toast.error('Profile Deleted!', {
+        toast.error('Account Deleted!', {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
