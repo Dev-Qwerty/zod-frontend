@@ -24,28 +24,81 @@
 .mp-x {
   margin-left: auto;
   margin-right: auto;
-  width: 400px;
+  width: 700px;
   padding-top: 10px;
-  padding-left: 23px;
+  /*background-color: cadetblue;*/
 }
 
-.mp-label {
+.mp-class1 {
+  margin-left: 115px;
+  width: 500px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding-bottom: 10px;
+  /*background-color: chartreuse;*/
+}
+
+.mp-fname {
+  /*background-color: brown;*/
+}
+
+.mp-lname {
+  /*background-color: cadetblue;*/
+}
+
+.mp-name-label {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.mp-name-inp1 {
+  width: 210px;
+  /*background-color: chartreuse;*/
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.mp-name-inp2 {
+  width: 210px;
+  /*background-color: chartreuse;*/
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.mp-class2 {
+  margin-left: 115px;
+  padding-top: 10px;
+}
+
+.mp-email {
   font-size: 17px;
   margin-bottom: 10px;
-
 }
 
-.mp-inp {
-  width: 350px;
-  margin-bottom: 20px;
+.mp-email-inp {
+  width: 465px;
+  border: 1px solid #aaa;
+  margin-bottom: 25px;
+  border-radius: 5px;
 }
 
-.mp-submit {
-  font-size: 17px;
-  color: #fff;
-  margin-top: 20px;
-  width: 200px;
+.mp-update-btn {
+  width: 180px;
   height: 40px;
-  border: none;
+  margin-top: 20px;
+  color: #fff;
   background-color: #52D066;
+  border: none;
+  margin-bottom: 5px;  
+  border-radius: 5px;
+}
+
+.mp-delete-btn {
+  width: 180px;
+  height: 40px;
+  margin-top: 20px;
+  color: #FF0000;
+  background-color: #fff;
+  border: 2px solid #aaa;  
+  border-radius: 5px;
 }
