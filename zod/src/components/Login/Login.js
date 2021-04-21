@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import React from 'react';
 import { useCookies } from 'react-cookie';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 
 const { useState } = React;
@@ -42,13 +45,17 @@ function LoginPage() {
 
 function LoginRequest(email, password, setCookie) {
     
+    // need to hash!!!
+    setCookie('email', email);
+    setCookie('password', password);
+
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
         // Signed in
         var user = userCredential.user;
         console.log(user.za);
         if(user.emailVerified) {
-            setCookie('token', user.za, {maxAge: 60000});
+            cookies.set('token', user.za);
             window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';
         }
         else {

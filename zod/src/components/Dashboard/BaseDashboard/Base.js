@@ -2,6 +2,7 @@ import './Base.css';
 import React from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import firebase from 'firebase';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -17,8 +18,22 @@ export default class BaseDashboard  extends React.Component {
     }   
 
     async componentDidMount() {
+        
+        const email = cookies.get('email');
+        const password = cookies.get('password');
 
-        const token = cookies.get('token');
+        setTimeout(() => {
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((userCred) => {
+                
+                let tokenCookie = userCred.user.za;
+                cookies.set('token', tokenCookie);
+            })
+
+        }, 4000);
+        
+        let token = cookies.get('token');
         
         const config = {
             headers: {
