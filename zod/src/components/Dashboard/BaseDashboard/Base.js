@@ -8,9 +8,9 @@ const cookies = new Cookies();
 
 export default class BaseDashboard  extends React.Component {
 
-    constructor(props) {
+    constructor() {
      
-        super(props);
+        super();
         this.state = {
             apiData: null
         }
@@ -33,8 +33,8 @@ export default class BaseDashboard  extends React.Component {
     
             if(res.status === 200) {
                 
-                const chunk = res.data;
-                const Data = Object.keys(chunk).map((key) => chunk[key]);
+                const Data = res.data;
+                //const Data = Object.keys(chunk).map((key) => chunk[key]);
                 
                 this.setState({ apiData: Data }, () => {
                     //alert(this.state.apiData[0].projectName);
@@ -111,111 +111,56 @@ export default class BaseDashboard  extends React.Component {
                 </div>
     
                 <div className="full-boxes-wrapper">
-    
-
-                { !this.state.apiData ? (
-                    <p>Loading...</p>
-                ):(
-                    <p>{JSON.parse(JSON.stringify(this.state.apiData[0].projectName))}</p>
-                )}
 
 
-                    <div className="single-box-wrapper">
-    
-                        <div className="rocket-svg-wrapper">
-                            <div className="rocket-svg">
-                                
-                            </div>
-                        </div>
+                    { !this.state.apiData ? (
+                        <p>...</p> 
+                    ):( this.state.apiData.map(qdata => (
                         
-                        <div className="inbox-wrapper">    
-                            <div className="wrapper-y">
-                                <p className="project-name">Project x</p>
-                                <p className="status">Tasks 2/5</p>
-                                <p className="deadline">12-3-2020</p>
-                                <p className="team-lead">John Doe</p>
+                        <div className="single-box-wrapper">
+    
+                            <div className="rocket-svg-wrapper">
+                                <div className="rocket-svg">
+                                
+                                </div>
+                            </div>
+                        
+                            <div className="inbox-wrapper">    
+                                <div className="wrapper-y">
+
+                                    { !this.state.apiData ? (
+                                        <p className="project-name">...</p> 
+                                    ):(
+                                        <p className="project-name">{JSON.parse(JSON.stringify(qdata.projectName))}</p>
+                                    )}
+
+                                    <p className="status">...</p>
+
+                                    { !this.state.apiData ? (
+                                        <p className="deadline">...</p> 
+                                    ):(
+                                        <p className="deadline">{JSON.parse(JSON.stringify(qdata.deadline))}</p>
+                                    )}
+
+                                    { !this.state.apiData ? (
+                                        <p className="team-lead">...</p> 
+                                    ):(
+                                        <p className="team-lead">{JSON.parse(JSON.stringify(qdata.teamlead))}</p>
+                                    )}
+
                             </div> 
     
                             <div className="line-wrapper">
                                 <div className="progress-line"></div>
                             </div> 
+
                         </div>
     
-                    </div>
-    
-                    <div className="single-box-wrapper">
+                    </div>                        
+
+                    ))
                         
-                        <div className="rocket-svg-wrapper">
-                            <div className="rocket-svg">
-                                
-                            </div>
-                        </div>
-                        
-                        <div className="inbox-wrapper">
-                    
-                            <div className="wrapper-y">
-                                <p className="project-name">Project Name 1</p>
-                                <p className="status">Tasks 2/5</p>
-                                <p className="deadline">12-3-2020</p>
-                                <p className="team-lead">John Doe</p>
-                            </div> 
-    
-                            <div className="line-wrapper">
-                                <div className="progress-line"></div>
-                            </div> 
-                        </div>                  
-    
-                    </div>
-    
-                    <div className="single-box-wrapper">
-                        
-                        <div className="rocket-svg-wrapper">
-                            <div className="rocket-svg">
-                                
-                            </div>
-    
-                        </div>
-                        
-                        <div className="inbox-wrapper">
-                            
-                            <div className="wrapper-y">
-                                <p className="project-name">Project Name 1</p>
-                                <p className="status">Tasks 2/5</p>
-                                <p className="deadline">12-3-2020</p>
-                                <p className="team-lead">John Doe</p>
-                            </div> 
-    
-                            <div className="line-wrapper">
-                                <div className="progress-line"></div>
-                            </div> 
-                        </div>
-    
-                    </div>
-    
-                    <div className="single-box-wrapper">
-                        
-                        <div className="rocket-svg-wrapper">
-                            <div className="rocket-svg">
-                                
-                            </div>
-    
-                        </div>
-                        
-                        <div className="inbox-wrapper">
-                           
-                            <div className="wrapper-y">
-                                <p className="project-name">Project Name 1</p>
-                                <p className="status">Tasks 2/5</p>
-                                <p className="deadline">12-3-2020</p>
-                                <p className="team-lead">John Doe</p>
-                            </div> 
-    
-                            <div className="line-wrapper">
-                                <div className="progress-line"></div>
-                            </div>
-                             
-                        </div>     
-                    </div>    
+                    )}
     
                 </div> 
                                
