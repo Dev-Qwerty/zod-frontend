@@ -1,12 +1,48 @@
 import './Base.css';
 import { Link } from "react-router-dom";
- 
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
 /* 
     ClassName Convention Used:-
         Eg: mp-top-nav -> MyProfile-top-nav ..
 */
 
 function BaseDashboard() {
+
+    const [ apidata, setApiData ] = useState([]);
+
+    useEffect(() => {
+
+        const token = cookies.get('token');
+        
+        const config = {
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+       
+        axios.get('https://projectservice-zode.herokuapp.com/api/projects/getprojects', config)
+        .then((res) => {
+    
+            if(res.status === 200) {
+                //alert(JSON.stringify(res.data));
+                setApiData(JSON.stringify(res.data))
+            } else {
+    
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });         
+
+    });
+
     return (
         <div className="BaseDashboard">
 
@@ -67,6 +103,7 @@ function BaseDashboard() {
 
             <div className="full-boxes-wrapper">
 
+                <h1>{ apidata }</h1>
                 <div className="single-box-wrapper">
 
                     <div className="rocket-svg-wrapper">
