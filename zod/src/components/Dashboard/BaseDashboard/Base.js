@@ -32,7 +32,7 @@ function BaseDashboard() {
     
             if(res.status === 200) {
                 //alert(JSON.stringify(res.data));
-                setApiData(JSON.stringify(res.data))
+                setApiData(res.data);
             } else {
     
             }
@@ -103,7 +103,6 @@ function BaseDashboard() {
 
             <div className="full-boxes-wrapper">
 
-                <h1>{ apidata }</h1>
                 <div className="single-box-wrapper">
 
                     <div className="rocket-svg-wrapper">
@@ -114,7 +113,7 @@ function BaseDashboard() {
                     
                     <div className="inbox-wrapper">    
                         <div className="wrapper-y">
-                            <p className="project-name">Project Name 1</p>
+                            <p className="project-name">Project x</p>
                             <p className="status">Tasks 2/5</p>
                             <p className="deadline">12-3-2020</p>
                             <p className="team-lead">John Doe</p>
