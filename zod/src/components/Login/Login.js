@@ -2,7 +2,10 @@ import './Login.css';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import React from 'react';
-import { useCookies } from 'react-cookie';
+//import { useCookies } from 'react-cookie';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 
 const { useState } = React;
@@ -12,7 +15,7 @@ function LoginPage() {
     
     const handleEmailChange = (e) => setemailValue(e.target.value);
     const handlepasswordChange = (e) => setPasswordValue(e.target.value);
-    const [cookies, setCookie] = useCookies(['token']);
+    //const [cookies, setCookie] = useCookies(['token']);
     return (
         <div className="LoginPage">
             <span className="zod-title">zode</span>
@@ -23,7 +26,7 @@ function LoginPage() {
                         <div className="zod-login-inputs">
                             <input type="text" placeholder="Enter email" className="zod-login-grp form-control" value={email} onChange={handleEmailChange}></input>
                             <input type="password" placeholder="Enter password" className="zod-login-grp form-control" value={password} onChange={handlepasswordChange}></input>
-                            <input type="submit" value="Login" className="zod-login-btn zod-login-grp" onClick={LoginRequest.bind(this, email, password, setCookie)}/>
+                            <input type="submit" value="Login" className="zod-login-btn zod-login-grp" onClick={LoginRequest.bind(this, email, password)}/>
                             <hr/>
                             <button type="submit" className="zod-google-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo"></img>Login with Google</button>
                         </div>
@@ -40,19 +43,23 @@ function LoginPage() {
     );
 }
 
-function LoginRequest(email, password, setCookie) {
+function LoginRequest(email, password) {
     
+    // need to hash!!!
+    cookies.set('email', email);
+    cookies.set('password', password);
+
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
         // Signed in
         var user = userCredential.user;
         console.log(user.za);
         if(user.emailVerified) {
-            setCookie('token', user.za, {maxAge: 60000});
+            cookies.set('token', user.za);
             window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';
         }
         else {
-            setCookie('token', email);
+            cookies.set('token', email);
             window.location.href = window.location.protocol + '//' + window.location.host + '/confirmEmail';
         }
         
