@@ -142,15 +142,21 @@ export default class CmpProfile  extends React.Component {
     }      
  
     deleteAccount = () => {
-            
-        toast.error('Account Deleted!', {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });     
+
+        var r = window.confirm("Confirm: Delete Account");
+        if(r == true) {
+            toast.error('Account Deleted!', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            }); 
+        } else {
+
+        } 
+    
     }     
 }
