@@ -90,6 +90,7 @@ export default class BaseDashboard  extends React.Component {
     
                             <div className="bd-dropdown-content">
                                 <Link to="/basedashboard/myprofile/profile"><p>My Profile</p></Link>
+                                <Link to="/basedashboard/myprofile/pendinginvites"><p>Pending Invites</p></Link>
                                 <Link to="/login"><p>Logout</p></Link>
                             </div>
                         </div>
