@@ -49,7 +49,7 @@ export default class CmpProfile  extends React.Component {
 
                             <div className="mp-class2">
                                 <p className="mp-email">Email</p>
-                                <div><input type="text" placeholder="" className="mp-email-inp"></input></div>                            
+                                <div><input type="text" placeholder="" className="mp-email-inp" disabled></input></div>                            
                                 <div><input value="Update Profile" type="submit" className="mp-update-btn" onClick = { this.updateProfile } ></input></div> 
                                 <div><input value="Delete Account" type="submit" className="mp-delete-btn"onClick = { this.deleteAccount } ></input></div> 
                             </div>
