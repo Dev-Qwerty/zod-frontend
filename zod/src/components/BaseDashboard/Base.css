@@ -176,7 +176,7 @@
   margin-right: auto;
   height: 50px;
   width: 50px;  
-  background-image: url('../../../assets/rocket.svg');
+  background-image: url('../../assets/rocket.svg');
   background-blend-mode: overlay;
   background-repeat: no-repeat;
   background-position: center;
