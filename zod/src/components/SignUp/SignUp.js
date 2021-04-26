@@ -3,6 +3,7 @@ import './SignUp.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import Loader from '../Loader/Loader';
 
 const { useState } = React;
 
@@ -13,13 +14,14 @@ function SignUpPage() {
     const [password, setPasswordValue] = useState('');
     const [cpassword, setCPasswordValue] = useState('');
     const [cookies, setCookie] = useCookies(['token']);
+    const [loading, setLoader] = useState(false);
 
     const handlefNameChange = (e) => setfNameValue(e.target.value);
     const handlelNameChange = (e) => setlNameValue(e.target.value);
     const handleEmailChange = (e) => setemailValue(e.target.value);
     const handlepasswordChange = (e) => setPasswordValue(e.target.value);
     const handleCPasswordChange = (e) => setCPasswordValue(e.target.value);
-    
+    if(loading === false) {
     return (
         <div className="SignUpPage">
             <span className="zod-title">zode</span>
@@ -36,7 +38,7 @@ function SignUpPage() {
                             <input type="text" placeholder="Email" className="zod-signup-grp form-control" value={email} onChange={handleEmailChange}></input>
                             <input type="password" placeholder="Password" className="zod-signup-grp form-control" value={password} onChange={handlepasswordChange}></input>
                             <input type="password" placeholder="Confirm Password" className="zod-signup-grp form-control" value={cpassword} onChange={handleCPasswordChange}></input>
-                            <input type="submit" value="Sign Up" className="zod-signup-btn zod-signup-grp" onClick={SignUpRequest.bind(this, fname, lname, email, password, setCookie)}/>
+                            <input type="submit" value="Sign Up" className="zod-signup-btn zod-signup-grp" onClick={SignUpRequest.bind(this, fname, lname, email, password, setCookie, setLoader)}/>
                             <hr/>
                             <button type="submit" className="zod-google-btn-1"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo"></img>Sign up with Google</button>
                         </div>
@@ -50,10 +52,16 @@ function SignUpPage() {
                 </ul>
             </footer>
         </div>
-    );
+        );
+    }
+    else {
+        return (
+            <Loader/>
+        )
+    }
 }
 
-async function SignUpRequest(fname, lname, email, password, setCookie) {
+async function SignUpRequest(fname, lname, email, password, setCookie, setLoader) {
     const reqBody = {
         "fname": fname,
         "lname": lname,
@@ -66,12 +74,14 @@ async function SignUpRequest(fname, lname, email, password, setCookie) {
             'Access-Control-Allow-Origin' : '*'
         }
     }
+    setLoader(true);
     axios.post('https://userservice-zode.herokuapp.com/api/user/signup', reqBody, config).then((response) => {
         if(response.status === 201) {
-            alert("Success! User Created.");
             setCookie('token', email);
             window.location.href = window.location.protocol + '//' + window.location.host + '/confirmEmail';
         }
+    }).finally(()=> {
+        setLoader(false);
     });
 }
 
