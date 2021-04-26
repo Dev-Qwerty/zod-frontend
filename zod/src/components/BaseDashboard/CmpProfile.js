@@ -1,8 +1,12 @@
 import './CmpProfile.css';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 /* 
     ClassName Convention Used:-
         Eg: mp-top-nav -> MyProfile-top-nav ..
@@ -82,23 +86,59 @@ export default class CmpProfile  extends React.Component {
     updateProfile = () => {
 
         if(this.state.fnameChange == true && this.state.lnameChange == true) {
-            alert('fname  and lname changed!')
+            
+            const token = cookies.get('token');
+    
+            const reqBody = {
+                "fname": this.state.fname,
+                "lname": this.state.lname
+            }
+
+            const config = {
+                headers: {
+                    'Authorization': token,
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin' : '*',
+                }
+            }
+        
+            axios.post('https://userservice-zode.herokuapp.com/api/user/update', reqBody, config)
+            .then((res) => {
+        
+                if(res.status === 200) {
+                    
+                    toast.info('First & Last Name Changed!', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                } else {
+                    toast.warning('Error!', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });  
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            }); 
+
         } else if(this.state.fnameChange == true) {
             alert('only fname changed')
         } else if(this.state.lnameChange == true){
             alert('only lname changed')
         } else {
             alert('no change')
-        }
-        toast.info('Project Updated!', {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });     
+        }     
     }      
  
     deleteAccount = () => {
