@@ -30,8 +30,8 @@ function MyProfilePI() {
                         </div>
 
                         <div className="mp-dropdown-content">
-                            <Link to="/basedashboard/home"><p>Home</p></Link>
-                            <Link to="/login"><p>Logout</p></Link>
+                            <Link to="/basedashboard/home" style={{ textDecoration: 'none' }}><p>Home</p></Link>
+                            <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
                         </div>
                     </div>
                 </div>
