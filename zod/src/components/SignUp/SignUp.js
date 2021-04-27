@@ -63,13 +63,13 @@ async function SignUpRequest(fname, lname, email, password, cpassword, setCookie
     setBtnText('Signing Up...');
     setLoader(true);
     if(fname === '' || lname === '' || email === '' || password === '') {
-        toast('Please enter all fields!');
+        toast.warning('Please enter all fields!', {position: toast.POSITION.BOTTOM_LEFT});
         setBtnText('Sign Up');
         setLoader(false);
         return;
     }
     else if(password !== cpassword) {
-        toast('Passwords not matching!');
+        toast.error('Passwords not matching!', {position: toast.POSITION.BOTTOM_LEFT});
         setBtnText('Sign Up');
         setLoader(false);
         return;
@@ -97,11 +97,11 @@ async function SignUpRequest(fname, lname, email, password, cpassword, setCookie
         setBtnText('Sign Up');
     }).catch(error => {
         if(error.response.data.error === 'user with the provided email already exists') {
-            toast("Account with the given email already exists!");
+            toast.warning("Account with the given email already exists!", {position: toast.POSITION.BOTTOM_LEFT});
             window.location.href = window.location.protocol + '//' + window.location.host + '/login';
         }
         else {
-            toast(error.response.data.error);
+            toast.error(error.response.data.error, {position: toast.POSITION.BOTTOM_LEFT});
         }
     })
     }
