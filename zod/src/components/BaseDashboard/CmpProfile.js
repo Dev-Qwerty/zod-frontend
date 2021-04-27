@@ -17,6 +17,30 @@ export default class CmpProfile  extends React.Component {
     constructor() {
      
         super();
+
+        const token1 = cookies.get('token');
+
+        const config = {
+            headers: {
+                'Authorization': token1,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        axios.get('https://userservice-zode.herokuapp.com/api/user/', config)
+        .then((res) => {
+    
+            if(res.status === 201) {
+                alert(res.body)
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        }); 
+
         this.state = {
             fname: 'Zack',
             lname: 'Snyder',
