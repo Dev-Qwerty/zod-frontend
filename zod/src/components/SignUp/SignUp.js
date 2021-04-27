@@ -15,6 +15,7 @@ function SignUpPage() {
     const [cpassword, setCPasswordValue] = useState('');
     const [cookies, setCookie] = useCookies(['token']);
     const [loading, setLoader] = useState(false);
+    const [btnText, setBtnText] = useState('Sign Up');
 
     const handlefNameChange = (e) => setfNameValue(e.target.value);
     const handlelNameChange = (e) => setlNameValue(e.target.value);
@@ -37,7 +38,7 @@ function SignUpPage() {
                             <input type="text" placeholder="Email" className="zod-signup-grp form-control" value={email} onChange={handleEmailChange}></input>
                             <input type="password" placeholder="Password" className="zod-signup-grp form-control" value={password} onChange={handlepasswordChange}></input>
                             <input type="password" placeholder="Confirm Password" className="zod-signup-grp form-control" value={cpassword} onChange={handleCPasswordChange}></input>
-                            <Button variant="success" loading={loading} className="zod-signup-btn zod-signup-grp" onClick={SignUpRequest.bind(this, fname, lname, email, password, setCookie, setLoader)}>Sign Up</Button>
+                            <Button variant="success" loading={loading} className="zod-signup-btn zod-signup-grp" onClick={SignUpRequest.bind(this, fname, lname, email, password, setCookie, setLoader, setBtnText)}>{btnText}</Button>
                             <hr/>
                             <button type="submit" className="zod-google-btn-1"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo"></img>Sign up with Google</button>
                         </div>
@@ -54,7 +55,8 @@ function SignUpPage() {
         );
 }
 
-async function SignUpRequest(fname, lname, email, password, setCookie, setLoader) {
+async function SignUpRequest(fname, lname, email, password, setCookie, setLoader, setBtnText) {
+    setBtnText('Signing Up...');
     const reqBody = {
         "fname": fname,
         "lname": lname,
