@@ -16,23 +16,31 @@ export default class BaseDashboard  extends React.Component {
             apiData: null
         }
     }   
-
     async componentDidMount() {
         
-        const email = cookies.get('email');
-        const password = cookies.get('password');
-
-        setTimeout(() => {
-
-            firebase.auth().signInWithEmailAndPassword(email, password)
-            .then((userCred) => {
-                
-                let tokenCookie = userCred.user.za;
-                cookies.set('token', tokenCookie);
-            })
-
-        }, 4000);
-        
+        //const email = cookies.get('email');
+        //const password = cookies.get('password');
+        this.timer = setInterval(
+            () => {
+                console.log("CALLED");
+                firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                        // User is signed in.
+                        firebase.auth().currentUser.getIdToken(true) // here we force a refresh
+                        .then(function(token) {
+                            localStorage.setItem("token", token);
+                        }).catch(function(error) {
+                        if (error) throw error
+                    });
+                } else {
+                  // No user is signed in.
+                  alert("User not signed in!");
+                }
+              });
+            },
+            600000, //10 mins
+        );
+            
         let token = cookies.get('token');
         
         const config = {
@@ -62,6 +70,10 @@ export default class BaseDashboard  extends React.Component {
         .catch(function (error) {
             console.log(error);
         });         
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
     }
 
     render() {
