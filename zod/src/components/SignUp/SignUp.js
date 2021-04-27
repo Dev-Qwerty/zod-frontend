@@ -4,6 +4,10 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import Button from 'react-bootstrap-button-loader';
+import {toast} from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
+
+toast.configure()
 
 const { useState } = React;
 
@@ -38,7 +42,7 @@ function SignUpPage() {
                             <input type="text" placeholder="Email" className="zod-signup-grp form-control" value={email} onChange={handleEmailChange}></input>
                             <input type="password" placeholder="Password" className="zod-signup-grp form-control" value={password} onChange={handlepasswordChange}></input>
                             <input type="password" placeholder="Confirm Password" className="zod-signup-grp form-control" value={cpassword} onChange={handleCPasswordChange}></input>
-                            <Button variant="success" loading={loading} className="zod-signup-btn zod-signup-grp" onClick={SignUpRequest.bind(this, fname, lname, email, password, setCookie, setLoader, setBtnText)}>{btnText}</Button>
+                            <Button variant="success" loading={loading} className="zod-signup-btn zod-signup-grp" onClick={SignUpRequest.bind(this, fname, lname, email, password, cpassword, setCookie, setLoader, setBtnText)}>{btnText}</Button>
                             <hr/>
                             <button type="submit" className="zod-google-btn-1"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo"></img>Sign up with Google</button>
                         </div>
@@ -55,8 +59,22 @@ function SignUpPage() {
         );
 }
 
-async function SignUpRequest(fname, lname, email, password, setCookie, setLoader, setBtnText) {
+async function SignUpRequest(fname, lname, email, password, cpassword, setCookie, setLoader, setBtnText) {
     setBtnText('Signing Up...');
+    setLoader(true);
+    if(fname === '' || lname === '' || email === '' || password === '') {
+        toast('Please enter all fields!');
+        setBtnText('Sign Up');
+        setLoader(false);
+        return;
+    }
+    else if(password !== cpassword) {
+        toast('Passwords not matching!');
+        setBtnText('Sign Up');
+        setLoader(false);
+        return;
+    }
+    else {
     const reqBody = {
         "fname": fname,
         "lname": lname,
@@ -69,15 +87,24 @@ async function SignUpRequest(fname, lname, email, password, setCookie, setLoader
             'Access-Control-Allow-Origin' : '*'
         }
     }
-    setLoader(true);
     axios.post('https://userservice-zode.herokuapp.com/api/user/signup', reqBody, config).then((response) => {
         if(response.status === 201) {
             setCookie('token', email);
             window.location.href = window.location.protocol + '//' + window.location.host + '/confirmEmail';
         }
     }).finally(()=> {
-        //setLoader(false);
-    });
+        setLoader(false);
+        setBtnText('Sign Up');
+    }).catch(error => {
+        if(error.response.data.error === 'user with the provided email already exists') {
+            toast("Account with the given email already exists!");
+            window.location.href = window.location.protocol + '//' + window.location.host + '/login';
+        }
+        else {
+            toast(error.response.data.error);
+        }
+    })
+    }
 }
 
 export default SignUpPage;
