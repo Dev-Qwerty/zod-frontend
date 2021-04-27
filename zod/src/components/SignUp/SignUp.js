@@ -3,7 +3,7 @@ import './SignUp.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
-import Loader from '../Loader/Loader';
+import Button from 'react-bootstrap-button-loader';
 
 const { useState } = React;
 
@@ -21,7 +21,6 @@ function SignUpPage() {
     const handleEmailChange = (e) => setemailValue(e.target.value);
     const handlepasswordChange = (e) => setPasswordValue(e.target.value);
     const handleCPasswordChange = (e) => setCPasswordValue(e.target.value);
-    if(loading === false) {
     return (
         <div className="SignUpPage">
             <span className="zod-title">zode</span>
@@ -38,7 +37,7 @@ function SignUpPage() {
                             <input type="text" placeholder="Email" className="zod-signup-grp form-control" value={email} onChange={handleEmailChange}></input>
                             <input type="password" placeholder="Password" className="zod-signup-grp form-control" value={password} onChange={handlepasswordChange}></input>
                             <input type="password" placeholder="Confirm Password" className="zod-signup-grp form-control" value={cpassword} onChange={handleCPasswordChange}></input>
-                            <input type="submit" value="Sign Up" className="zod-signup-btn zod-signup-grp" onClick={SignUpRequest.bind(this, fname, lname, email, password, setCookie, setLoader)}/>
+                            <Button variant="success" loading={loading} className="zod-signup-btn zod-signup-grp" onClick={SignUpRequest.bind(this, fname, lname, email, password, setCookie, setLoader)}>Sign Up</Button>
                             <hr/>
                             <button type="submit" className="zod-google-btn-1"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo"></img>Sign up with Google</button>
                         </div>
@@ -53,15 +52,6 @@ function SignUpPage() {
             </footer>
         </div>
         );
-    }
-    else {
-        return (
-            <div>
-                <span className="zod-title-loading">zode</span>
-                <Loader/>
-            </div>
-        )
-    }
 }
 
 async function SignUpRequest(fname, lname, email, password, setCookie, setLoader) {
