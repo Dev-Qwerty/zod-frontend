@@ -2,11 +2,6 @@ import './Login.css';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import React from 'react';
-//import { useCookies } from 'react-cookie';
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
-
 
 const { useState } = React;
 function LoginPage() {
@@ -15,7 +10,6 @@ function LoginPage() {
     
     const handleEmailChange = (e) => setemailValue(e.target.value);
     const handlepasswordChange = (e) => setPasswordValue(e.target.value);
-    //const [cookies, setCookie] = useCookies(['token']);
     return (
         <div className="LoginPage">
             <span className="zod-title">zode</span>
@@ -44,22 +38,16 @@ function LoginPage() {
 }
 
 function LoginRequest(email, password) {
-    
-    // need to hash!!!
-    cookies.set('email', email);
-    cookies.set('password', password);
-
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
         // Signed in
         var user = userCredential.user;
-        console.log(user.za);
         if(user.emailVerified) {
-            cookies.set('token', user.za);
+            localStorage.setItem('token', user.za);
             window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';
         }
         else {
-            cookies.set('token', email);
+            localStorage.setItem('email', email);
             window.location.href = window.location.protocol + '//' + window.location.host + '/confirmEmail';
         }
         
