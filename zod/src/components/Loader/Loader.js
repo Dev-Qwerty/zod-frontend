@@ -1,10 +1,10 @@
-import { useLoading, Oval } from '@agney/react-loading';
+import { useLoading, BallTriangle } from '@agney/react-loading';
 import './Loader.css';
 
 function Loader() {
   const { containerProps, indicatorEl } = useLoading({
     loading: true,
-    indicator: <Oval width="150" />
+    indicator: <BallTriangle width="300" color="#4CBF53"/>
   });
 
   return (

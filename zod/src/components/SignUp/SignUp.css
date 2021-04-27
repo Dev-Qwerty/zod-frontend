@@ -88,6 +88,22 @@ hr {
     position: absolute;
 }
 
+.zod-title-loading {
+    height: 242px;
+    width: 192px;
+    left: 729px;
+    top: 193px;
+    position: absolute;
+    font-family: Pacifico;
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 242px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #4CBF53;
+}
+
 footer > ul {
     display: flex;
     margin-top: 45vw;

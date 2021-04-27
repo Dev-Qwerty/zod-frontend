@@ -56,7 +56,10 @@ function SignUpPage() {
     }
     else {
         return (
-            <Loader/>
+            <div>
+                <span className="zod-title-loading">zode</span>
+                <Loader/>
+            </div>
         )
     }
 }
@@ -81,7 +84,7 @@ async function SignUpRequest(fname, lname, email, password, setCookie, setLoader
             window.location.href = window.location.protocol + '//' + window.location.host + '/confirmEmail';
         }
     }).finally(()=> {
-        setLoader(false);
+        //setLoader(false);
     });
 }
 
