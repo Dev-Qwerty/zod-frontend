@@ -38,7 +38,7 @@ export default class BaseDashboard  extends React.Component {
                 }
               });
             },
-            10000,
+            600000, //10 mins
         );
             
         let token = cookies.get('token');
