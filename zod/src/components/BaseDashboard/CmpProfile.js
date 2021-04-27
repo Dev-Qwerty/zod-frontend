@@ -17,6 +17,30 @@ export default class CmpProfile  extends React.Component {
     constructor() {
      
         super();
+
+        const token1 = cookies.get('token');
+
+        const config = {
+            headers: {
+                'Authorization': token1,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        axios.get('https://userservice-zode.herokuapp.com/api/user/', config)
+        .then((res) => {
+    
+            if(res.status === 201) {
+                alert(res.body)
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        }); 
+
         this.state = {
             fname: 'Zack',
             lname: 'Snyder',
@@ -102,7 +126,7 @@ export default class CmpProfile  extends React.Component {
                 }
             }
         
-            axios.post('https://userservice-zode.herokuapp.com/api/user/update', reqBody, config)
+            axios.put('https://userservice-zode.herokuapp.com/api/user/update', reqBody, config)
             .then((res) => {
         
                 if(res.status === 200) {
@@ -133,11 +157,99 @@ export default class CmpProfile  extends React.Component {
             }); 
 
         } else if(this.state.fnameChange == true) {
-            alert('only fname changed')
+            
+            const token = cookies.get('token');
+    
+            const reqBody = {
+                "fname": this.state.fname,
+            }
+
+            const config = {
+                headers: {
+                    'Authorization': token,
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin' : '*',
+                }
+            }
+        
+            axios.put('https://userservice-zode.herokuapp.com/api/user/update', reqBody, config)
+            .then((res) => {
+        
+                if(res.status === 200) {
+                    
+                    toast.info('First Name Changed!', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                } else {
+                    toast.warning('Error!', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });  
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            }); 
+
         } else if(this.state.lnameChange == true){
-            alert('only lname changed')
+            
+            const token = cookies.get('token');
+    
+            const reqBody = {
+                "lname": this.state.lname
+            }
+
+            const config = {
+                headers: {
+                    'Authorization': token,
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin' : '*',
+                }
+            }
+        
+            axios.put('https://userservice-zode.herokuapp.com/api/user/update', reqBody, config)
+            .then((res) => {
+        
+                if(res.status === 200) {
+                    
+                    toast.info('Last Name Changed!', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                } else {
+                    toast.warning('Error!', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });  
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            }); 
+
         } else {
-            alert('no change')
+            alert('Nothing Updated!')
         }     
     }      
  
