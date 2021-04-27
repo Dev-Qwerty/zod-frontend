@@ -1,15 +1,16 @@
-import './PendingInvites-MyProfile.css';
-import { Link } from 'react-router-dom';
-import CmpPI from './CmpPending'
+import './Profile-MyProfile.css';
+import CmpProfile from './CmpProfile'
+import { Link } from "react-router-dom";
+
 /* 
     ClassName Convention Used:-
         Eg: mp-top-nav -> MyProfile-top-nav ..
 */
 
-function MyProfilePI() {
+function MyProfileP() {
 
     return (
-        <div className="MyProfilePI">   
+        <div className="MyProfile">   
 
             <div className="mp-top-nav">
 
@@ -30,8 +31,8 @@ function MyProfilePI() {
                         </div>
 
                         <div className="mp-dropdown-content">
-                            <Link to="/basedashboard/home"><p>Home</p></Link>
-                            <Link to="/login"><p>Logout</p></Link>
+                            <Link to="/basedashboard/home" style={{ textDecoration: 'none' }}><p>Home</p></Link>
+                            <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
                         </div>
                     </div>
                 </div>
@@ -50,7 +51,7 @@ function MyProfilePI() {
                     </div>
                 </div>
                 <div className="mpb-col2">
-                    <CmpPI />
+                    <CmpProfile />
                 </div>
             </div>
             
@@ -58,4 +59,4 @@ function MyProfilePI() {
     );
 }
 
-export default MyProfilePI;
+export default MyProfileP;

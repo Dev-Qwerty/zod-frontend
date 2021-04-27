@@ -3,7 +3,7 @@
 }
 
 .mp-profile-img {
-  background-image: url('../../../assets/profile.svg');
+  background-image: url('../../assets/profile.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;  

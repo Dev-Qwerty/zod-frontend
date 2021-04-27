@@ -84,8 +84,10 @@ function CreateProject() {
                         </div>
 
                         <div className="cp-dropdown-content">
-                            <Link to="/basedashboard/home"><p>Home</p></Link>
-                            <Link to="/login"><p>Logout</p></Link>
+                            <Link to="/basedashboard/home" style={{ textDecoration: 'none' }}><p>Home</p></Link>
+                            <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>My Profile</p></Link>
+                            <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p>Pending Invites</p></Link>
+                            <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
                         </div>
                     </div>
                 </div>
