@@ -1,0 +1,98 @@
+.bd-icon-1 {
+    width: 50px;
+    height: 50px;
+    border: 3px #1F89C5 solid;
+    border-radius: 50%;
+    padding-top: 10%;
+    padding-left: 15%;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: #fff;
+    position: relative;
+    left: 38vw;
+}
+
+.bd-dropdown-content-1 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding-top: 15px;
+    text-align: center;
+    margin-left: 33vw;
+  }
+    
+  .bd-dropdown-content-1 p {
+    color: black;
+    padding: 0px;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+  }
+    
+  .bd-dropdown-content-1 p:hover {
+    background-color: #f1f1f1
+  }
+    
+  .bd-profile-icon-wrapper:hover .bd-dropdown-content-1 {
+    display: block;
+  }
+
+  .create-channel-svg {
+    height: 20vw;
+    position: relative;
+    left: 65vw;
+    top: 7vw;
+  }
+
+  .cc-wrapper {
+    position: relative;
+    top: -15vw;
+    left: 3vw;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .cc-name {
+    height: 45px;
+    width: 461px;
+    left: 185px;
+    top: 250px;
+    border-radius: 14px;
+    margin-top: 15px;    
+  }
+
+  .cc-desc {
+    height: 150px;
+    width: 632px;
+    left: 185px;
+    top: 405px;
+    border-radius: 14px;    
+  }
+  
+  .cc-remove-btn {
+    background-color: grey;
+    color: white;
+    border-radius: 14px;
+    width: 100px;
+    margin-left: 45vw;
+    margin-top: -3vw;
+  }
+
+  .cc-members-list {
+      display: inline-grid;
+  }
+
+  .cc-wrapper h3 {
+      margin-top: 1vw;
+  }
+
+  .cc-add-btn {
+    margin-left: 37vw;
+    margin-top: -3vw;
+    width: 100px;
+    border-radius: 14px;
+    background-color: #2BD428;
+    color: #fff;
+  }

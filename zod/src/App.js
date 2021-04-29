@@ -8,6 +8,7 @@ import MyProfileP from './components/BaseDashboard/Profile-MyProfile';
 import MyProfilePI from './components/BaseDashboard/PendingInvites-MyProfile';
 import ConfirmEmail from './components/ConfirmEmail/ConfirmEmail';
 import ResetPassword from './components/ResetPassword/ResetPassword';
+import CreateChannel from './components/Chat/CreateChannel';
 import firebase from 'firebase';
 import {
   BrowserRouter as Router,
@@ -54,6 +55,9 @@ function App() {
         </Route>   
         <Route path="/basedashboard/myprofile/pendinginvites">
           <MyProfilePI />  
+        </Route>
+        <Route path="/chat/createChannel">
+          <CreateChannel />
         </Route>                                
       </div>
     </Router>
