@@ -4,9 +4,7 @@ import axios from 'axios';
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Cookies from 'universal-cookie';
 
-const cookies = new Cookies();
 /* 
     ClassName Convention Used:-
         Eg: mp-top-nav -> MyProfile-top-nav ..
@@ -18,7 +16,7 @@ export default class CmpProfile  extends React.Component {
      
         super();
 
-        const token1 = cookies.get('token');
+        const token1 = localStorage.getItem('token');
 
         const config = {
             headers: {
@@ -111,8 +109,8 @@ export default class CmpProfile  extends React.Component {
 
         if(this.state.fnameChange == true && this.state.lnameChange == true) {
             
-            const token = cookies.get('token');
-    
+            const token = localStorage.getItem('token');
+
             const reqBody = {
                 "fname": this.state.fname,
                 "lname": this.state.lname
@@ -158,7 +156,7 @@ export default class CmpProfile  extends React.Component {
 
         } else if(this.state.fnameChange == true) {
             
-            const token = cookies.get('token');
+            const token = localStorage.getItem('token');
     
             const reqBody = {
                 "fname": this.state.fname,
@@ -204,7 +202,7 @@ export default class CmpProfile  extends React.Component {
 
         } else if(this.state.lnameChange == true){
             
-            const token = cookies.get('token');
+            const token = localStorage.getItem('token');
     
             const reqBody = {
                 "lname": this.state.lname
