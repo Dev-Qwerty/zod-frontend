@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import firebase from 'firebase';
+//import loader from '../Loader/Loader'
 
 export default class BaseDashboard  extends React.Component {
 
@@ -137,7 +138,7 @@ export default class BaseDashboard  extends React.Component {
 
 
                     { !this.state.apiData ? (
-                        <p>...</p> 
+                        <p>loading...</p>
                     ):( this.state.apiData.map(qdata => (
                         
                         <div className="single-box-wrapper">

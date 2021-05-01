@@ -1,7 +1,7 @@
 import './CmpProfile.css';
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -15,7 +15,18 @@ export default class CmpProfile  extends React.Component {
     constructor() {
      
         super();
+        this.state = {
+            fname: '',
+            lname: '',
+            email: '',
+            fnameChange: false,
+            lnameChange: false
+        }   
 
+    }   
+    
+    componentDidMount(){
+     
         const token1 = localStorage.getItem('token');
 
         const config = {
@@ -30,22 +41,19 @@ export default class CmpProfile  extends React.Component {
         .then((res) => {
     
             if(res.status === 200) {
-                alert(res.body)
+                this.setState({
+                    fname: res.data.fname,
+                    lname: res.data.lname,
+                    email: res.data.email
+                  });
             } else {
 
             }
         })
         .catch(function (error) {
             console.log(error);
-        }); 
-
-        this.state = {
-            fname: 'Zack',
-            lname: 'Snyder',
-            fnameChange: false,
-            lnameChange: false
-        }
-    }     
+        });         
+    }
 
     render() {        
 
@@ -75,7 +83,7 @@ export default class CmpProfile  extends React.Component {
 
                             <div className="mp-class2">
                                 <p className="mp-email">Email</p>
-                                <div><input type="text" placeholder="" className="mp-email-inp" disabled></input></div>                            
+                                <div><input type="text" placeholder="" className="mp-email-inp" value={this.state.email} disabled></input></div>                            
                                 <div><input value="Update Profile" type="submit" className="mp-update-btn" onClick = { this.updateProfile } ></input></div> 
                                 <div><input value="Delete Account" type="submit" className="mp-delete-btn"onClick = { this.deleteAccount } ></input></div> 
                             </div>
