@@ -140,7 +140,7 @@ export default class BaseDashboard  extends React.Component {
                         <p>loading...</p>
                     ):( this.state.apiData.map(qdata => (
                         
-                        <div className="single-box-wrapper">
+                        <div className="single-box-wrapper" onClick={ () => this.boxfn(qdata) }>
     
                             <div className="rocket-svg-wrapper">
                                 <div className="rocket-svg"></div>
@@ -185,5 +185,9 @@ export default class BaseDashboard  extends React.Component {
                                
             </div>
         );        
+    }
+
+    boxfn = function(data) {
+        localStorage.setItem('pdata', JSON.stringify(data));
     }
 }

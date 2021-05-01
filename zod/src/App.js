@@ -10,6 +10,8 @@ import ConfirmEmail from './components/ConfirmEmail/ConfirmEmail';
 import ResetPassword from './components/ResetPassword/ResetPassword';
 import CreateChannel from './components/Chat/CreateChannel';
 import firebase from 'firebase';
+import ProjectD from './components/ProjectDashboard/ProjectD';
+
 import {
   BrowserRouter as Router,
   Route
@@ -56,6 +58,9 @@ function App() {
         <Route path="/basedashboard/myprofile/pendinginvites">
           <MyProfilePI />  
         </Route>
+        <Route path="/projectdashboard/home">
+          <ProjectD />  
+        </Route>        
         <Route path="/chat/createChannel">
           <CreateChannel />
         </Route>                                
