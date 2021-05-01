@@ -18,8 +18,6 @@ export default class ProjectD extends React.Component {
     }
 
     backToBaseFn = () => {
-        
-        // delete pdata
         //localStorage.setItem('pdata');
         window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';       
     }
@@ -53,6 +51,25 @@ export default class ProjectD extends React.Component {
     
                 </div>
 
+                <div className="pd-body-wrapper">
+
+                    <div className="pd-left-nav">
+                        <div className="pd-left-nav-grid">
+                            <div className="pd-lng1-wrapper">
+                                <div className="pd-lng1"></div>
+                            </div>
+                            <div className="pd-lng2"></div>
+                            <div className="pd-lng3"></div>
+                            <div className="pd-lng4"></div>
+                            <div className="pd-lng5"></div>
+                            <div className="pd-lng6"></div>
+                            <div className="pd-lng7"></div>
+                        </div>
+                    </div>
+                    <div className="pd-body">
+
+                    </div>
+                </div>
             </div>
         );
     }

@@ -77,4 +77,114 @@
     border: none;
     border-radius: 5px;    
   }
-  
+
+  .pd-body-wrapper {
+    height: 630px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 6% 94%;
+  }
+
+  .pd-left-nav {
+    margin-top: 0px;
+    background-color: #52D066;
+  }
+
+  .pd-left-nav-grid {
+    height: 85%;
+    display: grid;
+    grid-template-rows: 14% 14% 14% 14% 14% 14% 14%;
+  }
+
+  .pd-lng1-wrapper {
+    padding-left: 11px;
+    margin-top: 10px;
+    width: 80px;
+    height: 60px;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+
+  .pd-lng1 {
+    background-image: url('../../assets/home.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;  
+    width: 35px;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+  }
+
+  .pd-lng2 {
+    background-image: url('../../assets/document.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;  
+    width: 35px;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;    
+  }
+
+  .pd-lng3 {
+    background-image: url('../../assets/chat.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;  
+    width: 35px;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;    
+  }
+
+  .pd-lng4 {
+    background-image: url('../../assets/cal.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;  
+    width: 35px;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;    
+  }
+
+  .pd-lng5 {
+    background-image: url('../../assets/rocketpro.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;  
+    width: 35px;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;    
+  }
+
+  .pd-lng6 {
+    background-image: url('../../assets/people.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;  
+    width: 35px;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;    
+  }
+
+  .pd-lng7 {
+    background-image: url('../../assets/settings.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;  
+    width: 35px;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;    
+  }
