@@ -54,7 +54,9 @@ export default class ProjectD extends React.Component {
                 <div className="pd-body-wrapper">
 
                     <div className="pd-left-nav">
+                        
                         <div className="pd-left-nav-grid">
+                            
                             <div className="pd-lng1-wrapper">
                                 <div className="pd-lng1"></div>
                             </div>
@@ -66,8 +68,20 @@ export default class ProjectD extends React.Component {
                             <div className="pd-lng7"></div>
                         </div>
                     </div>
+                    
                     <div className="pd-body">
+                        
+                        <div className="pdb-hdn-wrapper">
 
+                            <div className="pdb-hdn-left">
+                                <div className="pdb-hl-1"><p>Final Year Project&nbsp;🚀</p></div>
+                                <div className="pdb-hl-2"><p>Team Lead: John Doe</p></div>
+                            </div>
+
+                            <div className="pdb-hdn-right">
+                                <div className="pdb-hr-1"><p>Due By: 30-June-2021</p></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

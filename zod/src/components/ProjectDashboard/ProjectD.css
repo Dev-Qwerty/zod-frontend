@@ -66,15 +66,15 @@
   
   .pd-right-wrapper {
     padding-left: 70%;
-    padding-top: 33px;
+    padding-top: 30px;
   }
 
   .pd-logout-btn {
     width: 100px;
-    height: 30px;
-    color: #fff;
-    background-color: #189FFA;
-    border: none;
+    height: 35px;
+    background-color: #fff;
+    color: #000;
+    border: 3px solid #189FFA;
     border-radius: 5px;    
   }
 
@@ -187,4 +187,39 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;    
+  }
+
+  .pdb-hdn-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 70% 30%;
+  }
+
+  .pdb-hdn-left {
+    padding: 30px;
+  }
+
+  .pdb-hdn-left p {
+    padding: 0px;
+    margin: 0px;      
+  }
+
+  .pdb-hl-1 {
+    font-size: 26px;  
+    font-weight: bold;
+  }
+
+  .pdb-hl-2 {
+    margin-top: 10px;
+    font-size: 17px;
+  
+  }
+
+  .pdb-hdn-right {
+  
+  }
+
+  .pdb-hr-1 {
+    padding-top: 70px;
+    font-size: 17px;
   }
