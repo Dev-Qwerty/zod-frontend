@@ -3,13 +3,15 @@ import LoginPage from './components/Login/Login';
 import HomePage from './components/Home/Home';
 import SignUpPage from './components/SignUp/SignUp';
 import Base from './components/BaseDashboard/Base';
-import CreateProject from './components/BaseDashboard/CreateProject';
-import MyProfileP from './components/BaseDashboard/Profile-MyProfile';
-import MyProfilePI from './components/BaseDashboard/PendingInvites-MyProfile';
+import CreateProject from './components/BaseDashboard/CreateProject/CreateProject';
+import MyProfileP from './components/BaseDashboard/Profile/Profile-MyProfile';
+import MyProfilePI from './components/BaseDashboard/PendingInvites/PendingInvites-MyProfile';
 import ConfirmEmail from './components/ConfirmEmail/ConfirmEmail';
 import ResetPassword from './components/ResetPassword/ResetPassword';
 import CreateChannel from './components/Chat/CreateChannel';
 import firebase from 'firebase';
+import ProjectD from './components/ProjectDashboard/ProjectD';
+
 import {
   BrowserRouter as Router,
   Route
@@ -56,6 +58,9 @@ function App() {
         <Route path="/basedashboard/myprofile/pendinginvites">
           <MyProfilePI />  
         </Route>
+        <Route path="/projectdashboard/home">
+          <ProjectD />  
+        </Route>        
         <Route path="/chat/createChannel">
           <CreateChannel />
         </Route>                                

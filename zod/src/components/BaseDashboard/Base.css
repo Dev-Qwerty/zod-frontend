@@ -130,12 +130,12 @@
   border-radius: 15px; 
 }
 
-.status-etc-hdn {
+.hdn {
   padding-top: 15px;
   height: 50px;
   margin-top: 30px;
   display: grid;
-  grid-template-columns: 9% 91%;
+  grid-template-columns: 16% 84%;
   width: 85%;
   margin-left: auto;
   margin-right: auto;
@@ -146,7 +146,7 @@
 
 .wrapper-x {
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;    
+  grid-template-columns: 33% 33% 33%;    
 }
 
 .full-boxes-wrapper {
@@ -162,12 +162,13 @@
   border: 1px solid #C4C4C4;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: 10% 90%;
-  margin-bottom: 20px;
+  grid-template-columns: 15% 85%;
+  margin-bottom: 30px;
 }
 
 .rocket-svg-wrapper {
-    
+  border-right: 1px solid #C4C4C4;
+  margin-right: 50px;
 }
 
 .rocket-svg {
@@ -185,13 +186,13 @@
 
 .inbox-wrapper {
   display: grid;
-  grid-template-rows: 60% 40%;
+  grid-template-rows: 65% 35%;
 }
 
 .wrapper-y {
   padding-top: 8px;
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 33% 33% 33%;
   color: #898686;
   font-size: 20px;    
 }
@@ -202,12 +203,12 @@
 }
 
 .line-wrapper {
-  padding-left: 60px;
+  padding-left: 0px;
 }
 
 .progress-line {
   height: 5px;
   background-color: #C4C4C4;
-  width: 95%;
+  width: 90%;
 }
 

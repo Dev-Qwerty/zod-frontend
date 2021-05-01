@@ -3,13 +3,10 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import firebase from 'firebase';
  
-const cookies = new Cookies();
-
 /* 
     ClassName Convention Used:-
         Eg: mp-top-nav -> MyProfile-top-nav ..
@@ -47,20 +44,29 @@ function CreateProject() {
       
       
     useEffect(() => {
-        const email = cookies.get('email');
-        const password = cookies.get('password');
-
-        setTimeout(() => {
-
-            firebase.auth().signInWithEmailAndPassword(email, password)
-            .then((userCred) => {
-                
-                let tokenCookie = userCred.user.za;
-                cookies.set('token', tokenCookie);
-            })
-
-        }, 4000);
-    })  
+ 
+        // update token
+        setTimeout(
+            () => {
+                console.log("CALLED");
+                firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                        // User is signed in.
+                        firebase.auth().currentUser.getIdToken(true) // here we force a refresh
+                        .then(function(token) {
+                            localStorage.setItem("token", token);
+                        }).catch(function(error) {
+                        if (error) throw error
+                    });
+                } else {
+                  // No user is signed in.
+                  alert("User not signed in!");
+                }
+              });
+            },
+            600000, //10 mins
+        );  
+    })   
 
     return (
         <div className="createPro">   
@@ -148,7 +154,7 @@ function CreateProject() {
 
 async function createProjectFn(pname, deadline, memberList) {
     
-    const token = cookies.get('token');
+    const token = localStorage.getItem('token')
     
     const reqBody = {
         "projectName": pname,
@@ -169,6 +175,7 @@ async function createProjectFn(pname, deadline, memberList) {
     .then((res) => {
 
         if(res.status === 201) {
+            alert(JSON.stringify(res.data))
 
             toast.info('Project Created!', {
                 position: "bottom-right",
@@ -179,9 +186,9 @@ async function createProjectFn(pname, deadline, memberList) {
                 draggable: true,
                 progress: undefined,
             });
-            setTimeout(() => {
+            /*setTimeout(() => {
                 window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';
-              }, 3500);
+              }, 3500);*/
 
         } else {
 

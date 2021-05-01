@@ -3,9 +3,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import firebase from 'firebase';
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
+//import loader from '../Loader/Loader'
 
 export default class BaseDashboard  extends React.Component {
 
@@ -18,8 +16,6 @@ export default class BaseDashboard  extends React.Component {
     }   
     async componentDidMount() {
         
-        //const email = cookies.get('email');
-        //const password = cookies.get('password');
         this.timer = setInterval(
             () => {
                 console.log("CALLED");
@@ -41,7 +37,7 @@ export default class BaseDashboard  extends React.Component {
             600000, //10 mins
         );
             
-        let token = cookies.get('token');
+        const token = localStorage.getItem('token');
         
         const config = {
             headers: {
@@ -101,7 +97,7 @@ export default class BaseDashboard  extends React.Component {
                             </div>
     
                             <div className="bd-dropdown-content">
-                                <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>My Profile</p></Link>
+                                <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>Profile</p></Link>
                                 <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p>Pending Invites</p></Link>
                                 <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
                             </div>
@@ -125,14 +121,13 @@ export default class BaseDashboard  extends React.Component {
                     </div>
                 </div>
     
-                <div className="status-etc-hdn">
+                <div className="hdn">
     
                     <div className="free-box">      
                     </div>   
                                  
                     <div className="wrapper-x">
                         <p className="project-name-x">Project Name</p>
-                        <p className="status-x">Status</p>
                         <p className="deadline-x">Deadline</p>
                         <p className="team-lead-x">Team Lead</p>
                     </div>
@@ -142,15 +137,13 @@ export default class BaseDashboard  extends React.Component {
 
 
                     { !this.state.apiData ? (
-                        <p>...</p> 
+                        <p>loading...</p>
                     ):( this.state.apiData.map(qdata => (
                         
-                        <div className="single-box-wrapper">
+                        <div className="single-box-wrapper" onClick={ () => this.boxfn(qdata) }>
     
                             <div className="rocket-svg-wrapper">
-                                <div className="rocket-svg">
-                                
-                                </div>
+                                <div className="rocket-svg"></div>
                             </div>
                         
                             <div className="inbox-wrapper">    
@@ -161,8 +154,6 @@ export default class BaseDashboard  extends React.Component {
                                     ):(
                                         <p className="project-name">{JSON.parse(JSON.stringify(qdata.projectName))}</p>
                                     )}
-
-                                    <p className="status">...</p>
 
                                     { !this.state.apiData ? (
                                         <p className="deadline">...</p> 
@@ -194,5 +185,10 @@ export default class BaseDashboard  extends React.Component {
                                
             </div>
         );        
+    }
+
+    boxfn = function(data) {
+        localStorage.setItem('pdata', JSON.stringify(data));
+        window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/home';
     }
 }
