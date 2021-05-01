@@ -24,6 +24,10 @@ export default class ProjectD extends React.Component {
         window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';       
     }
 
+    logout = () => {
+        window.location.href = window.location.protocol + '//' + window.location.host + '/login';   
+    }
+
     render() {
     
         return (
@@ -44,7 +48,7 @@ export default class ProjectD extends React.Component {
                     </div>
     
                     <div className="pd-right-wrapper">
-                        <input type="submit" value="Logout" className="pd-logout-btn"></input>
+                        <input type="submit" value="Logout" className="pd-logout-btn" onClick = { this.logout }></input>
                     </div>
     
                 </div>
