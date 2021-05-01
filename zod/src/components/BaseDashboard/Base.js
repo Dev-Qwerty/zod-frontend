@@ -121,14 +121,13 @@ export default class BaseDashboard  extends React.Component {
                     </div>
                 </div>
     
-                <div className="status-etc-hdn">
+                <div className="hdn">
     
                     <div className="free-box">      
                     </div>   
                                  
                     <div className="wrapper-x">
                         <p className="project-name-x">Project Name</p>
-                        <p className="status-x">Status</p>
                         <p className="deadline-x">Deadline</p>
                         <p className="team-lead-x">Team Lead</p>
                     </div>
@@ -144,9 +143,7 @@ export default class BaseDashboard  extends React.Component {
                         <div className="single-box-wrapper">
     
                             <div className="rocket-svg-wrapper">
-                                <div className="rocket-svg">
-                                
-                                </div>
+                                <div className="rocket-svg"></div>
                             </div>
                         
                             <div className="inbox-wrapper">    
@@ -157,8 +154,6 @@ export default class BaseDashboard  extends React.Component {
                                     ):(
                                         <p className="project-name">{JSON.parse(JSON.stringify(qdata.projectName))}</p>
                                     )}
-
-                                    <p className="status">...</p>
 
                                     { !this.state.apiData ? (
                                         <p className="deadline">...</p> 
