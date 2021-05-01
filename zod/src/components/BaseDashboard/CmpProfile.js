@@ -31,7 +31,7 @@ export default class CmpProfile  extends React.Component {
         axios.get('https://userservice-zode.herokuapp.com/api/user/', config)
         .then((res) => {
     
-            if(res.status === 201) {
+            if(res.status === 200) {
                 alert(res.body)
             } else {
 
