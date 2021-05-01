@@ -18,6 +18,10 @@
     grid-template-columns: 16% 84%;
   }
 
+  .pd-lt:hover {
+    cursor: pointer;
+  }
+
   .pd-arrow {
     background-image: url('../../assets/arrow.jpg');
     background-repeat: no-repeat;
@@ -36,7 +40,7 @@
 
   .pd-lb {
     padding-left: 30px;
-    margin-top: -4px;
+    margin-top: -3px;
   }
 
   .pd-title {

@@ -17,15 +17,22 @@ export default class ProjectD extends React.Component {
         }
     }
 
+    backToBaseFn = () => {
+        
+        // delete pdata
+        //localStorage.setItem('pdata');
+        window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';       
+    }
+
     render() {
     
         return (
             <div className="ProjectD">
                 
                 <div className="pd-top-nav">
-    
+
                     <div className="pd-left-wrapper">
-                        <div className="pd-lt">
+                        <div className="pd-lt" onClick={ this.backToBaseFn }>
                             <div className="pd-arrow"></div>
                             <div><p className="pd-lt-txt">Back to Base Dashboard</p></div>
                         </div>
