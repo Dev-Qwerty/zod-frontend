@@ -44,8 +44,9 @@ function CreateProject() {
       
       
     useEffect(() => {
-
-        /*this.timer = setInterval(
+ 
+        // update token
+        setTimeout(
             () => {
                 console.log("CALLED");
                 firebase.auth().onAuthStateChanged(function(user) {
@@ -64,11 +65,7 @@ function CreateProject() {
               });
             },
             600000, //10 mins
-        );
-
-        return () => {
-            clearInterval(this.timer);
-          }*/     
+        );  
     })   
 
     return (
