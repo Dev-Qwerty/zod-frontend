@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-//import firebase from 'firebase';
+import firebase from 'firebase';
  
 /* 
     ClassName Convention Used:-
@@ -45,7 +45,31 @@ function CreateProject() {
       
     useEffect(() => {
 
-    })  
+        /*this.timer = setInterval(
+            () => {
+                console.log("CALLED");
+                firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                        // User is signed in.
+                        firebase.auth().currentUser.getIdToken(true) // here we force a refresh
+                        .then(function(token) {
+                            localStorage.setItem("token", token);
+                        }).catch(function(error) {
+                        if (error) throw error
+                    });
+                } else {
+                  // No user is signed in.
+                  alert("User not signed in!");
+                }
+              });
+            },
+            600000, //10 mins
+        );
+
+        return () => {
+            clearInterval(this.timer);
+          }*/     
+    })   
 
     return (
         <div className="createPro">   
@@ -154,6 +178,7 @@ async function createProjectFn(pname, deadline, memberList) {
     .then((res) => {
 
         if(res.status === 201) {
+            alert(JSON.stringify(res.data))
 
             toast.info('Project Created!', {
                 position: "bottom-right",
@@ -164,9 +189,9 @@ async function createProjectFn(pname, deadline, memberList) {
                 draggable: true,
                 progress: undefined,
             });
-            setTimeout(() => {
+            /*setTimeout(() => {
                 window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';
-              }, 3500);
+              }, 3500);*/
 
         } else {
 
