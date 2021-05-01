@@ -3,9 +3,6 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import firebase from 'firebase';
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
 
 export default class BaseDashboard  extends React.Component {
 
@@ -16,24 +13,30 @@ export default class BaseDashboard  extends React.Component {
             apiData: null
         }
     }   
-
     async componentDidMount() {
         
-        const email = cookies.get('email');
-        const password = cookies.get('password');
-
-        setTimeout(() => {
-
-            firebase.auth().signInWithEmailAndPassword(email, password)
-            .then((userCred) => {
-                
-                let tokenCookie = userCred.user.za;
-                cookies.set('token', tokenCookie);
-            })
-
-        }, 4000);
-        
-        let token = cookies.get('token');
+        this.timer = setInterval(
+            () => {
+                console.log("CALLED");
+                firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                        // User is signed in.
+                        firebase.auth().currentUser.getIdToken(true) // here we force a refresh
+                        .then(function(token) {
+                            localStorage.setItem("token", token);
+                        }).catch(function(error) {
+                        if (error) throw error
+                    });
+                } else {
+                  // No user is signed in.
+                  alert("User not signed in!");
+                }
+              });
+            },
+            600000, //10 mins
+        );
+            
+        const token = localStorage.getItem('token');
         
         const config = {
             headers: {
@@ -62,6 +65,10 @@ export default class BaseDashboard  extends React.Component {
         .catch(function (error) {
             console.log(error);
         });         
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
     }
 
     render() {

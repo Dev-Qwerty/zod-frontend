@@ -3,13 +3,10 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import firebase from 'firebase';
+//import firebase from 'firebase';
  
-const cookies = new Cookies();
-
 /* 
     ClassName Convention Used:-
         Eg: mp-top-nav -> MyProfile-top-nav ..
@@ -47,19 +44,7 @@ function CreateProject() {
       
       
     useEffect(() => {
-        const email = cookies.get('email');
-        const password = cookies.get('password');
 
-        setTimeout(() => {
-
-            firebase.auth().signInWithEmailAndPassword(email, password)
-            .then((userCred) => {
-                
-                let tokenCookie = userCred.user.za;
-                cookies.set('token', tokenCookie);
-            })
-
-        }, 4000);
     })  
 
     return (
@@ -148,7 +133,7 @@ function CreateProject() {
 
 async function createProjectFn(pname, deadline, memberList) {
     
-    const token = cookies.get('token');
+    const token = localStorage.getItem('token')
     
     const reqBody = {
         "projectName": pname,
