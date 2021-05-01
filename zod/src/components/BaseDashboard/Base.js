@@ -189,5 +189,6 @@ export default class BaseDashboard  extends React.Component {
 
     boxfn = function(data) {
         localStorage.setItem('pdata', JSON.stringify(data));
+        window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/home';
     }
 }
