@@ -7,15 +7,9 @@ import axios from 'axios';
 function CreateChannel() {
     const [channelName, setChannelName] = useState('');
     const [members, setMembers] = useState([{fname: "", email: ""}]);
+    const [allmembers, setAllMembers] = useState([{fname: "", email: ""}])
 
     const handleChannelNameChange = (e) => setChannelName(e.target.value);
-
-    const handleMembersListChange = (e, index) => {
-        const { name, value } = e.target;
-        const list = [...members];
-        list[index][name] = value;
-        setMembers(list);
-    };
 
     const handleRemoveBtn = index => {
         const list = [...members];
@@ -27,16 +21,18 @@ function CreateChannel() {
         setMembers([...members, { fname: "", email: "" }]);
     };
 
-    useEffect(() => {
-        let projectData = JSON.parse(localStorage.getItem("pdata"));
-        let url = 'https://projectservice-zode.herokuapp.com/api/projects/' + projectData.projectID + '/members';
-        axios.get(url, {headers: {
-            "Access-Control-Allow-Origin" : "*",
-            "Authorization": localStorage.getItem("token")
-        }}).then(response => {
-            console.log(response);
-        })
+    const getMembers = () => {
+    let projectData = JSON.parse(localStorage.getItem("pdata"));
+    let url = 'https://projectservice-zode.herokuapp.com/api/projects/' + projectData.projectID + '/members';
+    axios.get(url, {headers: {
+        "Access-Control-Allow-Origin" : "*",
+        "Authorization": localStorage.getItem("token")
+    }}).then(response => {
+        setAllMembers(response.data.projectMembers);
     })
+    }
+
+    window.addEventListener('load', getMembers);
 
     return (
         <div className="zod-create-channel-page">
@@ -74,12 +70,9 @@ function CreateChannel() {
                 return (
                     <div className="cpm-box">
                         <div className="cpm-one-row-wrapper">
-                            <input type="text" placeholder="Name" className="cpm-email" name="email" onChange={e => handleMembersListChange(e, i)}/>
-                            <input list="userroles" placeholder="Role" className="cpm-role" name="userRole" onChange={e => handleMembersListChange(e, i)}/>
-                            <datalist id="userroles">
-                                <option value="Owner"/>
-                                <option value="Member"/>
-                            </datalist>
+                            <select name="members" id="members">
+                            {allmembers.map((members) => <option key={members.email} value={members.name}>{members.name} - {members.email}</option>)}
+                            </select>
                             <span className="cpm-btn-box">
                                 {members.length !== 1 && <button onClick={() => handleRemoveBtn(i)} className="cpm-remove-btn">Remove</button>}
                                 {members.length - 1 === i && <button onClick={handleAddBtn} className="cpm-add-btn">Add</button>}
