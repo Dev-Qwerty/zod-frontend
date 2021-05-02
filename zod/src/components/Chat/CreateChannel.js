@@ -1,8 +1,43 @@
 import { Link } from "react-router-dom";
 import './CreateChannel.css';
 import ccSvg from '../../assets/channel.svg';
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
 function CreateChannel() {
+    const [channelName, setChannelName] = useState('');
+    const [members, setMembers] = useState([{fname: "", email: ""}]);
+
+    const handleChannelNameChange = (e) => setChannelName(e.target.value);
+
+    const handleMembersListChange = (e, index) => {
+        const { name, value } = e.target;
+        const list = [...members];
+        list[index][name] = value;
+        setMembers(list);
+    };
+
+    const handleRemoveBtn = index => {
+        const list = [...members];
+        list.splice(index, 1);
+        setMembers(list);
+    };
+
+    const handleAddBtn = () => {
+        setMembers([...members, { fname: "", email: "" }]);
+    };
+
+    useEffect(() => {
+        let projectData = JSON.parse(localStorage.getItem("pdata"));
+        let url = 'https://projectservice-zode.herokuapp.com/api/projects/' + projectData.projectID + '/members';
+        axios.get(url, {headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": localStorage.getItem("token")
+        }}).then(response => {
+            console.log(response);
+        })
+    })
+
     return (
         <div className="zod-create-channel-page">
             <div className="bd-top-nav">
@@ -35,16 +70,29 @@ function CreateChannel() {
             <h3>Description</h3>
             <textarea className="cc-desc"></textarea>
             <h3>Members</h3>
-            <div className="cc-members-list">
-                <input type="text" className="cc-name"></input>
-                <button className="cc-remove-btn">Remove</button>
-                <input type="text" className="cc-name"></input>
-                <button className="cc-add-btn">Add</button>
-                <button className="cc-remove-btn">Remove</button>
-            </div>
+            {members.map((x, i) => {
+                return (
+                    <div className="cpm-box">
+                        <div className="cpm-one-row-wrapper">
+                            <input type="text" placeholder="Name" className="cpm-email" name="email" onChange={e => handleMembersListChange(e, i)}/>
+                            <input list="userroles" placeholder="Role" className="cpm-role" name="userRole" onChange={e => handleMembersListChange(e, i)}/>
+                            <datalist id="userroles">
+                                <option value="Owner"/>
+                                <option value="Member"/>
+                            </datalist>
+                            <span className="cpm-btn-box">
+                                {members.length !== 1 && <button onClick={() => handleRemoveBtn(i)} className="cpm-remove-btn">Remove</button>}
+                                {members.length - 1 === i && <button onClick={handleAddBtn} className="cpm-add-btn">Add</button>}
+                            </span>
+                        </div>
+                    </div>
+                );
+            })}
         </div>
     </div>
     )
 }
+
+//function CreateChannelRequest()
 
 export default CreateChannel;
