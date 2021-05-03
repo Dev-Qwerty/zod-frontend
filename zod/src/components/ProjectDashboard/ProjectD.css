@@ -133,12 +133,22 @@
     background-image: url('../../assets/chat.svg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;  
-    width: 35px;
-    height: 35px;
-    margin-left: auto;
+    background-size: 35px;  
+    width: 100px;
+    height: 60px;
     margin-right: auto;
-    margin-top: 10px;    
+    background-color: #52D066;
+    border: none; 
+    outline: none;   
+  }
+
+  .pd-lng3:hover {
+    background-image: url('../../assets/Chat-DarkIcon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;  
+    background-color: #fff;
+    cursor: pointer;
   }
 
   .pd-lng4 {
