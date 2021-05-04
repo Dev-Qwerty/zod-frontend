@@ -11,7 +11,8 @@ export default class BaseDashboard  extends React.Component {
      
         super();
         this.state = {
-            apiData: null
+            apiData: null,
+            isEmpty: false
         }
     }   
     async componentDidMount() {
@@ -52,13 +53,14 @@ export default class BaseDashboard  extends React.Component {
     
             if(res.status === 200) {
                 
-                const Data = res.data;
-                //const Data = Object.keys(chunk).map((key) => chunk[key]);
-                
-                this.setState({ apiData: Data }, () => {
-                    //alert(this.state.apiData[0].projectName);
-                });
-              
+                const Data = res.data;      
+                this.setState({ apiData: Data });
+                if(res.data == null) {
+                    this.setState({ isEmpty: true });
+                } else {
+                    this.setState({ isEmpty: false }); 
+                }              
+
             } else {
     
             }
@@ -135,9 +137,18 @@ export default class BaseDashboard  extends React.Component {
     
                 <div className="full-boxes-wrapper">
 
-
                     { !this.state.apiData ? (
-                        <p>loading...</p>
+                        
+                        this.state.isEmpty ? (
+                            
+                            <div className="x-empty">
+                                <p>No Projects Found!</p>
+                            </div>
+                        ): (
+                            <div className="x-loading">
+                                <p>Loading...</p>
+                            </div>
+                        )                        
                     ):( this.state.apiData.map(qdata => (
                         
                         <div className="single-box-wrapper" onClick={ () => this.boxfn(qdata) }>
@@ -149,24 +160,9 @@ export default class BaseDashboard  extends React.Component {
                             <div className="inbox-wrapper">    
                                 <div className="wrapper-y">
 
-                                    { !this.state.apiData ? (
-                                        <p className="project-name">...</p> 
-                                    ):(
-                                        <p className="project-name">{JSON.parse(JSON.stringify(qdata.projectName))}</p>
-                                    )}
-
-                                    { !this.state.apiData ? (
-                                        <p className="deadline">...</p> 
-                                    ):(
-                                        <p className="deadline">{JSON.parse(JSON.stringify(qdata.deadline))}</p>
-                                    )}
-
-                                    { !this.state.apiData ? (
-                                        <p className="team-lead">...</p> 
-                                    ):(
-                                        <p className="team-lead">{JSON.parse(JSON.stringify(qdata.teamlead))}</p>
-                                    )}
-
+                                    <p className="project-name">{JSON.parse(JSON.stringify(qdata.projectName))}</p>
+                                    <p className="deadline">{JSON.parse(JSON.stringify(qdata.deadline))}</p>
+                                    <p className="team-lead">{JSON.parse(JSON.stringify(qdata.teamlead))}</p>
                             </div> 
     
                             <div className="line-wrapper">
