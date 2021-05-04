@@ -212,3 +212,13 @@
   width: 90%;
 }
 
+.x-empty {
+  width: 310px;
+  height: 75px;
+  border: 1px solid #000;
+  text-align: center;
+  padding-top: 20px;
+}
+.x-empty p {
+  font-size: 18px;
+}

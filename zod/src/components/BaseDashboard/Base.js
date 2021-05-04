@@ -11,7 +11,8 @@ export default class BaseDashboard  extends React.Component {
      
         super();
         this.state = {
-            apiData: null
+            apiData: null,
+            isEmpty: false
         }
     }   
     async componentDidMount() {
@@ -52,13 +53,14 @@ export default class BaseDashboard  extends React.Component {
     
             if(res.status === 200) {
                 
-                const Data = res.data;
-                //const Data = Object.keys(chunk).map((key) => chunk[key]);
-                
-                this.setState({ apiData: Data }, () => {
-                    //alert(this.state.apiData[0].projectName);
-                });
-              
+                const Data = res.data;      
+                this.setState({ apiData: Data });
+                if(res.data == null) {
+                    this.setState({ isEmpty: true });
+                } else {
+                    this.setState({ isEmpty: false }); 
+                }              
+
             } else {
     
             }
@@ -137,7 +139,15 @@ export default class BaseDashboard  extends React.Component {
 
 
                     { !this.state.apiData ? (
-                        <p>loading...</p>
+                        
+                        this.state.isEmpty ? (
+                            
+                            <div className="x-empty">
+                                <p>No Projects Found!</p>
+                            </div>
+                        ): (
+                            <p>loading...</p>
+                        )                        
                     ):( this.state.apiData.map(qdata => (
                         
                         <div className="single-box-wrapper" onClick={ () => this.boxfn(qdata) }>

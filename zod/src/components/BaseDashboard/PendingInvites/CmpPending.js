@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import firebase from 'firebase';
 
 /* 
     ClassName Convention Used:-
@@ -23,6 +24,27 @@ export default class CmpPending  extends React.Component {
     }   
     
     componentDidMount(){
+
+        this.timer = setInterval(
+            () => {
+                console.log("CALLED");
+                firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                        // User is signed in.
+                        firebase.auth().currentUser.getIdToken(true) // here we force a refresh
+                        .then(function(token) {
+                            localStorage.setItem("token", token);
+                        }).catch(function(error) {
+                        if (error) throw error
+                    });
+                } else {
+                  // No user is signed in.
+                  alert("User not signed in!");
+                }
+              });
+            },
+            600000, //10 mins
+        );        
      
         const token = localStorage.getItem('token');
 
@@ -51,6 +73,10 @@ export default class CmpPending  extends React.Component {
         .catch(function (error) {
             console.log(error);
         });         
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
     }
 
     acceptfn(pid) {
