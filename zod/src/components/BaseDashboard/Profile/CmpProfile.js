@@ -157,6 +157,12 @@ export default class CmpProfile  extends React.Component {
                         draggable: true,
                         progress: undefined,
                     });
+                    
+                    this.setState({
+                        lnameChange: false,
+                        fnameChange: false
+                    }); 
+
                 } else {
                     toast.warning('Error!', {
                         position: "bottom-right",
@@ -203,6 +209,11 @@ export default class CmpProfile  extends React.Component {
                         draggable: true,
                         progress: undefined,
                     });
+
+                    this.setState({
+                        fnameChange: false
+                    }); 
+
                 } else {
                     toast.warning('Error!', {
                         position: "bottom-right",
@@ -249,6 +260,11 @@ export default class CmpProfile  extends React.Component {
                         draggable: true,
                         progress: undefined,
                     });
+
+                    this.setState({
+                        lnameChange: false
+                    }); 
+
                 } else {
                     toast.warning('Error!', {
                         position: "bottom-right",
