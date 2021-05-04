@@ -149,24 +149,9 @@ export default class BaseDashboard  extends React.Component {
                             <div className="inbox-wrapper">    
                                 <div className="wrapper-y">
 
-                                    { !this.state.apiData ? (
-                                        <p className="project-name">...</p> 
-                                    ):(
-                                        <p className="project-name">{JSON.parse(JSON.stringify(qdata.projectName))}</p>
-                                    )}
-
-                                    { !this.state.apiData ? (
-                                        <p className="deadline">...</p> 
-                                    ):(
-                                        <p className="deadline">{JSON.parse(JSON.stringify(qdata.deadline))}</p>
-                                    )}
-
-                                    { !this.state.apiData ? (
-                                        <p className="team-lead">...</p> 
-                                    ):(
-                                        <p className="team-lead">{JSON.parse(JSON.stringify(qdata.teamlead))}</p>
-                                    )}
-
+                                    <p className="project-name">{JSON.parse(JSON.stringify(qdata.projectName))}</p>
+                                    <p className="deadline">{JSON.parse(JSON.stringify(qdata.deadline))}</p>
+                                    <p className="team-lead">{JSON.parse(JSON.stringify(qdata.teamlead))}</p>
                             </div> 
     
                             <div className="line-wrapper">

@@ -35,7 +35,7 @@ export default class CmpPending  extends React.Component {
         .then((res) => {
     
             if(res.status === 200) {
-                this.setState({ apiData: res.data })
+                this.setState({ apiData: res.data });
             } else {
 
             }
@@ -60,7 +60,7 @@ export default class CmpPending  extends React.Component {
                             <div className="cpi-box-item1">
                                 <div className="cpi-box-item1-wrapper">
                                     <p className="cpiY">Project Name: {JSON.parse(JSON.stringify(zdata.projectName))}</p>
-                                    <p className="cpiY qw">Invited By: {JSON.parse(JSON.stringify(zdata.projectName))}</p>
+                                    <p className="cpiY qw">Invited By: {JSON.parse(JSON.stringify(zdata.teamlead))}</p>
                                 </div>
                             </div>
                             <div className="cpi-box-item2">
