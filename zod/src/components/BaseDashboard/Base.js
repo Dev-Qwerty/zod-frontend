@@ -137,7 +137,6 @@ export default class BaseDashboard  extends React.Component {
     
                 <div className="full-boxes-wrapper">
 
-
                     { !this.state.apiData ? (
                         
                         this.state.isEmpty ? (
@@ -146,7 +145,9 @@ export default class BaseDashboard  extends React.Component {
                                 <p>No Projects Found!</p>
                             </div>
                         ): (
-                            <p>loading...</p>
+                            <div className="x-loading">
+                                <p>Loading...</p>
+                            </div>
                         )                        
                     ):( this.state.apiData.map(qdata => (
                         

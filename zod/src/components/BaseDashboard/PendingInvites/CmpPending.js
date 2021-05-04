@@ -194,7 +194,9 @@ export default class CmpPending  extends React.Component {
                                 <p>No Pending Invites!</p>
                             </div>
                         ): (
-                            <p>loading...</p>
+                            <div className="cpi-loading">
+                                <p>Loading...</p>
+                            </div>
                         )
 
                     ):( this.state.apiData.map(zdata => (
