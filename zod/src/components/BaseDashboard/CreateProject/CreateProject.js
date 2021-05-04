@@ -110,7 +110,7 @@ function CreateProject() {
                     <div className="cp-inp-wrapper">
 
                         <p className="cp-label">Project Name</p>
-                        <div><input type="text" placeholder="" className="cp-pname" onChange={handlePnameChange}  value={pname}></input></div>
+                        <div><input type="text" placeholder="" className="cp-pname" onChange={handlePnameChange} value={pname}></input></div>
                         <p className="cp-label">Due Date</p>
                         <div><input type="date" placeholder="Deadline" className="cp-deadline" onChange={handleDeadlineChange}  value={deadline}></input></div>
                         
