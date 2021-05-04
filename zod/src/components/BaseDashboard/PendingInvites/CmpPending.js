@@ -67,9 +67,29 @@ export default class CmpPending  extends React.Component {
         .then((res) => {
     
             if(res.status === 200) {
-                alert('accepted!');
+                toast.info('Accepted!', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+                
             } else {
-
+                toast.warning('Error!', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });  
             }
         })
         .catch(function (error) {
@@ -78,7 +98,53 @@ export default class CmpPending  extends React.Component {
     }
 
     rejectfn(pid) {
-        alert(pid);
+
+        const rtoken = localStorage.getItem('token');
+
+        const config = {
+            headers: {
+                'Authorization': rtoken,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+        
+        const reqBody = {
+            "projectID": pid
+        }
+
+        axios.put('https://projectservice-zode.herokuapp.com/api/projects/rejectinvite', reqBody, config)
+        .then((res) => {
+    
+            if(res.status === 200) {
+                toast.info('Rejected!', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+
+            } else {
+                toast.warning('Error!', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });  
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });          
     }
     
     render() {
