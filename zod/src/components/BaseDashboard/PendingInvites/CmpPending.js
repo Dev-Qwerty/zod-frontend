@@ -16,7 +16,8 @@ export default class CmpPending  extends React.Component {
      
         super();
         this.state = {
-            apiData: null
+            apiData: null,
+            isEmpty: false
         }   
 
     }   
@@ -38,6 +39,11 @@ export default class CmpPending  extends React.Component {
     
             if(res.status === 200) {
                 this.setState({ apiData: res.data });
+                if(res.data == null) {
+                    this.setState({ isEmpty: true });
+                } else {
+                    this.setState({ isEmpty: false }); 
+                }
             } else {
 
             }
@@ -148,13 +154,23 @@ export default class CmpPending  extends React.Component {
     }
     
     render() {
+
         return (
             <div className="cmpPI">
     
                 <div className="cpi-wrapper">
 
                     { !this.state.apiData ? (
-                        <p>loading...</p>
+                        
+                        this.state.isEmpty ? (
+                            
+                            <div className="cpi-empty">
+                                <p>No Pending Invites!</p>
+                            </div>
+                        ): (
+                            <p>loading...</p>
+                        )
+
                     ):( this.state.apiData.map(zdata => (
 
                         <div className="cpi-box">
