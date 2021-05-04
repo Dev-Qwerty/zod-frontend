@@ -46,6 +46,10 @@
   color: #fff;
 }
 
+.cpi-acceptBtn:hover {
+  cursor: pointer;
+}
+
 .cpi-rejectBtn {
   height: 35px;
   background-color: #E43535;
@@ -54,4 +58,8 @@
   margin-top: 32px;
   margin-left: 20px;
   color: #fff;
+}
+
+.cpi-rejectBtn:hover {
+  cursor: pointer;
 }

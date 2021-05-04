@@ -2,6 +2,8 @@ import './CmpPending.css';
 import React from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 /* 
     ClassName Convention Used:-
@@ -44,6 +46,40 @@ export default class CmpPending  extends React.Component {
             console.log(error);
         });         
     }
+
+    acceptfn(pid) {
+
+        const atoken = localStorage.getItem('token');
+
+        const config = {
+            headers: {
+                'Authorization': atoken,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+        
+        const reqBody = {
+            "projectID": pid
+        }
+
+        axios.put('https://projectservice-zode.herokuapp.com/api/projects/acceptInvite', reqBody, config)
+        .then((res) => {
+    
+            if(res.status === 200) {
+                alert('accepted!');
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });         
+    }
+
+    rejectfn(pid) {
+        alert(pid);
+    }
     
     render() {
         return (
@@ -64,10 +100,10 @@ export default class CmpPending  extends React.Component {
                                 </div>
                             </div>
                             <div className="cpi-box-item2">
-                                <div><input value="Accept" type="submit" className="cpi-acceptBtn"></input></div>
+                                <div><input value="Accept" type="submit" className="cpi-acceptBtn" onClick={ () => this.acceptfn(zdata._id) }></input></div>
                             </div>
                             <div className="cpi-box-item3">
-                                <div><input value="Reject" type="submit" className="cpi-rejectBtn"></input></div>
+                                <div><input value="Reject" type="submit" className="cpi-rejectBtn" onClick={ () => this.rejectfn(zdata._id) }></input></div>
                             </div>
                         </div>
                     )))}             
