@@ -14,7 +14,7 @@ export default class CmpPending  extends React.Component {
      
         super();
         this.state = {
-
+            apiData: null
         }   
 
     }   
@@ -35,7 +35,7 @@ export default class CmpPending  extends React.Component {
         .then((res) => {
     
             if(res.status === 200) {
-                alert(JSON.stringify(res.data))
+                this.setState({ apiData: res.data })
             } else {
 
             }
@@ -50,38 +50,27 @@ export default class CmpPending  extends React.Component {
             <div className="cmpPI">
     
                 <div className="cpi-wrapper">
-    
-                    <div className="cpi-box">
-                
-                        <div className="cpi-box-item1">
-                            <div className="cpi-box-item1-wrapper">
-                                <p className="cpiY">Project Name: Project X</p>
-                                <p className="cpiY qw">Invited By: John Doe</p>
+
+                    { !this.state.apiData ? (
+                        <p>loading...</p>
+                    ):( this.state.apiData.map(zdata => (
+
+                        <div className="cpi-box">
+                    
+                            <div className="cpi-box-item1">
+                                <div className="cpi-box-item1-wrapper">
+                                    <p className="cpiY">Project Name: {JSON.parse(JSON.stringify(zdata.projectName))}</p>
+                                    <p className="cpiY qw">Invited By: {JSON.parse(JSON.stringify(zdata.projectName))}</p>
+                                </div>
+                            </div>
+                            <div className="cpi-box-item2">
+                                <div><input value="Accept" type="submit" className="cpi-acceptBtn"></input></div>
+                            </div>
+                            <div className="cpi-box-item3">
+                                <div><input value="Reject" type="submit" className="cpi-rejectBtn"></input></div>
                             </div>
                         </div>
-                        <div className="cpi-box-item2">
-                            <div><input value="Accept" type="submit" className="cpi-acceptBtn"></input></div>
-                        </div>
-                        <div className="cpi-box-item3">
-                            <div><input value="Reject" type="submit" className="cpi-rejectBtn"></input></div>
-                        </div>
-                    </div>
-    
-                    <div className="cpi-box">
-                
-                        <div className="cpi-box-item1">
-                            <div className="cpi-box-item1-wrapper">
-                                <p className="cpiY">Project Name: Project X</p>
-                                <p className="cpiY qw">Invited By: John Doe</p>
-                            </div>
-                        </div>
-                        <div className="cpi-box-item2">
-                            <div><input value="Accept" type="submit" className="cpi-acceptBtn"></input></div>
-                        </div>
-                        <div className="cpi-box-item3">
-                            <div><input value="Reject" type="submit" className="cpi-rejectBtn"></input></div>
-                        </div>
-                    </div>
+                    )))}             
     
                 </div>
             </div>
