@@ -13,6 +13,7 @@ function CreateChannel() {
     const [members, setMembers] = useState([{name: "", email: ""}]);
     const [allmembers, setAllMembers] = useState([{name: "", email: ""}]);
     const [channelDesc, setDesc] = useState('');
+    const [disable, setDisable] = useState(false);
 
     const handleChannelNameChange = (e) => setChannelName(e.target.value);
     const handleDescChange = (e) => setDesc(e.target.value);
@@ -44,6 +45,7 @@ function CreateChannel() {
     };
 
     const getMembers = () => {
+    setDisable(true);
     let projectData = JSON.parse(localStorage.getItem("pdata"));
     let url = 'https://projectservice-zode.herokuapp.com/api/projects/' + projectData.projectID + '/members';
     axios.get(url, {headers: {
@@ -52,6 +54,8 @@ function CreateChannel() {
     }}).then(response => {
         setAllMembers(response.data.projectMembers);
     })
+
+    setTimeout(()=> setDisable(false), 600000);
     }
 
     window.addEventListener('load', getMembers);
@@ -87,7 +91,10 @@ function CreateChannel() {
             <input type="text" className="cc-name" onChange={handleChannelNameChange}></input>
             <h3>Description</h3>
             <textarea className="cc-desc" onChange={handleDescChange}></textarea>
-            <h3>Members</h3>
+            <h3 className="cc-members-title">Members</h3>
+            <button type="button" className="cc-refresh-btn" onClick={getMembers} disabled={disable}>
+                <span className="glyphicon glyphicon-refresh"></span> Refresh
+            </button>
             {members.map((x, i) => {
                 return (
                     <div className="cpm-box">
