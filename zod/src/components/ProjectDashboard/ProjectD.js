@@ -1,5 +1,5 @@
 import './ProjectD.css';
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import React from 'react';
  
 /* 
@@ -61,7 +61,7 @@ export default class ProjectD extends React.Component {
                                 <div className="pd-lng1"></div>
                             </div>
                             <div className="pd-lng2"></div>
-                            <div className="pd-lng3"></div>
+                            <Route render={({history})=> (<div className="pd-lng3" onClick={()=>{ history.push("/chat/createChannel")}}></div>)}></Route>
                             <div className="pd-lng4"></div>
                             <div className="pd-lng5"></div>
                             <div className="pd-lng6"></div>

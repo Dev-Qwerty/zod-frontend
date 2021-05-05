@@ -96,3 +96,35 @@
     background-color: #2BD428;
     color: #fff;
   }
+
+  .cc-create-btn {
+    background-color: #52D066;
+    color: #fff;
+    border: none;
+    position: relative;
+    top: -15vw;
+    left: 3vw;
+    width: 10vw;
+    height: 35px;
+    border-radius: 5px
+  }
+
+  .cc-refresh-btn {
+    position: relative;
+    top: -25px;
+    left: 135px;
+    font-size: 15px;
+    background-color: #52D066;
+    color: white;
+    height: 35px;
+    border: none;
+  }
+
+  .cc-refresh-btn:disabled {
+    background-color: rgb(174, 209, 180); 
+  }
+
+  .cc-members-title {
+    position: relative;
+    top: 1vw;
+  }
