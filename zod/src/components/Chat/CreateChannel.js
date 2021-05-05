@@ -3,22 +3,44 @@ import './CreateChannel.css';
 import ccSvg from '../../assets/channel.svg';
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import { toast } from "react-toastify";
 
+toast.configure()
+
+let emails = [];
 function CreateChannel() {
     const [channelName, setChannelName] = useState('');
-    const [members, setMembers] = useState([{fname: "", email: ""}]);
-    const [allmembers, setAllMembers] = useState([{fname: "", email: ""}])
+    const [members, setMembers] = useState([{name: "", email: ""}]);
+    const [allmembers, setAllMembers] = useState([{name: "", email: ""}]);
+    const [channelDesc, setDesc] = useState('');
 
     const handleChannelNameChange = (e) => setChannelName(e.target.value);
+    const handleDescChange = (e) => setDesc(e.target.value);
+
+    const optionClicked = (e, index) => {
+        if(index == emails.length) {
+            if(!emails.includes(e.target.value)) {
+                emails.push({email: e.target.value});
+            }
+        }
+        else if(index < emails.length) {
+            emails[index].email = e.target.value;
+        }
+    }
 
     const handleRemoveBtn = index => {
         const list = [...members];
         list.splice(index, 1);
         setMembers(list);
+        if(emails[index].email!=undefined) {
+            emails = emails.filter(function(item) {
+                return item.email !== emails[index].email
+            })
+        }        
     };
 
     const handleAddBtn = () => {
-        setMembers([...members, { fname: "", email: "" }]);
+        setMembers([...members, { name: "", email: "" }]);
     };
 
     const getMembers = () => {
@@ -62,30 +84,46 @@ function CreateChannel() {
         <div className="cc-wrapper">
             <h1>Create Channel</h1>
             <h3>Channel Name</h3>
-            <input type="text" className="cc-name"></input>
+            <input type="text" className="cc-name" onChange={handleChannelNameChange}></input>
             <h3>Description</h3>
-            <textarea className="cc-desc"></textarea>
+            <textarea className="cc-desc" onChange={handleDescChange}></textarea>
             <h3>Members</h3>
             {members.map((x, i) => {
                 return (
                     <div className="cpm-box">
                         <div className="cpm-one-row-wrapper">
-                            <select name="members" id="members">
-                            {allmembers.map((members) => <option key={members.email} value={members.name}>{members.name} - {members.email}</option>)}
+                            <select name="members" id={"members"} onChange={(e) => optionClicked(e, i)}>
+                            <option value="none" selected disabled hidden> Select Members </option>
+                            {allmembers.map((members, index) => <option key={members.email} value={members.email} id={"members" + index}>{members.name} - {members.email}</option>)}
                             </select>
                             <span className="cpm-btn-box">
                                 {members.length !== 1 && <button onClick={() => handleRemoveBtn(i)} className="cpm-remove-btn">Remove</button>}
-                                {members.length - 1 === i && <button onClick={handleAddBtn} className="cpm-add-btn">Add</button>}
+                                {members.length - 1 === i && <button onClick={handleAddBtn} className="cpm-add-btn">New</button>}
                             </span>
                         </div>
                     </div>
                 );
             })}
         </div>
+        <button type="submit" value="Submit" className="cc-create-btn" onClick={CreateChannelRequest.bind(this, channelName, channelDesc, emails)}>Create</button>
     </div>
     )
 }
 
-//function CreateChannelRequest()
+function CreateChannelRequest(name, desc, members) {
+    const projectData = JSON.parse(localStorage.getItem("pdata"));
+    const projectID = projectData.projectID;
+    axios.post('https://chatservice-zode.herokuapp.com/api/channel/new', {
+        channelName: name,
+        projectid: projectID,
+        description: desc,
+        members
+    }).then((response) => {
+        console.log(response);
+        if(response.status === 201) {
+            alert("Success!");
+        }
+    })
+}
 
 export default CreateChannel;
