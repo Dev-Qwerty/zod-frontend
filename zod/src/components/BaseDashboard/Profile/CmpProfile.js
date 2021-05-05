@@ -19,6 +19,7 @@ export default class CmpProfile  extends React.Component {
             fname: '',
             lname: '',
             email: '',
+            valx: false,
             fnameChange: false,
             lnameChange: false
         }   
@@ -44,7 +45,8 @@ export default class CmpProfile  extends React.Component {
                 this.setState({
                     fname: res.data.fname,
                     lname: res.data.lname,
-                    email: res.data.email
+                    email: res.data.email,
+                    valx: true
                   });
             } else {
 
@@ -62,6 +64,15 @@ export default class CmpProfile  extends React.Component {
 
                 <div className="mp-wrapper">
                     
+                    { !this.state.valx ? (
+                        <div className="mp-loading">
+                            <p>Loading...</p>
+                        </div>
+                    ):(
+                        <p></p>
+                    )
+                    }
+                  
                     <div className="mp-profile-img"></div>
                     
                     <div className="mp-inp-wrapper">    
@@ -146,6 +157,12 @@ export default class CmpProfile  extends React.Component {
                         draggable: true,
                         progress: undefined,
                     });
+                    
+                    this.setState({
+                        lnameChange: false,
+                        fnameChange: false
+                    }); 
+
                 } else {
                     toast.warning('Error!', {
                         position: "bottom-right",
@@ -192,6 +209,11 @@ export default class CmpProfile  extends React.Component {
                         draggable: true,
                         progress: undefined,
                     });
+
+                    this.setState({
+                        fnameChange: false
+                    }); 
+
                 } else {
                     toast.warning('Error!', {
                         position: "bottom-right",
@@ -238,6 +260,11 @@ export default class CmpProfile  extends React.Component {
                         draggable: true,
                         progress: undefined,
                     });
+
+                    this.setState({
+                        lnameChange: false
+                    }); 
+
                 } else {
                     toast.warning('Error!', {
                         position: "bottom-right",

@@ -110,7 +110,7 @@ function CreateProject() {
                     <div className="cp-inp-wrapper">
 
                         <p className="cp-label">Project Name</p>
-                        <div><input type="text" placeholder="" className="cp-pname" onChange={handlePnameChange}  value={pname}></input></div>
+                        <div><input type="text" placeholder="" className="cp-pname" onChange={handlePnameChange} value={pname}></input></div>
                         <p className="cp-label">Due Date</p>
                         <div><input type="date" placeholder="Deadline" className="cp-deadline" onChange={handleDeadlineChange}  value={deadline}></input></div>
                         
@@ -132,7 +132,7 @@ function CreateProject() {
 
                                     <span className="cpm-btn-box">
                                         {memberList.length !== 1 && <button onClick={() => handleRemoveBtn(i)} className="cpm-remove-btn">Remove</button>}
-                                        {memberList.length - 1 === i && <button onClick={handleAddBtn} className="cpm-add-btn">Add</button>}
+                                        {memberList.length - 1 === i && <button onClick={handleAddBtn} className="cpm-add-btn">New</button>}
                                     </span>
                                     </div>
 
@@ -186,9 +186,9 @@ async function createProjectFn(pname, deadline, memberList) {
                 draggable: true,
                 progress: undefined,
             });
-            /*setTimeout(() => {
+            setTimeout(() => {
                 window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';
-              }, 3500);*/
+              }, 3500);
 
         } else {
 
