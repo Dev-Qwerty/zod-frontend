@@ -113,15 +113,33 @@ function CreateChannel() {
 function CreateChannelRequest(name, desc, members) {
     const projectData = JSON.parse(localStorage.getItem("pdata"));
     const projectID = projectData.projectID;
-    axios.post('https://chatservice-zode.herokuapp.com/api/channel/new', {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem("token")
+        }
+    }
+    axios.post('https://zode-chat-service-test.herokuapp.com/api/channel/new', {
         channelName: name,
         projectid: projectID,
         description: desc,
         members
-    }).then((response) => {
+    }, config).then((response) => {
         console.log(response);
         if(response.status === 201) {
             alert("Success!");
+            toast.info('Channel Created!', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            setTimeout(() => {
+                window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/home';
+              }, 3500);
         }
     })
 }
