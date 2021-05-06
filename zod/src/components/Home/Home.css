@@ -141,7 +141,7 @@
     left: 43vw;
     position: absolute;
     top: 27vw;
-    rotate: 180deg;
+    transform: rotate(180deg);
 }
 
 .zod-homecard-2{
@@ -235,7 +235,7 @@
     height: auto;
     width: 200px;
     position: absolute;
-    top: 41vw;
+    top: 37vw;
     left: 82vw;
 }
 
@@ -250,7 +250,7 @@
     height: auto;
     width: 200px;
     position: absolute;
-    top: 42vw;
+    top: 37vw;
     left: -1vw;
 }
 
