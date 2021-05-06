@@ -36,7 +36,7 @@ function HomePage() {
             <div className="zod-homecard-1">
                 <div className="zod-tagline-1">
                     <span>The best collaboration platform for your team</span>
-                    <button className="zod-start-btn">Start for free</button>
+                    <Link to="/signup"><button className="zod-start-btn">Start for free</button></Link>
                 </div>
                 <div className="green-dot-homebg"></div>
                 <div className="homebg">
@@ -73,7 +73,7 @@ function HomePage() {
                     <span className="zod-tagline-3">Manage your project issues and<br></br>discuss new project features</span>
                     <img src= {bluedot} alt="blue dots" className="yellow-dot"></img>
                     <span className="zod-tagline-6">Experience the new way of teaming</span>
-                    <button className="zod-start-btn-2">Get started for free</button>
+                    <Link to="/signup"><button className="zod-start-btn-2">Get started for free</button></Link>
                 </div>
             </div>
             <div className="footer zod-footer-1">
