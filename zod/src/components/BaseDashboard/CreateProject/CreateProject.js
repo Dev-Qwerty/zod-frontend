@@ -175,7 +175,6 @@ async function createProjectFn(pname, deadline, memberList) {
     .then((res) => {
 
         if(res.status === 201) {
-            alert(JSON.stringify(res.data))
 
             toast.info('Project Created!', {
                 position: "bottom-right",
