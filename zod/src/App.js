@@ -8,6 +8,7 @@ import MyProfileP from './components/BaseDashboard/Profile/Profile-MyProfile';
 import MyProfilePI from './components/BaseDashboard/PendingInvites/PendingInvites-MyProfile';
 import ConfirmEmail from './components/ConfirmEmail/ConfirmEmail';
 import ResetPassword from './components/ResetPassword/ResetPassword';
+import ChatHome from './components/Chat/ChatHome';
 import CreateChannel from './components/Chat/CreateChannel';
 import firebase from 'firebase';
 import ProjectD from './components/ProjectDashboard/ProjectD';
@@ -60,6 +61,9 @@ function App() {
         </Route>
         <Route path="/projectdashboard/home">
           <ProjectD />  
+        </Route>
+        <Route path="/chat/home">
+          <ChatHome />
         </Route>        
         <Route path="/chat/createChannel">
           <CreateChannel />

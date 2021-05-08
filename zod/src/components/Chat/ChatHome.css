@@ -1,0 +1,43 @@
+.ch-title {
+    position: relative;
+    left: 42vw;
+    top: 2vw;
+    font-family: 'Pacifico';
+}
+
+.ch-svg {
+    height: 400px;
+    position: relative;
+    left: 70vw;
+    top: 3vw;
+}
+
+.ch-channel-title {
+    position: relative;
+    top: -20vw;
+    left: 5vw;
+    font-family: 'Pacifico';
+    text-decoration-line: underline;
+    font-style: italic;
+}
+
+.ch-single-box-wrapper {
+    width: 50%;
+    height: 80px;
+    border: 1px solid #C4C4C4;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    margin-bottom: 30px;
+  }
+  
+.ch-single-box-wrapper:hover {
+    cursor: pointer;
+}
+
+.ch-container {
+    position: relative;
+    top: -18vw;
+    left: 5vw;
+}
+  
