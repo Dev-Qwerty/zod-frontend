@@ -2,6 +2,7 @@ import { Link, Route } from 'react-router-dom';
 import './ChatHome.css';
 import ChatSVG from '../../assets/Chat-Home.svg';
 import ChannelIcon from '../../assets/channel-icon.svg';
+import DynamicChatDisplay from './DynamicChatDisplay';
 
 function ChatHome() {
     return(
@@ -50,13 +51,7 @@ function ChatHome() {
             </div>
         </div>
         <div className="ch-chat-display">
-            <div className="ch-default-display">
-                <img src={ChatSVG} alt="Chat SVG" className="ch-chat-svg"></img>
-                <div className="ch-chat-instrns">
-                    <span>Click on a channel or personal chat to begin a conversation.</span>
-                    <span>No channels created? Click <Link to="/chat/createChannel">here</Link> to create one.</span>
-                </div>
-            </div>
+            <DynamicChatDisplay projectname="Zode" channelname="frontend"/>
         </div>
     </div>
     )
