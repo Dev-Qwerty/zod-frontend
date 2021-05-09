@@ -1,10 +1,11 @@
 import { Link, Route } from 'react-router-dom';
 import './ChatHome.css';
-import ChatSVG from '../../assets/Chat-Home.svg';
 import ChannelIcon from '../../assets/channel-icon.svg';
 import DynamicChatDisplay from './DynamicChatDisplay';
+import { useState } from 'react';
 
 function ChatHome() {
+    let [activeComponent, setActiveComponent] = useState('default'); 
     return(
         <div className="zod-chat-homepg">
         <div className="bd-top-nav">
@@ -46,12 +47,12 @@ function ChatHome() {
             <hr></hr>
             <h3>Channels</h3>
             <div className="ch-channels-list">
-                <a href="#">@everyone</a>
-                <a href="#">@frontend</a>
+                <button onClick={() => {setActiveComponent('everyone')}}>@everyone</button>
+                <button onClick={() => {setActiveComponent('frontend')}}>@frontend</button>
             </div>
         </div>
         <div className="ch-chat-display">
-            <DynamicChatDisplay projectname="Zode" channelname="frontend"/>
+            <DynamicChatDisplay projectname="Zode" channelname={activeComponent}/>
         </div>
     </div>
     )

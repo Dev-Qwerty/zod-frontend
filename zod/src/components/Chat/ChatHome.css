@@ -116,17 +116,23 @@
     display: grid;
 }
 
-.ch-channels-list > a{
+.ch-channels-list > button{
     font-size: 25px;
     color: #888888;
     text-decoration: none;
+    border: none;
+    background-color: #fff;
+    margin-right: 5vw;
 }
 
-.ch-channels-list > a:focus {
+.ch-channels-list > button:focus {
     color: #4CBF53;
+    background-color: #F3F3F3;
+    border: none;
+    outline: none;
 }
 
-.ch-channels-list > a:hover {
+.ch-channels-list > button:hover {
     cursor: pointer;
 }
 

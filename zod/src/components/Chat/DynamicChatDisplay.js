@@ -1,6 +1,8 @@
 import addMemberIcon from '../../assets/add-member-svg.svg';
 import videoCallIcon from '../../assets/video-call-icon.svg';
 import moreOptionsIcon from '../../assets/more-options.svg';
+import ChatSVG from '../../assets/Chat-Home.svg';
+import { Link } from 'react-router-dom';
 import './DynamicChatDisplay.css';
 
 function DynamicChatDisplay(props) {
@@ -14,6 +16,7 @@ function DynamicChatDisplay(props) {
             document.getElementById("dcd-more-options").style.display = "none";
         }    
     }
+    if(props.channelname != 'default') {
     return(
         <div className="dcd-wrapper">
             <div className="dcd-header">
@@ -30,7 +33,19 @@ function DynamicChatDisplay(props) {
                 </div>
             </div>
         </div>
-    )
+        )
+    }
+    else {
+        return (
+        <div className="ch-default-display">
+                <img src={ChatSVG} alt="Chat SVG" className="ch-chat-svg"></img>
+                <div className="ch-chat-instrns">
+                    <span>Click on a channel or personal chat to begin a conversation.</span>
+                    <span>No channels created? Click <Link to="/chat/createChannel">here</Link> to create one.</span>
+                </div>
+        </div>
+        )
+    }
 }
 
 export default DynamicChatDisplay;
