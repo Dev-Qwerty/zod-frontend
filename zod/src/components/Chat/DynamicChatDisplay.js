@@ -1,6 +1,9 @@
 import addMemberIcon from '../../assets/add-member-svg.svg';
 import videoCallIcon from '../../assets/video-call-icon.svg';
 import moreOptionsIcon from '../../assets/more-options.svg';
+import emojiIcon from '../../assets/emoji_icon.svg';
+import attachIcon from '../../assets/attachment_icon.svg';
+import sendIcon from '../../assets/send_msg_icon.svg';
 import ChatSVG from '../../assets/Chat-Home.svg';
 import { Link } from 'react-router-dom';
 import './DynamicChatDisplay.css';
@@ -18,6 +21,7 @@ function DynamicChatDisplay(props) {
     }
     if(props.channelname != 'default') {
     return(
+        <div className="dcd-display">
         <div className="dcd-wrapper">
             <div className="dcd-header">
                 <h3>{props.projectname} / {props.channelname}</h3>
@@ -32,6 +36,15 @@ function DynamicChatDisplay(props) {
                     <p>Delete Channel</p>
                 </div>
             </div>
+        </div>
+        <div className="dcd-textbox">
+            <textarea></textarea>
+            <div className="dcd-icon-chat-tray">
+                <img className="dcd-emoji-icon" src={emojiIcon}></img>
+                <img className="dcd-attach-icon" src={attachIcon}></img>
+            </div>
+            <img className="dcd-send-icon" src={sendIcon}></img>
+        </div>
         </div>
         )
     }
