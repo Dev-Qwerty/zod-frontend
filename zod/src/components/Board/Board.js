@@ -91,6 +91,48 @@ export default class Board extends React.Component {
                         
                         <div className="bb-wrapper">
                             
+                            <div className="bb-personalB">
+
+                                <p>Personal Boards</p>
+                                
+                                <div className="bbp-card-wrapper">
+                                    
+                                    <div className="bb-card">
+                                        <p className="bbc-parag">Test Board</p>
+                                    </div>
+                                    
+                                    <div className="bb-card">
+                                        <p className="bbc-parag">Test Board</p>
+                                    </div>   
+                                    
+                                    <div className="bb-card">
+                                        <p className="bbc-parag">Create New Board</p>
+                                    </div>                                                               
+                                
+                                </div>
+                            </div>
+
+                            <div className="bb-publicB">
+                                
+                                <p>Public Boards</p>
+                                
+                                <div className="bbP-card-wrapper">
+                                    
+                                    <div className="bb-card">
+                                        <p className="bbc-parag">Test Board</p>
+                                    </div>
+                                    
+                                    <div className="bb-card">
+                                        <p className="bbc-parag">Test Board</p>
+                                    </div>   
+                                    
+                                    <div className="bb-card">
+                                        <p className="bbc-parag">Create New Board</p>
+                                    </div>                                                               
+                                
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>

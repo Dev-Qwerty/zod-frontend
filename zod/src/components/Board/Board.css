@@ -193,3 +193,35 @@
 .b-body {
 
 }
+
+.bb-wrapper {
+
+}
+
+.bb-personalB {
+
+}
+
+.bbp-card-wrapper {
+  width: 85%;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.bb-card {
+  width: 200px;
+  height: 100px;
+  background-color: #707070;
+}
+
+.bb-publicB {
+  
+}
+
+.bbP-card-wrapper {
+  width: 85%;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
