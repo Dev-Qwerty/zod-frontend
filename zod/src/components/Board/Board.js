@@ -1,6 +1,7 @@
 import './Board.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
+import ReactTooltip from "react-tooltip";
  
 /* 
     ClassName Convention Used:-
@@ -59,15 +60,30 @@ export default class ProjectD extends React.Component {
                             
                             <Link to="/projectdashboard/home" style={{ textDecoration: 'none' }}>
                                 <div className="pd-lng1-wrapper">
-                                    <div className="pd-lng1"></div>
+                                    <div className="pd-lng1" data-tip data-for="homeTip"></div>
                                 </div>
-                            </Link>  
-                            <Link to="/basedashboard/home" style={{ textDecoration: 'none' }}><div className="pd-lng2"></div></Link>
-                            <Route render={({history})=> (<div className="pd-lng3" onClick={()=>{ history.push("/chat/createChannel")}}></div>)}></Route>
-                            <div className="pd-lng4"></div>
-                            <div className="pd-lng5"></div>
-                            <div className="pd-lng6"></div>
-                            <div className="pd-lng7"></div>
+                            </Link> 
+
+                            <Link to="/projectdashboard/board" style={{ textDecoration: 'none' }}>
+                                <div className="pd-lng2" data-tip data-for="boardTip">
+                                </div>
+                            </Link>
+
+                            <Link to="/chat/createChannel" style={{ textDecoration: 'none' }}>
+                                <div className="pd-chat" data-tip data-for="chatTip">
+                                </div>
+                            </Link>               
+
+                            <div className="pd-lng4" data-tip data-for="calTip"></div>
+                            <div className="pd-lng5" data-tip data-for="calTip"></div>
+                            <div className="pd-lng6" data-tip data-for="calTip"></div>
+                            <div className="pd-lng7" data-tip data-for="calTip"></div>
+
+                            <ReactTooltip id="homeTip" place="right" effect="float" type="dark">Home</ReactTooltip> 
+                            <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
+                            <ReactTooltip id="chatTip" place="right" effect="float" type="dark">Chat</ReactTooltip> 
+                            <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calender</ReactTooltip>
+                                                         
                         </div>
                     </div>
                     
