@@ -79,10 +79,10 @@ export default class ProjectD extends React.Component {
                             <div className="pd-lng6" data-tip data-for="calTip"></div>
                             <div className="pd-lng7" data-tip data-for="calTip"></div>
 
-                            <ReactTooltip id="homeTip" place="right" effect="solid" type="dark">Home</ReactTooltip> 
-                            <ReactTooltip id="boardTip" place="right" effect="solid" type="dark">Board</ReactTooltip>
-                            <ReactTooltip id="chatTip" place="right" effect="solid" type="dark">Chat</ReactTooltip> 
-                            <ReactTooltip id="calTip" place="right" effect="solid" type="dark">Calender</ReactTooltip>
+                            <ReactTooltip id="homeTip" place="right" effect="float" type="dark">Home</ReactTooltip> 
+                            <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
+                            <ReactTooltip id="chatTip" place="right" effect="float" type="dark">Chat</ReactTooltip> 
+                            <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calender</ReactTooltip>
                                                          
                         </div>
                     </div>
