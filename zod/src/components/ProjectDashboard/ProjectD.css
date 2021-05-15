@@ -97,8 +97,8 @@
 }
 
 .pd-lng1-wrapper {
-  padding-left: 11px;
-  margin-top: 10px;
+  padding-left: 0px;
+  padding-top: 2px;
   width: 80px;
   height: 60px;
   border-radius: 8px;
@@ -112,8 +112,6 @@
   background-size: contain;  
   width: 35px;
   height: 35px;
-  margin-left: auto;
-  margin-right: auto;
   margin-top: 10px;
 }
 
@@ -125,34 +123,12 @@
   width: 35px;
   height: 35px;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto;  
   margin-top: 10px;    
 }
 
-.pd-lng3 {
+.pd-chat {
   background-image: url('../../assets/chat.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 35px;  
-  width: 92px;
-  height: 60px;
-  margin-right: auto;
-  background-color: #52D066;
-  border: none; 
-  outline: none;   
-}
-
-.pd-lng3:hover {
-  background-image: url('../../assets/Chat-DarkIcon.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 35px;  
-  background-color: #fff;
-  cursor: pointer;
-}
-
-.pd-lng4 {
-  background-image: url('../../assets/cal.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;  
@@ -160,7 +136,19 @@
   height: 35px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10px;    
+  margin-top: 10px;  
+}
+
+.pd-lng4 {
+  background-image: url('../../assets/calender.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;  
+  width: 35px;
+  height: 35px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;  
 }
 
 .pd-lng5 {
