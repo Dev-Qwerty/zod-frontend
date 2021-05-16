@@ -5,7 +5,7 @@ import ReactTooltip from "react-tooltip";
  
 /* 
     HOME
-    
+
     ClassName Convention Used:-
         Eg: mp-top-nav -> MyProfile-top-nav ..
 */
@@ -66,7 +66,7 @@ export default class ProjectD extends React.Component {
                                 </div>
                             </Link> 
 
-                            <Link to="/projectdashboard/board" style={{ textDecoration: 'none' }}>
+                            <Link to="/projectdashboard/board/bhome" style={{ textDecoration: 'none' }}>
                                 <div className="pd-lng2" data-tip data-for="boardTip">
                                 </div>
                             </Link>

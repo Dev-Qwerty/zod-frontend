@@ -12,6 +12,7 @@ import CreateChannel from './components/Chat/CreateChannel';
 import firebase from 'firebase';
 import ProjectD from './components/ProjectDashboard/ProjectD';
 import Board from './components/Board/Board';
+import BCard from './components/Board/BCard';
 
 import {
   BrowserRouter as Router,
@@ -62,9 +63,12 @@ function App() {
         <Route path="/projectdashboard/home">
           <ProjectD />  
         </Route> 
-        <Route path="/projectdashboard/board">
+        <Route path="/projectdashboard/board/bhome">
           <Board />  
-        </Route>               
+        </Route>        
+        <Route path="/projectdashboard/board/card">
+          <BCard />  
+        </Route>                  
         <Route path="/chat/createChannel">
           <CreateChannel />
         </Route>                                

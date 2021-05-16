@@ -64,7 +64,7 @@ export default class Board extends React.Component {
                                 </div>
                             </Link> 
 
-                            <Link to="/projectdashboard/board" style={{ textDecoration: 'none' }}>
+                            <Link to="/projectdashboard/board/bhome" style={{ textDecoration: 'none' }}>
                                 <div className="b-lng2" data-tip data-for="boardTip">
                                 </div>
                             </Link>
@@ -97,9 +97,11 @@ export default class Board extends React.Component {
                                 
                                 <div className="bbp-card-wrapper">
                                     
-                                    <div className="bb-card">
-                                        <p className="bbc-parag">Test Board</p>
-                                    </div>
+                                    <Link to="/projectdashboard/board/card" style={{ textDecoration: 'none' }}>
+                                        <div className="bb-card">
+                                            <p className="bbc-parag">Test Board</p>
+                                        </div>
+                                    </Link>    
                                     
                                     <div className="bb-card">
                                         <p className="bbc-parag">Test Board</p>
