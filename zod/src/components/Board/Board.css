@@ -195,11 +195,16 @@
 }
 
 .bb-wrapper {
-
+  padding-top: 60px;
+  padding-left: 50px;
 }
 
 .bb-personalB {
 
+}
+
+.bbp-hdn {
+  font-size: 17px;
 }
 
 .bbp-card-wrapper {
@@ -210,13 +215,25 @@
 }
 
 .bb-card {
-  width: 200px;
-  height: 100px;
-  background-color: #707070;
+  padding-top: 45px;
+  text-align: center;
+  width: 210px;
+  height: 110px;
+  background-color: #e6e6e6;
+  /*background-color: #CBF0D1;*/
+  color: #000;
+}
+
+.bb-card p {
+  font-size: 16px;
 }
 
 .bb-publicB {
-  
+  margin-top: 50px;
+}
+
+.bbP-hdn {
+  font-size: 17px;
 }
 
 .bbP-card-wrapper {

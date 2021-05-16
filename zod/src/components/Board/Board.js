@@ -93,7 +93,7 @@ export default class Board extends React.Component {
                             
                             <div className="bb-personalB">
 
-                                <p>Personal Boards</p>
+                                <p className="bbp-hdn">Personal Boards</p>
                                 
                                 <div className="bbp-card-wrapper">
                                     
@@ -114,7 +114,7 @@ export default class Board extends React.Component {
 
                             <div className="bb-publicB">
                                 
-                                <p>Public Boards</p>
+                                <p className="bbP-hdn">Public Boards</p>
                                 
                                 <div className="bbP-card-wrapper">
                                     
