@@ -1,0 +1,92 @@
+.dcd-wrapper {
+    background-color: #EBEBEB;
+}
+
+.dcd-header {
+    display: flex;
+}
+
+.dcd-header > h3 {
+    margin-left: 3vw;
+    margin-top: 1vw;
+}
+
+.dcd-icon-tray {
+    margin-left: 60vw;
+    margin-top: 10px;
+    position: fixed;
+}
+
+.dcd-icon-tray>img {
+    margin-left: 2vw;
+}
+
+.dcd-icon-tray>img:hover{
+    cursor: pointer;
+}
+
+.dcd-more-options {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding-top: 15px;
+    text-align: center;
+    margin-left: 65vw;
+    margin-top: 58px;
+}
+
+.dcd-more-options p {
+    color: black;
+    padding: 0px;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+}
+
+.dcd-more-options p:hover {
+    background-color: #f1f1f1;
+}
+
+.dcd-textbox {
+    margin-top: 34vw;
+    background-color: #F0EEEE;
+    height: 75px;
+}
+
+.dcd-textbox > textarea{
+    resize: none;
+    width: 55vw;
+    border-radius: 15px;
+    height: 50px;
+    margin-top: 1vw; 
+    margin-left: 2vw;
+}
+
+.dcd-textbox > textarea:focus-visible {
+    outline: none;
+}
+
+.dcd-icon-chat-tray {
+    margin-top: -3vw;
+    margin-left: 60vw;
+}
+
+.dcd-attach-icon {
+    margin-left: 2vw
+}
+
+.dcd-send-icon {
+    margin-top: -65px;
+    margin-left: 69vw;
+}
+
+.dcd-icon-chat-tray > img:hover {
+    cursor: pointer;
+}
+
+.dcd-send-icon:hover {
+    cursor: pointer;
+}
