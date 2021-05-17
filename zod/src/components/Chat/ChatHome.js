@@ -1,10 +1,11 @@
 import { Link, Route } from 'react-router-dom';
 import './ChatHome.css';
-import ChannelIcon from '../../assets/channel-icon.svg';
+
 import DynamicChatDisplay from './DynamicChatDisplay';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReactTooltip from "react-tooltip";
+import refreshToken from '../../functions/refreshToken';
 
 function ChatHome() {
     let [activeComponent, setActiveComponent] = useState('default'); 
@@ -18,6 +19,11 @@ function ChatHome() {
             "Authorization": localStorage.getItem("token")
         }}).then(response => {
             setChannelName(response.data);
+        }).catch(error => {
+            if(error.response.status === 401) {
+                refreshToken();
+                window.location.reload();
+            }
         })
     }
     useEffect(() => {
