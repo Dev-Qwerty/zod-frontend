@@ -103,7 +103,8 @@
 }
 
 .ch-project-title {
-    margin-left: 4vw;
+    display: flex;
+    justify-content: center;
     margin-top: 1vw;
 }
 
@@ -126,6 +127,13 @@
 }
 
 .ch-channels-list > button:focus {
+    color: #4CBF53;
+    background-color: #F3F3F3;
+    border: none;
+    outline: none;
+}
+
+.ch-channels-list > button:target {
     color: #4CBF53;
     background-color: #F3F3F3;
     border: none;

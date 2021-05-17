@@ -2,12 +2,13 @@ import { Link, Route } from 'react-router-dom';
 import './ChatHome.css';
 import ChannelIcon from '../../assets/channel-icon.svg';
 import DynamicChatDisplay from './DynamicChatDisplay';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function ChatHome() {
     let [activeComponent, setActiveComponent] = useState('default'); 
     let [channelNames, setChannelName] = useState([]);
+    let projectDetails = JSON.parse(localStorage.getItem('pdata'));
     function fetchChannels() {
         let projectData = JSON.parse(localStorage.getItem("pdata"));
         let url = "https://zode-chat-service-test.herokuapp.com/api/channel/" + projectData.projectID;
@@ -18,9 +19,9 @@ function ChatHome() {
             setChannelName(response.data);
         })
     }
-    window.onload = function() {
+    useEffect(() => {
         fetchChannels();
-    };
+    }, []);
 
     return(
         <div className="zod-chat-homepg">
@@ -59,7 +60,7 @@ function ChatHome() {
             </div>
         </div>
         <div className="ch-leftnav-2">
-            <h2 className="ch-project-title">Project Name</h2>
+            <h2 className="ch-project-title">{projectDetails.projectName}</h2>
             <hr></hr>
             <h3>Channels</h3>
             <div className="ch-channels-list">
@@ -67,7 +68,7 @@ function ChatHome() {
             </div>
         </div>
         <div className="ch-chat-display">
-            <DynamicChatDisplay projectname="Zode" channelname={activeComponent}/>
+            <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent}/>
         </div>
     </div>
     )
