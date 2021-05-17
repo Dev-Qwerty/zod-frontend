@@ -6,8 +6,10 @@ import attachIcon from '../../assets/attachment_icon.svg';
 import sendIcon from '../../assets/send_msg_icon.svg';
 import ChatSVG from '../../assets/Chat-Home.svg';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './DynamicChatDisplay.css';
 
+let channels = [];
 function DynamicChatDisplay(props) {
     function displayDropDown () {
         let displayValue = document.getElementById("dcd-more-options").style.display;

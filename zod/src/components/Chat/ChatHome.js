@@ -3,9 +3,25 @@ import './ChatHome.css';
 import ChannelIcon from '../../assets/channel-icon.svg';
 import DynamicChatDisplay from './DynamicChatDisplay';
 import { useState } from 'react';
+import axios from 'axios';
 
 function ChatHome() {
     let [activeComponent, setActiveComponent] = useState('default'); 
+    let [channelNames, setChannelName] = useState([]);
+    function fetchChannels() {
+        let projectData = JSON.parse(localStorage.getItem("pdata"));
+        let url = "https://zode-chat-service-test.herokuapp.com/api/channel/" + projectData.projectID;
+        axios.get(url, {headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": localStorage.getItem("token")
+        }}).then(response => {
+            setChannelName(response.data);
+        })
+    }
+    window.onload = function() {
+        fetchChannels();
+    };
+
     return(
         <div className="zod-chat-homepg">
         <div className="bd-top-nav">
@@ -47,8 +63,7 @@ function ChatHome() {
             <hr></hr>
             <h3>Channels</h3>
             <div className="ch-channels-list">
-                <button onClick={() => {setActiveComponent('everyone')}}>@everyone</button>
-                <button onClick={() => {setActiveComponent('frontend')}}>@frontend</button>
+                {channelNames.map((channel, index) => <button onClick={() => {setActiveComponent(channel.channelName)}}>@{channel.channelName}</button>)}
             </div>
         </div>
         <div className="ch-chat-display">
