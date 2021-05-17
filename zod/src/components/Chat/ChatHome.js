@@ -6,6 +6,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReactTooltip from "react-tooltip";
 import refreshToken from '../../functions/refreshToken';
+import {toast} from 'react-toastify'; 
+
+toast.configure()
+
 
 function ChatHome() {
     let [activeComponent, setActiveComponent] = useState('default'); 
@@ -22,7 +26,10 @@ function ChatHome() {
         }).catch(error => {
             if(error.response.status === 401) {
                 refreshToken();
-                window.location.reload();
+                toast.error("Session expired! Reloading....", {position: "bottom-right"});
+                setTimeout(() => {
+                    window.location.href = window.location.protocol + '//' + window.location.host + '/chat/home';
+                }, 2500);
             }
         })
     }
