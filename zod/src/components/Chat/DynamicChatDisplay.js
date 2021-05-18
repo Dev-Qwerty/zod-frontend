@@ -1,6 +1,7 @@
 import addMemberIcon from '../../assets/add-member-svg.svg';
 import videoCallIcon from '../../assets/video-call-icon.svg';
-import moreOptionsIcon from '../../assets/more-options.svg';
+import moreOptionsIcon from '../../assets/more-options-dark.svg';
+import moreOptionsLightIcon from '../../assets/more-options.svg';
 import emojiIcon from '../../assets/emoji_icon.svg';
 import attachIcon from '../../assets/attachment_icon.svg';
 import sendIcon from '../../assets/send_msg_icon.svg';
@@ -28,15 +29,22 @@ function DynamicChatDisplay(props) {
             <div className="dcd-header">
                 <h3>{props.projectname} / {props.channelname}</h3>
                 <div className="dcd-icon-tray">
-                    <img src={addMemberIcon} alt="Add Member"></img>
-                    <img src={videoCallIcon} alt="Video Call"></img>
-                    <img src={moreOptionsIcon} alt="More Options" className="dcd-more-options-icon" onClick={displayDropDown}></img>
+                    <div className="dcd-add-icon"></div>
+                    <div className="dcd-video-call-icon"></div>
+                    <div className="dcd-more-options-icon" onClick={displayDropDown}></div>
                 </div>
                 <div className="dcd-more-options" id="dcd-more-options">
                     <p>Edit Channel</p>
                     <p>Leave Channel</p>
                     <p>Delete Channel</p>
                 </div>
+            </div>
+        </div>
+        <div className="dcd-members-list-wrapper" id="dcd-members-list">
+            <h3>Members</h3>
+            <div className="dcd-member">
+                <span>John Doe</span>
+                <button>Remove</button>
             </div>
         </div>
         <div className="dcd-textbox">
