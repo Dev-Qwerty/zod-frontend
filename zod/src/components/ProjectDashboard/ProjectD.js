@@ -71,7 +71,7 @@ export default class ProjectD extends React.Component {
                                 </div>
                             </Link>
 
-                            <Link to="/chat/createChannel" style={{ textDecoration: 'none' }}>
+                            <Link to="/chat/home" style={{ textDecoration: 'none' }}>
                                 <div className="pd-chat" data-tip data-for="chatTip">
                                 </div>
                             </Link>               

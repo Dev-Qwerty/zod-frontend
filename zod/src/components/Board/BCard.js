@@ -2,6 +2,8 @@ import './BCard.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
 import ReactTooltip from "react-tooltip";
+import Draggable from 'react-draggable';
+
  
 /* 
     ClassName Convention Used:-
@@ -90,8 +92,35 @@ export default class Card extends React.Component {
                     <div className="c-body">
                         
                         <div className="cb-wrapper">
-                            
 
+                            <div className="cb-list-wrapper">
+                                
+                                <div className="cb-list">
+                                   
+                                    <div className="cbl-h">
+                                        <div className="cblh-wr">
+                                            <div className="cblh-p"><p>Upcomming</p></div>
+                                            <div className="cblh-plus"></div>
+                                        </div>
+
+                                        <div className="cblh-line"></div>
+                                    </div>
+
+                                    <div className="cbl-card"></div>
+                                    <div className="cbl-card"></div>    
+                                </div>
+
+                                <div className="cb-list"></div>
+                                <div className="cb-list"></div>
+                                <div className="cb-list"></div>
+                                <div className="cb-list"></div>
+                            </div>
+
+                            <Draggable>                            
+                                <div className="dcard">
+                                    <p>Drag me!</p>
+                                </div>
+                            </Draggable>    
                         </div>
 
                     </div>
