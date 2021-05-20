@@ -8,7 +8,7 @@ import ReactTooltip from "react-tooltip";
         Eg: mp-top-nav -> MyProfile-top-nav ..
 */
 
-export default class ProjectD extends React.Component {
+export default class Board extends React.Component {
 
     constructor() {
      
@@ -30,54 +30,54 @@ export default class ProjectD extends React.Component {
     render() {
     
         return (
-            <div className="ProjectD">
+            <div className="Board">
                 
-                <div className="pd-top-nav">
+                <div className="b-top-nav">
 
-                    <div className="pd-left-wrapper">
-                        <div className="pd-lt" onClick={ this.backToBaseFn }>
-                            <div className="pd-arrow"></div>
-                            <div><p className="pd-lt-txt">Back to Base Dashboard</p></div>
+                    <div className="b-left-wrapper">
+                        <div className="b-lt" onClick={ this.backToBaseFn }>
+                            <div className="b-arrow"></div>
+                            <div><p className="b-lt-txt">Back to Base Dashboard</p></div>
                         </div>
-                        <div className="pd-lb"><p className="pd-title">zode</p></div>
+                        <div className="b-lb"><p className="b-title">zode</p></div>
                     </div>
     
-                    <div className="pd-mid-wrapper">
+                    <div className="b-mid-wrapper">
                         <p>PROJECT&nbsp;&nbsp;DASHBOARD</p>
                     </div>
     
-                    <div className="pd-right-wrapper">
-                        <input type="submit" value="Logout" className="pd-logout-btn" onClick = { this.logout }></input>
+                    <div className="b-right-wrapper">
+                        <input type="submit" value="Logout" className="b-logout-btn" onClick = { this.logout }></input>
                     </div>
     
                 </div>
 
-                <div className="pd-body-wrapper">
+                <div className="b-body-wrapper">
 
-                    <div className="pd-left-nav">
+                    <div className="b-left-nav">
                         
-                        <div className="pd-left-nav-grid">
+                        <div className="b-left-nav-grid">
                             
                             <Link to="/projectdashboard/home" style={{ textDecoration: 'none' }}>
-                                <div className="pd-lng1-wrapper">
-                                    <div className="pd-lng1" data-tip data-for="homeTip"></div>
+                                <div className="b-lng1-wrapper">
+                                    <div className="b-lng1" data-tip data-for="homeTip"></div>
                                 </div>
                             </Link> 
 
-                            <Link to="/projectdashboard/board" style={{ textDecoration: 'none' }}>
-                                <div className="pd-lng2" data-tip data-for="boardTip">
+                            <Link to="/projectdashboard/board/bhome" style={{ textDecoration: 'none' }}>
+                                <div className="b-lng2" data-tip data-for="boardTip">
                                 </div>
                             </Link>
 
                             <Link to="/chat/createChannel" style={{ textDecoration: 'none' }}>
-                                <div className="pd-chat" data-tip data-for="chatTip">
+                                <div className="b-lng3" data-tip data-for="chatTip">
                                 </div>
                             </Link>               
 
-                            <div className="pd-lng4" data-tip data-for="calTip"></div>
-                            <div className="pd-lng5" data-tip data-for="calTip"></div>
-                            <div className="pd-lng6" data-tip data-for="calTip"></div>
-                            <div className="pd-lng7" data-tip data-for="calTip"></div>
+                            <div className="b-lng4" data-tip data-for="calTip"></div>
+                            <div className="b-lng5" data-tip data-for="calTip"></div>
+                            <div className="b-lng6" data-tip data-for="calTip"></div>
+                            <div className="b-lng7" data-tip data-for="calTip"></div>
 
                             <ReactTooltip id="homeTip" place="right" effect="float" type="dark">Home</ReactTooltip> 
                             <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
@@ -87,10 +87,65 @@ export default class ProjectD extends React.Component {
                         </div>
                     </div>
                     
-                    <div className="pd-body">
+                    <div className="b-body">
                         
-                        <div className="pdb-hdn-wrapper">
-                            <p>BOARD!</p>
+                        <div className="bb-proname">
+                            <p>Project Name</p>
+                        </div>
+                        <div className="bb-proLine"></div>
+
+                        <div className="bb-wrapper">
+                            
+                            <div className="bb-personalB">
+
+                                <p className="bbPersonal-hdn">Personal Boards</p>
+                                
+                                <div className="bbPersonal-card-wrapper">
+                                    
+                                    <Link to="/projectdashboard/board/card" style={{ textDecoration: 'none' }}>
+                                        <div className="bbPersonal-card">
+                                            <p className="bbPersonal-parag">Test Board</p>
+                                        </div>
+                                    </Link>    
+                                    
+                                    <div className="bbPersonal-card">
+                                        <p className="bbPersonal-parag">Test Board</p>
+                                    </div>   
+                                    
+                                    <div className="bbPersonal-special-card">
+                                        <div className="bbPersonal-xy">
+                                            <div className="bbPersonal-plus"></div>
+                                            <div><p className="bbPersonal-new-parag">New Board</p></div>
+                                        </div>
+                                    </div>                                                               
+                                
+                                </div>
+                            </div>
+
+                            <div className="bb-publicB">
+                                
+                                <p className="bbPublic-hdn">Public Boards</p>
+                                
+                                <div className="bbPublic-card-wrapper">
+                                    
+                                    <div className="bbPublic-card">
+                                        <p className="bbPublic-parag">Test Board</p>
+                                    </div>
+                                    
+                                    <div className="bbPublic-card">
+                                        <p className="bbPublic-parag">Test Board</p>
+                                    </div>   
+                                    
+                                    <div className="bbPublic-special-card">
+                                        <div className="bbPublic-xy">
+                                            <div className="bbPublic-plus"></div>
+                                            <div><p className="bbPublic-new-parag">New Board</p></div>
+                                        </div>
+                                    </div>                                                               
+                                
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
