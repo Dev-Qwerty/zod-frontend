@@ -269,7 +269,8 @@
   width: 90%;
   margin-top: 0px;
   height: 1px;
-  background-color: #4A3089;
+  /*background-color: #4A3089;*/
+  background-color: #52D066;
 }
 
 /* Draggable */
