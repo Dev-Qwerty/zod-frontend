@@ -195,19 +195,25 @@
 }
 
 .cb-wrapper {
-  padding-top: 60px;
-  padding-left: 100px;
+  padding-top: 0px;
+  padding-left: 0px;
 }
 
-.dcard {
-  padding: 30px;
-  background: #ccc;
-  width: 200px;
-  height: 100px;
-  cursor: move;    
+.cb-new-list-btn {
+  width: 130px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CBF53;
+  color: #fff;
+  margin-top: 25px;
+  margin-left: 85%;
 }
 
+/* List wrapper */
 .cb-list-wrapper {
+  margin-top: 20px;
+  margin-left: 50px;
   padding-bottom: 30px;
   padding-top: 30px;
   padding-left: 30px;
@@ -218,10 +224,12 @@
   display: flex;
 }
 
+/* col */
 .cb-list {
+  min-height: 100px;
   flex: 0 0 auto;
   margin-right: 50px;
-  width: 300px;
+  width: 330px;
   background-color: #e6e6e6;
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
@@ -264,6 +272,11 @@
   background-color: #4A3089;
 }
 
+/* Draggable */
+.dragg {
+  cursor: move;
+}
+
 .cbl-card {
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 3px;
@@ -273,6 +286,40 @@
   margin-right: auto;
   margin-bottom: 15px;
   width: 90%;
-  height: 150px;
+  min-height: 100px;
   background-color: #fff;
+}
+
+.cblc-taskname {
+  font-size: 15px;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.cblc-wr {
+  padding-top: 15px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  font-size: 15px;
+}
+
+.cblc-profile {
+  text-align: center;
+  padding-top: 6px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;  
+  border: 1px solid #000;
+  font-size: 18px;
+}
+
+.cblc-date {
+  text-align: right;
+  padding-right: 15px;
+  padding-top: 13px;
 }

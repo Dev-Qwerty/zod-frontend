@@ -93,6 +93,10 @@ export default class Card extends React.Component {
                         
                         <div className="cb-wrapper">
 
+                            <div className="">
+                                <input type="submit" value="New List" className="cb-new-list-btn"></input>
+                            </div>
+
                             <div className="cb-list-wrapper">
                                 
                                 <div className="cb-list">
@@ -106,21 +110,108 @@ export default class Card extends React.Component {
                                         <div className="cblh-line"></div>
                                     </div>
 
-                                    <div className="cbl-card"></div>
-                                    <div className="cbl-card"></div>    
+                                    <Draggable>  
+                                        <div className="dragg">
+                                            <div className="cbl-card">
+                                                <div className="cblc-taskname">
+                                                    <p>Task Name</p>
+                                                </div>
+                                                <div className="cblc-wr">
+                                                    <div className="cblc-profile"><p>JD</p></div>
+                                                    <div><p className="cblc-date">20-5-2021</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Draggable>
+                                    
+                                    <div className="cbl-card">
+                                        <div className="cblc-taskname">
+                                            <p>Task Name</p>
+                                        </div>
+                                        <div className="cblc-wr">
+                                            <div className="cblc-profile"><p>JD</p></div>
+                                            <div><p className="cblc-date">20-5-2021</p></div>
+                                        </div>
+                                    </div>
+
+                                    <div className="cbl-card">
+                                        <div className="cblc-taskname">
+                                            <p>Task Name</p>
+                                        </div>
+                                        <div className="cblc-wr">
+                                            <div className="cblc-profile"><p>JD</p></div>
+                                            <div><p className="cblc-date">20-5-2021</p></div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div className="cb-list"></div>
-                                <div className="cb-list"></div>
-                                <div className="cb-list"></div>
-                                <div className="cb-list"></div>
+                                <div className="cb-list">
+
+                                   <div className="cbl-h">
+                                        <div className="cblh-wr">
+                                            <div className="cblh-p"><p>In Progress</p></div>
+                                            <div className="cblh-plus"></div>
+                                        </div>
+
+                                        <div className="cblh-line"></div>
+                                    </div>
+
+                                    <div className="cbl-card">
+                                        <div className="cblc-taskname">
+                                            <p>Task Name</p>
+                                        </div>
+                                        <div className="cblc-wr">
+                                            <div className="cblc-profile"><p>JD</p></div>
+                                            <div><p className="cblc-date">20-5-2021</p></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="cbl-card">
+                                        <div className="cblc-taskname">
+                                            <p>Task Name</p>
+                                        </div>
+                                        <div className="cblc-wr">
+                                            <div className="cblc-profile"><p>JD</p></div>
+                                            <div><p className="cblc-date">20-5-2021</p></div>
+                                        </div>
+                                    </div>                                  
+                                </div>
+
+                                <div className="cb-list">
+
+                                    <div className="cbl-h">
+                                        <div className="cblh-wr">
+                                            <div className="cblh-p"><p>Completed</p></div>
+                                            <div className="cblh-plus"></div>
+                                        </div>
+
+                                        <div className="cblh-line"></div>
+                                    </div>
+
+                                    <div className="cbl-card">
+                                        <div className="cblc-taskname">
+                                            <p>Task Name</p>
+                                        </div>
+                                        <div className="cblc-wr">
+                                            <div className="cblc-profile"><p>JD</p></div>
+                                            <div><p className="cblc-date">20-5-2021</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="cb-list">
+
+                                    <div className="cbl-h">
+                                        <div className="cblh-wr">
+                                            <div className="cblh-p"><p>Frontend</p></div>
+                                            <div className="cblh-plus"></div>
+                                        </div>
+
+                                        <div className="cblh-line"></div>
+                                    </div>
+                                </div>
                             </div>
-
-                            <Draggable>                            
-                                <div className="dcard">
-                                    <p>Drag me!</p>
-                                </div>
-                            </Draggable>    
+    
                         </div>
 
                     </div>
