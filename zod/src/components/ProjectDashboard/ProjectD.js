@@ -4,6 +4,8 @@ import React from 'react';
 import ReactTooltip from "react-tooltip";
  
 /* 
+    HOME
+
     ClassName Convention Used:-
         Eg: mp-top-nav -> MyProfile-top-nav ..
 */
@@ -64,7 +66,7 @@ export default class ProjectD extends React.Component {
                                 </div>
                             </Link> 
 
-                            <Link to="/projectdashboard/board" style={{ textDecoration: 'none' }}>
+                            <Link to="/projectdashboard/board/bhome" style={{ textDecoration: 'none' }}>
                                 <div className="pd-lng2" data-tip data-for="boardTip">
                                 </div>
                             </Link>
@@ -92,7 +94,7 @@ export default class ProjectD extends React.Component {
                         <div className="pdb-hdn-wrapper">
 
                             <div className="pdb-hdn-left">
-                                <div className="pdb-hl-1"><p>Final Year Project&nbsp;🚀</p></div>
+                                <div className="pdb-hl-1"><p>Project Name</p></div>
                                 <div className="pdb-hl-2"><p>Team Lead: <span className="wrx">John Doe</span></p></div>
                             </div>
 
