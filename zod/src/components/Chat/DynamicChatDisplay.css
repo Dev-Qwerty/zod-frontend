@@ -148,14 +148,22 @@
 
 .dcd-member {
     margin-left: 2vw;
+    display: table;
 }
 
 .dcd-member > span{
-    margin-left: 2vw;
+    display: table-row;
 }
 
 .dcd-member > button {
-    margin-left: 5vw;
     background-color: #fff;
-    color: red;   
+    color: red;
+    position: relative;
+    left: 12vw;
+    top: -27px;
+    display: table-column;
+}
+
+#dcd-members-list {
+    display: none;
 }

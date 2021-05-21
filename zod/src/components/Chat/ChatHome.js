@@ -85,12 +85,12 @@ function ChatHome() {
             <hr></hr>
             <h3>Channels</h3>
             <div className="ch-channels-list">
-                {channelNames.map((channel, index) => <button onClick={() => {setActiveComponent(channel.channelName)}}>@{channel.channelName}</button>)}
+                {channelNames.map((channel, index) => <button onClick={() => {setActiveComponent(channel.channelName); setActiveChannelId(channel.channelid)}}>@{channel.channelName}</button>)}
             </div>
         </div>
         <div className="ch-chat-display">
-            {channelNames.length == 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} allchannels={null}/>}
-            {channelNames.length != 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} allchannels={channelNames}/>}
+            {channelNames.length == 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={null}/>}
+            {channelNames.length != 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={activeChannelId}/>}
         </div>
     </div>
     )

@@ -17,7 +17,6 @@ function DynamicChatDisplay(props) {
     let projectDetails = JSON.parse(localStorage.getItem('pdata'));
     function displayDropDown () {
         let displayValue = document.getElementById("dcd-more-options").style.display;
-        console.log(displayValue);
         if(displayValue == "none") {
             document.getElementById("dcd-more-options").style.display = "block";
         }
@@ -25,19 +24,10 @@ function DynamicChatDisplay(props) {
             document.getElementById("dcd-more-options").style.display = "none";
         }    
     }
-    function setChannelId(channelname) {
-        let i;
-        if(props.allchannels == null) return 0;
-        for(i=0;i<props.allchannels.length;i++) {
-            if(props.allchannels[i].channelName === channelname)  {
-                console.log(props.allchannels[i].channelid);
-                return props.allchannels[i].channelid;
-            }
-        }
-    }
     function fetchMembers() {
-        let channelId = setChannelId(props.channelname);
-        if(channelId == 0) return; 
+        let channelId = props.channelId;
+        setChannelMembers([]);
+        console.log("Channel ID: "+ channelId);
         let url = "https://zode-chat-service-test.herokuapp.com/api/channel/" + projectDetails.projectID + "/" + channelId + "/members";
         axios.get(url, {headers: {
             "Access-Control-Allow-Origin" : "*",
@@ -45,10 +35,14 @@ function DynamicChatDisplay(props) {
         }}).then(response => {
             setChannelMembers(response.data);
         })
+        let displayValue = document.getElementById("dcd-members-list").style.display;
+        if(displayValue == "none") {
+            document.getElementById("dcd-members-list").style.display = "block";
+        }
+        else {
+            document.getElementById("dcd-members-list").style.display = "none";
+        }
     }
-    useEffect(() =>{
-        fetchMembers();
-    }, []);
     if(props.channelname != 'default') {
     return(
         <div className="dcd-display">
@@ -56,7 +50,7 @@ function DynamicChatDisplay(props) {
             <div className="dcd-header">
                 <h3>{props.projectname} / {props.channelname}</h3>
                 <div className="dcd-icon-tray">
-                    <div className="dcd-add-icon"></div>
+                    <div className="dcd-add-icon" onClick={fetchMembers.bind(this)}></div>
                     <div className="dcd-video-call-icon"></div>
                     <div className="dcd-more-options-icon" onClick={displayDropDown}></div>
                 </div>
