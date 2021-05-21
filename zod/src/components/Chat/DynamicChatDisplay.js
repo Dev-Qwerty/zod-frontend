@@ -9,9 +9,12 @@ import ChatSVG from '../../assets/Chat-Home.svg';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './DynamicChatDisplay.css';
+import { useState, useEffect } from 'react';
 
 let channels = [];
 function DynamicChatDisplay(props) {
+    let [channelMembers, setChannelMembers] = useState([]);
+    let projectDetails = JSON.parse(localStorage.getItem('pdata'));
     function displayDropDown () {
         let displayValue = document.getElementById("dcd-more-options").style.display;
         console.log(displayValue);
@@ -22,6 +25,30 @@ function DynamicChatDisplay(props) {
             document.getElementById("dcd-more-options").style.display = "none";
         }    
     }
+    function setChannelId(channelname) {
+        let i;
+        if(props.allchannels == null) return 0;
+        for(i=0;i<props.allchannels.length;i++) {
+            if(props.allchannels[i].channelName === channelname)  {
+                console.log(props.allchannels[i].channelid);
+                return props.allchannels[i].channelid;
+            }
+        }
+    }
+    function fetchMembers() {
+        let channelId = setChannelId(props.channelname);
+        if(channelId == 0) return; 
+        let url = "https://zode-chat-service-test.herokuapp.com/api/channel/" + projectDetails.projectID + "/" + channelId + "/members";
+        axios.get(url, {headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": localStorage.getItem("token")
+        }}).then(response => {
+            setChannelMembers(response.data);
+        })
+    }
+    useEffect(() =>{
+        fetchMembers();
+    }, []);
     if(props.channelname != 'default') {
     return(
         <div className="dcd-display">
@@ -42,10 +69,12 @@ function DynamicChatDisplay(props) {
         </div>
         <div className="dcd-members-list-wrapper" id="dcd-members-list">
             <h3>Members</h3>
+            {channelMembers.map((member, index) => 
             <div className="dcd-member">
-                <span>John Doe</span>
-                <button>Remove</button>
+                    <span>{member.name}</span>
+                    <button>Remove</button>
             </div>
+            )}    
         </div>
         <div className="dcd-textbox">
             <textarea></textarea>

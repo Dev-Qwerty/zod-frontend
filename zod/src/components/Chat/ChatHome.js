@@ -14,10 +14,11 @@ toast.configure()
 function ChatHome() {
     let [activeComponent, setActiveComponent] = useState('default'); 
     let [channelNames, setChannelName] = useState([]);
+    let [channelMembers, setChannelMembers] = useState([]);
     let projectDetails = JSON.parse(localStorage.getItem('pdata'));
+    let [activeChannelId, setActiveChannelId] = useState('');
     function fetchChannels() {
-        let projectData = JSON.parse(localStorage.getItem("pdata"));
-        let url = "https://zode-chat-service-test.herokuapp.com/api/channel/" + projectData.projectID;
+        let url = "https://zode-chat-service-test.herokuapp.com/api/channel/" + projectDetails.projectID;
         axios.get(url, {headers: {
             "Access-Control-Allow-Origin" : "*",
             "Authorization": localStorage.getItem("token")
@@ -88,7 +89,8 @@ function ChatHome() {
             </div>
         </div>
         <div className="ch-chat-display">
-            <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent}/>
+            {channelNames.length == 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} allchannels={null}/>}
+            {channelNames.length != 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} allchannels={channelNames}/>}
         </div>
     </div>
     )
