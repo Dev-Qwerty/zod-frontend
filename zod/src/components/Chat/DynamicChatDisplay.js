@@ -1,7 +1,3 @@
-import addMemberIcon from '../../assets/add-member-svg.svg';
-import videoCallIcon from '../../assets/video-call-icon.svg';
-import moreOptionsIcon from '../../assets/more-options-dark.svg';
-import moreOptionsLightIcon from '../../assets/more-options.svg';
 import emojiIcon from '../../assets/emoji_icon.svg';
 import attachIcon from '../../assets/attachment_icon.svg';
 import sendIcon from '../../assets/send_msg_icon.svg';
@@ -10,6 +6,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './DynamicChatDisplay.css';
 import { useState, useEffect } from 'react';
+import Loader from '../Loader/Loader';
 
 function DynamicChatDisplay(props) {
     let [channelMembers, setChannelMembers] = useState([]);
@@ -61,12 +58,8 @@ function DynamicChatDisplay(props) {
         </div>
         <div className="dcd-members-list-wrapper" id="dcd-members-list" style={{display: "none"}}>
             <h3>Members</h3>
-            {channelMembers.map((member, index) => 
-            <div className="dcd-member">
-                    <span>{member.name}</span>
-                    <button>Remove</button>
-            </div>
-            )}    
+            {channelMembers.length == 0 && <Loader/>}
+            <Loader />    
         </div>
         <div className="dcd-textbox">
             <textarea></textarea>

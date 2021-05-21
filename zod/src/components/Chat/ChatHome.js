@@ -34,6 +34,14 @@ function ChatHome() {
             }
         })
     }
+    function channelClicked(channel) {
+        setActiveComponent(channel.channelName); 
+        setActiveChannelId(channel.channelid); 
+        let displayValue = document.getElementById("dcd-members-list"); 
+        if(displayValue != null && displayValue.style.display != "none") { 
+            document.getElementById("dcd-members-list").style.display = "none";
+        }
+    }
     useEffect(() => {
         fetchChannels();
     }, []);
@@ -84,7 +92,7 @@ function ChatHome() {
             <hr></hr>
             <h3>Channels</h3>
             <div className="ch-channels-list">
-                {channelNames.map((channel, index) => <button onClick={() => {setActiveComponent(channel.channelName); setActiveChannelId(channel.channelid); document.getElementById("dcd-members-list").style.display = "none"}}>@{channel.channelName}</button>)}
+                {channelNames.map((channel, index) => <button onClick={channelClicked.bind(this, channel)}>@{channel.channelName}</button>)}
             </div>
         </div>
         <div className="ch-chat-display">

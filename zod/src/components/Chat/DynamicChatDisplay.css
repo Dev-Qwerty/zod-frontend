@@ -12,8 +12,9 @@
 }
 
 .dcd-icon-tray {
-    margin-left: 47vw;
     margin-top: 10px;
+    position: fixed;
+    right: 10px;
 }
 
 .dcd-icon-tray>img {
@@ -50,10 +51,11 @@
 }
 
 .dcd-textbox {
-    margin-top: 16vw;
     background-color: #F0EEEE;
     height: 75px;
+    width: 100%;
     position: fixed;
+    bottom: 0;
 }
 
 .dcd-textbox > textarea{
