@@ -94,7 +94,7 @@ export default class ProjectD extends React.Component {
                         <div className="pdb-hdn-wrapper">
 
                             <div className="pdb-hdn-left">
-                                <div className="pdb-hl-1"><p>Final Year Project&nbsp;🚀</p></div>
+                                <div className="pdb-hl-1"><p>Project Name</p></div>
                                 <div className="pdb-hl-2"><p>Team Lead: <span className="wrx">John Doe</span></p></div>
                             </div>
 

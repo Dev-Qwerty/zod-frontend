@@ -112,12 +112,14 @@ export default class Board extends React.Component {
                                         <p className="bbPersonal-parag">Test Board</p>
                                     </div>   
                                     
-                                    <div className="bbPersonal-special-card">
-                                        <div className="bbPersonal-xy">
-                                            <div className="bbPersonal-plus"></div>
-                                            <div><p className="bbPersonal-new-parag">New Board</p></div>
-                                        </div>
-                                    </div>                                                               
+                                    <Link to="/projectdashboard/board/personal/create" style={{ textDecoration: 'none' }}>
+                                        <div className="bbPersonal-special-card">
+                                            <div className="bbPersonal-xy">
+                                                <div className="bbPersonal-plus"></div>
+                                                <div><p className="bbPersonal-new-parag">New Board</p></div>
+                                            </div>
+                                        </div>    
+                                    </Link>                                                           
                                 
                                 </div>
                             </div>
@@ -136,13 +138,15 @@ export default class Board extends React.Component {
                                         <p className="bbPublic-parag">Test Board</p>
                                     </div>   
                                     
-                                    <div className="bbPublic-special-card">
-                                        <div className="bbPublic-xy">
-                                            <div className="bbPublic-plus"></div>
-                                            <div><p className="bbPublic-new-parag">New Board</p></div>
-                                        </div>
-                                    </div>                                                               
-                                
+                                    <Link to="/projectdashboard/board/public/create" style={{ textDecoration: 'none' }}>
+                                        <div className="bbPublic-special-card">
+                                            <div className="bbPublic-xy">
+                                                <div className="bbPublic-plus"></div>
+                                                <div><p className="bbPublic-new-parag">New Board</p></div>
+                                            </div>
+                                        </div>                                                               
+                                    </Link>
+
                                 </div>
                             </div>
 
