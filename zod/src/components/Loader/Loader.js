@@ -4,7 +4,7 @@ import './Loader.css';
 function Loader() {
   const { containerProps, indicatorEl } = useLoading({
     loading: true,
-    indicator: <BallTriangle width="300" color="#4CBF53"/>
+    indicator: <BallTriangle width="100" color="#4CBF53"/>
   });
 
   return (

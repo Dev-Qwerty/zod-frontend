@@ -59,7 +59,12 @@ function DynamicChatDisplay(props) {
         <div className="dcd-members-list-wrapper" id="dcd-members-list" style={{display: "none"}}>
             <h3>Members</h3>
             {channelMembers.length == 0 && <Loader/>}
-            <Loader />    
+            {channelMembers.map((member, index) => 
+            <div className="dcd-member">
+                    <span>{member.name}</span>
+                    <button>Remove</button>
+            </div>
+            )}    
         </div>
         <div className="dcd-textbox">
             <textarea></textarea>
