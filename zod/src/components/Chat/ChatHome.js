@@ -14,10 +14,11 @@ toast.configure()
 function ChatHome() {
     let [activeComponent, setActiveComponent] = useState('default'); 
     let [channelNames, setChannelName] = useState([]);
+    let [channelMembers, setChannelMembers] = useState([]);
     let projectDetails = JSON.parse(localStorage.getItem('pdata'));
+    let [activeChannelId, setActiveChannelId] = useState('');
     function fetchChannels() {
-        let projectData = JSON.parse(localStorage.getItem("pdata"));
-        let url = "https://zode-chat-service-test.herokuapp.com/api/channel/" + projectData.projectID;
+        let url = "https://zode-chat-service-test.herokuapp.com/api/channel/" + projectDetails.projectID;
         axios.get(url, {headers: {
             "Access-Control-Allow-Origin" : "*",
             "Authorization": localStorage.getItem("token")
@@ -33,10 +34,17 @@ function ChatHome() {
             }
         })
     }
+    function channelClicked(channel) {
+        setActiveComponent(channel.channelName); 
+        setActiveChannelId(channel.channelid); 
+        let displayValue = document.getElementById("dcd-members-list"); 
+        if(displayValue != null && displayValue.style.display != "none") { 
+            document.getElementById("dcd-members-list").style.display = "none";
+        }
+    }
     useEffect(() => {
         fetchChannels();
     }, []);
-
     return(
         <div className="zod-chat-homepg">
         <div className="bd-top-nav">
@@ -84,11 +92,12 @@ function ChatHome() {
             <hr></hr>
             <h3>Channels</h3>
             <div className="ch-channels-list">
-                {channelNames.map((channel, index) => <button onClick={() => {setActiveComponent(channel.channelName)}}>@{channel.channelName}</button>)}
+                {channelNames.map((channel, index) => <button onClick={channelClicked.bind(this, channel)}>@{channel.channelName}</button>)}
             </div>
         </div>
         <div className="ch-chat-display">
-            <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent}/>
+            {channelNames.length == 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={null}/>}
+            {channelNames.length != 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={activeChannelId}/>}
         </div>
     </div>
     )

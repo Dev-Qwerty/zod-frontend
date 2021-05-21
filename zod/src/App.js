@@ -77,6 +77,9 @@ function App() {
         </Route>            
         <Route path="/projectdashboard/board/card">
           <BCard />  
+        </Route>
+        <Route path="/chat/home">
+          <ChatHome />
         </Route>                  
         <Route path="/chat/createChannel">
           <CreateChannel />
