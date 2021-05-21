@@ -1,0 +1,207 @@
+.public-cb-top-nav {
+  width: 100%;
+  height: 95px;
+  display: grid;
+  grid-template-columns: 44% 12% 44%;
+  box-shadow: 0 10px 6px -9px #707070;
+}
+
+.public-cb-left-wrapper {
+  display: grid;
+  grid-template-rows: 30% 70%;
+}
+
+.public-cb-lt {  
+  background-color: #000;
+  width: 35%;
+  display: grid;
+  grid-template-columns: 16% 84%;
+}
+
+.public-cb-lt:hover {
+  cursor: pointer;
+}
+
+.public-cb-arrow {
+  background-image: url('../../assets/arrow.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;  
+  width: 30px;
+  height: 30px;
+  margin-left: 8px;
+}
+
+.public-cb-lt-txt {
+  padding-left: 5px;
+  padding-top: 4px;
+  color: #fff;
+}
+
+.public-cb-lb {
+  padding-left: 30px;
+  margin-top: -3px;
+}
+
+.public-cb-title {
+  font-family: Pacifico;
+  color: #4CBF53;
+  font-size: 46px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.public-cb-mid-wrapper {
+  border: 1px solid #DBDBDB;;
+  width: 100%;
+  height: 32px;
+  text-align: center;
+}
+
+.public-cb-mid-wrapper p {
+  color: #707070;
+  font-size: 15px;
+  padding-top: 3px;
+}
+
+.public-cb-right-wrapper {
+  padding-left: 70%;
+  padding-top: 30px;
+}
+
+.public-cb-logout-btn {
+  width: 100px;
+  height: 35px;
+  background-color: #fff;
+  color: #000;
+  border: 3px solid #189FFA;
+  border-radius: 5px;    
+}
+
+.public-cb-body-wrapper {
+  height: 658px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 6% 94%;
+}
+
+.public-cb-left-nav {
+  margin-top: 0px;
+  background-color: #52D066;
+}
+
+.public-cb-left-nav-grid {
+  height: 85%;
+  display: grid;
+  grid-template-rows: 14% 14% 14% 14% 14% 14% 14%;
+}
+
+.public-cb-lng1-wrapper {
+  padding-left: 11px;
+  padding-top: 11px;
+  margin-top: 10px;
+  width: 80px;
+  height: 60px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.public-cb-lng1 {
+  background-image: url('../../assets/home.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;  
+  width: 35px;
+  height: 35px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.public-cb-lng2 {
+  background-image: url('../../assets/document.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;  
+  width: 35px;
+  height: 35px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;    
+}
+
+.public-cb-lng3 {
+  background-image: url('../../assets/chat.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;  
+  width: 35px;
+  height: 35px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;  
+}
+
+.public-cb-lng4 {
+  background-image: url('../../assets/calender.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;  
+  width: 35px;
+  height: 35px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;    
+}
+
+.public-cb-lng5 {
+  background-image: url('../../assets/rocketpro.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;  
+  width: 35px;
+  height: 35px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;    
+}
+
+.public-cb-lng6 {
+  background-image: url('../../assets/people.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;  
+  width: 35px;
+  height: 35px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;    
+}
+
+.public-cb-lng7 {
+  background-image: url('../../assets/settings.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;  
+  width: 35px;
+  height: 35px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;    
+}
+
+/* D-Body */
+.public-cb-body {
+
+}
+
+.xcb-proname {
+  font-size: 18px;
+  padding-left: 50px;
+  padding-top: 50px;
+}
+
+.xcb-proLine {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.15);;
+}

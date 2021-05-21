@@ -13,6 +13,8 @@ import CreateChannel from './components/Chat/CreateChannel';
 import firebase from 'firebase';
 import ProjectD from './components/ProjectDashboard/ProjectD';
 import Board from './components/Board/Board';
+import CreatePersonalBoard from './components/Board/CreatePersonalBoard';
+import CreatePublicBoard from './components/Board/CreatePublicBoard';
 import BCard from './components/Board/BCard';
 
 import {
@@ -66,7 +68,13 @@ function App() {
         </Route> 
         <Route path="/projectdashboard/board/bhome">
           <Board />  
-        </Route>        
+        </Route>  
+        <Route path="/projectdashboard/board/personal/create">
+          <CreatePersonalBoard />  
+        </Route>      
+        <Route path="/projectdashboard/board/public/create">
+          <CreatePublicBoard />  
+        </Route>            
         <Route path="/projectdashboard/board/card">
           <BCard />  
         </Route>                  
