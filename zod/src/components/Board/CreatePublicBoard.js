@@ -95,7 +95,41 @@ export default class CreatePublicBoard extends React.Component {
 
                         <div className="xcb-proLine"></div>
 
+                        <div className="xcb-gridWrx">
+
+                            <div className="xcb-g1">
+                                    
+                                <p className="xcb-g1-bname-label">Board Name</p>
+                                <div><input type="text" placeholder="" className="xcb-g1-bname-inp"></input></div>
+                                
+                                <p className="xcb-g1-checkbox-hdn">Add Members</p>
+
+                                <div className="xcb-g1-c-wrx">
+                                    <div className="xcb-g1-c">
+                                        <input type="checkbox" name="xc1" value="" className="xcb-g1-c-box"></input>
+                                        <label for="xc1"> alanmatw@gmail.com</label>
+                                    </div>
+                                    <div className="xcb-g1-c">       
+                                        <input type="checkbox" name="xc2" value="" className="xcb-g1-c-box"></input>
+                                        <label for="xc2"> albinj12@gmail.com</label>
+                                    </div>    
+                                    <div className="xcb-g1-c">
+                                        <input type="checkbox" name="xc3" value="" className="xcb-g1-c-box"></input>
+                                        <label for="xc3"> james@gmail.com</label>
+                                    </div>
+                                </div>
+
+                                <div><input type="submit" value="Create" className="xcb-g1-submit"></input></div>                                                                             
+                            </div>
+                            
+                            <div className="xcb-g2">
+                                <div className="xcb-pic"></div>
+                            </div>
+
+                        </div>
+
                     </div>
+
                 </div>
             </div>
         );
