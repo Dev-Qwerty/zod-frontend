@@ -11,7 +11,6 @@ import axios from 'axios';
 import './DynamicChatDisplay.css';
 import { useState, useEffect } from 'react';
 
-let channels = [];
 function DynamicChatDisplay(props) {
     let [channelMembers, setChannelMembers] = useState([]);
     let projectDetails = JSON.parse(localStorage.getItem('pdata'));
@@ -27,7 +26,6 @@ function DynamicChatDisplay(props) {
     function fetchMembers() {
         let channelId = props.channelId;
         setChannelMembers([]);
-        console.log("Channel ID: "+ channelId);
         let url = "https://zode-chat-service-test.herokuapp.com/api/channel/" + projectDetails.projectID + "/" + channelId + "/members";
         axios.get(url, {headers: {
             "Access-Control-Allow-Origin" : "*",
@@ -44,7 +42,7 @@ function DynamicChatDisplay(props) {
         }
     }
     if(props.channelname != 'default') {
-    return(
+        return(
         <div className="dcd-display">
         <div className="dcd-wrapper">
             <div className="dcd-header">
@@ -61,7 +59,7 @@ function DynamicChatDisplay(props) {
                 </div>
             </div>
         </div>
-        <div className="dcd-members-list-wrapper" id="dcd-members-list">
+        <div className="dcd-members-list-wrapper" id="dcd-members-list" style={{display: "none"}}>
             <h3>Members</h3>
             {channelMembers.map((member, index) => 
             <div className="dcd-member">

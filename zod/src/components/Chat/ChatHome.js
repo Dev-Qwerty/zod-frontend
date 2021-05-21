@@ -37,7 +37,6 @@ function ChatHome() {
     useEffect(() => {
         fetchChannels();
     }, []);
-
     return(
         <div className="zod-chat-homepg">
         <div className="bd-top-nav">
@@ -85,7 +84,7 @@ function ChatHome() {
             <hr></hr>
             <h3>Channels</h3>
             <div className="ch-channels-list">
-                {channelNames.map((channel, index) => <button onClick={() => {setActiveComponent(channel.channelName); setActiveChannelId(channel.channelid)}}>@{channel.channelName}</button>)}
+                {channelNames.map((channel, index) => <button onClick={() => {setActiveComponent(channel.channelName); setActiveChannelId(channel.channelid); document.getElementById("dcd-members-list").style.display = "none"}}>@{channel.channelName}</button>)}
             </div>
         </div>
         <div className="ch-chat-display">
