@@ -7,9 +7,19 @@ import axios from 'axios';
 import './DynamicChatDisplay.css';
 import { useState, useEffect } from 'react';
 import Loader from '../Loader/Loader';
+import Picker from 'emoji-picker-react';
 
 function DynamicChatDisplay(props) {
     let [channelMembers, setChannelMembers] = useState([]);
+    const [chosenEmoji, setChosenEmoji] = useState(null);
+    let [inputMsg, setInputMsg] = useState('');
+    const onEmojiClick = (event, emojiObject) => {
+        setChosenEmoji(emojiObject);
+        setInputMsg(inputMsg + emojiObject.emoji);
+    }
+    const onInputMsgChange = (e) => {
+        setInputMsg(e.target.value);
+    }
     let projectDetails = JSON.parse(localStorage.getItem('pdata'));
     function displayDropDown () {
         let displayValue = document.getElementById("dcd-more-options").style.display;
@@ -19,6 +29,15 @@ function DynamicChatDisplay(props) {
         else {
             document.getElementById("dcd-more-options").style.display = "none";
         }    
+    }
+    function displayEmojiPicker () {
+        let displayValue = document.getElementById("dcd-emoji-picker").style.display;
+        if(displayValue == "none") {
+            document.getElementById("dcd-emoji-picker").style.display = "block";
+        }
+        else {
+            document.getElementById("dcd-emoji-picker").style.display = "none";
+        }       
     }
     function fetchMembers() {
         let channelId = props.channelId;
@@ -67,9 +86,12 @@ function DynamicChatDisplay(props) {
             )}    
         </div>
         <div className="dcd-textbox">
-            <textarea></textarea>
+            <textarea value={inputMsg} onChange={onInputMsgChange}></textarea>
             <div className="dcd-icon-chat-tray">
-                <img className="dcd-emoji-icon" src={emojiIcon}></img>
+                <img className="dcd-emoji-icon" src={emojiIcon} onClick={displayEmojiPicker}></img>
+                <div id="dcd-emoji-picker">
+                    <Picker onEmojiClick={onEmojiClick} />
+                </div>
                 <img className="dcd-attach-icon" src={attachIcon}></img>
             </div>
             <img className="dcd-send-icon" src={sendIcon}></img>

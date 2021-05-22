@@ -10,6 +10,7 @@
     "axios-react": "^2.0.7",
     "bootstrap": "^4.6.0",
     "dotenv": "^8.2.0",
+    "emoji-picker-react": "^3.4.5",
     "firebase": "^8.3.2",
     "firebase-app": "0.0.1",
     "firebase-auth": "^0.1.2",
