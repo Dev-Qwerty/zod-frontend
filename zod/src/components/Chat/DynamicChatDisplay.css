@@ -169,3 +169,14 @@
 #dcd-members-list {
     display: none;
 }
+
+.dcd-members-closelist {
+    height: 20px;
+    width: 20px;
+    position: fixed;
+    left: 73vw;
+    top: 19.6vw;
+    background-color: #fff;
+    border: none;
+    outline: none;
+}
