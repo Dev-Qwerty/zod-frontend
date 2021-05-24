@@ -195,3 +195,15 @@
     margin-left: -4vw;
     display: none;
 }
+
+.dcd-add-member-btn {
+    background-color: #2BD428;
+    border: none;
+    outline: none;
+    position: relative;
+    left: 8vw;
+    top: -37px;
+    color: #fff;
+    border-radius: 14px;
+    font-weight: bold;
+}
