@@ -2,6 +2,7 @@ import './CreatePublicBoard.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
 import ReactTooltip from "react-tooltip";
+import axios from 'axios';
  
 /* 
     ClassName Convention Used:-
@@ -14,8 +15,62 @@ export default class CreatePublicBoard extends React.Component {
      
         super();
         this.state = {
-            data: ''
+            members: '',
+            finalMem: []
         }
+    }
+
+    componentDidMount(){
+     
+        const token1 = localStorage.getItem('token');
+        const obj = JSON.parse(localStorage.getItem('pdata'))
+
+        const config = {
+            headers: {
+                'Authorization': token1,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        let url = 'https://projectservice-zode.herokuapp.com/api/projects/' + obj.projectID + '/members';
+
+        axios.get(url, config)
+        .then((res) => {
+    
+            if(res.status === 200) {
+
+                /*alert(JSON.stringify(res.data.projectMembers))*/
+                const Data = res.data.projectMembers
+                this.setState({ members: Data });
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });         
+    }
+
+    addMem = (email) => {
+
+        if(!(this.state.finalMem.indexOf(email) > -1)) {
+            this.setState({
+                finalMem : [...this.state.finalMem, email]
+              });          
+        } 
+    }
+    
+    removeMem = (email) => {
+
+        const fn = (element) => element == email;
+        let i = this.state.finalMem.findIndex(fn);
+        this.state.finalMem.splice(i, 1);
+        console.log(this.state.finalMem)
+    }
+
+    showlist = () => {
+        alert(this.state.finalMem)
     }
 
     backToBaseFn = () => {
@@ -104,22 +159,33 @@ export default class CreatePublicBoard extends React.Component {
                                 
                                 <p className="xcb-g1-checkbox-hdn">Add Members</p>
 
-                                <div className="xcb-g1-c-wrx">
-                                    <div className="xcb-g1-c">
-                                        <input type="checkbox" name="xc1" value="" className="xcb-g1-c-box"></input>
-                                        <label for="xc1"> alanmatw@gmail.com</label>
+                                { !this.state.members ? (
+                                    
+                                    <div className="bx-loading">
+                                        <p>Loading...</p>
+                                    </div>                                    
+
+                                ):( this.state.members.map((memdata, i) => (    
+
+                                    <div className="xcb-g1-c-wrx">
+
+                                        <div className="xcb-g1-c">
+
+                                            <div className="mem-email"><p>{JSON.parse(JSON.stringify(memdata.email)) }</p></div>
+                                            <div className="add-wrx"><input type="submit" value="" className="Addx" onClick={ () => this.addMem(memdata.email) }/></div>
+                                            <div className="remove-wrx"><input type="submit" value="" className="Removex" onClick={ () => this.removeMem(memdata.email) }/></div>                                            
+                                        </div>
+                                    
                                     </div>
-                                    <div className="xcb-g1-c">       
-                                        <input type="checkbox" name="xc2" value="" className="xcb-g1-c-box"></input>
-                                        <label for="xc2"> albinj12@gmail.com</label>
-                                    </div>    
-                                    <div className="xcb-g1-c">
-                                        <input type="checkbox" name="xc3" value="" className="xcb-g1-c-box"></input>
-                                        <label for="xc3"> james@gmail.com</label>
-                                    </div>
+
+                                )))}    
+                            
+                                <div>
+                                    <input className="xcb-show-list" type="submit" value="Show List" onClick = { this.showlist } />
                                 </div>
 
-                                <div><input type="submit" value="Create" className="xcb-g1-submit"></input></div>                                                                             
+                                <div><input type="submit" value="Create" className="xcb-g1-submit" onClick={this.checkb}></input></div>                                                                             
+                                
                             </div>
                             
                             <div className="xcb-g2">

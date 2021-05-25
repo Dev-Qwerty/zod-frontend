@@ -14,7 +14,7 @@ export default class CreatePersonalBoard extends React.Component {
      
         super();
         this.state = {
-            data: ''
+            members: ''
         }
     }
 
