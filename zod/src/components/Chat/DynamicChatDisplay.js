@@ -8,11 +8,17 @@ import './DynamicChatDisplay.css';
 import { useState, useEffect } from 'react';
 import Loader from '../Loader/Loader';
 import Picker from 'emoji-picker-react';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 function DynamicChatDisplay(props) {
     let [channelMembers, setChannelMembers] = useState([]);
     const [chosenEmoji, setChosenEmoji] = useState(null);
     let [inputMsg, setInputMsg] = useState('');
+    const [showModal, setShowModal] = useState(false);
+
+    const modalHandleClose = () => setShowModal(false);
+    const modalHandleShow = () => setShowModal(true);
     const onEmojiClick = (event, emojiObject) => {
         setChosenEmoji(emojiObject);
         setInputMsg(inputMsg + emojiObject.emoji);
@@ -77,10 +83,22 @@ function DynamicChatDisplay(props) {
         </div>
         <div className="dcd-members-list-wrapper" id="dcd-members-list" style={{display: "none"}}>
             <h3>Members</h3><button value="X" className="dcd-members-closelist" onClick={() => document.getElementById("dcd-members-list").style.display = "none"}>X</button>
-            <button className="dcd-add-member-btn">+New</button>
-            <div className="dcd-newmember-list">
+            <button className="dcd-add-member-btn" onClick={modalHandleShow}>+New</button>
+            <Modal show={showModal} onHide={modalHandleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Add New Member</Modal.Title>
+                </Modal.Header>
+                <Modal.Body><input type="email" placeholder="Enter new member's email"></input></Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={modalHandleClose}>
+                    Close
+                    </Button>
+                    <Button variant="primary" onClick={modalHandleClose}>
+                    Add
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
-            </div>
             {channelMembers.length == 0 && <Loader/>}
             {channelMembers.map((member, index) => 
             <div className="dcd-member">
