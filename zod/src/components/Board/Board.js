@@ -15,7 +15,8 @@ export default class Board extends React.Component {
      
         super();
         this.state = {
-            data: ''
+            data: '',
+            pname: ''
         }
     }
 
@@ -23,6 +24,10 @@ export default class Board extends React.Component {
      
         const token1 = localStorage.getItem('token');
         const obj = JSON.parse(localStorage.getItem('pdata'));
+
+        this.setState({
+            pname : obj.projectName
+        }); 
 
         const config = {
             headers: {
@@ -121,7 +126,7 @@ export default class Board extends React.Component {
                     <div className="b-body">
                         
                         <div className="bb-proname">
-                            <p>Project Name</p>
+                            <p>Project Name: { this.state.pname }</p>
                         </div>
                         <div className="bb-proLine"></div>
 
