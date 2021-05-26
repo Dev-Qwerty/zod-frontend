@@ -22,6 +22,10 @@ export default class CreatePersonalBoard extends React.Component {
         }
     }
 
+    componentDidMount(){
+        
+    }
+
     updateBname = (evt) => {
         this.setState({
             bname: evt.target.value

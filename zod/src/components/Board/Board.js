@@ -2,6 +2,7 @@ import './Board.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
 import ReactTooltip from "react-tooltip";
+import axios from 'axios';
  
 /* 
     ClassName Convention Used:-
@@ -16,6 +17,36 @@ export default class Board extends React.Component {
         this.state = {
             data: ''
         }
+    }
+
+    componentDidMount(){
+     
+        const token1 = localStorage.getItem('token');
+        const obj = JSON.parse(localStorage.getItem('pdata'));
+
+        const config = {
+            headers: {
+                'Authorization': token1,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        let url = 'https://boardservice-zode.herokuapp.com/api/board/' + obj.projectID;
+
+        axios.get(url, config)
+        .then((res) => {
+    
+            if(res.status === 200) {
+
+                alert(JSON.stringify(res.data));
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });         
     }
 
     backToBaseFn = () => {
