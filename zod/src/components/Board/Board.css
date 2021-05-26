@@ -239,6 +239,10 @@
   color: #000;
 }
 
+.bbPersonal-card:hover {
+  cursor: pointer;
+}
+
 .bbPersonal-parag {
 
 }
@@ -300,6 +304,10 @@
   background-color: #e6e6e6;
   /*background-color: #CBF0D1;*/
   color: #000;
+}
+
+.bbPublic-card:hover {
+  cursor: pointer;
 }
 
 .bbPublic-parag {

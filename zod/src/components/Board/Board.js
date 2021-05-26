@@ -75,6 +75,16 @@ export default class Board extends React.Component {
         });         
     }
 
+    personalFn = () => {
+    
+        window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/board/card';   
+    }
+
+    publicFn = () => {
+        
+        window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/board/card';
+    }
+
     backToBaseFn = () => {
         //localStorage.setItem('pdata');
         window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';       
@@ -167,16 +177,10 @@ export default class Board extends React.Component {
 
                                     ):( this.state.personalArr.map((pdat, i) => (
                                         
-                                        <div className="bbPersonal-card">
+                                        <div className="bbPersonal-card" onClick = { this.personalFn }>
                                             <p className="bbPersonal-parag">{ JSON.parse(JSON.stringify(pdat.boardName)) }</p>
                                         </div>   
-                                    )))} 
-
-                                    <Link to="/projectdashboard/board/card" style={{ textDecoration: 'none' }}>
-                                        <div className="bbPersonal-card">
-                                            <p className="bbPersonal-parag">Test Board</p>
-                                        </div>
-                                    </Link>    
+                                    )))}   
                                     
                                     <Link to="/projectdashboard/board/personal/create" style={{ textDecoration: 'none' }}>
                                         <div className="bbPersonal-special-card">
@@ -204,7 +208,7 @@ export default class Board extends React.Component {
 
                                     ):( this.state.publicArr.map((tdat, i) => (
                            
-                                        <div className="bbPublic-card">
+                                        <div className="bbPublic-card" onClick = { this.publicFn }>
                                             <p className="bbPublic-parag">{ JSON.parse(JSON.stringify(tdat.boardName)) }</p>
                                         </div>                                         
                                     )))}    
