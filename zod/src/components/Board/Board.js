@@ -2,6 +2,7 @@ import './Board.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
 import ReactTooltip from "react-tooltip";
+import axios from 'axios';
  
 /* 
     ClassName Convention Used:-
@@ -14,8 +15,74 @@ export default class Board extends React.Component {
      
         super();
         this.state = {
-            data: ''
+            data: '',
+            pname: '',
+            personalArr: [],
+            publicArr: []
         }
+    }
+
+    componentDidMount(){
+     
+        const token1 = localStorage.getItem('token');
+        const obj = JSON.parse(localStorage.getItem('pdata'));
+
+        this.setState({
+            pname : obj.projectName
+        }); 
+
+        const config = {
+            headers: {
+                'Authorization': token1,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        let url = 'https://boardservice-zode.herokuapp.com/api/board/' + obj.projectID;
+
+        axios.get(url, config)
+        .then((res) => {
+    
+            if(res.status === 200) {
+
+                const dat = res.data;
+                
+                for (const [index, value] of dat.entries()) {
+                    
+                    if(value.type == 'private') {
+                        
+                        this.setState({
+                            personalArr : [...this.state.personalArr, value]
+                        }); 
+                    } else {
+
+                        this.setState({
+                            publicArr : [...this.state.publicArr, value]
+                        }); 
+                    }
+                }
+
+                /*alert(JSON.stringify(this.state.personalArr));
+                alert(JSON.stringify(this.state.publicArr));*/
+
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });         
+    }
+
+    personalFn = () => {
+    
+        window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/board/card';   
+    }
+
+    publicFn = () => {
+        
+        window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/board/card';
     }
 
     backToBaseFn = () => {
@@ -90,7 +157,7 @@ export default class Board extends React.Component {
                     <div className="b-body">
                         
                         <div className="bb-proname">
-                            <p>Project Name</p>
+                            <p>Project Name: { this.state.pname }</p>
                         </div>
                         <div className="bb-proLine"></div>
 
@@ -101,16 +168,19 @@ export default class Board extends React.Component {
                                 <p className="bbPersonal-hdn">Personal Boards</p>
                                 
                                 <div className="bbPersonal-card-wrapper">
+
+                                    { !this.state.personalArr ? (
                                     
-                                    <Link to="/projectdashboard/board/card" style={{ textDecoration: 'none' }}>
-                                        <div className="bbPersonal-card">
-                                            <p className="bbPersonal-parag">Test Board</p>
-                                        </div>
-                                    </Link>    
-                                    
-                                    <div className="bbPersonal-card">
-                                        <p className="bbPersonal-parag">Test Board</p>
-                                    </div>   
+                                        <div className="gx-loading">
+                                            <p>Loading...</p>
+                                        </div>                                    
+
+                                    ):( this.state.personalArr.map((pdat, i) => (
+                                        
+                                        <div className="bbPersonal-card" onClick = { this.personalFn }>
+                                            <p className="bbPersonal-parag">{ JSON.parse(JSON.stringify(pdat.boardName)) }</p>
+                                        </div>   
+                                    )))}   
                                     
                                     <Link to="/projectdashboard/board/personal/create" style={{ textDecoration: 'none' }}>
                                         <div className="bbPersonal-special-card">
@@ -130,14 +200,19 @@ export default class Board extends React.Component {
                                 
                                 <div className="bbPublic-card-wrapper">
                                     
-                                    <div className="bbPublic-card">
-                                        <p className="bbPublic-parag">Test Board</p>
-                                    </div>
-                                    
-                                    <div className="bbPublic-card">
-                                        <p className="bbPublic-parag">Test Board</p>
-                                    </div>   
-                                    
+                                    { !this.state.publicArr ? (
+                                        
+                                        <div className="gx-loading">
+                                            <p>Loading...</p>
+                                        </div>                                    
+
+                                    ):( this.state.publicArr.map((tdat, i) => (
+                           
+                                        <div className="bbPublic-card" onClick = { this.publicFn }>
+                                            <p className="bbPublic-parag">{ JSON.parse(JSON.stringify(tdat.boardName)) }</p>
+                                        </div>                                         
+                                    )))}    
+                                      
                                     <Link to="/projectdashboard/board/public/create" style={{ textDecoration: 'none' }}>
                                         <div className="bbPublic-special-card">
                                             <div className="bbPublic-xy">

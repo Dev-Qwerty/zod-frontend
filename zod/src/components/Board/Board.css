@@ -228,6 +228,7 @@
 }
 
 .bbPersonal-card {
+  margin-bottom: 25px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   padding-top: 45px;
   text-align: center;
@@ -238,23 +239,32 @@
   color: #000;
 }
 
+.bbPersonal-card:hover {
+  cursor: pointer;
+}
+
 .bbPersonal-parag {
 
 }
 
 .bbPersonal-special-card {
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);;
   width: 210px;
   height: 110px;
-  background-color: #e6e6e6;
-  /*background-color: #CBF0D1;*/
+  background-color: #fff;
   color: #000;
 }
 
 .bbPersonal-xy {
-  margin-top: 45px;
+  padding-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  margin-top: 26px;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 32% 68%;
+  border: 1px solid rgba(0, 0, 0, 0.15);;
+  background-color: #e6e6e6;;
 }
 
 .bbPersonal-plus {
@@ -264,18 +274,16 @@
   background-size: contain;  
   width: 25px;
   height: 25px;
-  margin-left: 45px;
-  /*border: 1px solid #aaa;*/
+  margin-left: 15px;
 }
 
 .bbPersonal-new-parag {
-  padding-left: 15px;
   font-size: 16px;
 }
 
 /* Public Cards */
 .bb-publicB {
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 .bbPublic-hdn {
@@ -290,6 +298,7 @@
 }
 
 .bbPublic-card {
+  margin-bottom: 25px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   padding-top: 45px;
   text-align: center;
@@ -300,6 +309,10 @@
   color: #000;
 }
 
+.bbPublic-card:hover {
+  cursor: pointer;
+}
+
 .bbPublic-parag {
 
 }
@@ -308,15 +321,20 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   width: 210px;
   height: 110px;
-  background-color: #e6e6e6;
-  /*background-color: #CBF0D1;*/
+  background-color: #fff;
   color: #000;
 }
 
 .bbPublic-xy {
-  margin-top: 45px;
+  padding-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  margin-top: 26px;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 32% 68%;
+  border: 1px solid rgba(0, 0, 0, 0.15);;
+  background-color: #e6e6e6;;
 }
 
 .bbPublic-plus {
@@ -326,11 +344,31 @@
   background-size: contain;  
   width: 25px;
   height: 25px;
-  margin-left: 45px;
+  margin-left: 15px;
   /*border: 1px solid #aaa;*/
 }
 
 .bbPublic-new-parag {
-  padding-left: 15px;
   font-size: 16px;
+}
+
+.gx-loading {
+  position: absolute;
+  left: 40%;
+  top: 42%;
+  background-color: #fff;
+  /*opacity: 0.8;*/
+  color: #000;
+  width: 250px;
+  height: 130px;
+  text-align: center;
+  padding-top: 40px;
+  /*border: 1px solid #aaa;*/
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.gx-loading p {
+  font-family: Pacifico;
+  font-size: 30px;
+  color: #4CBF53;    
 }

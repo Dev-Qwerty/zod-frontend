@@ -209,11 +209,11 @@
 /* grid body */
 .xcb-gridWrx {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 60% 40%;
 }
 
 .xcb-g1 {
-  padding-top: 80px;
+  padding-top: 40px;
   padding-left: 80px;
 }
 
@@ -223,6 +223,7 @@
 
 .xcb-g1-bname-inp {
   width: 250px;
+  border: 1px solid #000;
 }
 
 .xcb-g1-checkbox-hdn {
@@ -235,19 +236,73 @@
 }
 
 .xcb-g1-c {
+  width: 440px;
+  height: 45px;
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #d1d1d1;
+  box-shadow: rgba(0, 0, 0, 0.11) 1.95px 1.95px 2.6px;
+  display: grid;
+  grid-template-columns: 75% 12% 12%;
 }
 
-.xcb-g1-c-box {
-  margin-right: 10px;
-  width: 15px;
-  height: 15px;
+.mem-email {
+  padding-left: 20px;
+  padding-top: 8px;
+  color: #000;
+  font-size: 16px;
+}
+
+.add-wrx {
+  height: 89%;
+  border-left: 1px solid #d1d1d1;
+  border-right: 1px solid #d1d1d1;
+}
+
+.remove-wrx {
+  
+}
+
+.Addx {
+  margin-left: 13px;
+  margin-top: 11px;
+  width: 50%;
+  height: 50%;  
+  background-image: url('../../assets/done.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; 
+  border: 1px solid #4CBF53;;
+  background-color: #fff;  
+}
+
+.Removex {
+  margin-left: 14px;
+  margin-top: 11px;  
+  width: 50%;
+  height: 50%;
+  background-image: url('../../assets/close.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 1px solid #189FFA;
+  background-color: #fff;       
+}
+
+.xcb-show-list {
+  font-size: 15px;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 100px;
+  height: 33px;
+  background-color: #fff;
+  border: 1px solid #189FFA;
+  color: #000;
 }
 
 .xcb-g1-submit {
   border-radius: 5px;
-  margin-top: 30px;
+  margin-top: 20px;
   width: 140px;
   height: 35px;
   background-color: #52D066;
@@ -269,3 +324,25 @@
   margin-top: 30px;    
   margin-left: 0px;
 }
+
+.bx-loading {
+  position: absolute;
+  left: 40%;
+  top: 42%;
+  background-color: #fff;
+  /*opacity: 0.8;*/
+  color: #000;
+  width: 250px;
+  height: 130px;
+  text-align: center;
+  padding-top: 40px;
+  /*border: 1px solid #aaa;*/
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.bx-loading p {
+  font-family: Pacifico;
+  font-size: 30px;
+  color: #4CBF53;    
+}
+
