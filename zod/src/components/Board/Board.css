@@ -228,6 +228,7 @@
 }
 
 .bbPersonal-card {
+  margin-bottom: 25px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   padding-top: 45px;
   text-align: center;
@@ -275,7 +276,7 @@
 
 /* Public Cards */
 .bb-publicB {
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 .bbPublic-hdn {
@@ -290,6 +291,7 @@
 }
 
 .bbPublic-card {
+  margin-bottom: 25px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   padding-top: 45px;
   text-align: center;
@@ -333,4 +335,25 @@
 .bbPublic-new-parag {
   padding-left: 15px;
   font-size: 16px;
+}
+
+.gx-loading {
+  position: absolute;
+  left: 40%;
+  top: 42%;
+  background-color: #fff;
+  /*opacity: 0.8;*/
+  color: #000;
+  width: 250px;
+  height: 130px;
+  text-align: center;
+  padding-top: 40px;
+  /*border: 1px solid #aaa;*/
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.gx-loading p {
+  font-family: Pacifico;
+  font-size: 30px;
+  color: #4CBF53;    
 }

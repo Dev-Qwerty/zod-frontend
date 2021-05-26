@@ -161,7 +161,7 @@ export default class Board extends React.Component {
 
                                     { !this.state.personalArr ? (
                                     
-                                        <div className="bx-loading">
+                                        <div className="gx-loading">
                                             <p>Loading...</p>
                                         </div>                                    
 
@@ -196,14 +196,19 @@ export default class Board extends React.Component {
                                 
                                 <div className="bbPublic-card-wrapper">
                                     
-                                    <div className="bbPublic-card">
-                                        <p className="bbPublic-parag">Test Board</p>
-                                    </div>
-                                    
-                                    <div className="bbPublic-card">
-                                        <p className="bbPublic-parag">Test Board</p>
-                                    </div>   
-                                    
+                                    { !this.state.publicArr ? (
+                                        
+                                        <div className="gx-loading">
+                                            <p>Loading...</p>
+                                        </div>                                    
+
+                                    ):( this.state.publicArr.map((tdat, i) => (
+                           
+                                        <div className="bbPublic-card">
+                                            <p className="bbPublic-parag">{ JSON.parse(JSON.stringify(tdat.boardName)) }</p>
+                                        </div>                                         
+                                    )))}    
+                                      
                                     <Link to="/projectdashboard/board/public/create" style={{ textDecoration: 'none' }}>
                                         <div className="bbPublic-special-card">
                                             <div className="bbPublic-xy">
