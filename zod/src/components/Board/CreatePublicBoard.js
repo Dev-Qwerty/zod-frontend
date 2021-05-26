@@ -15,6 +15,7 @@ export default class CreatePublicBoard extends React.Component {
      
         super();
         this.state = {
+            bname: '',
             members: '',
             finalMem: []
         }
@@ -72,6 +73,51 @@ export default class CreatePublicBoard extends React.Component {
     showlist = () => {
         alert(this.state.finalMem)
     }
+
+    submitFn = () => {
+
+        alert(this.state.bname)
+    
+        /*const tokenx = localStorage.getItem('token');
+        const xobj = localStorage.getItem('pdata'); 
+
+        const config = {
+            headers: {
+                'Authorization': tokenx,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        const reqBody = {
+            "boardName": this.state.bname,
+            "members": this.state.finalMem,
+            "type": "public",
+            "projectName": xobj.projectName,
+            "projectId": xobj.projectID
+        }
+
+        let url = '';
+
+        axios.get(url, config)
+        .then((res) => {
+    
+            if(res.status === 200) {
+
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });  */
+    }
+
+    updateBname = (evt) => {
+        this.setState({
+            bname: evt.target.value
+        });
+    } 
 
     backToBaseFn = () => {
         //localStorage.setItem('pdata');
@@ -155,7 +201,7 @@ export default class CreatePublicBoard extends React.Component {
                             <div className="xcb-g1">
                                     
                                 <p className="xcb-g1-bname-label">Board Name</p>
-                                <div><input type="text" placeholder="" className="xcb-g1-bname-inp"></input></div>
+                                <div><input type="text" placeholder="" className="xcb-g1-bname-inp" value={ this.state.bname } onChange={ this.updateBname } ></input></div>
                                 
                                 <p className="xcb-g1-checkbox-hdn">Add Members</p>
 
@@ -184,7 +230,7 @@ export default class CreatePublicBoard extends React.Component {
                                     <input className="xcb-show-list" type="submit" value="Show List" onClick = { this.showlist } />
                                 </div>
 
-                                <div><input type="submit" value="Create" className="xcb-g1-submit" onClick={this.checkb}></input></div>                                                                             
+                                <div><input type="submit" value="Create" className="xcb-g1-submit" onClick = { this.submitFn } ></input></div>                                                                             
                                 
                             </div>
                             
