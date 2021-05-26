@@ -107,7 +107,7 @@ export default class CreatePublicBoard extends React.Component {
             if(res.status === 201) {
                 
                 console.log(JSON.stringify(res.data))
-                toast.info('Board Created!', {
+                toast.info('Public Board Created!', {
                     position: "bottom-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -226,7 +226,7 @@ export default class CreatePublicBoard extends React.Component {
                             <div className="xcb-g1">
                                     
                                 <p className="xcb-g1-bname-label">Board Name</p>
-                                <div><input type="text" placeholder="" className="xcb-g1-bname-inp" value={ this.state.bname } onChange={ this.updateBname } ></input></div>
+                                <div><input type="text" placeholder="" className="xcb-g1-bname-inp" value = { this.state.bname } onChange={ this.updateBname } ></input></div>
                                 
                                 <p className="xcb-g1-checkbox-hdn">Add Members</p>
 

@@ -2,6 +2,9 @@ import './CreatePersonalBoard.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
 import ReactTooltip from "react-tooltip";
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
  
 /* 
     ClassName Convention Used:-
@@ -14,8 +17,75 @@ export default class CreatePersonalBoard extends React.Component {
      
         super();
         this.state = {
+            bname: '',
             members: ''
         }
+    }
+
+    updateBname = (evt) => {
+        this.setState({
+            bname: evt.target.value
+        });
+    } 
+
+    submitFn = () => {
+
+        const tokenx = localStorage.getItem('token');
+        const xobj = JSON.parse(localStorage.getItem('pdata')); 
+
+        const config = {
+            headers: {
+                'Authorization': tokenx,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        const reqBody = {
+            "boardName": this.state.bname,
+            "members": [],
+            "type": "private",
+            "projectName": xobj.projectName,
+            "projectId": xobj.projectID
+        }
+
+        let url = 'https://boardservice-zode.herokuapp.com/api/board/new';
+
+        axios.post(url, reqBody, config)
+        .then((res) => {
+    
+            if(res.status === 201) {
+                
+                console.log(JSON.stringify(res.data))
+                toast.info('Personal Board Created!', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setTimeout(() => {
+                    window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/board/bhome';
+                  }, 3000);
+                
+            } else {
+
+                toast.error('Some Error Occured!', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });          
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        }); 
     }
 
     backToBaseFn = () => {
@@ -100,8 +170,9 @@ export default class CreatePersonalBoard extends React.Component {
                             <div className="pcb-g1">
                                 
                                 <p className="pcb-g1-bname-label">Board Name</p>
-                                <div><input type="text" placeholder="" className="pcb-g1-bname-inp"></input></div>
-                                <div><input type="submit" value="Create" className="pcb-g1-submit"></input></div>                                                                             
+                                <div><input type="text" placeholder="" className="pcb-g1-bname-inp" value = { this.state.bname } onChange={ this.updateBname } ></input></div>
+                                
+                                <div><input type="submit" value="Create" className="pcb-g1-submit" onClick = { this.submitFn } ></input></div>                                                                             
                             </div>
 
                             <div className="pcb-g2">
