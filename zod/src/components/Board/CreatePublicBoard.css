@@ -223,7 +223,7 @@
 
 .xcb-g1-bname-inp {
   width: 250px;
-  border: 1px solid #aaa;
+  border: 1px solid #000;
 }
 
 .xcb-g1-checkbox-hdn {
@@ -240,8 +240,8 @@
   height: 45px;
   font-size: 16px;
   margin-bottom: 20px;
-  border: 1px solid #aaa;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: 1px solid #d1d1d1;
+  box-shadow: rgba(0, 0, 0, 0.11) 1.95px 1.95px 2.6px;
   display: grid;
   grid-template-columns: 75% 12% 12%;
 }
@@ -255,8 +255,8 @@
 
 .add-wrx {
   height: 89%;
-  border-left: 1px solid #aaa;
-  border-right: 1px solid #aaa;
+  border-left: 1px solid #d1d1d1;
+  border-right: 1px solid #d1d1d1;
 }
 
 .remove-wrx {
