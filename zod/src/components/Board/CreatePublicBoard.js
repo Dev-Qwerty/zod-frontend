@@ -3,6 +3,8 @@ import { Link, Route } from "react-router-dom";
 import React from 'react';
 import ReactTooltip from "react-tooltip";
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
  
 /* 
     ClassName Convention Used:-
@@ -103,9 +105,32 @@ export default class CreatePublicBoard extends React.Component {
         .then((res) => {
     
             if(res.status === 201) {
-                alert(JSON.stringify(res.data))
+                
+                console.log(JSON.stringify(res.data))
+                toast.info('Board Created!', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setTimeout(() => {
+                    window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/board/bhome';
+                  }, 3000);
+                
             } else {
 
+                toast.error('Some Error Occured!', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });                
             }
         })
         .catch(function (error) {
