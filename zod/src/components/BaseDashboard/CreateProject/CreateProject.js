@@ -161,6 +161,7 @@ async function createProjectFn(pname, deadline, memberList) {
         "deadline": deadline,
         "pendingInvites": memberList
     }
+    
     const config = {
         headers: {
             'Authorization': token,
