@@ -62,7 +62,7 @@ export default class CreatePublicBoard extends React.Component {
             const obj = { 'email': email };
             this.setState({
                 finalMem : [...this.state.finalMem, obj]
-              });          
+            });          
         } 
     }
     

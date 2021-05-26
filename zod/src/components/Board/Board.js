@@ -158,16 +158,25 @@ export default class Board extends React.Component {
                                 <p className="bbPersonal-hdn">Personal Boards</p>
                                 
                                 <div className="bbPersonal-card-wrapper">
+
+                                    { !this.state.personalArr ? (
                                     
+                                        <div className="bx-loading">
+                                            <p>Loading...</p>
+                                        </div>                                    
+
+                                    ):( this.state.personalArr.map((pdat, i) => (
+                                        
+                                        <div className="bbPersonal-card">
+                                            <p className="bbPersonal-parag">{ JSON.parse(JSON.stringify(pdat.boardName)) }</p>
+                                        </div>   
+                                    )))} 
+
                                     <Link to="/projectdashboard/board/card" style={{ textDecoration: 'none' }}>
                                         <div className="bbPersonal-card">
                                             <p className="bbPersonal-parag">Test Board</p>
                                         </div>
                                     </Link>    
-                                    
-                                    <div className="bbPersonal-card">
-                                        <p className="bbPersonal-parag">Test Board</p>
-                                    </div>   
                                     
                                     <Link to="/projectdashboard/board/personal/create" style={{ textDecoration: 'none' }}>
                                         <div className="bbPersonal-special-card">
