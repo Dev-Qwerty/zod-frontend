@@ -56,30 +56,30 @@ export default class CreatePublicBoard extends React.Component {
     addMem = (email) => {
 
         if(!(this.state.finalMem.indexOf(email) > -1)) {
+
+            const obj = { 'email': email };
             this.setState({
-                finalMem : [...this.state.finalMem, email]
+                finalMem : [...this.state.finalMem, obj]
               });          
         } 
     }
     
     removeMem = (email) => {
 
-        const fn = (element) => element == email;
+        const fn = (element) => element.email == email;
         let i = this.state.finalMem.findIndex(fn);
         this.state.finalMem.splice(i, 1);
-        console.log(this.state.finalMem)
     }
 
     showlist = () => {
-        alert(this.state.finalMem)
+        console.log(this.state.finalMem)
+        alert(JSON.stringify(this.state.finalMem))
     }
 
     submitFn = () => {
-
-        alert(this.state.bname)
     
-        /*const tokenx = localStorage.getItem('token');
-        const xobj = localStorage.getItem('pdata'); 
+        const tokenx = localStorage.getItem('token');
+        const xobj = JSON.parse(localStorage.getItem('pdata')); 
 
         const config = {
             headers: {
@@ -97,20 +97,20 @@ export default class CreatePublicBoard extends React.Component {
             "projectId": xobj.projectID
         }
 
-        let url = '';
+        let url = 'https://boardservice-zode.herokuapp.com/api/board/new';
 
-        axios.get(url, config)
+        axios.post(url, reqBody, config)
         .then((res) => {
     
-            if(res.status === 200) {
-
+            if(res.status === 201) {
+                alert(JSON.stringify(res.data))
             } else {
 
             }
         })
         .catch(function (error) {
             console.log(error);
-        });  */
+        });  
     }
 
     updateBname = (evt) => {
