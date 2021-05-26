@@ -16,7 +16,9 @@ export default class Board extends React.Component {
         super();
         this.state = {
             data: '',
-            pname: ''
+            pname: '',
+            personalArr: [],
+            publicArr: []
         }
     }
 
@@ -44,7 +46,26 @@ export default class Board extends React.Component {
     
             if(res.status === 200) {
 
-                alert(JSON.stringify(res.data));
+                const dat = res.data;
+                
+                for (const [index, value] of dat.entries()) {
+                    
+                    if(value.type == 'private') {
+                        
+                        this.setState({
+                            personalArr : [...this.state.personalArr, value]
+                        }); 
+                    } else {
+
+                        this.setState({
+                            publicArr : [...this.state.publicArr, value]
+                        }); 
+                    }
+                }
+
+                /*alert(JSON.stringify(this.state.personalArr));
+                alert(JSON.stringify(this.state.publicArr));*/
+
             } else {
 
             }
