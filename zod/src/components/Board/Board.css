@@ -248,18 +248,23 @@
 }
 
 .bbPersonal-special-card {
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);;
   width: 210px;
   height: 110px;
-  background-color: #e6e6e6;
-  /*background-color: #CBF0D1;*/
+  background-color: #fff;
   color: #000;
 }
 
 .bbPersonal-xy {
-  margin-top: 45px;
+  padding-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  margin-top: 26px;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 32% 68%;
+  border: 1px solid rgba(0, 0, 0, 0.15);;
+  background-color: #e6e6e6;;
 }
 
 .bbPersonal-plus {
@@ -269,12 +274,10 @@
   background-size: contain;  
   width: 25px;
   height: 25px;
-  margin-left: 45px;
-  /*border: 1px solid #aaa;*/
+  margin-left: 15px;
 }
 
 .bbPersonal-new-parag {
-  padding-left: 15px;
   font-size: 16px;
 }
 
@@ -318,15 +321,20 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
   width: 210px;
   height: 110px;
-  background-color: #e6e6e6;
-  /*background-color: #CBF0D1;*/
+  background-color: #fff;
   color: #000;
 }
 
 .bbPublic-xy {
-  margin-top: 45px;
+  padding-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  margin-top: 26px;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 32% 68%;
+  border: 1px solid rgba(0, 0, 0, 0.15);;
+  background-color: #e6e6e6;;
 }
 
 .bbPublic-plus {
@@ -336,12 +344,11 @@
   background-size: contain;  
   width: 25px;
   height: 25px;
-  margin-left: 45px;
+  margin-left: 15px;
   /*border: 1px solid #aaa;*/
 }
 
 .bbPublic-new-parag {
-  padding-left: 15px;
   font-size: 16px;
 }
 
