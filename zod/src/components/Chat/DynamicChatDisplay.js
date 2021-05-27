@@ -7,9 +7,29 @@ import axios from 'axios';
 import './DynamicChatDisplay.css';
 import { useState, useEffect } from 'react';
 import Loader from '../Loader/Loader';
+import Picker from 'emoji-picker-react';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 function DynamicChatDisplay(props) {
     let [channelMembers, setChannelMembers] = useState([]);
+    const [chosenEmoji, setChosenEmoji] = useState(null);
+    let [inputMsg, setInputMsg] = useState('');
+    const [showModal, setShowModal] = useState(false);
+    const [newMembers, setNewMembers] = useState([]);
+
+    const modalHandleClose = () => setShowModal(false);
+    const modalHandleShow = () => {
+        setShowModal(true);
+        fetchNewMembers();
+    };
+    const onEmojiClick = (event, emojiObject) => {
+        setChosenEmoji(emojiObject);
+        setInputMsg(inputMsg + emojiObject.emoji);
+    }
+    const onInputMsgChange = (e) => {
+        setInputMsg(e.target.value);
+    }
     let projectDetails = JSON.parse(localStorage.getItem('pdata'));
     function displayDropDown () {
         let displayValue = document.getElementById("dcd-more-options").style.display;
@@ -19,6 +39,15 @@ function DynamicChatDisplay(props) {
         else {
             document.getElementById("dcd-more-options").style.display = "none";
         }    
+    }
+    function displayEmojiPicker () {
+        let displayValue = document.getElementById("dcd-emoji-picker").style.display;
+        if(displayValue == "none") {
+            document.getElementById("dcd-emoji-picker").style.display = "block";
+        }
+        else {
+            document.getElementById("dcd-emoji-picker").style.display = "none";
+        }       
     }
     function fetchMembers() {
         let channelId = props.channelId;
@@ -37,6 +66,16 @@ function DynamicChatDisplay(props) {
         else {
             document.getElementById("dcd-members-list").style.display = "none";
         }
+    }
+    function fetchNewMembers() {
+        let channelId = props.channelId;
+        let url = "https://chatservice-zode.herokuapp.com/"+ projectDetails.projectID + "/"+ channelId + "/fetchmembers";
+        axios.get(url, {headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": localStorage.getItem("token")
+        }}).then(response => {
+            setNewMembers(response.data);
+        })
     }
     if(props.channelname != 'default') {
         return(
@@ -57,7 +96,28 @@ function DynamicChatDisplay(props) {
             </div>
         </div>
         <div className="dcd-members-list-wrapper" id="dcd-members-list" style={{display: "none"}}>
-            <h3>Members</h3>
+            <h3>Members</h3><button value="X" className="dcd-members-closelist" onClick={() => document.getElementById("dcd-members-list").style.display = "none"}>X</button>
+            <button className="dcd-add-member-btn" onClick={modalHandleShow}>+New</button>
+            <Modal show={showModal} onHide={modalHandleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Add New Member</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <select>
+                        <option value="none" selected disabled hidden> Select New Member </option>
+                        {newMembers.map((x,i) => <option value={x.email}>{x.name}</option>)}
+                    </select>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={modalHandleClose}>
+                    Close
+                    </Button>
+                    <Button variant="primary" onClick={modalHandleClose}>
+                    Add
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
             {channelMembers.length == 0 && <Loader/>}
             {channelMembers.map((member, index) => 
             <div className="dcd-member">
@@ -67,9 +127,12 @@ function DynamicChatDisplay(props) {
             )}    
         </div>
         <div className="dcd-textbox">
-            <textarea></textarea>
+            <textarea value={inputMsg} onChange={onInputMsgChange}></textarea>
             <div className="dcd-icon-chat-tray">
-                <img className="dcd-emoji-icon" src={emojiIcon}></img>
+                <img className="dcd-emoji-icon" src={emojiIcon} onClick={displayEmojiPicker}></img>
+                <div id="dcd-emoji-picker">
+                    <Picker onEmojiClick={onEmojiClick} />
+                </div>
                 <img className="dcd-attach-icon" src={attachIcon}></img>
             </div>
             <img className="dcd-send-icon" src={sendIcon}></img>
