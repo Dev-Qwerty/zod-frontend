@@ -16,9 +16,13 @@ function DynamicChatDisplay(props) {
     const [chosenEmoji, setChosenEmoji] = useState(null);
     let [inputMsg, setInputMsg] = useState('');
     const [showModal, setShowModal] = useState(false);
+    const [newMembers, setNewMembers] = useState([]);
 
     const modalHandleClose = () => setShowModal(false);
-    const modalHandleShow = () => setShowModal(true);
+    const modalHandleShow = () => {
+        setShowModal(true);
+        fetchNewMembers();
+    };
     const onEmojiClick = (event, emojiObject) => {
         setChosenEmoji(emojiObject);
         setInputMsg(inputMsg + emojiObject.emoji);
@@ -63,6 +67,16 @@ function DynamicChatDisplay(props) {
             document.getElementById("dcd-members-list").style.display = "none";
         }
     }
+    function fetchNewMembers() {
+        let channelId = props.channelId;
+        let url = "https://chatservice-zode.herokuapp.com/"+ projectDetails.projectID + "/"+ channelId + "/fetchmembers";
+        axios.get(url, {headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": localStorage.getItem("token")
+        }}).then(response => {
+            setNewMembers(response.data);
+        })
+    }
     if(props.channelname != 'default') {
         return(
         <div className="dcd-display">
@@ -88,7 +102,12 @@ function DynamicChatDisplay(props) {
                 <Modal.Header closeButton>
                     <Modal.Title>Add New Member</Modal.Title>
                 </Modal.Header>
-                <Modal.Body><input type="email" placeholder="Enter new member's email"></input></Modal.Body>
+                <Modal.Body>
+                    <select>
+                        <option value="none" selected disabled hidden> Select New Member </option>
+                        {newMembers.map((x,i) => <option value={x.email}>{x.name}</option>)}
+                    </select>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={modalHandleClose}>
                     Close
