@@ -4,6 +4,7 @@ import ccSvg from '../../assets/channel.svg';
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { toast } from "react-toastify";
+import Button from 'react-bootstrap-button-loader';
 
 toast.configure()
 
@@ -14,6 +15,8 @@ function CreateChannel() {
     const [allmembers, setAllMembers] = useState([{name: "", email: ""}]);
     const [channelDesc, setDesc] = useState('');
     const [disable, setDisable] = useState(false);
+    const [loading, setLoader] = useState(false);
+    const [btnText, setBtnText] = useState('Create');
 
     const handleChannelNameChange = (e) => setChannelName(e.target.value);
     const handleDescChange = (e) => setDesc(e.target.value);
@@ -43,6 +46,46 @@ function CreateChannel() {
     const handleAddBtn = () => {
         setMembers([...members, { name: "", email: "" }]);
     };
+
+    function CreateChannelRequest(name, desc, members) {
+        setLoader(true);
+        setBtnText('Creating..');
+        const projectData = JSON.parse(localStorage.getItem("pdata"));
+        const projectID = projectData.projectID;
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem("token")
+            }
+        }
+        axios.post('https://zode-chat-service-test.herokuapp.com/api/channel/new', {
+            channelName: name,
+            projectid: projectID,
+            description: desc,
+            members
+        }, config).then((response) => {
+            console.log(response);
+            if(response.status === 201) {
+                alert("Success!");
+                toast.info('Channel Created!', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setTimeout(() => {
+                    window.location.href = window.location.protocol + '//' + window.location.host + '/chat/home';
+                  }, 3500);
+            }
+        }).catch((error) => {
+            setBtnText('Create');
+            setLoader(false);
+            toast.error(error.message, {position: toast.POSITION.BOTTOM_LEFT});
+        })
+        }
 
     const getMembers = () => {
     setDisable(true);
@@ -112,43 +155,9 @@ function CreateChannel() {
                 );
             })}
         </div>
-        <button type="submit" value="Submit" className="cc-create-btn" onClick={CreateChannelRequest.bind(this, channelName, channelDesc, emails)}>Create</button>
+        <Button variant="success" loading={loading} className="cc-create-btn" onClick={CreateChannelRequest.bind(this, channelName, channelDesc, emails)}>{btnText}</Button>
     </div>
     )
-}
-
-function CreateChannelRequest(name, desc, members) {
-    const projectData = JSON.parse(localStorage.getItem("pdata"));
-    const projectID = projectData.projectID;
-    const config = {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': localStorage.getItem("token")
-        }
-    }
-    axios.post('https://zode-chat-service-test.herokuapp.com/api/channel/new', {
-        channelName: name,
-        projectid: projectID,
-        description: desc,
-        members
-    }, config).then((response) => {
-        console.log(response);
-        if(response.status === 201) {
-            alert("Success!");
-            toast.info('Channel Created!', {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            setTimeout(() => {
-                window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/home';
-              }, 3500);
-        }
-    })
 }
 
 export default CreateChannel;
