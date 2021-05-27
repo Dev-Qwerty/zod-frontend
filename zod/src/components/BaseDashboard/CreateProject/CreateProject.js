@@ -40,7 +40,7 @@ function CreateProject() {
     // Handle click event - Add button
     const handleAddBtn = () => {
         setMemberList([...memberList, { email: "", userRole: "" }]);
-      }; 
+    }; 
       
       
     useEffect(() => {
