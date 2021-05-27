@@ -85,8 +85,8 @@ export default class CreatePublicBoard extends React.Component {
     };
 
     submitFn = () => {
-    
-        /*const tokenx = localStorage.getItem('token');
+        
+        const tokenx = localStorage.getItem('token');
         const xobj = JSON.parse(localStorage.getItem('pdata')); 
 
         const config = {
@@ -104,7 +104,7 @@ export default class CreatePublicBoard extends React.Component {
             "projectName": xobj.projectName,
             "projectId": xobj.projectID
         }
-
+     
         let url = 'https://boardservice-zode.herokuapp.com/api/board/new';
 
         axios.post(url, reqBody, config)
@@ -141,7 +141,7 @@ export default class CreatePublicBoard extends React.Component {
         })
         .catch(function (error) {
             console.log(error);
-        });  */
+        }); 
     }
 
     updateBname = (evt) => {
@@ -232,9 +232,9 @@ export default class CreatePublicBoard extends React.Component {
                             <div className="xcb-g1">
                                     
                                 <p className="xcb-g1-bname-label">Board Name</p>
-                                <div><input type="text" placeholder="" className="xcb-g1-bname-inp" value = { this.state.bname } onChange={ this.updateBname } ></input></div>
+                                <div><input type="text" placeholder="Enter Board Name" className="xcb-g1-bname-inp" value = { this.state.bname } onChange={ this.updateBname } ></input></div>
                                 
-                                <p className="xcb-g1-checkbox-hdn">Add Members</p>
+                                <p className="xcb-g1-members-hdn">Add Members</p>
                                     
                                 { this.state.finalMem.map((x, i) => {
                         
@@ -243,13 +243,13 @@ export default class CreatePublicBoard extends React.Component {
                                             
                                             <div className="xcb-one-row-wrapper">
         
-                                                <input list="email" placeholder="Role" className="xcb-email" name="email" onChange={e => this.handleMemberInputChange(e, i)}/>
+                                                <input list="email" placeholder="Email" className="xcb-email" name="email" onChange={e => this.handleMemberInputChange(e, i)}/>
                                                 
                                                 <datalist id="email">
                                                     
                                                     { !this.state.members ? (
                                                         <option value = "Loading..." />
-                                                        
+
                                                     ):( this.state.members.map((memdata, j) => (
                                                         <option value = { JSON.parse(JSON.stringify(memdata.email)) } />
                                                     )))}

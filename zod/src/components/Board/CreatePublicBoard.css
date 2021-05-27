@@ -222,13 +222,51 @@
 }
 
 .xcb-g1-bname-inp {
-  width: 250px;
-  border: 1px solid #000;
+  width: 280px;
+  height: 35px;
+  padding-left: 10px;
+  font-size: 16px; 
 }
 
-.xcb-g1-checkbox-hdn {
-  margin-top: 40px;
+.xcb-g1-members-hdn {
+  margin-top: 50px;
   font-size: 17px;
+}
+
+.xcb-box {
+  margin-left: 25px;
+  margin-top: 20px;
+}
+
+.xcb-one-row-wrapper {
+  margin-bottom: 20px;
+}
+
+.xcb-email {
+  margin-left: 0px;
+  width: 250px;
+  height: 35px;
+  padding-left: 10px;
+  font-size: 16px;  
+}
+
+.xcb-add-btn {
+  width: 50px;
+  height: 35px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #52D066;
+  border: none;
+  color: #fff;
+}
+
+.xcb-remove-btn {
+  width: 100px;
+  height: 35px;
+  margin-left: 20px;
+  background-color: #8F8F8F;
+  border: none;
+  color: #fff;
 }
 
 .xcb-g1-submit {
@@ -239,6 +277,7 @@
   background-color: #52D066;
   border: none;
   color: #fff;
+  font-size: 16px;
 }
 
 .xcb-g2 {
@@ -275,39 +314,4 @@
   font-family: Pacifico;
   font-size: 30px;
   color: #4CBF53;    
-}
-
-.xcb-box {
-  
-}
-
-.xcb-email {
-  margin-left: 0px;
-  width: 250px;
-  height: 35px;
-  padding-left: 10px;
-  font-size: 16px;  
-}
-
-.xcb-add-btn {
-  width: 50px;
-  height: 35px;
-  margin-left: 20px;
-  margin-right: 20px;
-  background-color: #52D066;
-  border: none;
-  color: #fff;
-}
-
-.xcb-remove-btn {
-  width: 100px;
-  height: 35px;
-  margin-left: 20px;
-  background-color: #8F8F8F;
-  border: none;
-  color: #fff;
-}
-
-.xcb-one-row-wrapper {
-  margin-bottom: 20px;
 }
