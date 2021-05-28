@@ -77,6 +77,25 @@ function DynamicChatDisplay(props) {
             setNewMembers(response.data);
         })
     }
+
+    function sendMessage() {
+        let channelId = props.channelId;
+        let url = "https://chatservice-zode.herokuapp.com/api/chat/"+ channelId +"/messages";
+        axios.post(url, {
+            "content": inputMsg
+        },
+        {
+            headers: {
+                "Access-Control-Allow-Origin" : "*",
+                    "Authorization": localStorage.getItem("token")
+                }
+            }
+        ).then(response => {
+            if(response.status == 200) {
+                setInputMsg('');
+            }
+        })
+    }
     if(props.channelname != 'default') {
         return(
         <div className="dcd-display">
@@ -99,7 +118,7 @@ function DynamicChatDisplay(props) {
             <h3>Members</h3><button value="X" className="dcd-members-closelist" onClick={() => document.getElementById("dcd-members-list").style.display = "none"}>X</button>
             <button className="dcd-add-member-btn" onClick={modalHandleShow}>+New</button>
             <Modal show={showModal} onHide={modalHandleClose}>
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>Add New Member</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -135,7 +154,7 @@ function DynamicChatDisplay(props) {
                 </div>
                 <img className="dcd-attach-icon" src={attachIcon}></img>
             </div>
-            <img className="dcd-send-icon" src={sendIcon}></img>
+            <img className="dcd-send-icon" src={sendIcon} onClick={sendMessage.bind(this)}></img>
         </div>
         </div>
         )
