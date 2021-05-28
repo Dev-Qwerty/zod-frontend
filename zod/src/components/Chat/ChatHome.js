@@ -30,7 +30,6 @@ function ChatHome() {
         });
         socket.on("new message", data => {
             console.log(data);
-            alert(data);
         })
         return () => socket.disconnect();
       }, []);

@@ -17,6 +17,7 @@ function DynamicChatDisplay(props) {
     let [inputMsg, setInputMsg] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [newMembers, setNewMembers] = useState([]);
+    let [messages, setMessages] = useState([]);
 
     const modalHandleClose = () => setShowModal(false);
     const modalHandleShow = () => {
@@ -92,9 +93,19 @@ function DynamicChatDisplay(props) {
             }
         ).then(response => {
             if(response.status == 200) {
+                messages.push(response.data);
                 setInputMsg('');
+                setMessages(messages);
+                console.log(messages);
             }
         })
+    }
+    function timeConverter(unix_ts) {
+        let date = new Date(unix_ts);
+        let hours = date.getHours();
+        let minutes = "0" + date.getMinutes();
+        let formattedTime = date.toLocaleDateString('en-GB') + ' ' + hours + ':' + minutes.substr(-2) + (hours<12?'AM' : 'PM');
+        return formattedTime;
     }
     if(props.channelname != 'default') {
         return(
@@ -155,6 +166,12 @@ function DynamicChatDisplay(props) {
                 <img className="dcd-attach-icon" src={attachIcon}></img>
             </div>
             <img className="dcd-send-icon" src={sendIcon} onClick={sendMessage.bind(this)}></img>
+        </div>
+        <div className="dcd-messages-display">
+                {messages.map((x, i) => <div className="dcd-message">
+                    <h3>{x.author.name} <span>{timeConverter(x.ts)}</span></h3>
+                    <h4>{x.content}</h4>
+                </div>)}
         </div>
         </div>
         )

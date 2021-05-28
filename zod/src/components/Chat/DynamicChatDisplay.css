@@ -190,6 +190,7 @@
     background-color: #fff;
     border: none;
     outline: none;
+    z-index: 100;
 }
 
 #dcd-emoji-picker {
@@ -208,4 +209,29 @@
     color: #fff;
     border-radius: 14px;
     font-weight: bold;
+}
+
+.dcd-messages-display {
+    position: fixed;
+    top: 150px;
+    height: 34vw;
+    width: 74vw;
+    border: 1px solid;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.dcd-message > h3 {
+    font-family: 'Montserrat';
+    font-weight: bold;
+    margin-left: 1vw;
+}
+
+.dcd-message > h3 > span {
+    font-size: 15px;
+}
+
+.dcd-message > h4 {
+    font-family: 'Roboto';
+    margin-left: 1vw;
 }
