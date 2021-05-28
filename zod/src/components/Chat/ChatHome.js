@@ -9,7 +9,7 @@ import refreshToken from '../../functions/refreshToken';
 import {toast} from 'react-toastify';
 import socketIOClient from 'socket.io-client';
 let projectDetails = JSON.parse(localStorage.getItem('pdata'));
-const ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID + "/chat";
+//const ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID + "/chat";
 
 toast.configure()
 
@@ -21,7 +21,7 @@ function ChatHome() {
     let [activeChannelId, setActiveChannelId] = useState('');
     const [response, setResponse] = useState('');
     
-    useEffect(() => {
+    /*useEffect(() => {
         const socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
         
         socket.on("connection", data => {
@@ -30,9 +30,9 @@ function ChatHome() {
         });
         return () => socket.disconnect();
       }, []);
-    
+    */
     function fetchChannels() {
-        let url = "https://zode-chat-service-test.herokuapp.com/api/channel/" + projectDetails.projectID;
+        let url = "https://chatservice-zode.herokuapp.com/api/channel/" + projectDetails.projectID;
         axios.get(url, {headers: {
             "Access-Control-Allow-Origin" : "*",
             "Authorization": localStorage.getItem("token")

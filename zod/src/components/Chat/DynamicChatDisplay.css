@@ -149,7 +149,9 @@
     border-radius: 14px;
     margin-left: 28vw;
     margin-top: 10vw;
-    height: fit-content;
+    height: 220px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .dcd-members-list-wrapper > h3 {

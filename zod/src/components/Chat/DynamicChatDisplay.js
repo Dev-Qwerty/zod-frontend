@@ -69,7 +69,7 @@ function DynamicChatDisplay(props) {
     }
     function fetchNewMembers() {
         let channelId = props.channelId;
-        let url = "https://chatservice-zode.herokuapp.com/"+ projectDetails.projectID + "/"+ channelId + "/fetchmembers";
+        let url = "https://chatservice-zode.herokuapp.com/api/channel/"+ projectDetails.projectID + "/"+ channelId + "/fetchmembers";
         axios.get(url, {headers: {
             "Access-Control-Allow-Origin" : "*",
             "Authorization": localStorage.getItem("token")
