@@ -1,16 +1,17 @@
-import './BCard.css';
+import './BMain.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
 import ReactTooltip from "react-tooltip";
 import Draggable from 'react-draggable';
+import socketIOClient from 'socket.io-client';
 
- 
+
 /* 
     ClassName Convention Used:-
         Eg: mp-top-nav -> MyProfile-top-nav ..
 */
 
-export default class Card extends React.Component {
+export default class BMain extends React.Component {
 
     constructor() {
      
@@ -18,6 +19,25 @@ export default class Card extends React.Component {
         this.state = {
             data: ''
         }
+    }
+
+    componentDidMount(){
+        
+        let projectData = JSON.parse(localStorage.getItem('pdata'));
+        const socketapi = 'https://boardservice-zode.herokuapp.com/' + projectData.projectID + '/boards';       
+        
+        const socket = socketIOClient(socketapi, {
+            auth: {
+                Authorization: localStorage.getItem('token')
+            }
+        });
+        
+        socket.on('connection', data => {
+            console.log(data);
+            //this.socket.emit("joinRoom", room);
+        });
+
+        return () => socket.disconnect();        
     }
 
     backToBaseFn = () => {

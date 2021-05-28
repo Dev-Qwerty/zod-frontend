@@ -15,7 +15,7 @@ import ProjectD from './components/ProjectDashboard/ProjectD';
 import Board from './components/Board/Board';
 import CreatePersonalBoard from './components/Board/CreatePersonalBoard';
 import CreatePublicBoard from './components/Board/CreatePublicBoard';
-import BCard from './components/Board/BCard';
+import BMain from './components/Board/BMain';
 
 import {
   BrowserRouter as Router,
@@ -76,7 +76,7 @@ function App() {
           <CreatePublicBoard />  
         </Route>            
         <Route path="/projectdashboard/board/card">
-          <BCard />  
+          <BMain />  
         </Route>
         <Route path="/chat/home">
           <ChatHome />
