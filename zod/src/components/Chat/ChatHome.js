@@ -21,19 +21,6 @@ function ChatHome() {
     let [activeChannelId, setActiveChannelId] = useState('');
     const [response, setResponse] = useState('');
     
-    useEffect(() => {
-        const socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
-        
-        socket.on("connection", data => {
-          setResponse(data);
-          console.log(response);
-        });
-        socket.on("new message", data => {
-            console.log(data);
-        })
-        return () => socket.disconnect();
-      }, []);
-    
     function fetchChannels() {
         let url = "https://chatservice-zode.herokuapp.com/api/channel/" + projectDetails.projectID;
         axios.get(url, {headers: {
@@ -50,6 +37,20 @@ function ChatHome() {
                 }, 2500);
             }
         })
+        if(channelNames.length != 0) {
+            channelNames.forEach(channel => {
+                fetchMessages(channel.channelid);
+            })
+        }
+    }
+    function fetchMessages(channelId) {
+        let url = "https://chatservice-zode.herokuapp.com/api/messages/"+ channelId + "?latest=1622296237299" //+ Math.floor(Date.now());
+        axios.get(url, {headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": localStorage.getItem("token")
+        }}).then(response => {
+            console.log(response.data);
+        })
     }
     function channelClicked(channel) {
         setActiveComponent(channel.channelName); 
@@ -61,6 +62,17 @@ function ChatHome() {
     }
     useEffect(() => {
         fetchChannels();
+        const socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
+        
+        socket.on("connection", data => {
+          setResponse(data);
+          console.log(response);
+        });
+        socket.on("new message", data => {
+            console.log(data);
+        })
+        
+        return () => socket.disconnect();
     }, []);
     return(
         <div className="zod-chat-homepg">
