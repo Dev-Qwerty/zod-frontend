@@ -4,7 +4,9 @@ import React from 'react';
 import ReactTooltip from "react-tooltip";
 import Draggable from 'react-draggable';
 import socketIOClient from 'socket.io-client';
-
+let proData = JSON.parse(localStorage.getItem('pdata'));
+const API = 'https://boardservice-zode.herokuapp.com/'+ proData.projectID + '/boards';
+//const API = 'https://chatservice-zode.herokuapp.com/'+ proData.projectID + "/chat";
 
 /* 
     ClassName Convention Used:-
@@ -21,23 +23,32 @@ export default class BMain extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentWillUnmount() {
         
-        let projectData = JSON.parse(localStorage.getItem('pdata'));
+    }
+
+    componentDidMount() {
+        
+        /*let projectData = JSON.parse(localStorage.getItem('pdata'));
         const socketapi = 'https://boardservice-zode.herokuapp.com/' + projectData.projectID + '/boards';       
         
-        const socket = socketIOClient(socketapi, {
+        const socket = io(socketapi, {
             auth: {
                 Authorization: localStorage.getItem('token')
             }
         });
         
-        socket.on('connection', data => {
+        socket.on('connection', (data) => {
             console.log(data);
             //this.socket.emit("joinRoom", room);
+        });*/
+      
+        const socket = socketIOClient(API, {auth: {Authorization: localStorage.getItem('token')}});
+        
+        socket.on("connection", () => {
+          console.log(socket.id);
         });
 
-        return () => socket.disconnect();        
     }
 
     backToBaseFn = () => {
