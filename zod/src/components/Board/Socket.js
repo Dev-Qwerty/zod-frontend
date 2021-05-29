@@ -1,3 +1,5 @@
+// URL: http://localhost:3000/socket
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import refreshToken from '../../functions/refreshToken';
