@@ -22,7 +22,8 @@ export default class BMain extends React.Component {
         super();
         this.state = {
             data: '',
-            listBool: false
+            listBool: false,
+            listDat: []
         }
     }
 
@@ -62,12 +63,19 @@ export default class BMain extends React.Component {
         }
     
         let url = 'https://boardservice-zode.herokuapp.com/api/board/lists/' + obj.boardId;
-        alert(url)
+    
         axios.get(url, config)
         .then((res) => {
     
             if(res.status === 200) {
-                alert(JSON.stringify(res.data));
+                
+                /*alert(JSON.stringify(res.data));*/
+                const dat = res.data;
+                
+                this.setState({
+                    listDat : dat.lists
+                });  
+                /*alert(this.state.listDat);*/         
             } else {
 
             }
@@ -77,6 +85,10 @@ export default class BMain extends React.Component {
                 refreshToken();
             }
         });        
+    }
+
+    createListFn = () => {
+        alert('hoi');
     }
 
     backToBaseFn = () => {
@@ -94,7 +106,7 @@ export default class BMain extends React.Component {
         }); 
     } 
 
-    clistSubmitFn = () => {
+    clistCloseFn = () => {
         this.setState({
             listBool : false
         }); 
@@ -293,10 +305,14 @@ export default class BMain extends React.Component {
                     <div className="clist-wrapper">
                         
                         <div className="cl-body">
+                            
+                            <div className="cl-close" onClick = { this.clistCloseFn }></div>
+                            
                             <p className="clb-namep">List Name</p>
                             <div><input type="text" placeholder="List Name" className="clb-nameinp" ></input></div>
                             
-                            <div><input type="submit" value="Create" className="clb-submit" onClick = { this.clistSubmitFn }></input></div>                           
+                            <div><input type="submit" value="Create" className="clb-submit" onClick = { this.createListFn }></input></div>                           
+                    
                         </div>
                     </div>                    
                 ):(

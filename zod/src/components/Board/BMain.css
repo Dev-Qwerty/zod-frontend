@@ -337,8 +337,23 @@
   color: #000;
 } 
 
+.cl-close {
+  margin-top: 9px;
+  width: 26px;
+  height: 26px;  
+  margin-left: 90%;
+  background-image: url('../../assets/closesq.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;    
+}
+
+.cl-close:hover {
+  cursor: pointer;
+}
+
 .cl-body {
-  padding-top: 10%;
+  /*padding-top: 10%;*/
   padding-left: 10%;
 }
 

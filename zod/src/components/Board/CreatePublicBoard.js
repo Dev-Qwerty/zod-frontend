@@ -53,7 +53,9 @@ export default class CreatePublicBoard extends React.Component {
             }
         })
         .catch(function (error) {
-            console.log(error);
+            if(error.response.status === 401) {
+                refreshToken();
+            };
         });         
     }
 

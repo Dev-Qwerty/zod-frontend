@@ -26,7 +26,7 @@ export default class Board extends React.Component {
     componentDidMount(){
      
         refreshToken();
-        
+
         const token1 = localStorage.getItem('token');
         const obj = JSON.parse(localStorage.getItem('pdata'));
 
@@ -74,7 +74,9 @@ export default class Board extends React.Component {
             }
         })
         .catch(function (error) {
-            console.log(error);
+            if(error.response.status === 401) {
+                refreshToken();
+            }
         });         
     }
 

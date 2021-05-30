@@ -24,7 +24,6 @@ export default class CreatePersonalBoard extends React.Component {
     }
 
     componentDidMount(){
-
         refreshToken();
     }
 
@@ -90,7 +89,9 @@ export default class CreatePersonalBoard extends React.Component {
             }
         })
         .catch(function (error) {
-            console.log(error);
+            if(error.response.status === 401) {
+                refreshToken();
+            }
         }); 
     }
 
