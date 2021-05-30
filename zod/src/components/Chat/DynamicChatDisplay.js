@@ -50,6 +50,7 @@ function DynamicChatDisplay(props) {
             document.getElementById("dcd-emoji-picker").style.display = "none";
         }       
     }
+    
     function fetchMembers() {
         let channelId = props.channelId;
         setChannelMembers([]);
@@ -107,6 +108,16 @@ function DynamicChatDisplay(props) {
         let formattedTime = date.toLocaleDateString('en-GB') + ' ' + hours + ':' + minutes.substr(-2) + (hours<12?'AM' : 'PM');
         return formattedTime;
     }
+    useEffect(() => {
+        setMessages([]);
+        let url = "https://chatservice-zode.herokuapp.com/api/messages/"+ props.channelId + "?latest=" + Math.floor(Date.now());
+        axios.get(url, {headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": localStorage.getItem("token")
+        }}).then(response => {
+            setMessages(response.data);
+        })
+    },[props.channelId]);
     if(props.channelname != 'default') {
         return(
         <div className="dcd-display">
@@ -167,7 +178,7 @@ function DynamicChatDisplay(props) {
             </div>
             <img className="dcd-send-icon" src={sendIcon} onClick={sendMessage.bind(this)}></img>
         </div>
-        <div className="dcd-messages-display">
+        <div className="dcd-messages-display" id="dcd-messages-display">
                 {messages.map((x, i) => <div className="dcd-message">
                     <h3>{x.author.name} <span>{timeConverter(x.ts)}</span></h3>
                     <h4>{x.content}</h4>

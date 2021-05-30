@@ -13,13 +13,14 @@ const ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.proje
 
 toast.configure()
 
-
+let msgs = [];
 function ChatHome() {
     let [activeComponent, setActiveComponent] = useState('default'); 
     let [channelNames, setChannelName] = useState([]);
     let [channelMembers, setChannelMembers] = useState([]);
     let [activeChannelId, setActiveChannelId] = useState('');
     const [response, setResponse] = useState('');
+    const [allMessages, setAllMessages] = useState([]);
     
     function fetchChannels() {
         let url = "https://chatservice-zode.herokuapp.com/api/channel/" + projectDetails.projectID;
@@ -37,24 +38,11 @@ function ChatHome() {
                 }, 2500);
             }
         })
-        if(channelNames.length != 0) {
-            channelNames.forEach(channel => {
-                fetchMessages(channel.channelid);
-            })
-        }
     }
-    function fetchMessages(channelId) {
-        let url = "https://chatservice-zode.herokuapp.com/api/messages/"+ channelId + "?latest=1622296237299" //+ Math.floor(Date.now());
-        axios.get(url, {headers: {
-            "Access-Control-Allow-Origin" : "*",
-            "Authorization": localStorage.getItem("token")
-        }}).then(response => {
-            console.log(response.data);
-        })
-    }
+    
     function channelClicked(channel) {
         setActiveComponent(channel.channelName); 
-        setActiveChannelId(channel.channelid); 
+        setActiveChannelId(channel.channelid);
         let displayValue = document.getElementById("dcd-members-list"); 
         if(displayValue != null && displayValue.style.display != "none") { 
             document.getElementById("dcd-members-list").style.display = "none";
@@ -125,8 +113,8 @@ function ChatHome() {
             </div>
         </div>
         <div className="ch-chat-display">
-            {channelNames.length == 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={null}/>}
-            {channelNames.length != 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={activeChannelId}/>}
+            {channelNames.length == 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={null} messages={[]}/>}
+            {channelNames.length != 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={activeChannelId} messages={allMessages}/>}
         </div>
     </div>
     )
