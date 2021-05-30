@@ -72,12 +72,11 @@ export default class BMain extends React.Component {
             if(res.status === 200) {
                 
                 const dat = res.data;
-                console.log(dat);
 
                 this.setState({
                     listDat : dat.lists
                 });  
-                //console.log(this.state.listDat);         
+                //alert(JSON.stringify(this.state.listDat));         
             } else {
 
             }
@@ -142,7 +141,12 @@ export default class BMain extends React.Component {
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                    });                    
+                    }); 
+                    
+                    setTimeout(() => {
+                        window.location.reload();
+                      }, 3000);                      
+
                 } else {
               
                 }
@@ -155,10 +159,71 @@ export default class BMain extends React.Component {
 
 
         } else {
+
             
-            this.clistCloseFn();
-            alert(JSON.stringify(this.state.listDat));
+            // add 1045 to last obj pos
+            const lastObj = this.state.listDat[this.state.listDat.length - 1];
+            const lastPos = lastObj.pos; 
+            const num = 1045;
+            const newPos = lastPos + num;
+            console.log(newPos);
+
+            // Axios POST
+            const tokenx = localStorage.getItem('token');
+            const obj = JSON.parse(localStorage.getItem('boardobj'));
+    
+            const config = {
+                headers: {
+                    'Authorization': tokenx,
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin' : '*',
+                }
+            }
+        
+            const reqBody = {
+                "title": this.state.listTitle,
+                "pos": newPos,
+                "boardId": obj.boardId
+            }
+         
+            let url = 'https://boardservice-zode.herokuapp.com/api/' + obj.boardId + '/list/new';
+        
+            //alert(JSON.stringify(reqBody));
+
+            axios.post(url, reqBody, config)
+            .then((res) => {
+        
+                if(res.status === 201) {
+                    
+                    //console.log(res.data);
+                    this.clistCloseFn();
+
+                    toast.info('List Created!', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    
+                    setTimeout(() => {
+                        window.location.reload();
+                      }, 3000);                  
+                    
+                } else {
+              
+                }
+            })
+            .catch(function (error) {
+                if(error.response.status === 401) {
+                    refreshToken();
+                }
+            });    
+
         }
+    
     }
 
     backToBaseFn = () => {
