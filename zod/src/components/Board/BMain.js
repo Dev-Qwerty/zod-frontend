@@ -316,118 +316,37 @@ export default class BMain extends React.Component {
                             </div>
 
                             <div className="cb-list-wrapper">
+
+                                { !this.state.listDat ? (
+                                                                        
+                                    <p>Loading...</p>
+
+                                ):( this.state.listDat.map((litem, i) => (
                                 
-                                <div className="cb-list">
-                                   
-                                    <div className="cbl-h">
-                                        <div className="cblh-wr">
-                                            <div className="cblh-p"><p>Upcomming</p></div>
-                                            <div className="cblh-plus"></div>
-                                        </div>
+                                    <div className="cb-list">
 
-                                        <div className="cblh-line"></div>
-                                    </div>
-
-                                    <Draggable>  
-                                        <div className="dragg">
-                                            <div className="cbl-card">
-                                                <div className="cblc-taskname">
-                                                    <p>Task Name</p>
-                                                </div>
-                                                <div className="cblc-wr">
-                                                    <div className="cblc-profile"><p>JD</p></div>
-                                                    <div><p className="cblc-date">20-5-2021</p></div>
-                                                </div>
+                                        <div className="cbl-h">
+                                            <div className="cblh-wr">
+                                                <div className="cblh-p"><p>{ JSON.parse(JSON.stringify( litem.title )) }</p></div>
+                                                <div className="cblh-plus"></div>
                                             </div>
+    
+                                            <div className="cblh-line"></div>
                                         </div>
-                                    </Draggable>
-                                    
-                                    <div className="cbl-card">
-                                        <div className="cblc-taskname">
-                                            <p>Task Name</p>
-                                        </div>
-                                        <div className="cblc-wr">
-                                            <div className="cblc-profile"><p>JD</p></div>
-                                            <div><p className="cblc-date">20-5-2021</p></div>
-                                        </div>
+    
+                                        {/*<div className="cbl-card">
+                                            <div className="cblc-taskname">
+                                                <p>Task Name</p>
+                                            </div>
+                                            
+                                            <div className="cblc-wr">
+                                                <div className="cblc-profile"><p>JD</p></div>
+                                                <div><p className="cblc-date">20-5-2021</p></div>
+                                            </div>
+                                        </div>*/}
                                     </div>
+                                )))}    
 
-                                    <div className="cbl-card">
-                                        <div className="cblc-taskname">
-                                            <p>Task Name</p>
-                                        </div>
-                                        <div className="cblc-wr">
-                                            <div className="cblc-profile"><p>JD</p></div>
-                                            <div><p className="cblc-date">20-5-2021</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="cb-list">
-
-                                   <div className="cbl-h">
-                                        <div className="cblh-wr">
-                                            <div className="cblh-p"><p>In Progress</p></div>
-                                            <div className="cblh-plus"></div>
-                                        </div>
-
-                                        <div className="cblh-line"></div>
-                                    </div>
-
-                                    <div className="cbl-card">
-                                        <div className="cblc-taskname">
-                                            <p>Task Name</p>
-                                        </div>
-                                        <div className="cblc-wr">
-                                            <div className="cblc-profile"><p>JD</p></div>
-                                            <div><p className="cblc-date">20-5-2021</p></div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="cbl-card">
-                                        <div className="cblc-taskname">
-                                            <p>Task Name</p>
-                                        </div>
-                                        <div className="cblc-wr">
-                                            <div className="cblc-profile"><p>JD</p></div>
-                                            <div><p className="cblc-date">20-5-2021</p></div>
-                                        </div>
-                                    </div>                                  
-                                </div>
-
-                                <div className="cb-list">
-
-                                    <div className="cbl-h">
-                                        <div className="cblh-wr">
-                                            <div className="cblh-p"><p>Completed</p></div>
-                                            <div className="cblh-plus"></div>
-                                        </div>
-
-                                        <div className="cblh-line"></div>
-                                    </div>
-
-                                    <div className="cbl-card">
-                                        <div className="cblc-taskname">
-                                            <p>Task Name</p>
-                                        </div>
-                                        <div className="cblc-wr">
-                                            <div className="cblc-profile"><p>JD</p></div>
-                                            <div><p className="cblc-date">20-5-2021</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="cb-list">
-
-                                    <div className="cbl-h">
-                                        <div className="cblh-wr">
-                                            <div className="cblh-p"><p>Frontend</p></div>
-                                            <div className="cblh-plus"></div>
-                                        </div>
-
-                                        <div className="cblh-line"></div>
-                                    </div>
-                                </div>
                             </div>
     
                         </div>
