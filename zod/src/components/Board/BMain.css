@@ -324,3 +324,15 @@
   padding-right: 15px;
   padding-top: 13px;
 }
+
+/* create list fn */
+.clist-wrapper {
+  position: absolute;
+  left: 60%;
+  top: 10%;
+  width: 250px;
+  height: 100px;
+  background-color: #000;
+  border: 1px solid #000;
+  color: #fff;
+} 

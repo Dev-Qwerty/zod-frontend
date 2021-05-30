@@ -19,7 +19,8 @@ export default class BMain extends React.Component {
      
         super();
         this.state = {
-            data: ''
+            data: '',
+            listBool: false
         }
     }
 
@@ -50,8 +51,14 @@ export default class BMain extends React.Component {
         window.location.href = window.location.protocol + '//' + window.location.host + '/login';   
     }
 
+    createListFn = () => {
+        this.setState({
+            listBool : true
+        }); 
+    } 
+
     render() {
-    
+        
         return (
             <div className="Card">
                 
@@ -115,7 +122,7 @@ export default class BMain extends React.Component {
                         <div className="cb-wrapper">
 
                             <div className="">
-                                <input type="submit" value="New List" className="cb-new-list-btn"></input>
+                                <input type="submit" value="New List" className="cb-new-list-btn" onClick = { this.createListFn }></input>
                             </div>
 
                             <div className="cb-list-wrapper">
@@ -237,6 +244,15 @@ export default class BMain extends React.Component {
 
                     </div>
                 </div>
+
+                { this.state.listBool ? (
+                    <div className="clist-wrapper">
+                        <p>Create list..</p>
+                    </div>                    
+                ):(
+                    <p></p>
+                )}
+
             </div>
         );
     }
