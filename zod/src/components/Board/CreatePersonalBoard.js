@@ -2,6 +2,7 @@ import './CreatePersonalBoard.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
 import ReactTooltip from "react-tooltip";
+import refreshToken from '../../functions/refreshToken';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,7 +24,8 @@ export default class CreatePersonalBoard extends React.Component {
     }
 
     componentDidMount(){
-        
+
+        refreshToken();
     }
 
     updateBname = (evt) => {

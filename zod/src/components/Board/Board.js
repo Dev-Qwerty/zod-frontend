@@ -1,6 +1,7 @@
 import './Board.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
+import refreshToken from '../../functions/refreshToken';
 import ReactTooltip from "react-tooltip";
 import axios from 'axios';
  
@@ -24,6 +25,8 @@ export default class Board extends React.Component {
 
     componentDidMount(){
      
+        refreshToken();
+        
         const token1 = localStorage.getItem('token');
         const obj = JSON.parse(localStorage.getItem('pdata'));
 

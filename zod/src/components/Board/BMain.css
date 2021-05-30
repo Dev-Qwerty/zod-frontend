@@ -328,11 +328,35 @@
 /* create list fn */
 .clist-wrapper {
   position: absolute;
-  left: 60%;
+  left: 54%;
   top: 10%;
-  width: 250px;
-  height: 100px;
-  background-color: #000;
-  border: 1px solid #000;
-  color: #fff;
+  width: 27%;
+  height: 30%;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: #000;
 } 
+
+.cl-body {
+  padding-top: 10%;
+  padding-left: 10%;
+}
+
+.clb-namep {
+  font-size: 17px;
+}
+
+.clb-nameinp {
+  width: 250px;
+  height: 31px;
+  margin-bottom: 30px;
+}
+
+.clb-submit {
+  width: 30%;
+  height: 35px;
+  background-color: #189FFA;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}

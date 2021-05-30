@@ -1,6 +1,8 @@
 import './BMain.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
+import axios from 'axios';
+import refreshToken from '../../functions/refreshToken';
 import ReactTooltip from "react-tooltip";
 import Draggable from 'react-draggable';
 import io from 'socket.io-client';
@@ -29,7 +31,10 @@ export default class BMain extends React.Component {
     }
 
     componentDidMount() {
-      
+
+        refreshToken();
+        const obj = JSON.parse(localStorage.getItem('boardobj'));
+
         const socket = io(API, {
             auth: {
                 Authorization: localStorage.getItem('token')
@@ -37,9 +42,41 @@ export default class BMain extends React.Component {
         });
         
         socket.on("connection", (data) => {
-          //this.socket.emit("joinRoom", room);
+          this.socket.emit("joinRoom", obj.boardId);
         });
 
+        this.fetchListCard();
+    }
+
+    fetchListCard = () => {
+      
+        const token1 = localStorage.getItem('token');
+        const obj = JSON.parse(localStorage.getItem('boardobj'));
+
+        const config = {
+            headers: {
+                'Authorization': token1,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        let url = 'https://boardservice-zode.herokuapp.com/api/board/lists/' + obj.boardId;
+        alert(url)
+        axios.get(url, config)
+        .then((res) => {
+    
+            if(res.status === 200) {
+                alert(JSON.stringify(res.data));
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            if(error.response.status === 401) {
+                refreshToken();
+            }
+        });        
     }
 
     backToBaseFn = () => {
@@ -51,11 +88,17 @@ export default class BMain extends React.Component {
         window.location.href = window.location.protocol + '//' + window.location.host + '/login';   
     }
 
-    createListFn = () => {
+    clistBoolFn = () => {
         this.setState({
             listBool : true
         }); 
     } 
+
+    clistSubmitFn = () => {
+        this.setState({
+            listBool : false
+        }); 
+    }
 
     render() {
         
@@ -122,7 +165,7 @@ export default class BMain extends React.Component {
                         <div className="cb-wrapper">
 
                             <div className="">
-                                <input type="submit" value="New List" className="cb-new-list-btn" onClick = { this.createListFn }></input>
+                                <input type="submit" value="New List" className="cb-new-list-btn" onClick = { this.clistBoolFn }></input>
                             </div>
 
                             <div className="cb-list-wrapper">
@@ -246,12 +289,19 @@ export default class BMain extends React.Component {
                 </div>
 
                 { this.state.listBool ? (
+                    
                     <div className="clist-wrapper">
-                        <p>Create list..</p>
+                        
+                        <div className="cl-body">
+                            <p className="clb-namep">List Name</p>
+                            <div><input type="text" placeholder="List Name" className="clb-nameinp" ></input></div>
+                            
+                            <div><input type="submit" value="Create" className="clb-submit" onClick = { this.clistSubmitFn }></input></div>                           
+                        </div>
                     </div>                    
                 ):(
                     <p></p>
-                )}
+                )}               
 
             </div>
         );
