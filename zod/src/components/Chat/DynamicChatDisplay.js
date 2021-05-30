@@ -50,7 +50,12 @@ function DynamicChatDisplay(props) {
             document.getElementById("dcd-emoji-picker").style.display = "none";
         }       
     }
-    
+    function updateScroll(){
+        var element = document.getElementById("dcd-messages-display");
+        if(element!=null) {
+            element.scrollTop = element.scrollHeight;
+        }
+    }
     function fetchMembers() {
         let channelId = props.channelId;
         setChannelMembers([]);
@@ -97,7 +102,6 @@ function DynamicChatDisplay(props) {
                 messages.push(response.data);
                 setInputMsg('');
                 setMessages(messages);
-                console.log(messages);
             }
         })
     }
@@ -118,6 +122,9 @@ function DynamicChatDisplay(props) {
             setMessages(response.data);
         })
     },[props.channelId]);
+    useEffect(() => {
+        updateScroll();
+    }, [messages.length]);
     if(props.channelname != 'default') {
         return(
         <div className="dcd-display">

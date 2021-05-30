@@ -196,6 +196,7 @@
 #dcd-emoji-picker {
     margin-top: -24vw;
     margin-left: -4vw;
+    z-index: 101;
     display: none;
 }
 
@@ -219,6 +220,7 @@
     border: 1px solid;
     overflow-x: hidden;
     overflow-y: auto;
+    z-index: -1;
 }
 
 .dcd-message > h3 {
