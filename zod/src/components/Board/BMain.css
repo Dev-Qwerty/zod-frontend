@@ -234,6 +234,7 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
+/* Head Card */
 .cbl-h {
   padding-top: 10px;  
   width: 100%;
@@ -278,6 +279,7 @@
   cursor: move;
 }
 
+/* Card */
 .cbl-card {
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 3px;
@@ -323,6 +325,22 @@
   text-align: right;
   padding-right: 15px;
   padding-top: 13px;
+}
+
+/* No Card's Present */
+.cbl-spec-card {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width: 90%;
+  height: 100px;
+  background-color: #fff;
+  text-align: center;
+  padding-top: 11%;
 }
 
 /* create list fn */

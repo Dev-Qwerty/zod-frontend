@@ -335,7 +335,11 @@ export default class BMain extends React.Component {
     
                                             <div className="cblh-line"></div>
                                         </div>
-    
+
+                                        <div className="cbl-spec-card">
+                                            <p>Empty!</p>
+                                        </div>
+
                                         {/*<div className="cbl-card">
                                             <div className="cblc-taskname">
                                                 <p>Task Name</p>
