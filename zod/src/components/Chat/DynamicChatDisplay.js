@@ -10,13 +10,21 @@ import Loader from '../Loader/Loader';
 import Picker from 'emoji-picker-react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-
+import firebase from 'firebase';
+import socketIOClient from 'socket.io-client';
+let projectDetails = JSON.parse(localStorage.getItem('pdata'));
+let ENDPOINT;
+if(projectDetails) {
+ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID + "/chat";
+}
+let prev_ts = 0;
 function DynamicChatDisplay(props) {
     let [channelMembers, setChannelMembers] = useState([]);
     const [chosenEmoji, setChosenEmoji] = useState(null);
     let [inputMsg, setInputMsg] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [newMembers, setNewMembers] = useState([]);
+    let [messages, setMessages] = useState([]);
 
     const modalHandleClose = () => setShowModal(false);
     const modalHandleShow = () => {
@@ -49,6 +57,12 @@ function DynamicChatDisplay(props) {
             document.getElementById("dcd-emoji-picker").style.display = "none";
         }       
     }
+    function updateScroll(){
+        var element = document.getElementById("dcd-messages-display");
+        if(element!=null) {
+            element.scrollTop = element.scrollHeight;
+        }
+    }
     function fetchMembers() {
         let channelId = props.channelId;
         setChannelMembers([]);
@@ -69,7 +83,7 @@ function DynamicChatDisplay(props) {
     }
     function fetchNewMembers() {
         let channelId = props.channelId;
-        let url = "https://chatservice-zode.herokuapp.com/"+ projectDetails.projectID + "/"+ channelId + "/fetchmembers";
+        let url = "https://chatservice-zode.herokuapp.com/api/channel/"+ projectDetails.projectID + "/"+ channelId + "/fetchmembers";
         axios.get(url, {headers: {
             "Access-Control-Allow-Origin" : "*",
             "Authorization": localStorage.getItem("token")
@@ -77,6 +91,60 @@ function DynamicChatDisplay(props) {
             setNewMembers(response.data);
         })
     }
+
+    function sendMessage() {
+        let channelId = props.channelId;
+        let url = "https://chatservice-zode.herokuapp.com/api/chat/"+ channelId +"/messages";
+        axios.post(url, {
+            "content": inputMsg
+        },
+        {
+            headers: {
+                "Access-Control-Allow-Origin" : "*",
+                    "Authorization": localStorage.getItem("token")
+                }
+            }
+        ).then(response => {
+            if(response.status == 200) {
+                messages.push(response.data);
+                setInputMsg('');
+                setMessages(messages);
+            }
+        })
+    }
+    function timeConverter(unix_ts) {
+        let date = new Date(unix_ts);
+        let hours = date.getHours();
+        let minutes = "0" + date.getMinutes();
+        let formattedTime = date.toLocaleDateString('en-GB') + ' ' + (hours>12?hours-12:hours) + ':' + minutes.substr(-2) + (hours<12?'AM' : 'PM');
+        return formattedTime;
+    }
+    useEffect(() => {
+        setMessages([]);
+        let url = "https://chatservice-zode.herokuapp.com/api/messages/"+ props.channelId + "?latest=" + Math.floor(Date.now());
+        axios.get(url, {headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": localStorage.getItem("token")
+        }}).then(response => {
+            setMessages(response.data);
+        })
+    },[props.channelId]);
+    useEffect(() => {
+        updateScroll();
+        console.log("Length changed!");
+    }, [messages.length]);
+    useEffect(() => {
+        let socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
+        socket.on("new message", data=> {
+            let email = firebase.auth().currentUser.email
+            console.log(data.channelid == props.channelId && email != data.author.email);
+            if(data.channelid == props.channelId && email != data.author.email) {
+                messages.push(data);
+                setMessages(messages);
+            }
+        })
+        return () => socket.disconnect();
+    }, []);
     if(props.channelname != 'default') {
         return(
         <div className="dcd-display">
@@ -99,7 +167,7 @@ function DynamicChatDisplay(props) {
             <h3>Members</h3><button value="X" className="dcd-members-closelist" onClick={() => document.getElementById("dcd-members-list").style.display = "none"}>X</button>
             <button className="dcd-add-member-btn" onClick={modalHandleShow}>+New</button>
             <Modal show={showModal} onHide={modalHandleClose}>
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>Add New Member</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -135,7 +203,13 @@ function DynamicChatDisplay(props) {
                 </div>
                 <img className="dcd-attach-icon" src={attachIcon}></img>
             </div>
-            <img className="dcd-send-icon" src={sendIcon}></img>
+            <img className="dcd-send-icon" src={sendIcon} onClick={sendMessage.bind(this)}></img>
+        </div>
+        <div className="dcd-messages-display" id="dcd-messages-display">
+                {messages.map((x, i) => <div className="dcd-message">
+                    <h3>{x.author.name} <span>{timeConverter(x.ts)}</span></h3>
+                    <h4>{x.content}</h4>
+                </div>)}
         </div>
         </div>
         )
