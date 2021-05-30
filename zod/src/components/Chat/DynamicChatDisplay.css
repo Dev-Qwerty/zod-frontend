@@ -149,7 +149,9 @@
     border-radius: 14px;
     margin-left: 28vw;
     margin-top: 10vw;
-    height: fit-content;
+    height: 220px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .dcd-members-list-wrapper > h3 {
@@ -188,11 +190,13 @@
     background-color: #fff;
     border: none;
     outline: none;
+    z-index: 100;
 }
 
 #dcd-emoji-picker {
     margin-top: -24vw;
     margin-left: -4vw;
+    z-index: 101;
     display: none;
 }
 
@@ -206,4 +210,30 @@
     color: #fff;
     border-radius: 14px;
     font-weight: bold;
+}
+
+.dcd-messages-display {
+    position: fixed;
+    top: 150px;
+    height: 34vw;
+    width: 74vw;
+    border: 1px solid;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.dcd-message > h3 {
+    font-family: 'Montserrat';
+    font-weight: bold;
+    margin-left: 1vw;
+}
+
+.dcd-message > h3 > span {
+    font-size: 15px;
+}
+
+.dcd-message > h4 {
+    font-family: 'Roboto';
+    margin-left: 1vw;
 }

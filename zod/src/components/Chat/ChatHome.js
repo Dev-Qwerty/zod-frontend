@@ -9,30 +9,24 @@ import refreshToken from '../../functions/refreshToken';
 import {toast} from 'react-toastify';
 import socketIOClient from 'socket.io-client';
 let projectDetails = JSON.parse(localStorage.getItem('pdata'));
-const ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID + "/chat";
-
+let ENDPOINT;
+if(projectDetails) {
+ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID + "/chat";
+}
 toast.configure()
 
-
+let msgs = [];
 function ChatHome() {
     let [activeComponent, setActiveComponent] = useState('default'); 
     let [channelNames, setChannelName] = useState([]);
     let [channelMembers, setChannelMembers] = useState([]);
     let [activeChannelId, setActiveChannelId] = useState('');
     const [response, setResponse] = useState('');
-    
-    useEffect(() => {
-        const socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
-        
-        socket.on("connection", data => {
-          setResponse(data);
-          console.log(response);
-        });
-        return () => socket.disconnect();
-      }, []);
+    const [allMessages, setAllMessages] = useState([]);
+    //const socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
     
     function fetchChannels() {
-        let url = "https://zode-chat-service-test.herokuapp.com/api/channel/" + projectDetails.projectID;
+        let url = "https://chatservice-zode.herokuapp.com/api/channel/" + projectDetails.projectID;
         axios.get(url, {headers: {
             "Access-Control-Allow-Origin" : "*",
             "Authorization": localStorage.getItem("token")
@@ -48,9 +42,10 @@ function ChatHome() {
             }
         })
     }
+    
     function channelClicked(channel) {
         setActiveComponent(channel.channelName); 
-        setActiveChannelId(channel.channelid); 
+        setActiveChannelId(channel.channelid);
         let displayValue = document.getElementById("dcd-members-list"); 
         if(displayValue != null && displayValue.style.display != "none") { 
             document.getElementById("dcd-members-list").style.display = "none";
@@ -58,6 +53,13 @@ function ChatHome() {
     }
     useEffect(() => {
         fetchChannels();
+        
+        /*socket.on("connection", data => {
+          setResponse(data);
+          console.log(response);
+        });
+        
+        return () => socket.disconnect();*/
     }, []);
     return(
         <div className="zod-chat-homepg">
@@ -110,8 +112,8 @@ function ChatHome() {
             </div>
         </div>
         <div className="ch-chat-display">
-            {channelNames.length == 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={null}/>}
-            {channelNames.length != 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={activeChannelId}/>}
+            {channelNames.length == 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={null} messages={[]}/>}
+            {channelNames.length != 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={activeChannelId} messages={allMessages}/>}
         </div>
     </div>
     )
