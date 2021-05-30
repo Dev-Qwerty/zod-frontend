@@ -248,23 +248,27 @@
 }
 
 .bbPersonal-special-card {
-  border: 1px solid rgba(0, 0, 0, 0.15);;
+  background-image: url('../../assets/leaves.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;    
+  border: 1px solid rgba(0, 0, 0, 0.15);
   width: 210px;
   height: 110px;
-  background-color: #e6e6e6;
   color: #000;
 }
 
 .bbPersonal-xy {
-  padding-top: 15px;
+  padding-top: 21px;
   margin-left: auto;
   margin-right: auto;
   width: 70%;
-  margin-top: 26px;
+  height: 60%;
+  margin-top: 22px;
   display: grid;
   grid-template-columns: 32% 68%;
-  border: 1px solid rgba(0, 0, 0, 0.15);
   background-color: #fff;
+  opacity: 0.7;
 }
 
 .bbPersonal-plus {
@@ -318,23 +322,27 @@
 }
 
 .bbPublic-special-card {
+  background-image: url('../../assets/mtn.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;      
   border: 1px solid rgba(0, 0, 0, 0.15);
   width: 210px;
   height: 110px;
-  background-color: #e6e6e6;
   color: #000;
 }
 
 .bbPublic-xy {
-  padding-top: 15px;
+  padding-top: 21px;
   margin-left: auto;
   margin-right: auto;
   width: 70%;
-  margin-top: 26px;
+  height: 60%;
+  margin-top: 22px;
   display: grid;
   grid-template-columns: 32% 68%;
-  border: 1px solid rgba(0, 0, 0, 0.15);
   background-color: #fff;
+  opacity: 0.7;
 }
 
 .bbPublic-plus {
