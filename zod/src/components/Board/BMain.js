@@ -5,6 +5,7 @@ import axios from 'axios';
 import refreshToken from '../../functions/refreshToken';
 import ReactTooltip from "react-tooltip";
 import Draggable from 'react-draggable';
+import { ToastContainer, toast } from 'react-toastify';
 import io from 'socket.io-client';
 
 let proData = JSON.parse(localStorage.getItem('pdata'));
@@ -23,7 +24,8 @@ export default class BMain extends React.Component {
         this.state = {
             data: '',
             listBool: false,
-            listDat: []
+            listDat: '',
+            listTitle: ''
         }
     }
 
@@ -69,13 +71,13 @@ export default class BMain extends React.Component {
     
             if(res.status === 200) {
                 
-                /*alert(JSON.stringify(res.data));*/
                 const dat = res.data;
-                
+                console.log(dat);
+
                 this.setState({
                     listDat : dat.lists
                 });  
-                /*alert(this.state.listDat);*/         
+                //console.log(this.state.listDat);         
             } else {
 
             }
@@ -87,13 +89,76 @@ export default class BMain extends React.Component {
         });        
     }
 
+    updateListTitle = (evt) => {
+        this.setState({
+            listTitle: evt.target.value
+        });
+    }
+
     createListFn = () => {
 
-        const min = 500;
-        const max = 1000;
-        const rand = min + Math.random() * (max - min);
-        const roundR = Math.round(rand);
-        alert(roundR);        
+        if(this.state.listDat.length == 0) {
+            
+            // Random No
+            const min = 500;
+            const max = 1000;
+            const rand = min + Math.random() * (max - min);
+            const roundR = Math.round(rand); 
+            console.log(roundR);
+        
+            // Axios POST
+            const tokenx = localStorage.getItem('token');
+            const obj = JSON.parse(localStorage.getItem('boardobj'));
+    
+            const config = {
+                headers: {
+                    'Authorization': tokenx,
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin' : '*',
+                }
+            }
+        
+            const reqBody = {
+                "title": this.state.listTitle,
+                "pos": roundR,
+                "boardId": obj.boardId
+            }
+         
+            let url = 'https://boardservice-zode.herokuapp.com/api/' + obj.boardId + '/list/new';
+            
+            axios.post(url, reqBody, config)
+            .then((res) => {
+        
+                if(res.status === 201) {
+                    
+                    //console.log(res.data);
+                    this.clistCloseFn();
+
+                    toast.info('List Created!', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });                    
+                } else {
+              
+                }
+            })
+            .catch(function (error) {
+                if(error.response.status === 401) {
+                    refreshToken();
+                }
+            });
+
+
+        } else {
+            
+            this.clistCloseFn();
+            alert(JSON.stringify(this.state.listDat));
+        }
     }
 
     backToBaseFn = () => {
@@ -314,7 +379,7 @@ export default class BMain extends React.Component {
                             <div className="cl-close" onClick = { this.clistCloseFn }></div>
                             
                             <p className="clb-namep">List Name</p>
-                            <div><input type="text" placeholder="List Name" className="clb-nameinp" ></input></div>
+                            <div><input type="text" placeholder="List Name" className="clb-nameinp" onChange={ this.updateListTitle }></input></div>
                             
                             <div><input type="submit" value="Create" className="clb-submit" onClick = { this.createListFn }></input></div>                           
                     
