@@ -17,7 +17,7 @@ let ENDPOINT;
 if(projectDetails) {
 ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID + "/chat";
 }
-let prev_ts = 0;
+let index = 0;
 function DynamicChatDisplay(props) {
     let [channelMembers, setChannelMembers] = useState([]);
     const [chosenEmoji, setChosenEmoji] = useState(null);
@@ -25,6 +25,7 @@ function DynamicChatDisplay(props) {
     const [showModal, setShowModal] = useState(false);
     const [newMembers, setNewMembers] = useState([]);
     let [messages, setMessages] = useState([]);
+    const [flag, setFlag] = useState(0);
 
     const modalHandleClose = () => setShowModal(false);
     const modalHandleShow = () => {
@@ -63,6 +64,7 @@ function DynamicChatDisplay(props) {
             element.scrollTop = element.scrollHeight;
         }
     }
+
     function fetchMembers() {
         let channelId = props.channelId;
         setChannelMembers([]);
@@ -81,6 +83,7 @@ function DynamicChatDisplay(props) {
             document.getElementById("dcd-members-list").style.display = "none";
         }
     }
+
     function fetchNewMembers() {
         let channelId = props.channelId;
         let url = "https://chatservice-zode.herokuapp.com/api/channel/"+ projectDetails.projectID + "/"+ channelId + "/fetchmembers";
@@ -109,9 +112,11 @@ function DynamicChatDisplay(props) {
                 messages.push(response.data);
                 setInputMsg('');
                 setMessages(messages);
+                setFlag(0);
             }
         })
     }
+
     function timeConverter(unix_ts) {
         let date = new Date(unix_ts);
         let hours = date.getHours();
@@ -119,6 +124,32 @@ function DynamicChatDisplay(props) {
         let formattedTime = date.toLocaleDateString('en-GB') + ' ' + (hours>12?hours-12:hours) + ':' + minutes.substr(-2) + (hours<12?'AM' : 'PM');
         return formattedTime;
     }
+
+    function getOlderMessages() {
+        let msgDiv = document.getElementById("dcd-messages-display");
+        if(msgDiv != null && msgDiv.scrollTop == 0) {
+        setFlag(1);
+        let url = "https://chatservice-zode.herokuapp.com/api/messages/"+ props.channelId + "?latest=" + messages[0].ts;
+        axios.get(url, {headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": localStorage.getItem("token")
+        }}).then(response => {
+                if(response.data!=[]) {
+                    index += 1;
+                    let temp = [];
+                    temp = response.data;
+                    messages = temp.concat(messages);
+                    setMessages(messages);
+                    let msg = document.getElementById("dcd-message"+ ((index * 20)));
+                    if(msg!=null) {
+                        let pos = msg.offsetTop;
+                        msgDiv.scrollTop = pos;
+                    }   
+                }
+            })
+        }
+    }
+
     useEffect(() => {
         setMessages([]);
         let url = "https://chatservice-zode.herokuapp.com/api/messages/"+ props.channelId + "?latest=" + Math.floor(Date.now());
@@ -127,12 +158,16 @@ function DynamicChatDisplay(props) {
             "Authorization": localStorage.getItem("token")
         }}).then(response => {
             setMessages(response.data);
+            setFlag(0);
         })
     },[props.channelId]);
+
     useEffect(() => {
-        updateScroll();
-        console.log("Length changed!");
-    }, [messages.length]);
+        if(flag == 0) {
+            updateScroll();
+        }
+    }, [messages.length, flag]);
+
     useEffect(() => {
         let socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
         socket.on("new message", data=> {
@@ -141,6 +176,7 @@ function DynamicChatDisplay(props) {
             if(data.channelid == props.channelId && email != data.author.email) {
                 messages.push(data);
                 setMessages(messages);
+                setFlag(0);
             }
         })
         return () => socket.disconnect();
@@ -205,8 +241,8 @@ function DynamicChatDisplay(props) {
             </div>
             <img className="dcd-send-icon" src={sendIcon} onClick={sendMessage.bind(this)}></img>
         </div>
-        <div className="dcd-messages-display" id="dcd-messages-display">
-                {messages.map((x, i) => <div className="dcd-message">
+        <div className="dcd-messages-display" id="dcd-messages-display" onScroll={getOlderMessages}>
+                {messages.map((x, i) => <div className="dcd-message" id={"dcd-message"+i}>
                     <h3>{x.author.name} <span>{timeConverter(x.ts)}</span></h3>
                     <h4>{x.content}</h4>
                 </div>)}
