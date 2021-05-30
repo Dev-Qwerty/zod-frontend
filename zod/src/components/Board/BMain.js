@@ -88,7 +88,12 @@ export default class BMain extends React.Component {
     }
 
     createListFn = () => {
-        alert('hoi');
+
+        const min = 500;
+        const max = 1000;
+        const rand = min + Math.random() * (max - min);
+        const roundR = Math.round(rand);
+        alert(roundR);        
     }
 
     backToBaseFn = () => {
