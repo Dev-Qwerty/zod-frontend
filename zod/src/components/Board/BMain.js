@@ -319,7 +319,9 @@ export default class BMain extends React.Component {
 
                                 { !this.state.listDat ? (
                                                                         
-                                    <p>Loading...</p>
+                                    <div className="BM-loading">
+                                        <p>Loading...</p>
+                                    </div>
 
                                 ):( this.state.listDat.map((litem, i) => (
                                 
