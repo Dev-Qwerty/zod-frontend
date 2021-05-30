@@ -10,7 +10,14 @@ import Loader from '../Loader/Loader';
 import Picker from 'emoji-picker-react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-
+import firebase from 'firebase';
+import socketIOClient from 'socket.io-client';
+let projectDetails = JSON.parse(localStorage.getItem('pdata'));
+let ENDPOINT;
+if(projectDetails) {
+ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID + "/chat";
+}
+let prev_ts = 0;
 function DynamicChatDisplay(props) {
     let [channelMembers, setChannelMembers] = useState([]);
     const [chosenEmoji, setChosenEmoji] = useState(null);
@@ -109,7 +116,7 @@ function DynamicChatDisplay(props) {
         let date = new Date(unix_ts);
         let hours = date.getHours();
         let minutes = "0" + date.getMinutes();
-        let formattedTime = date.toLocaleDateString('en-GB') + ' ' + hours + ':' + minutes.substr(-2) + (hours<12?'AM' : 'PM');
+        let formattedTime = date.toLocaleDateString('en-GB') + ' ' + (hours>12?hours-12:hours) + ':' + minutes.substr(-2) + (hours<12?'AM' : 'PM');
         return formattedTime;
     }
     useEffect(() => {
@@ -124,7 +131,20 @@ function DynamicChatDisplay(props) {
     },[props.channelId]);
     useEffect(() => {
         updateScroll();
+        console.log("Length changed!");
     }, [messages.length]);
+    useEffect(() => {
+        let socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
+        socket.on("new message", data=> {
+            let email = firebase.auth().currentUser.email
+            console.log(data.channelid == props.channelId && email != data.author.email);
+            if(data.channelid == props.channelId && email != data.author.email) {
+                messages.push(data);
+                setMessages(messages);
+            }
+        })
+        return () => socket.disconnect();
+    }, []);
     if(props.channelname != 'default') {
         return(
         <div className="dcd-display">

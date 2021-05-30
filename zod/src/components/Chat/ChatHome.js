@@ -9,8 +9,10 @@ import refreshToken from '../../functions/refreshToken';
 import {toast} from 'react-toastify';
 import socketIOClient from 'socket.io-client';
 let projectDetails = JSON.parse(localStorage.getItem('pdata'));
-const ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID + "/chat";
-
+let ENDPOINT;
+if(projectDetails) {
+ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID + "/chat";
+}
 toast.configure()
 
 let msgs = [];
@@ -21,6 +23,7 @@ function ChatHome() {
     let [activeChannelId, setActiveChannelId] = useState('');
     const [response, setResponse] = useState('');
     const [allMessages, setAllMessages] = useState([]);
+    //const socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
     
     function fetchChannels() {
         let url = "https://chatservice-zode.herokuapp.com/api/channel/" + projectDetails.projectID;
@@ -50,17 +53,13 @@ function ChatHome() {
     }
     useEffect(() => {
         fetchChannels();
-        const socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
         
-        socket.on("connection", data => {
+        /*socket.on("connection", data => {
           setResponse(data);
           console.log(response);
         });
-        socket.on("new message", data => {
-            console.log(data);
-        })
         
-        return () => socket.disconnect();
+        return () => socket.disconnect();*/
     }, []);
     return(
         <div className="zod-chat-homepg">
