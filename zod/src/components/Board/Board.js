@@ -75,13 +75,17 @@ export default class Board extends React.Component {
         });         
     }
 
-    personalFn = () => {
+    personalFn = (obj) => {
     
+        console.log(obj);
+        localStorage.setItem('boardobj', JSON.stringify(obj));
         window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/board/card';   
     }
 
-    publicFn = () => {
-        
+    publicFn = (obj) => {
+
+        console.log(obj);
+        localStorage.setItem('boardobj', JSON.stringify(obj));
         window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/board/card';
     }
 
@@ -177,7 +181,7 @@ export default class Board extends React.Component {
 
                                     ):( this.state.personalArr.map((pdat, i) => (
                                         
-                                        <div className="bbPersonal-card" onClick = { this.personalFn }>
+                                        <div className="bbPersonal-card" onClick = { () => this.personalFn(pdat) }>
                                             <p className="bbPersonal-parag">{ JSON.parse(JSON.stringify(pdat.boardName)) }</p>
                                         </div>   
                                     )))}   
@@ -208,7 +212,7 @@ export default class Board extends React.Component {
 
                                     ):( this.state.publicArr.map((tdat, i) => (
                            
-                                        <div className="bbPublic-card" onClick = { this.publicFn }>
+                                        <div className="bbPublic-card" onClick = { () => this.publicFn(tdat) }>
                                             <p className="bbPublic-parag">{ JSON.parse(JSON.stringify(tdat.boardName)) }</p>
                                         </div>                                         
                                     )))}    
