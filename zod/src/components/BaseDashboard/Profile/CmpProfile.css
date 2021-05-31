@@ -31,19 +31,12 @@
 
 .mp-class1 {
   margin-left: 115px;
-  width: 500px;
-  display: grid;
-  grid-template-columns: 50% 50%;
   padding-bottom: 10px;
   /*background-color: chartreuse;*/
 }
 
-.mp-fname {
+.mp-name {
   /*background-color: brown;*/
-}
-
-.mp-lname {
-  /*background-color: cadetblue;*/
 }
 
 .mp-name-label {
@@ -52,10 +45,11 @@
 }
 
 .mp-name-inp1 {
-  width: 210px;
+  width: 465px;
   /*background-color: chartreuse;*/
   border: 1px solid #aaa;
   border-radius: 5px;
+  height: 28px;
 }
 
 .mp-name-inp2 {
@@ -80,6 +74,7 @@
   border: 1px solid #aaa;
   margin-bottom: 25px;
   border-radius: 5px;
+  height: 30px;
 }
 
 .mp-update-btn {

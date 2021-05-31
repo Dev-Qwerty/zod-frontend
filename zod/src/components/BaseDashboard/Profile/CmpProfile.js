@@ -81,15 +81,11 @@ export default class CmpProfile  extends React.Component {
 
                             <div className="mp-class1">
                                 
-                                <div className="mp-fname">
-                                    <p className="mp-name-label">First Name</p>
+                                <div className="mp-name">
+                                    <p className="mp-name-label">Name</p>
                                     <div><input type="text" placeholder=""  className="mp-name-inp1" value={this.state.fname} onChange={evt => this.updateFname(evt)}></input></div>
                                 </div>
-                                
-                                <div className="mp-lname">
-                                    <p className="mp-name-label">Last Name</p>
-                                    <div className="mp-name-inp"><input type="text" placeholder=""  className="mp-name-inp2" value={this.state.lname} onChange={evt => this.updateLname(evt)}></input></div>
-                                </div>
+                            
                             </div>
 
                             <div className="mp-class2">
