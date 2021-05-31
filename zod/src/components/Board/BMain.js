@@ -22,6 +22,7 @@ export default class BMain extends React.Component {
      
         super();
         this.state = {
+            boardName: '',
             data: '',
             listBool: false,
             cardBool: false,
@@ -37,6 +38,12 @@ export default class BMain extends React.Component {
     componentDidMount() {
 
         refreshToken();
+        const objB = JSON.parse(localStorage.getItem('boardobj'));
+
+        this.setState({
+            boardName : objB.boardName
+        }); 
+
         const obj = JSON.parse(localStorage.getItem('boardobj'));
 
         const socket = io(API, {
@@ -327,7 +334,7 @@ export default class BMain extends React.Component {
 
                             <div className="cb-xWrapper">
                                 <div className="cbx-1">
-                                    <p>Board Name: bname1</p>
+                                    <p>Board Name: { this.state.boardName }</p>
                                 </div>
                                 <div className="cbx-2">
                                     <input type="submit" value="New List" className="cb-new-list-btn" onClick = { this.clistBoolFn }></input>
