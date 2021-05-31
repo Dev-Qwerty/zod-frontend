@@ -11,16 +11,14 @@ toast.configure()
 const { useState } = React;
 
 function SignUpPage() {    
-    const [fname, setfNameValue] = useState('');
-    const [lname, setlNameValue] = useState('');
+    const [name, setNameValue] = useState('');
     const [email, setemailValue] = useState('');
     const [password, setPasswordValue] = useState('');
     const [cpassword, setCPasswordValue] = useState('');
     const [loading, setLoader] = useState(false);
     const [btnText, setBtnText] = useState('Sign Up');
 
-    const handlefNameChange = (e) => setfNameValue(e.target.value);
-    const handlelNameChange = (e) => setlNameValue(e.target.value);
+    const handleNameChange = (e) => setNameValue(e.target.value);
     const handleEmailChange = (e) => setemailValue(e.target.value);
     const handlepasswordChange = (e) => setPasswordValue(e.target.value);
     const handleCPasswordChange = (e) => setCPasswordValue(e.target.value);
@@ -32,15 +30,11 @@ function SignUpPage() {
                     <div className="card-body">
                         <h5 className="card-title">Create a new account</h5>
                         <div className="zod-signup-inputs">
-                            <div className="input-group"> 
-                                <input type="text" className="form-control input-sm zod-name-grp" placeholder="First Name" value={fname} onChange={handlefNameChange}/> 
-                                <span className="input-group-btn"></span> 
-                                <input type="text" className="form-control input-sm zod-name-grp" placeholder="Last Name" value={lname} onChange={handlelNameChange}/> 
-                            </div> 
+                            <input type="text" className="form-control input-sm zod-name-grp" placeholder="Full Name" value={name} onChange={handleNameChange}/>       
                             <input type="text" placeholder="Email" className="zod-signup-grp form-control" value={email} onChange={handleEmailChange}></input>
                             <input type="password" placeholder="Password" className="zod-signup-grp form-control" value={password} onChange={handlepasswordChange}></input>
                             <input type="password" placeholder="Confirm Password" className="zod-signup-grp form-control" value={cpassword} onChange={handleCPasswordChange}></input>
-                            <Button variant="success" loading={loading} className="zod-signup-btn zod-signup-grp" onClick={SignUpRequest.bind(this, fname, lname, email, password, cpassword, setLoader, setBtnText)}>{btnText}</Button>
+                            <Button variant="success" loading={loading} className="zod-signup-btn zod-signup-grp" onClick={SignUpRequest.bind(this, name, email, password, cpassword, setLoader, setBtnText)}>{btnText}</Button>
                             <hr/>
                             <button type="submit" className="zod-google-btn-1"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo"></img>Sign up with Google</button>
                         </div>
@@ -57,10 +51,10 @@ function SignUpPage() {
         );
 }
 
-async function SignUpRequest(fname, lname, email, password, cpassword, setLoader, setBtnText) {
+async function SignUpRequest(name, email, password, cpassword, setLoader, setBtnText) {
     setBtnText('Signing Up...');
     setLoader(true);
-    if(fname === '' || lname === '' || email === '' || password === '') {
+    if(name === '' || email === '' || password === '') {
         toast.warning('Please enter all fields!', {position: toast.POSITION.BOTTOM_LEFT});
         setBtnText('Sign Up');
         setLoader(false);
@@ -74,8 +68,7 @@ async function SignUpRequest(fname, lname, email, password, cpassword, setLoader
     }
     else {
     const reqBody = {
-        "fname": fname,
-        "lname": lname,
+        "name": name,
         "email": email, 
         "password": password
     }

@@ -12,7 +12,7 @@
 }
 
 .dcd-icon-tray {
-    margin-top: 10px;
+    margin-top: 5px;
     position: fixed;
     right: 10px;
 }
@@ -102,13 +102,14 @@
     width: 45px;
     height: 15px;
     margin-left: 10vw;
-    margin-top: -1vw;
+    margin-top: -19px;
     background-repeat: no-repeat;
 }
 
 .dcd-more-options-icon:hover {
     cursor: pointer;
     background: url('../../assets/more-options.svg');
+    background-repeat: no-repeat;
 }
 
 .dcd-video-call-icon {
@@ -117,7 +118,7 @@
     height: 30px;
     background-repeat: no-repeat;
     margin-top: -30px;
-    margin-left: 100px;
+    margin-left: 95px;
 }
 
 .dcd-video-call-icon:hover {
@@ -214,8 +215,8 @@
 
 .dcd-messages-display {
     position: fixed;
-    top: 150px;
-    height: 34vw;
+    top: 138px;
+    height: 512px;
     width: 74vw;
     border: 1px solid;
     overflow-x: hidden;
@@ -236,4 +237,35 @@
 .dcd-message > h4 {
     font-family: 'Roboto';
     margin-left: 1vw;
+}
+
+.dcd-edit-remove-options {
+    margin-left: 41vw;
+    margin-top: -25px;
+    display: none;
+}
+
+.dcd-edit-remove-options > button{
+    display: table-row;
+    background-color: white;
+    outline: none;
+    border: none;
+}
+
+.dcd-edit-msg-icon {
+    background: url("../../assets/edit-icon-dark.svg");
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 50px;
+}
+
+.dcd-remove-msg-icon {
+    background: url("../../assets/delete-icon-dark.svg");
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 50px;
+}
+
+.dcd-message:hover .dcd-edit-remove-options {
+    display: table;
 }

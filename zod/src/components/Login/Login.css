@@ -38,6 +38,7 @@ hr {
     background: #fff;
     color: #8f8f8f;
     margin-left: 10px;
+    margin-top: 15px;
 }
 .zod-google-btn > img {
     height: 25px;
@@ -46,8 +47,8 @@ hr {
 
 .zod-logintxt{
     position: absolute;
-    left: 61vw;
-    top: 36vw;
+    left: 62vw;
+    top: 39vw;
 }
 
 .zod-title{
