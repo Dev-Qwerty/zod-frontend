@@ -34,11 +34,11 @@ export default class CmpProfile  extends React.Component {
             console.log(user.displayName);
             console.log(user.email);
             console.log(user.photoURL);
+            localStorage.setItem('photoURL', user.photoURL);
 
             this.setState({
                 name: user.displayName,
                 email: user.email,
-                avatar: user.photoURL,
                 valx: true
             });
         } else {
@@ -46,6 +46,10 @@ export default class CmpProfile  extends React.Component {
         } 
 
         refreshToken();
+        this.setState({
+            avatar : localStorage.getItem('photoURL')
+        });     
+        
     }
 
     render() {        
