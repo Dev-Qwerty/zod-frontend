@@ -18,6 +18,7 @@ if(projectDetails) {
 ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID + "/chat";
 }
 let index = 0;
+let currentUserEmail = '';
 function DynamicChatDisplay(props) {
     let [channelMembers, setChannelMembers] = useState([]);
     const [chosenEmoji, setChosenEmoji] = useState(null);
@@ -150,6 +151,26 @@ function DynamicChatDisplay(props) {
         }
     }
 
+    function deleteMessage(ts, i) {
+        let msgDiv = document.getElementById("dcd-messages-display");
+        let url = "https://chatservice-zode.herokuapp.com/api/chat/"+ props.channelId +"/messages/" + ts;
+        axios.delete(url, {headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": localStorage.getItem("token")
+        }}).then(response => {
+            if(response.status == 200) {
+                let value = messages[i];
+                messages = messages.filter(item => item !== value);
+                setMessages(messages);
+                let msg = document.getElementById("dcd-message"+ ((i-1)));
+                if(msgDiv && msg!=null) {
+                    let pos = msg.offsetTop;
+                    msgDiv.scrollTop = pos;
+                }
+            }
+        })
+    }
+
     useEffect(() => {
         setMessages([]);
         let url = "https://chatservice-zode.herokuapp.com/api/messages/"+ props.channelId + "?latest=" + Math.floor(Date.now());
@@ -169,10 +190,13 @@ function DynamicChatDisplay(props) {
     }, [messages.length, flag]);
 
     useEffect(() => {
+        let currentUser = firebase.auth().currentUser;
+        if(currentUser!=null) {
+            currentUserEmail = currentUser.email;
+        }
         let socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
         socket.on("new message", data=> {
-            let email = firebase.auth().currentUser.email
-            console.log(data.channelid == props.channelId && email != data.author.email);
+            let email = currentUserEmail
             if(data.channelid == props.channelId && email != data.author.email) {
                 messages.push(data);
                 setMessages(messages);
@@ -243,7 +267,12 @@ function DynamicChatDisplay(props) {
         </div>
         <div className="dcd-messages-display" id="dcd-messages-display" onScroll={getOlderMessages}>
                 {messages.map((x, i) => <div className="dcd-message" id={"dcd-message"+i}>
-                    <h3>{x.author.name} <span>{timeConverter(x.ts)}</span></h3>
+                    <h3>{x.author.name} <span>{timeConverter(x.ts)}</span>
+                    {(currentUserEmail == x.author.email) && <span className="dcd-edit-remove-options">
+                        <button className="dcd-edit-msg-icon"> </button>
+                        <button className="dcd-remove-msg-icon" onClick={deleteMessage.bind(this, x.ts, i)}></button>
+                    </span>}
+                    </h3>
                     <h4>{x.content}</h4>
                 </div>)}
         </div>
