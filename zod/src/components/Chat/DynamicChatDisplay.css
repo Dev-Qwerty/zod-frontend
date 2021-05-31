@@ -12,7 +12,7 @@
 }
 
 .dcd-icon-tray {
-    margin-top: 10px;
+    margin-top: 12px;
     position: fixed;
     right: 10px;
 }
@@ -102,13 +102,14 @@
     width: 45px;
     height: 15px;
     margin-left: 10vw;
-    margin-top: -1vw;
+    margin-top: -19px;
     background-repeat: no-repeat;
 }
 
 .dcd-more-options-icon:hover {
     cursor: pointer;
     background: url('../../assets/more-options.svg');
+    background-repeat: no-repeat;
 }
 
 .dcd-video-call-icon {
@@ -117,7 +118,7 @@
     height: 30px;
     background-repeat: no-repeat;
     margin-top: -30px;
-    margin-left: 100px;
+    margin-left: 95px;
 }
 
 .dcd-video-call-icon:hover {
@@ -214,8 +215,8 @@
 
 .dcd-messages-display {
     position: fixed;
-    top: 150px;
-    height: 34vw;
+    top: 148px;
+    height: 503px;
     width: 74vw;
     border: 1px solid;
     overflow-x: hidden;
