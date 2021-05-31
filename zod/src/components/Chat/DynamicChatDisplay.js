@@ -12,6 +12,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import firebase from 'firebase';
 import socketIOClient from 'socket.io-client';
+import { toast } from 'react-toastify';
 let projectDetails = JSON.parse(localStorage.getItem('pdata'));
 let ENDPOINT;
 if(projectDetails) {
@@ -159,6 +160,7 @@ function DynamicChatDisplay(props) {
             "Authorization": localStorage.getItem("token")
         }}).then(response => {
             if(response.status == 200) {
+                toast.success("Message Deleted", {position: toast.POSITION.BOTTOM_RIGHT});
                 let value = messages[i];
                 messages = messages.filter(item => item !== value);
                 setMessages(messages);
