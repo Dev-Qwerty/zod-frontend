@@ -24,6 +24,7 @@ export default class BMain extends React.Component {
         this.state = {
             data: '',
             listBool: false,
+            cardBool: false,
             listDat: '',
             listTitle: ''
         }
@@ -44,8 +45,9 @@ export default class BMain extends React.Component {
             }
         });
         
-        socket.on("connection", (data) => {
-          this.socket.emit("joinRoom", obj.boardId);
+        socket.on("connection", data => {
+            console.log(data);
+            this.socket.emit("joinRoom", obj.boardId);
         });
 
         this.fetchListCard();
@@ -247,6 +249,18 @@ export default class BMain extends React.Component {
         }); 
     }
 
+    cardBoolFn = () => {
+        this.setState({
+            cardBool : true
+        }); 
+    } 
+
+    cardCloseFn = () => {
+        this.setState({
+            cardBool : false
+        }); 
+    }
+
     render() {
         
         return (
@@ -311,9 +325,15 @@ export default class BMain extends React.Component {
                         
                         <div className="cb-wrapper">
 
-                            <div className="">
-                                <input type="submit" value="New List" className="cb-new-list-btn" onClick = { this.clistBoolFn }></input>
+                            <div className="cb-xWrapper">
+                                <div className="cbx-1">
+                                    <p>Board Name: bname1</p>
+                                </div>
+                                <div className="cbx-2">
+                                    <input type="submit" value="New List" className="cb-new-list-btn" onClick = { this.clistBoolFn }></input>
+                                </div>
                             </div>
+                            <div className="cb-proLine"></div>
 
                             <div className="cb-list-wrapper">
 
@@ -330,7 +350,7 @@ export default class BMain extends React.Component {
                                         <div className="cbl-h">
                                             <div className="cblh-wr">
                                                 <div className="cblh-p"><p>{ JSON.parse(JSON.stringify( litem.title )) }</p></div>
-                                                <div className="cblh-plus"></div>
+                                                <div className="cblh-plus" onClick = { this.cardBoolFn }></div>
                                             </div>
     
                                             <div className="cblh-line"></div>
@@ -377,7 +397,29 @@ export default class BMain extends React.Component {
                     </div>                    
                 ):(
                     <p></p>
-                )}               
+                )}      
+
+                { this.state.cardBool ? (
+                    
+                    <div className="cardModal-wrapper">
+                        <div>
+                            <div className="cardM-hdn"><p>Create New Card</p></div>
+                            <div className="cardM-proLine"></div>
+                        </div>
+                        <div className="cardM-body-wrx">
+                            <p className="cardM-namep">Card Name</p>
+                            <input type="text" className="cardM-nameinp" placeholder="Card Name"></input>
+                            <p className="cardM-descp">Description</p>
+                            <textarea className="cardM-descinp"></textarea>
+                            <p className="cardM-duep">Due Date</p>
+                            <input type="date" placeholder="Due Date" className="cardM-dueinp"></input>
+                            <p className="cardM-abm">Assign Board Members</p>
+                            <input type="submit" className="cardM-submit" onClick = { this.cardCloseFn }></input>
+                        </div>
+                    </div>                    
+                ):(
+                    <p></p>
+                )}                           
 
             </div>
         );

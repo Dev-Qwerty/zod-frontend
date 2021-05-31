@@ -199,6 +199,22 @@
   padding-left: 0px;
 }
 
+.cb-xWrapper {
+  padding-top: 50px;
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+.cbx-1 p {
+  padding-left: 50px;
+  font-size: 18px;
+}
+
+.cbx-2 {
+  margin-top: -10px;
+  padding-left: 80px;
+}
+
 .cb-new-list-btn {
   width: 130px;
   height: 35px;
@@ -206,13 +222,20 @@
   border-radius: 5px;
   background-color: #4CBF53;
   color: #fff;
-  margin-top: 25px;
-  margin-left: 85%;
+  margin-top: 0px;
+  margin-left: 0%;
+}
+
+.cb-proLine {
+  width: 100%;
+  height: 1px;
+  /*background-color: rgba(0, 0, 0, 0.15);*/
+  background-color: #4CBF53;
 }
 
 /* List wrapper */
 .cb-list-wrapper {
-  margin-top: 20px;
+  margin-top: 50px;
   margin-left: 50px;
   padding-bottom: 30px;
   padding-top: 30px;
@@ -263,6 +286,10 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.cblh-plus:hover {
+  cursor: pointer;
+}  
 
 .cblh-line {
   margin-left: auto;
@@ -414,4 +441,85 @@
   font-family: Pacifico;
   font-size: 30px;
   color: #4CBF53;    
+}
+
+/* Modal - Create New Card */
+.cardModal-wrapper {
+  position: absolute;
+  left: 20%;
+  top: 16%;
+  width: 60%;
+  height: 75%;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: #000;  
+}
+
+.cardM-hdn {
+  font-size: 18px;
+  padding-top: 35px;
+  padding-left: 50px;
+  margin-bottom: -8px;
+}
+
+.cardM-proLine {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.15);  
+}
+
+.cardM-body-wrx {
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+.cardM-namep {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.cardM-nameinp {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  width: 35%;
+  height: 29px;
+}
+
+.cardM-descp {
+  margin-bottom: 10px;
+  font-size: 17px;
+}
+
+.cardM-descinp {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  width: 60%;
+  height: 100px; 
+}
+
+.cardM-duep {
+  margin-bottom: 10px;
+  font-size: 17px; 
+}
+
+.cardM-dueinp {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  width: 35%;
+  height: 30px;
+}
+
+.cardM-abm {
+  margin-bottom: 10px;
+  font-size: 17px;   
+}
+
+.cardM-submit {
+  width: 100px;
+  height: 35px;
+  border: none;
+  background-color: #189FFA;
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 20px;
 }
