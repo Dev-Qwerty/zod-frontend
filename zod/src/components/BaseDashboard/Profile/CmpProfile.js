@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import firebase from 'firebase';
+import refreshToken from '../../../functions/refreshToken';
 
 /* 
     ClassName Convention Used:-
@@ -19,6 +20,7 @@ export default class CmpProfile  extends React.Component {
         this.state = {
             name: '',
             email: '',
+            avatar: '',
             valx: false,
             nameChange: false,
         }   
@@ -36,12 +38,14 @@ export default class CmpProfile  extends React.Component {
             this.setState({
                 name: user.displayName,
                 email: user.email,
+                avatar: user.photoURL,
                 valx: true
             });
         } else {
             // Not Signed-in
-        }            
-        
+        } 
+
+        refreshToken();
     }
 
     render() {        
@@ -60,7 +64,9 @@ export default class CmpProfile  extends React.Component {
                     )
                     }
                   
-                    <div className="mp-profile-img"></div>
+                    <div>
+                        <img  className="mp-profile-img" src = { this.state.avatar }/>
+                    </div>
                     
                     <div className="mp-inp-wrapper">    
 
@@ -137,6 +143,10 @@ export default class CmpProfile  extends React.Component {
                         fnameChange: false
                     }); 
 
+                    setTimeout(() => {
+                        window.location.reload();
+                      }, 4000);                    
+
                 } else {
                     toast.warning('Error!', {
                         position: "bottom-right",
@@ -150,7 +160,9 @@ export default class CmpProfile  extends React.Component {
                 }
             })
             .catch(function (error) {
-                console.log(error);
+                if(error.response.status === 401) {
+                    refreshToken();
+                }
             }); 
 
         } else {
