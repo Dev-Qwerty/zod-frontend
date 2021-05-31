@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import firebase from 'firebase';
 
 /* 
     ClassName Convention Used:-
@@ -16,45 +17,31 @@ export default class CmpProfile  extends React.Component {
      
         super();
         this.state = {
-            fname: '',
-            lname: '',
+            name: '',
             email: '',
             valx: false,
-            fnameChange: false,
-            lnameChange: false
+            nameChange: false,
         }   
 
     }   
     
     componentDidMount(){
-     
-        const token1 = localStorage.getItem('token');
 
-        const config = {
-            headers: {
-                'Authorization': token1,
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin' : '*',
-            }
-        }
-    
-        axios.get('https://userservice-zode.herokuapp.com/api/user/', config)
-        .then((res) => {
-    
-            if(res.status === 200) {
-                this.setState({
-                    fname: res.data.fname,
-                    lname: res.data.lname,
-                    email: res.data.email,
-                    valx: true
-                  });
-            } else {
+        const user = firebase.auth().currentUser
+        if (user) {
+            console.log(user.displayName);
+            console.log(user.email);
+            console.log(user.photoURL);
 
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-        });         
+            this.setState({
+                name: user.displayName,
+                email: user.email,
+                valx: true
+            });
+        } else {
+            // Not Signed-in
+        }            
+        
     }
 
     render() {        
@@ -83,7 +70,7 @@ export default class CmpProfile  extends React.Component {
                                 
                                 <div className="mp-name">
                                     <p className="mp-name-label">Name</p>
-                                    <div><input type="text" placeholder=""  className="mp-name-inp1" value={this.state.fname} onChange={evt => this.updateFname(evt)}></input></div>
+                                    <div><input type="text" placeholder=""  className="mp-name-inp1" value={this.state.name} onChange={evt => this.updateName(evt)}></input></div>
                                 </div>
                             
                             </div>
@@ -104,31 +91,22 @@ export default class CmpProfile  extends React.Component {
         );
     }
 
-    updateFname = (evt) => {
+    updateName = (evt) => {
 
         this.setState({
-            fname: evt.target.value,
-            fnameChange: true
+            name: evt.target.value,
+            nameChange: true
           });
     }    
-
-    updateLname = (evt) => {
-
-        this.setState({
-            lname: evt.target.value,
-            lnameChange: true
-          });     
-    } 
     
     updateProfile = () => {
 
-        if(this.state.fnameChange == true && this.state.lnameChange == true) {
+        if(this.state.nameChange == true ) {
             
             const token = localStorage.getItem('token');
 
             const reqBody = {
-                "fname": this.state.fname,
-                "lname": this.state.lname
+                "name": this.state.name,
             }
 
             const config = {
@@ -144,7 +122,7 @@ export default class CmpProfile  extends React.Component {
         
                 if(res.status === 200) {
                     
-                    toast.info('First & Last Name Changed!', {
+                    toast.info('Name Changed!', {
                         position: "bottom-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -157,108 +135,6 @@ export default class CmpProfile  extends React.Component {
                     this.setState({
                         lnameChange: false,
                         fnameChange: false
-                    }); 
-
-                } else {
-                    toast.warning('Error!', {
-                        position: "bottom-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    });  
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            }); 
-
-        } else if(this.state.fnameChange == true) {
-            
-            const token = localStorage.getItem('token');
-    
-            const reqBody = {
-                "fname": this.state.fname,
-            }
-
-            const config = {
-                headers: {
-                    'Authorization': token,
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin' : '*',
-                }
-            }
-        
-            axios.put('https://userservice-zode.herokuapp.com/api/user/update', reqBody, config)
-            .then((res) => {
-        
-                if(res.status === 200) {
-                    
-                    toast.info('First Name Changed!', {
-                        position: "bottom-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    });
-
-                    this.setState({
-                        fnameChange: false
-                    }); 
-
-                } else {
-                    toast.warning('Error!', {
-                        position: "bottom-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    });  
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            }); 
-
-        } else if(this.state.lnameChange == true){
-            
-            const token = localStorage.getItem('token');
-    
-            const reqBody = {
-                "lname": this.state.lname
-            }
-
-            const config = {
-                headers: {
-                    'Authorization': token,
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin' : '*',
-                }
-            }
-        
-            axios.put('https://userservice-zode.herokuapp.com/api/user/update', reqBody, config)
-            .then((res) => {
-        
-                if(res.status === 200) {
-                    
-                    toast.info('Last Name Changed!', {
-                        position: "bottom-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                    });
-
-                    this.setState({
-                        lnameChange: false
                     }); 
 
                 } else {
