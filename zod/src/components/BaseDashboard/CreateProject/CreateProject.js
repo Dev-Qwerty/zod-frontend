@@ -6,7 +6,8 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import firebase from 'firebase';
- 
+import refreshToken from '../../../functions/refreshToken'; 
+
 /* 
     ClassName Convention Used:-
         Eg: mp-top-nav -> MyProfile-top-nav ..
@@ -16,6 +17,7 @@ function CreateProject() {
 
     const [pname, setPnameValue] = useState('');
     const [deadline, setDeadlineValue] = useState('');
+    const [avatar, setAvatar] = useState('');
     const [memberList, setMemberList] = useState([{ email: "", userRole: "" }]);
 
     // handle input change - pname, deadline
@@ -40,32 +42,23 @@ function CreateProject() {
     // Handle click event - Add button
     const handleAddBtn = () => {
         setMemberList([...memberList, { email: "", userRole: "" }]);
-      }; 
+    }; 
       
       
     useEffect(() => {
  
         // update token
-        setTimeout(
-            () => {
-                console.log("CALLED");
-                firebase.auth().onAuthStateChanged(function(user) {
-                    if (user) {
-                        // User is signed in.
-                        firebase.auth().currentUser.getIdToken(true) // here we force a refresh
-                        .then(function(token) {
-                            localStorage.setItem("token", token);
-                        }).catch(function(error) {
-                        if (error) throw error
-                    });
-                } else {
-                  // No user is signed in.
-                  alert("User not signed in!");
-                }
-              });
-            },
-            600000, //10 mins
-        );  
+        const user = firebase.auth().currentUser
+        if (user) {
+            localStorage.setItem('photoURL', user.photoURL);
+
+        } else {
+            // Not Signed-in
+        } 
+
+        refreshToken();
+        
+        setAvatar(localStorage.getItem('photoURL'));
     })   
 
     return (
@@ -85,8 +78,8 @@ function CreateProject() {
 
                     <div className="cp-profile-icon-wrapper">
 
-                        <div className="cp-icon">
-                            <p className="cp-icon-txt">JD</p> 
+                        <div>
+                            <img className="cp-icon" src = { avatar }/>
                         </div>
 
                         <div className="cp-dropdown-content">
@@ -204,7 +197,9 @@ async function createProjectFn(pname, deadline, memberList) {
         }
     })
     .catch(function (error) {
-        console.log(error);
+        if(error.response.status === 401) {
+            refreshToken();
+        }
     });   
 }
 

@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import firebase from 'firebase';
+import refreshToken from '../../functions/refreshToken';
 //import loader from '../Loader/Loader'
 
 export default class BaseDashboard  extends React.Component {
@@ -12,32 +13,26 @@ export default class BaseDashboard  extends React.Component {
         super();
         this.state = {
             apiData: null,
-            isEmpty: false
+            isEmpty: false,
+            avatar: ''
         }
     }   
     async componentDidMount() {
         
-        this.timer = setInterval(
-            () => {
-                console.log("CALLED");
-                firebase.auth().onAuthStateChanged(function(user) {
-                    if (user) {
-                        // User is signed in.
-                        firebase.auth().currentUser.getIdToken(true) // here we force a refresh
-                        .then(function(token) {
-                            localStorage.setItem("token", token);
-                        }).catch(function(error) {
-                        if (error) throw error
-                    });
-                } else {
-                  // No user is signed in.
-                  alert("User not signed in!");
-                }
-              });
-            },
-            600000, //10 mins
-        );
-            
+        const user = firebase.auth().currentUser
+        if (user) {
+            localStorage.setItem('photoURL', user.photoURL);
+
+        } else {
+            // Not Signed-in
+        } 
+
+        refreshToken();
+        
+        this.setState({
+            avatar : localStorage.getItem('photoURL')
+        }); 
+
         const token = localStorage.getItem('token');
         
         const config = {
@@ -66,12 +61,14 @@ export default class BaseDashboard  extends React.Component {
             }
         })
         .catch(function (error) {
-            console.log(error);
+            if(error.response.status === 401) {
+                refreshToken();
+            }            
         });         
     }
 
     componentWillUnmount() {
-        clearInterval(this.timer);
+       
     }
 
     render() {
@@ -94,8 +91,8 @@ export default class BaseDashboard  extends React.Component {
     
                         <div className="bd-profile-icon-wrapper">
     
-                            <div className="bd-icon">
-                                <p className="bd-icon-txt">JD</p> 
+                            <div>
+                                <img className="bd-icon" src = { this.state.avatar }/>
                             </div>
     
                             <div className="bd-dropdown-content">

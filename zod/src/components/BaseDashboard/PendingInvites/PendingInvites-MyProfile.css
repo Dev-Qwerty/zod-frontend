@@ -46,16 +46,13 @@
   display: inline-block;
 }
 
-.mp-icon {
+.xp-icon {
   width: 50px;
   height: 50px;
-  border: 3px #1F89C5 solid;
   border-radius: 50%;
-  padding-top: 10%;
-  padding-left: 15%;
-  box-sizing: border-box;
+  /*border: 2px #aaa solid;*/
   cursor: pointer;
-  background-color: #fff;
+  padding: 0px;
 }
 
 .mp-icon-txt {

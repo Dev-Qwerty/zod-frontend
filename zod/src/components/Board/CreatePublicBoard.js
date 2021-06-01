@@ -1,6 +1,7 @@
 import './CreatePublicBoard.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
+import refreshToken from '../../functions/refreshToken';
 import ReactTooltip from "react-tooltip";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -19,11 +20,13 @@ export default class CreatePublicBoard extends React.Component {
         this.state = {
             bname: '',
             members: '',
-            finalMem: []
+            finalMem: [{ email: "" }]
         }
     }
 
     componentDidMount(){
+
+        refreshToken();
      
         const token1 = localStorage.getItem('token');
         const obj = JSON.parse(localStorage.getItem('pdata'))
@@ -43,7 +46,6 @@ export default class CreatePublicBoard extends React.Component {
     
             if(res.status === 200) {
 
-                /*alert(JSON.stringify(res.data.projectMembers))*/
                 const Data = res.data.projectMembers
                 this.setState({ members: Data });
             } else {
@@ -51,35 +53,44 @@ export default class CreatePublicBoard extends React.Component {
             }
         })
         .catch(function (error) {
-            console.log(error);
+            if(error.response.status === 401) {
+                refreshToken();
+            };
         });         
     }
 
-    addMem = (email) => {
+    handleMemberInputChange = (e, index) => {
 
-        if(!(this.state.finalMem.indexOf(email) > -1)) {
+        const { name, value } = e.target;
+        const list = this.state.finalMem;
+        list[index][name] = value;
+        
+        this.setState({
+            finalMem : list
+        }); 
+    }; 
 
-            const obj = { 'email': email };
-            this.setState({
-                finalMem : [...this.state.finalMem, obj]
-            });          
-        } 
-    }
-    
-    removeMem = (email) => {
+    handleAddBtn = () => {
+        
+        const obj = { email: "" }
+        
+        this.setState({
+            finalMem : [...this.state.finalMem, obj]
+        });         
+    }; 
 
-        const fn = (element) => element.email == email;
-        let i = this.state.finalMem.findIndex(fn);
-        this.state.finalMem.splice(i, 1);
-    }
+    handleRemoveBtn = (index) => {
 
-    showlist = () => {
-        console.log(this.state.finalMem)
-        alert(JSON.stringify(this.state.finalMem))
-    }
+        const list = this.state.finalMem;
+        list.splice(index, 1);
+
+        this.setState({
+            finalMem : list
+        });     
+    };
 
     submitFn = () => {
-    
+        
         const tokenx = localStorage.getItem('token');
         const xobj = JSON.parse(localStorage.getItem('pdata')); 
 
@@ -98,7 +109,7 @@ export default class CreatePublicBoard extends React.Component {
             "projectName": xobj.projectName,
             "projectId": xobj.projectID
         }
-
+     
         let url = 'https://boardservice-zode.herokuapp.com/api/board/new';
 
         axios.post(url, reqBody, config)
@@ -135,7 +146,7 @@ export default class CreatePublicBoard extends React.Component {
         })
         .catch(function (error) {
             console.log(error);
-        });  
+        }); 
     }
 
     updateBname = (evt) => {
@@ -226,34 +237,40 @@ export default class CreatePublicBoard extends React.Component {
                             <div className="xcb-g1">
                                     
                                 <p className="xcb-g1-bname-label">Board Name</p>
-                                <div><input type="text" placeholder="" className="xcb-g1-bname-inp" value = { this.state.bname } onChange={ this.updateBname } ></input></div>
+                                <div><input type="text" placeholder="Enter Board Name" className="xcb-g1-bname-inp" value = { this.state.bname } onChange={ this.updateBname } ></input></div>
                                 
-                                <p className="xcb-g1-checkbox-hdn">Add Members</p>
-
-                                { !this.state.members ? (
+                                <p className="xcb-g1-members-hdn">Add Members</p>
                                     
-                                    <div className="bx-loading">
-                                        <p>Loading...</p>
-                                    </div>                                    
+                                { this.state.finalMem.map((x, i) => {
+                        
+                                    return (
+                                        <div className="xcb-box">
+                                            
+                                            <div className="xcb-one-row-wrapper">
+        
+                                                <input list="email" placeholder="Email" className="xcb-email" name="email" onChange={e => this.handleMemberInputChange(e, i)}/>
+                                                
+                                                <datalist id="email">
+                                                    
+                                                    { !this.state.members ? (
+                                                        <option value = "Loading..." />
 
-                                ):( this.state.members.map((memdata, i) => (    
+                                                    ):( this.state.members.map((memdata, j) => (
+                                                        <option value = { JSON.parse(JSON.stringify(memdata.email)) } />
+                                                    )))}
 
-                                    <div className="xcb-g1-c-wrx">
+                                                </datalist>
+            
+                                                <span className="xcb-btn-box">
+                                                    { this.state.finalMem.length !== 1 && <button onClick={() => this.handleRemoveBtn(i) } className="xcb-remove-btn">Remove</button>}
+                                                    { this.state.finalMem.length - 1 === i && <button onClick={ this.handleAddBtn } className="xcb-add-btn">New</button>}
+                                                </span>
+                                            </div>
 
-                                        <div className="xcb-g1-c">
-
-                                            <div className="mem-email"><p>{JSON.parse(JSON.stringify(memdata.email)) }</p></div>
-                                            <div className="add-wrx"><input type="submit" value="" className="Addx" onClick={ () => this.addMem(memdata.email) }/></div>
-                                            <div className="remove-wrx"><input type="submit" value="" className="Removex" onClick={ () => this.removeMem(memdata.email) }/></div>                                            
                                         </div>
-                                    
-                                    </div>
+                                    );
+                                })} 
 
-                                )))}    
-                            
-                                <div>
-                                    <input className="xcb-show-list" type="submit" value="Show List" onClick = { this.showlist } />
-                                </div>
 
                                 <div><input type="submit" value="Create" className="xcb-g1-submit" onClick = { this.submitFn } ></input></div>                                                                             
                                 

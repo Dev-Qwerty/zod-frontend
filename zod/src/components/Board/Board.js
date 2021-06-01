@@ -1,6 +1,7 @@
 import './Board.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
+import refreshToken from '../../functions/refreshToken';
 import ReactTooltip from "react-tooltip";
 import axios from 'axios';
  
@@ -24,6 +25,8 @@ export default class Board extends React.Component {
 
     componentDidMount(){
      
+        refreshToken();
+
         const token1 = localStorage.getItem('token');
         const obj = JSON.parse(localStorage.getItem('pdata'));
 
@@ -71,17 +74,23 @@ export default class Board extends React.Component {
             }
         })
         .catch(function (error) {
-            console.log(error);
+            if(error.response.status === 401) {
+                refreshToken();
+            }
         });         
     }
 
-    personalFn = () => {
+    personalFn = (obj) => {
     
+        console.log(obj);
+        localStorage.setItem('boardobj', JSON.stringify(obj));
         window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/board/card';   
     }
 
-    publicFn = () => {
-        
+    publicFn = (obj) => {
+
+        console.log(obj);
+        localStorage.setItem('boardobj', JSON.stringify(obj));
         window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/board/card';
     }
 
@@ -177,7 +186,7 @@ export default class Board extends React.Component {
 
                                     ):( this.state.personalArr.map((pdat, i) => (
                                         
-                                        <div className="bbPersonal-card" onClick = { this.personalFn }>
+                                        <div className="bbPersonal-card" onClick = { () => this.personalFn(pdat) }>
                                             <p className="bbPersonal-parag">{ JSON.parse(JSON.stringify(pdat.boardName)) }</p>
                                         </div>   
                                     )))}   
@@ -208,7 +217,7 @@ export default class Board extends React.Component {
 
                                     ):( this.state.publicArr.map((tdat, i) => (
                            
-                                        <div className="bbPublic-card" onClick = { this.publicFn }>
+                                        <div className="bbPublic-card" onClick = { () => this.publicFn(tdat) }>
                                             <p className="bbPublic-parag">{ JSON.parse(JSON.stringify(tdat.boardName)) }</p>
                                         </div>                                         
                                     )))}    
