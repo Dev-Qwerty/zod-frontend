@@ -21,6 +21,7 @@ ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID +
 let index = 0;
 let currentUserEmail = '';
 function DynamicChatDisplay(props) {
+    let currentUser = firebase.auth().currentUser;
     let [channelMembers, setChannelMembers] = useState([]);
     const [chosenEmoji, setChosenEmoji] = useState(null);
     let [inputMsg, setInputMsg] = useState('');
@@ -29,6 +30,12 @@ function DynamicChatDisplay(props) {
     let [messages, setMessages] = useState([]);
     const [flag, setFlag] = useState(0);
 
+    let onKeyDownHandler = e => {
+        if (e.keyCode === 13) {
+          sendMessage();
+        }
+      };
+    
     const modalHandleClose = () => setShowModal(false);
     const modalHandleShow = () => {
         setShowModal(true);
@@ -111,10 +118,7 @@ function DynamicChatDisplay(props) {
             }
         ).then(response => {
             if(response.status == 200) {
-                messages.push(response.data);
                 setInputMsg('');
-                setMessages(messages);
-                setFlag(0);
             }
         })
     }
@@ -192,20 +196,51 @@ function DynamicChatDisplay(props) {
     }, [messages.length, flag]);
 
     useEffect(() => {
-        let currentUser = firebase.auth().currentUser;
         if(currentUser!=null) {
             currentUserEmail = currentUser.email;
         }
         let socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
-        socket.on("new message", data=> {
-            let email = currentUserEmail
-            if(data.channelid == props.channelId && email != data.author.email) {
+        socket.on("connection", data => {
+            console.log("Socket connected!");
+            console.log(data);
+        })
+        socket.on("newMessage", data=> {
+            console.log("New Message Received");
+            if(data.channelid == props.channelId) {
                 messages.push(data);
                 setMessages(messages);
+                console.log("Message pushed")
+                console.log(messages);
                 setFlag(0);
             }
         })
-        return () => socket.disconnect();
+        socket.on("deleteMessage", data=> {
+            if(props.channelId == data.channelId) {
+                let msg_ts = data.ts;
+                let flag = 0, index = 0, deleteIndex;
+                messages = messages.filter(item => {
+                    if(item.ts == msg_ts) {
+                        flag = 1;
+                        deleteIndex = index;
+                    }
+                    else {
+                        return item;
+                    }
+                    index += 1;
+                })
+                if(flag == 1) {
+                    setMessages(messages);
+                    let msgDiv = document.getElementById("dcd-messages-display");
+                    let msg = document.getElementById("dcd-message"+ ((deleteIndex-1)));
+                    if(msgDiv && msg!=null) {
+                        let pos = msg.offsetTop;
+                        msgDiv.scrollTop = pos;
+                    }
+                }
+            }
+            
+        })
+        
     }, []);
     if(props.channelname != 'default') {
         return(
@@ -257,7 +292,7 @@ function DynamicChatDisplay(props) {
             )}    
         </div>
         <div className="dcd-textbox">
-            <textarea value={inputMsg} onChange={onInputMsgChange}></textarea>
+            <textarea value={inputMsg} onChange={onInputMsgChange} onKeyDown={onKeyDownHandler}></textarea>
             <div className="dcd-icon-chat-tray">
                 <img className="dcd-emoji-icon" src={emojiIcon} onClick={displayEmojiPicker}></img>
                 <div id="dcd-emoji-picker">

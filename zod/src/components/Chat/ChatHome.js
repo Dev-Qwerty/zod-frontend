@@ -53,13 +53,13 @@ function ChatHome() {
     }
     useEffect(() => {
         fetchChannels();
-        
+        let socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
         /*socket.on("connection", data => {
           setResponse(data);
           console.log(response);
-        });
+        });*/
         
-        return () => socket.disconnect();*/
+        return () => socket.disconnect();
     }, []);
     return(
         <div className="zod-chat-homepg">
