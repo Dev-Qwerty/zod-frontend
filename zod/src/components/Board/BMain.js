@@ -1,12 +1,15 @@
 import './BMain.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
+import axios from 'axios';
+import refreshToken from '../../functions/refreshToken';
 import ReactTooltip from "react-tooltip";
 import Draggable from 'react-draggable';
-import socketIOClient from 'socket.io-client';
+import { ToastContainer, toast } from 'react-toastify';
+import io from 'socket.io-client';
+
 let proData = JSON.parse(localStorage.getItem('pdata'));
 const API = 'https://boardservice-zode.herokuapp.com/'+ proData.projectID + '/boards';
-//const API = 'https://chatservice-zode.herokuapp.com/'+ proData.projectID + "/chat";
 
 /* 
     ClassName Convention Used:-
@@ -19,7 +22,12 @@ export default class BMain extends React.Component {
      
         super();
         this.state = {
-            data: ''
+            boardName: '',
+            data: '',
+            listBool: false,
+            cardBool: false,
+            listDat: '',
+            listTitle: ''
         }
     }
 
@@ -28,27 +36,203 @@ export default class BMain extends React.Component {
     }
 
     componentDidMount() {
-        
-        /*let projectData = JSON.parse(localStorage.getItem('pdata'));
-        const socketapi = 'https://boardservice-zode.herokuapp.com/' + projectData.projectID + '/boards';       
-        
-        const socket = io(socketapi, {
+
+        refreshToken();
+        const objB = JSON.parse(localStorage.getItem('boardobj'));
+
+        this.setState({
+            boardName : objB.boardName
+        }); 
+
+        const obj = JSON.parse(localStorage.getItem('boardobj'));
+
+        const socket = io(API, {
             auth: {
                 Authorization: localStorage.getItem('token')
             }
         });
         
-        socket.on('connection', (data) => {
+        socket.on("connection", data => {
             console.log(data);
-            //this.socket.emit("joinRoom", room);
-        });*/
-      
-        const socket = socketIOClient(API, {auth: {Authorization: localStorage.getItem('token')}});
-        
-        socket.on("connection", () => {
-          console.log(socket.id);
+            this.socket.emit("joinRoom", obj.boardId);
         });
 
+        this.fetchListCard();
+    }
+
+    fetchListCard = () => {
+      
+        const token1 = localStorage.getItem('token');
+        const obj = JSON.parse(localStorage.getItem('boardobj'));
+
+        const config = {
+            headers: {
+                'Authorization': token1,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        let url = 'https://boardservice-zode.herokuapp.com/api/board/lists/' + obj.boardId;
+    
+        axios.get(url, config)
+        .then((res) => {
+    
+            if(res.status === 200) {
+                
+                const dat = res.data;
+
+                this.setState({
+                    listDat : dat.lists
+                });  
+                //alert(JSON.stringify(this.state.listDat));         
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            if(error.response.status === 401) {
+                refreshToken();
+            }
+        });        
+    }
+
+    updateListTitle = (evt) => {
+        this.setState({
+            listTitle: evt.target.value
+        });
+    }
+
+    createListFn = () => {
+
+        if(this.state.listDat.length == 0) {
+            
+            // Random No
+            const min = 500;
+            const max = 1000;
+            const rand = min + Math.random() * (max - min);
+            const roundR = Math.round(rand); 
+            console.log(roundR);
+        
+            // Axios POST
+            const tokenx = localStorage.getItem('token');
+            const obj = JSON.parse(localStorage.getItem('boardobj'));
+    
+            const config = {
+                headers: {
+                    'Authorization': tokenx,
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin' : '*',
+                }
+            }
+        
+            const reqBody = {
+                "title": this.state.listTitle,
+                "pos": roundR,
+                "boardId": obj.boardId
+            }
+         
+            let url = 'https://boardservice-zode.herokuapp.com/api/' + obj.boardId + '/list/new';
+            
+            axios.post(url, reqBody, config)
+            .then((res) => {
+        
+                if(res.status === 201) {
+                    
+                    //console.log(res.data);
+                    this.clistCloseFn();
+
+                    toast.info('List Created!', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    }); 
+                    
+                    setTimeout(() => {
+                        window.location.reload();
+                      }, 3000);                      
+
+                } else {
+              
+                }
+            })
+            .catch(function (error) {
+                if(error.response.status === 401) {
+                    refreshToken();
+                }
+            });
+
+
+        } else {
+
+            
+            // add 1045 to last obj pos
+            const lastObj = this.state.listDat[this.state.listDat.length - 1];
+            const lastPos = lastObj.pos; 
+            const num = 1045;
+            const newPos = lastPos + num;
+            console.log(newPos);
+
+            // Axios POST
+            const tokenx = localStorage.getItem('token');
+            const obj = JSON.parse(localStorage.getItem('boardobj'));
+    
+            const config = {
+                headers: {
+                    'Authorization': tokenx,
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin' : '*',
+                }
+            }
+        
+            const reqBody = {
+                "title": this.state.listTitle,
+                "pos": newPos,
+                "boardId": obj.boardId
+            }
+         
+            let url = 'https://boardservice-zode.herokuapp.com/api/' + obj.boardId + '/list/new';
+        
+            //alert(JSON.stringify(reqBody));
+
+            axios.post(url, reqBody, config)
+            .then((res) => {
+        
+                if(res.status === 201) {
+                    
+                    //console.log(res.data);
+                    this.clistCloseFn();
+
+                    toast.info('List Created!', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    
+                    setTimeout(() => {
+                        window.location.reload();
+                      }, 3000);                  
+                    
+                } else {
+              
+                }
+            })
+            .catch(function (error) {
+                if(error.response.status === 401) {
+                    refreshToken();
+                }
+            });    
+
+        }
+    
     }
 
     backToBaseFn = () => {
@@ -60,8 +244,32 @@ export default class BMain extends React.Component {
         window.location.href = window.location.protocol + '//' + window.location.host + '/login';   
     }
 
+    clistBoolFn = () => {
+        this.setState({
+            listBool : true
+        }); 
+    } 
+
+    clistCloseFn = () => {
+        this.setState({
+            listBool : false
+        }); 
+    }
+
+    cardBoolFn = () => {
+        this.setState({
+            cardBool : true
+        }); 
+    } 
+
+    cardCloseFn = () => {
+        this.setState({
+            cardBool : false
+        }); 
+    }
+
     render() {
-    
+        
         return (
             <div className="Card">
                 
@@ -124,129 +332,102 @@ export default class BMain extends React.Component {
                         
                         <div className="cb-wrapper">
 
-                            <div className="">
-                                <input type="submit" value="New List" className="cb-new-list-btn"></input>
+                            <div className="cb-xWrapper">
+                                <div className="cbx-1">
+                                    <p>Board Name: { this.state.boardName }</p>
+                                </div>
+                                <div className="cbx-2">
+                                    <input type="submit" value="New List" className="cb-new-list-btn" onClick = { this.clistBoolFn }></input>
+                                </div>
                             </div>
+                            <div className="cb-proLine"></div>
 
                             <div className="cb-list-wrapper">
+
+                                { !this.state.listDat ? (
+                                                                        
+                                    <div className="BM-loading">
+                                        <p>Loading...</p>
+                                    </div>
+
+                                ):( this.state.listDat.map((litem, i) => (
                                 
-                                <div className="cb-list">
-                                   
-                                    <div className="cbl-h">
-                                        <div className="cblh-wr">
-                                            <div className="cblh-p"><p>Upcomming</p></div>
-                                            <div className="cblh-plus"></div>
-                                        </div>
+                                    <div className="cb-list">
 
-                                        <div className="cblh-line"></div>
-                                    </div>
-
-                                    <Draggable>  
-                                        <div className="dragg">
-                                            <div className="cbl-card">
-                                                <div className="cblc-taskname">
-                                                    <p>Task Name</p>
-                                                </div>
-                                                <div className="cblc-wr">
-                                                    <div className="cblc-profile"><p>JD</p></div>
-                                                    <div><p className="cblc-date">20-5-2021</p></div>
-                                                </div>
+                                        <div className="cbl-h">
+                                            <div className="cblh-wr">
+                                                <div className="cblh-p"><p>{ JSON.parse(JSON.stringify( litem.title )) }</p></div>
+                                                <div className="cblh-plus" onClick = { this.cardBoolFn }></div>
                                             </div>
+    
+                                            <div className="cblh-line"></div>
                                         </div>
-                                    </Draggable>
-                                    
-                                    <div className="cbl-card">
-                                        <div className="cblc-taskname">
-                                            <p>Task Name</p>
+
+                                        <div className="cbl-spec-card">
+                                            <p>Empty!</p>
                                         </div>
-                                        <div className="cblc-wr">
-                                            <div className="cblc-profile"><p>JD</p></div>
-                                            <div><p className="cblc-date">20-5-2021</p></div>
-                                        </div>
+
+                                        {/*<div className="cbl-card">
+                                            <div className="cblc-taskname">
+                                                <p>Task Name</p>
+                                            </div>
+                                            
+                                            <div className="cblc-wr">
+                                                <div className="cblc-profile"><p>JD</p></div>
+                                                <div><p className="cblc-date">20-5-2021</p></div>
+                                            </div>
+                                        </div>*/}
                                     </div>
+                                )))}    
 
-                                    <div className="cbl-card">
-                                        <div className="cblc-taskname">
-                                            <p>Task Name</p>
-                                        </div>
-                                        <div className="cblc-wr">
-                                            <div className="cblc-profile"><p>JD</p></div>
-                                            <div><p className="cblc-date">20-5-2021</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="cb-list">
-
-                                   <div className="cbl-h">
-                                        <div className="cblh-wr">
-                                            <div className="cblh-p"><p>In Progress</p></div>
-                                            <div className="cblh-plus"></div>
-                                        </div>
-
-                                        <div className="cblh-line"></div>
-                                    </div>
-
-                                    <div className="cbl-card">
-                                        <div className="cblc-taskname">
-                                            <p>Task Name</p>
-                                        </div>
-                                        <div className="cblc-wr">
-                                            <div className="cblc-profile"><p>JD</p></div>
-                                            <div><p className="cblc-date">20-5-2021</p></div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="cbl-card">
-                                        <div className="cblc-taskname">
-                                            <p>Task Name</p>
-                                        </div>
-                                        <div className="cblc-wr">
-                                            <div className="cblc-profile"><p>JD</p></div>
-                                            <div><p className="cblc-date">20-5-2021</p></div>
-                                        </div>
-                                    </div>                                  
-                                </div>
-
-                                <div className="cb-list">
-
-                                    <div className="cbl-h">
-                                        <div className="cblh-wr">
-                                            <div className="cblh-p"><p>Completed</p></div>
-                                            <div className="cblh-plus"></div>
-                                        </div>
-
-                                        <div className="cblh-line"></div>
-                                    </div>
-
-                                    <div className="cbl-card">
-                                        <div className="cblc-taskname">
-                                            <p>Task Name</p>
-                                        </div>
-                                        <div className="cblc-wr">
-                                            <div className="cblc-profile"><p>JD</p></div>
-                                            <div><p className="cblc-date">20-5-2021</p></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="cb-list">
-
-                                    <div className="cbl-h">
-                                        <div className="cblh-wr">
-                                            <div className="cblh-p"><p>Frontend</p></div>
-                                            <div className="cblh-plus"></div>
-                                        </div>
-
-                                        <div className="cblh-line"></div>
-                                    </div>
-                                </div>
                             </div>
     
                         </div>
 
                     </div>
                 </div>
+
+                { this.state.listBool ? (
+                    
+                    <div className="clist-wrapper">
+                        
+                        <div className="cl-body">
+                            
+                            <div className="cl-close" onClick = { this.clistCloseFn }></div>
+                            
+                            <p className="clb-namep">List Name</p>
+                            <div><input type="text" placeholder="List Name" className="clb-nameinp" onChange={ this.updateListTitle }></input></div>
+                            
+                            <div><input type="submit" value="Create" className="clb-submit" onClick = { this.createListFn }></input></div>                           
+                    
+                        </div>
+                    </div>                    
+                ):(
+                    <p></p>
+                )}      
+
+                { this.state.cardBool ? (
+                    
+                    <div className="cardModal-wrapper">
+                        <div>
+                            <div className="cardM-hdn"><p>Create New Card</p></div>
+                            <div className="cardM-proLine"></div>
+                        </div>
+                        <div className="cardM-body-wrx">
+                            <p className="cardM-namep">Card Name</p>
+                            <input type="text" className="cardM-nameinp" placeholder="Card Name"></input>
+                            <p className="cardM-descp">Description</p>
+                            <textarea className="cardM-descinp"></textarea>
+                            <p className="cardM-duep">Due Date</p>
+                            <input type="date" placeholder="Due Date" className="cardM-dueinp"></input>
+                            <p className="cardM-abm">Assign Board Members</p>
+                            <input type="submit" className="cardM-submit" onClick = { this.cardCloseFn }></input>
+                        </div>
+                    </div>                    
+                ):(
+                    <p></p>
+                )}                           
+
             </div>
         );
     }

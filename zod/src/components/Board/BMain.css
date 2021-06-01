@@ -199,6 +199,22 @@
   padding-left: 0px;
 }
 
+.cb-xWrapper {
+  padding-top: 50px;
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+.cbx-1 p {
+  padding-left: 50px;
+  font-size: 18px;
+}
+
+.cbx-2 {
+  margin-top: -10px;
+  padding-left: 80px;
+}
+
 .cb-new-list-btn {
   width: 130px;
   height: 35px;
@@ -206,13 +222,20 @@
   border-radius: 5px;
   background-color: #4CBF53;
   color: #fff;
-  margin-top: 25px;
-  margin-left: 85%;
+  margin-top: 0px;
+  margin-left: 0%;
+}
+
+.cb-proLine {
+  width: 100%;
+  height: 1px;
+  /*background-color: rgba(0, 0, 0, 0.15);*/
+  background-color: #4CBF53;
 }
 
 /* List wrapper */
 .cb-list-wrapper {
-  margin-top: 20px;
+  margin-top: 50px;
   margin-left: 50px;
   padding-bottom: 30px;
   padding-top: 30px;
@@ -234,6 +257,7 @@
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
+/* Head Card */
 .cbl-h {
   padding-top: 10px;  
   width: 100%;
@@ -263,6 +287,10 @@
   margin-right: auto;
 }
 
+.cblh-plus:hover {
+  cursor: pointer;
+}  
+
 .cblh-line {
   margin-left: auto;
   margin-right: auto;
@@ -278,6 +306,7 @@
   cursor: move;
 }
 
+/* Card */
 .cbl-card {
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 3px;
@@ -323,4 +352,174 @@
   text-align: right;
   padding-right: 15px;
   padding-top: 13px;
+}
+
+/* No Card's Present */
+.cbl-spec-card {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width: 90%;
+  height: 100px;
+  background-color: #fff;
+  text-align: center;
+  padding-top: 11%;
+}
+
+/* create list fn */
+.clist-wrapper {
+  position: absolute;
+  left: 54%;
+  top: 10%;
+  width: 27%;
+  height: 30%;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: #000;
+} 
+
+.cl-close {
+  margin-top: 9px;
+  width: 26px;
+  height: 26px;  
+  margin-left: 90%;
+  background-image: url('../../assets/closesq.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;    
+}
+
+.cl-close:hover {
+  cursor: pointer;
+}
+
+.cl-body {
+  /*padding-top: 10%;*/
+  padding-left: 10%;
+}
+
+.clb-namep {
+  font-size: 17px;
+}
+
+.clb-nameinp {
+  width: 250px;
+  height: 31px;
+  margin-bottom: 30px;
+}
+
+.clb-submit {
+  width: 30%;
+  height: 35px;
+  background-color: #189FFA;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Loading */
+.BM-loading {
+  position: absolute;
+  left: 40%;
+  top: 42%;
+  background-color: #fff;
+  /*opacity: 0.8;*/
+  color: #000;
+  width: 250px;
+  height: 130px;
+  text-align: center;
+  padding-top: 40px;
+  /*border: 1px solid #aaa;*/
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.BM-loading p {
+  font-family: Pacifico;
+  font-size: 30px;
+  color: #4CBF53;    
+}
+
+/* Modal - Create New Card */
+.cardModal-wrapper {
+  position: absolute;
+  left: 20%;
+  top: 16%;
+  width: 60%;
+  height: 75%;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: #000;  
+}
+
+.cardM-hdn {
+  font-size: 18px;
+  padding-top: 35px;
+  padding-left: 50px;
+  margin-bottom: -8px;
+}
+
+.cardM-proLine {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.15);  
+}
+
+.cardM-body-wrx {
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
+.cardM-namep {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.cardM-nameinp {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  width: 35%;
+  height: 29px;
+}
+
+.cardM-descp {
+  margin-bottom: 10px;
+  font-size: 17px;
+}
+
+.cardM-descinp {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  width: 60%;
+  height: 100px; 
+}
+
+.cardM-duep {
+  margin-bottom: 10px;
+  font-size: 17px; 
+}
+
+.cardM-dueinp {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  width: 35%;
+  height: 30px;
+}
+
+.cardM-abm {
+  margin-bottom: 10px;
+  font-size: 17px;   
+}
+
+.cardM-submit {
+  width: 100px;
+  height: 35px;
+  border: none;
+  background-color: #189FFA;
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 20px;
 }

@@ -2,6 +2,7 @@ import './ProjectD.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
 import ReactTooltip from "react-tooltip";
+import refreshToken from '../../functions/refreshToken';
  
 /* 
     HOME
@@ -18,6 +19,10 @@ export default class ProjectD extends React.Component {
         this.state = {
             data: ''
         }
+    }
+
+    componentDidMount(){
+        refreshToken();
     }
 
     backToBaseFn = () => {

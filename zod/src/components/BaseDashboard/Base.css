@@ -49,20 +49,11 @@
 .bd-icon {
   width: 50px;
   height: 50px;
-  border: 3px #1F89C5 solid;
+  /*border: 2px #aaa solid;*/
   border-radius: 50%;
-  padding-top: 10%;
-  padding-left: 15%;
-  box-sizing: border-box;
   cursor: pointer;
-  background-color: #fff;
-}
-
-.bd-icon-txt {
-  font: Fira Code;
-  font-size: 22px;
-  font-weight: bold;
-}  
+  padding: 0px;
+} 
   
 .bd-dropdown-content {
   display: none;

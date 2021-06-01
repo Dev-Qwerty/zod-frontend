@@ -1,6 +1,7 @@
 import './CreatePublicBoard.css';
 import { Link, Route } from "react-router-dom";
 import React from 'react';
+import refreshToken from '../../functions/refreshToken';
 import ReactTooltip from "react-tooltip";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -24,6 +25,8 @@ export default class CreatePublicBoard extends React.Component {
     }
 
     componentDidMount(){
+
+        refreshToken();
      
         const token1 = localStorage.getItem('token');
         const obj = JSON.parse(localStorage.getItem('pdata'))
@@ -50,7 +53,9 @@ export default class CreatePublicBoard extends React.Component {
             }
         })
         .catch(function (error) {
-            console.log(error);
+            if(error.response.status === 401) {
+                refreshToken();
+            };
         });         
     }
 
