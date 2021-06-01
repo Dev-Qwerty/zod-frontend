@@ -446,10 +446,10 @@
 /* Modal - Create New Card */
 .cardModal-wrapper {
   position: absolute;
-  left: 20%;
+  left: 16%;
   top: 16%;
-  width: 60%;
-  height: 75%;
+  width: 70%;
+  min-height: 75%;
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   color: #000;  
@@ -466,11 +466,19 @@
   width: 100%;
   height: 1px;
   background-color: rgba(0, 0, 0, 0.15);  
+  margin-bottom: 0px;
 }
 
 .cardM-body-wrx {
-  margin-top: 20px;
-  margin-left: 50px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  min-height: 400px;
+  border-bottom: 1px solid #aaa;
+}
+
+.cardM-left {
+  padding-top: 20px;
+  padding-left: 50px;  
 }
 
 .cardM-namep {
@@ -479,10 +487,11 @@
 }
 
 .cardM-nameinp {
+  padding-left: 10px;
   margin-top: 0px;
-  margin-bottom: 20px;
-  width: 35%;
-  height: 29px;
+  margin-bottom: 27px;
+  width: 60%;
+  height: 34px;
 }
 
 .cardM-descp {
@@ -492,8 +501,8 @@
 
 .cardM-descinp {
   margin-top: 0px;
-  margin-bottom: 20px;
-  width: 60%;
+  margin-bottom: 27px;
+  width: 75%;
   height: 100px; 
 }
 
@@ -503,10 +512,17 @@
 }
 
 .cardM-dueinp {
+  padding-left: 10px;
   margin-top: 0px;
-  margin-bottom: 20px;
-  width: 35%;
-  height: 30px;
+  margin-bottom: 45px;
+  width: 60%;
+  height: 34px;
+}
+
+.cardM-right {
+  border-left: 1px solid #aaa;
+  padding-top: 20px;
+  padding-left: 40px;    
 }
 
 .cardM-abm {
@@ -514,12 +530,51 @@
   font-size: 17px;   
 }
 
-.cardM-submit {
+/* email dynamic dropdown*/
+.cardM-box {
+  margin-left: 25px;
+  margin-top: 20px;
+}
+
+.cardM-one-row-wrapper {
+  margin-bottom: 20px;
+}
+
+.cardM-email {
+  margin-left: 0px;
+  width: 250px;
+  height: 34px;
+  padding-left: 10px;
+  font-size: 16px;  
+}
+
+.cardM-add-btn {
+  width: 50px;
+  height: 34px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #52D066;
+  border: none;
+  color: #fff;
+}
+
+.cardM-remove-btn {
   width: 100px;
+  height: 34px;
+  margin-left: 20px;
+  background-color: #8F8F8F;
+  border: none;
+  color: #fff;
+}
+
+.cardM-submit {
+  width: 200px;
   height: 35px;
   border: none;
   background-color: #189FFA;
   color: #fff;
   border-radius: 5px;
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-left: 50px;
+  margin-bottom: 30px;
 }

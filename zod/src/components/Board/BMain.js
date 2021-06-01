@@ -27,7 +27,9 @@ export default class BMain extends React.Component {
             listBool: false,
             cardBool: false,
             listDat: '',
-            listTitle: ''
+            listTitle: '',
+            memDatB: '',
+            finalMemB: [{ name: "", email: "", imgUrl: "" }]
         }
     }
 
@@ -81,11 +83,12 @@ export default class BMain extends React.Component {
             if(res.status === 200) {
                 
                 const dat = res.data;
-
+                //alert(JSON.stringify(dat));
                 this.setState({
-                    listDat : dat.lists
+                    listDat : dat.lists,
+                    memDatB: dat.members
                 });  
-                //alert(JSON.stringify(this.state.listDat));         
+                //alert(JSON.stringify(this.state.memDat));         
             } else {
 
             }
@@ -266,7 +269,38 @@ export default class BMain extends React.Component {
         this.setState({
             cardBool : false
         }); 
+        alert(JSON.stringify(this.state.finalMemB));
     }
+
+    handleMemberInputChange = (e, index) => {
+
+        const { name, value } = e.target;
+        const list = this.state.finalMemB;
+        list[index][name] = value;
+        
+        this.setState({
+            finalMemB : list
+        }); 
+    }; 
+
+    handleAddBtn = () => {
+        
+        const obj = { name: "", email: "", imgUrl: "" }
+        
+        this.setState({
+            finalMemB : [...this.state.finalMemB, obj]
+        });         
+    }; 
+
+    handleRemoveBtn = (index) => {
+
+        const list = this.state.finalMemB;
+        list.splice(index, 1);
+
+        this.setState({
+            finalMemB : list
+        });     
+    };
 
     render() {
         
@@ -414,15 +448,51 @@ export default class BMain extends React.Component {
                             <div className="cardM-proLine"></div>
                         </div>
                         <div className="cardM-body-wrx">
-                            <p className="cardM-namep">Card Name</p>
-                            <input type="text" className="cardM-nameinp" placeholder="Card Name"></input>
-                            <p className="cardM-descp">Description</p>
-                            <textarea className="cardM-descinp"></textarea>
-                            <p className="cardM-duep">Due Date</p>
-                            <input type="date" placeholder="Due Date" className="cardM-dueinp"></input>
-                            <p className="cardM-abm">Assign Board Members</p>
-                            <input type="submit" className="cardM-submit" onClick = { this.cardCloseFn }></input>
+                            <div className="cardM-left">
+                                <p className="cardM-namep">Card Name</p>
+                                <input type="text" className="cardM-nameinp" placeholder="Card Name"></input>
+                                <p className="cardM-descp">Description</p>
+                                <textarea className="cardM-descinp"></textarea>
+                                <p className="cardM-duep">Due Date</p>
+                                <input type="date" placeholder="Due Date" className="cardM-dueinp"></input>
+                            </div>
+                            <div className="cardM-right">
+                                <p className="cardM-abm">Assign Board Members</p>
+
+                                { this.state.finalMemB.map((x, i) => {
+                        
+                                    return (
+                                        <div className="cardM-box">
+                                            
+                                            <div className="cardM-one-row-wrapper">
+
+                                                <input list="email" placeholder="Email" className="cardM-email" name="email" onChange={e => this.handleMemberInputChange(e, i)}/>
+                                                
+                                                <datalist id="email">
+                                                    
+                                                    { !this.state.memDatB ? (
+                                                        <option value = "Loading..." />
+
+                                                    ):( this.state.memDatB.map((mdat, j) => (
+                                                        <option value = { JSON.parse(JSON.stringify(mdat.email)) } />
+                                                    )))}
+
+                                                </datalist>
+
+                                                <span className="cardM-btn-box">
+                                                    { this.state.finalMemB.length !== 1 && <button onClick={() => this.handleRemoveBtn(i) } className="cardM-remove-btn">Remove</button>}
+                                                    { this.state.finalMemB.length - 1 === i && <button onClick={ this.handleAddBtn } className="cardM-add-btn">New</button>}
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    );
+                                })} 
+
+
+                            </div>
                         </div>
+                        <input type="submit" className="cardM-submit" onClick = { this.cardCloseFn }></input>
                     </div>                    
                 ):(
                     <p></p>
