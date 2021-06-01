@@ -29,7 +29,8 @@ export default class BMain extends React.Component {
             listDat: '',
             listTitle: '',
             memDatB: '',
-            finalMemB: [{ name: "", email: "", imgUrl: "" }]
+            finalMemB: [{ name: "", email: "", imgUrl: "" }],
+            cardDat: ''
         }
     }
 
@@ -83,12 +84,13 @@ export default class BMain extends React.Component {
             if(res.status === 200) {
                 
                 const dat = res.data;
-                //alert(JSON.stringify(dat));
+                alert(JSON.stringify(dat));
                 this.setState({
                     listDat : dat.lists,
+                    cardDat: dat.cards,
                     memDatB: dat.members
                 });  
-                //alert(JSON.stringify(this.state.memDat));         
+                //alert(JSON.stringify(this.state.cards));         
             } else {
 
             }
@@ -106,6 +108,7 @@ export default class BMain extends React.Component {
         });
     }
 
+    // Submit Btn - Create List Modal
     createListFn = () => {
 
         if(this.state.listDat.length == 0) {
@@ -259,24 +262,12 @@ export default class BMain extends React.Component {
         }); 
     }
 
-    cardBoolFn = () => {
+    cardBoolFn = (val) => {
         this.setState({
-            cardBool : true
+            cardBool : true,
+            listId: val
         }); 
-    } 
-
-    cardCloseFn = () => {
-        this.setState({
-            cardBool : false
-        }); 
-    }
-
-    cardSubmitFn = () => {
-        this.setState({
-            cardBool : false
-        }); 
-        alert(JSON.stringify(this.state.finalMemB));
-    }    
+    }   
 
     handleMemberInputChange = (e, index) => {
 
@@ -307,6 +298,68 @@ export default class BMain extends React.Component {
             finalMemB : list
         });     
     };
+
+    cardCloseFn = () => {
+        this.setState({
+            cardBool : false
+        }); 
+    }
+
+    // Submit Btn - Create Card Modal
+    cardSubmitFn = () => {
+
+        if(this.state.cardDat.length == 0) {
+                        
+            // Random No
+            const min = 500;
+            const max = 1000;
+            const rand = min + Math.random() * (max - min);
+            const roundR = Math.round(rand); 
+            
+            // Axios POST
+            const tokeny = localStorage.getItem('token');
+            const objy = JSON.parse(localStorage.getItem('boardobj'));
+    
+            const config = {
+                headers: {
+                    'Authorization': tokeny,
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin' : '*',
+                }
+            }
+        
+            const reqBody = {
+                "cardName": "card0",
+                "cardDescription": "this is the description",
+                "dueDate": "2021-05-02T03:22:41.864Z",
+                "pos": roundR,
+                "assigned": this.state.finalMemB,
+                "list": this.state.listId
+            }
+         
+            let url = 'https://boardservice-zode.herokuapp.com/api/' + objy.boardId + '/card/new';
+        
+            alert(JSON.stringify(reqBody));
+
+            axios.post(url, reqBody, config)
+            .then((res) => {
+        
+                if(res.status === 201) {               
+                    alert('hoi');
+                } else {
+              
+                }
+            })
+            .catch(function (error) {
+                if(error.response.status === 401) {
+                    refreshToken();
+                }
+            }); 
+
+        } else {
+
+        }    
+    }  
 
     render() {
         
@@ -397,7 +450,7 @@ export default class BMain extends React.Component {
                                         <div className="cbl-h">
                                             <div className="cblh-wr">
                                                 <div className="cblh-p"><p>{ JSON.parse(JSON.stringify( litem.title )) }</p></div>
-                                                <div className="cblh-plus" onClick = { this.cardBoolFn }></div>
+                                                <div className="cblh-plus" onClick = { () => this.cardBoolFn(litem.listId) }></div>
                                             </div>
     
                                             <div className="cblh-line"></div>
