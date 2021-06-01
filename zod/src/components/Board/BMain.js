@@ -269,8 +269,14 @@ export default class BMain extends React.Component {
         this.setState({
             cardBool : false
         }); 
-        alert(JSON.stringify(this.state.finalMemB));
     }
+
+    cardSubmitFn = () => {
+        this.setState({
+            cardBool : false
+        }); 
+        alert(JSON.stringify(this.state.finalMemB));
+    }    
 
     handleMemberInputChange = (e, index) => {
 
@@ -443,20 +449,30 @@ export default class BMain extends React.Component {
                 { this.state.cardBool ? (
                     
                     <div className="cardModal-wrapper">
+                        
                         <div>
+                            <div className="cardM-close" onClick = { this.cardCloseFn }></div>
+                            
                             <div className="cardM-hdn"><p>Create New Card</p></div>
                             <div className="cardM-proLine"></div>
                         </div>
+                        
                         <div className="cardM-body-wrx">
+                            
                             <div className="cardM-left">
+                                
                                 <p className="cardM-namep">Card Name</p>
                                 <input type="text" className="cardM-nameinp" placeholder="Card Name"></input>
+                                
                                 <p className="cardM-descp">Description</p>
                                 <textarea className="cardM-descinp"></textarea>
+                                
                                 <p className="cardM-duep">Due Date</p>
                                 <input type="date" placeholder="Due Date" className="cardM-dueinp"></input>
                             </div>
+                            
                             <div className="cardM-right">
+                                
                                 <p className="cardM-abm">Assign Board Members</p>
 
                                 { this.state.finalMemB.map((x, i) => {
@@ -492,7 +508,8 @@ export default class BMain extends React.Component {
 
                             </div>
                         </div>
-                        <input type="submit" className="cardM-submit" onClick = { this.cardCloseFn }></input>
+                        
+                        <input type="submit" className="cardM-submit" onClick = { this.cardSubmitFn }></input>
                     </div>                    
                 ):(
                     <p></p>
