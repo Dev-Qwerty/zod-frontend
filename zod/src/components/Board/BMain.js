@@ -9,8 +9,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import io from 'socket.io-client';
 
 let proData = JSON.parse(localStorage.getItem('pdata'));
-const API = 'https://boardservice-zode.herokuapp.com/'+ proData.projectID + '/boards';
-
+let API;
+if(proData!=null) {
+    API = 'https://boardservice-zode.herokuapp.com/'+ proData.projectID + '/boards';
+}
 /* 
     ClassName Convention Used:-
         Eg: mp-top-nav -> MyProfile-top-nav ..
