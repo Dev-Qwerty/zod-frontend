@@ -269,3 +269,9 @@
 .dcd-message:hover .dcd-edit-remove-options {
     display: table;
 }
+
+.dcd-edit-msg-input {
+    position: relative;
+    bottom: 40px;
+    display: none;
+}

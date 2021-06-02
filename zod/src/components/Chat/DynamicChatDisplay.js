@@ -5,7 +5,7 @@ import ChatSVG from '../../assets/Chat-Home.svg';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './DynamicChatDisplay.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Loader from '../Loader/Loader';
 import Picker from 'emoji-picker-react';
 import Modal from 'react-bootstrap/Modal';
@@ -20,6 +20,9 @@ ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID +
 }
 let index = 0;
 let currentUserEmail = '';
+let channelId = '';
+let channelChanged = false;
+
 function DynamicChatDisplay(props) {
     let currentUser = firebase.auth().currentUser;
     let [channelMembers, setChannelMembers] = useState([]);
@@ -29,12 +32,15 @@ function DynamicChatDisplay(props) {
     const [newMembers, setNewMembers] = useState([]);
     let [messages, setMessages] = useState([]);
     const [flag, setFlag] = useState(0);
+    const [editedMsg, setEditMsg] = useState('');
+    let [hiddenInput, setHiddenInput] = useState('');
+    let prevMsgRef = useRef();
 
-    let onKeyDownHandler = e => {
-        if (e.keyCode === 13) {
-          sendMessage();
-        }
-      };
+    let channelMsgs = [];
+
+    if(props.channelId) {
+        channelId = props.channelId;
+    }
     
     const modalHandleClose = () => setShowModal(false);
     const modalHandleShow = () => {
@@ -48,6 +54,11 @@ function DynamicChatDisplay(props) {
     const onInputMsgChange = (e) => {
         setInputMsg(e.target.value);
     }
+
+    const onEditMsgChange = (e) => {
+        setEditMsg(e.target.value);
+    }
+
     let projectDetails = JSON.parse(localStorage.getItem('pdata'));
     function displayDropDown () {
         let displayValue = document.getElementById("dcd-more-options").style.display;
@@ -58,6 +69,26 @@ function DynamicChatDisplay(props) {
             document.getElementById("dcd-more-options").style.display = "none";
         }    
     }
+    function newMessageReceived(data) {
+        if(data.channelid == channelId) {
+                channelMsgs.push(data);
+                setMessages(channelMsgs);
+                setFlag(0);
+                setHiddenInput('new message');
+                setHiddenInput('');
+                updateScroll();
+    }/*
+        if(data.channelid = channelId) {
+            let url = "https://chatservice-zode.herokuapp.com/api/messages/"+ channelId + "?latest=" + Math.floor(Date.now());
+            axios.get(url, {headers: {
+                "Access-Control-Allow-Origin" : "*",
+                "Authorization": localStorage.getItem("token")
+            }}).then(response => {
+                setMessages(response.data);
+                setFlag(0);
+            })
+        }*/
+    }
     function displayEmojiPicker () {
         let displayValue = document.getElementById("dcd-emoji-picker").style.display;
         if(displayValue == "none") {
@@ -66,6 +97,18 @@ function DynamicChatDisplay(props) {
         else {
             document.getElementById("dcd-emoji-picker").style.display = "none";
         }       
+    }
+
+    function displayEditMessage(i) {
+        let displayValue = document.getElementById("dcd-edit-msg-input"+i);
+        if(displayValue) {
+            if(displayValue.style.display == "none") {
+                displayValue.style.display = "block";
+            }
+            else {
+                displayValue.style.display = "none";
+            }
+        }
     }
     function updateScroll(){
         var element = document.getElementById("dcd-messages-display");
@@ -177,17 +220,43 @@ function DynamicChatDisplay(props) {
         })
     }
 
+    function editMessageRequest(i, editedMsg) {
+        let url = "https://chatservice-zode.herokuapp.com/api/chat/" + props.channelId + "/messages/" + messages[i].ts + "/update";
+        axios.put(url, {
+            "content": editedMsg
+        } ,{headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": localStorage.getItem("token")
+        }}).then(response => {
+            if(response.status === 200) {
+                messages[i].content = editedMsg;
+                setMessages(messages);
+                setInputMsg('new message received');
+                setInputMsg('');
+                displayEditMessage(i);
+            }
+        })
+    }
+
     useEffect(() => {
+        console.log("Channel ID CHANGED!");
+        channelMsgs = [];
+        channelId = props.channelId;
         setMessages([]);
+        setHiddenInput('clear message');
+        setHiddenInput('');
         let url = "https://chatservice-zode.herokuapp.com/api/messages/"+ props.channelId + "?latest=" + Math.floor(Date.now());
         axios.get(url, {headers: {
             "Access-Control-Allow-Origin" : "*",
             "Authorization": localStorage.getItem("token")
         }}).then(response => {
             setMessages(response.data);
+            setHiddenInput('channel change');
+            setHiddenInput('');
             setFlag(0);
+            channelMsgs = response.data;
         })
-    },[props.channelId]);
+    },[channelId]);
 
     useEffect(() => {
         if(flag == 0) {
@@ -206,13 +275,7 @@ function DynamicChatDisplay(props) {
         })
         socket.on("newMessage", data=> {
             console.log("New Message Received");
-            if(data.channelid == props.channelId) {
-                messages.push(data);
-                setMessages(messages);
-                console.log("Message pushed")
-                console.log(messages);
-                setFlag(0);
-            }
+            newMessageReceived(data);
         })
         socket.on("deleteMessage", data=> {
             if(props.channelId == data.channelId) {
@@ -240,8 +303,9 @@ function DynamicChatDisplay(props) {
             }
             
         })
-        
+        return () => socket.disconnect();
     }, []);
+
     if(props.channelname != 'default') {
         return(
         <div className="dcd-display">
@@ -292,7 +356,7 @@ function DynamicChatDisplay(props) {
             )}    
         </div>
         <div className="dcd-textbox">
-            <textarea value={inputMsg} onChange={onInputMsgChange} onKeyDown={onKeyDownHandler}></textarea>
+            <textarea value={inputMsg} onChange={onInputMsgChange}></textarea>
             <div className="dcd-icon-chat-tray">
                 <img className="dcd-emoji-icon" src={emojiIcon} onClick={displayEmojiPicker}></img>
                 <div id="dcd-emoji-picker">
@@ -306,11 +370,16 @@ function DynamicChatDisplay(props) {
                 {messages.map((x, i) => <div className="dcd-message" id={"dcd-message"+i}>
                     <h3>{x.author.name} <span>{timeConverter(x.ts)}</span>
                     {(currentUserEmail == x.author.email) && <span className="dcd-edit-remove-options">
-                        <button className="dcd-edit-msg-icon"> </button>
+                        <button className="dcd-edit-msg-icon" onClick={displayEditMessage.bind(this, i)}> </button>
                         <button className="dcd-remove-msg-icon" onClick={deleteMessage.bind(this, x.ts, i)}></button>
                     </span>}
                     </h3>
                     <h4>{x.content}</h4>
+                    <div className="dcd-edit-msg-input" id={"dcd-edit-msg-input"+i}>
+                        <input placeholder={x.content} onChange={onEditMsgChange}></input>
+                        <button onClick={editMessageRequest.bind(this, i, editedMsg)}>Edit Message</button>
+                    </div>
+                    <input hidden disabled value={hiddenInput}></input>
                 </div>)}
         </div>
         </div>
