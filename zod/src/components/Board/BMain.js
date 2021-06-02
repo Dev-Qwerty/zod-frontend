@@ -22,6 +22,7 @@ export default class BMain extends React.Component {
      
         super();
         this.state = {
+            socket: io(API, { auth: { Authorization: localStorage.getItem('token') } }),
             boardName: '',
             data: '',
             listBool: false,
@@ -48,17 +49,45 @@ export default class BMain extends React.Component {
         }); 
 
         const obj = JSON.parse(localStorage.getItem('boardobj'));
-
-        const socket = io(API, {
-            auth: {
-                Authorization: localStorage.getItem('token')
-            }
-        });
         
-        socket.on("connection", data => {
-            console.log(data);
-            this.socket.emit("joinRoom", obj.boardId);
+        // socket working ...
+        this.state.socket.on('connect', data => {
+            console.log('connected');
+            this.state.socket.emit("joinRoom", obj.boardId);
         });
+
+        this.state.socket.on('createList', data=> {
+
+            console.log(data);
+            let newList = data;
+            let oldLists = this.state.listDat
+            oldLists.push(newList);
+
+            this.setState({
+                listDat : oldLists
+            });             
+        })
+
+        this.state.socket.on('createCard', data=> {
+            
+            console.log(data);
+            let newCard = data;
+            let oldLists = this.state.listDat
+
+            for (var i = 0; i < oldLists.length; i++) {
+
+                if(oldLists[i].listId == newCard.listId) {
+
+                    oldLists[i].cards.push(newCard);
+                    this.setState({
+                        listDat : oldLists
+                    });                     
+                }
+            }
+
+            console.log(this.state.listDat);
+            
+        })
 
         this.fetchListCard();
     }
@@ -84,10 +113,10 @@ export default class BMain extends React.Component {
             if(res.status === 200) {
                 
                 const dat = res.data;
-                alert(JSON.stringify(dat));
+                console.log(dat);
+                
                 this.setState({
                     listDat : dat.lists,
-                    cardDat: dat.cards,
                     memDatB: dat.members
                 });  
                 //alert(JSON.stringify(this.state.cards));         
@@ -156,11 +185,7 @@ export default class BMain extends React.Component {
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                    }); 
-                    
-                    setTimeout(() => {
-                        window.location.reload();
-                      }, 3000);                      
+                    });                    
 
                 } else {
               
@@ -221,11 +246,7 @@ export default class BMain extends React.Component {
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                    });
-                    
-                    setTimeout(() => {
-                        window.location.reload();
-                      }, 3000);                  
+                    });             
                     
                 } else {
               
@@ -262,10 +283,12 @@ export default class BMain extends React.Component {
         }); 
     }
 
-    cardBoolFn = (val) => {
+    // click on plus - list
+    cardBoolFn = (lobj) => {
         this.setState({
             cardBool : true,
-            listId: val
+            listId: lobj.listId,
+            cardDat: lobj.cards
         }); 
     }   
 
@@ -308,6 +331,7 @@ export default class BMain extends React.Component {
     // Submit Btn - Create Card Modal
     cardSubmitFn = () => {
 
+        alert(this.state.listId + ' and ' + this.state.cardDat.length);
         if(this.state.cardDat.length == 0) {
                         
             // Random No
@@ -329,12 +353,12 @@ export default class BMain extends React.Component {
             }
         
             const reqBody = {
-                "cardName": "card0",
+                "cardName": "ezio",
                 "cardDescription": "this is the description",
                 "dueDate": "2021-05-02T03:22:41.864Z",
                 "pos": roundR,
                 "assigned": this.state.finalMemB,
-                "list": this.state.listId
+                "listId": this.state.listId
             }
          
             let url = 'https://boardservice-zode.herokuapp.com/api/' + objy.boardId + '/card/new';
@@ -358,7 +382,55 @@ export default class BMain extends React.Component {
 
         } else {
 
-        }    
+            // add 1045 to last obj pos
+            const lastObj = this.state.cardDat[this.state.cardDat.length - 1];
+            const lastPos = lastObj.pos; 
+            const num = 1045;
+            const newPos = lastPos + num;
+            console.log(newPos);
+
+            // Axios POST
+            const tokeny = localStorage.getItem('token');
+            const objy = JSON.parse(localStorage.getItem('boardobj'));
+    
+            const config = {
+                headers: {
+                    'Authorization': tokeny,
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin' : '*',
+                }
+            }
+        
+            const reqBody = {
+                "cardName": "auditore",
+                "cardDescription": "this is the description",
+                "dueDate": "2021-05-02T03:22:41.864Z",
+                "pos": newPos,
+                "assigned": this.state.finalMemB,
+                "listId": this.state.listId
+            }
+         
+            let url = 'https://boardservice-zode.herokuapp.com/api/' + objy.boardId + '/card/new';
+        
+            alert(JSON.stringify(reqBody));
+
+            axios.post(url, reqBody, config)
+            .then((res) => {
+        
+                if(res.status === 201) {               
+                    
+                    // add toast
+                } else {
+              
+                }
+            })
+            .catch(function (error) {
+                if(error.response.status === 401) {
+                    refreshToken();
+                }
+            });         
+            
+        }  
     }  
 
     render() {
@@ -450,7 +522,7 @@ export default class BMain extends React.Component {
                                         <div className="cbl-h">
                                             <div className="cblh-wr">
                                                 <div className="cblh-p"><p>{ JSON.parse(JSON.stringify( litem.title )) }</p></div>
-                                                <div className="cblh-plus" onClick = { () => this.cardBoolFn(litem.listId) }></div>
+                                                <div className="cblh-plus" onClick = { () => this.cardBoolFn(litem) }></div>
                                             </div>
     
                                             <div className="cblh-line"></div>
