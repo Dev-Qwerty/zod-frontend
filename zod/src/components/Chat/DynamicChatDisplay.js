@@ -179,6 +179,7 @@ function DynamicChatDisplay(props) {
     function getOlderMessages() {
         let msgDiv = document.getElementById("dcd-messages-display");
         if(msgDiv != null && msgDiv.scrollTop == 0) {
+        if(messages.length>0) {
         setFlag(1);
         let url = "https://chatservice-zode.herokuapp.com/api/messages/"+ props.channelId + "?latest=" + messages[0].ts;
         axios.get(url, {headers: {
@@ -198,7 +199,7 @@ function DynamicChatDisplay(props) {
                     }   
                 }
             })
-        }
+        }}
     }
 
     function deleteMessage(ts, i) {
