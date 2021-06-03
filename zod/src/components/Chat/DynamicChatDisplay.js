@@ -231,11 +231,7 @@ function DynamicChatDisplay(props) {
             "Authorization": localStorage.getItem("token")
         }}).then(response => {
             if(response.status === 200) {
-                messages[i].content = editedMsg;
-                setMessages(messages);
-                setHiddenInput('message edited');
-                setHiddenInput('');
-                displayEditMessage(i);
+                document.getElementById("dcd-edit-msg-input"+i).style.display = "none";
             }
         })
     }
@@ -298,8 +294,18 @@ function DynamicChatDisplay(props) {
         })
 
         socket.on("udpateMessage", data => {
-            console.log("Update Message");
             console.log(data);
+            if(data.channelid == channelId) {
+                let i;
+                for(i=0;i<channelMsgs.length; i++) {
+                    if(channelMsgs[i].ts == data.ts) {
+                        channelMsgs[i].content = data.content;
+                    }
+                }
+                setMessages(channelMsgs);
+                setHiddenInput('message edited');
+                setHiddenInput('');
+            }
         })
         return () => socket.disconnect();
     },[channelId]);
