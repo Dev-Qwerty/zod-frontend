@@ -203,7 +203,6 @@ function DynamicChatDisplay(props) {
     }
 
     function deleteMessage(ts, i) {
-        let msgDiv = document.getElementById("dcd-messages-display");
         let url = "https://chatservice-zode.herokuapp.com/api/chat/"+ props.channelId +"/messages/" + ts;
         axios.delete(url, {headers: {
             "Access-Control-Allow-Origin" : "*",
@@ -211,14 +210,6 @@ function DynamicChatDisplay(props) {
         }}).then(response => {
             if(response.status == 200) {
                 toast.success("Message Deleted", {position: toast.POSITION.BOTTOM_RIGHT});
-                let value = messages[i];
-                messages = messages.filter(item => item !== value);
-                setMessages(messages);
-                let msg = document.getElementById("dcd-message"+ ((i-1)));
-                if(msgDiv && msg!=null) {
-                    let pos = msg.offsetTop;
-                    msgDiv.scrollTop = pos;
-                }
             }
         })
     }
@@ -268,28 +259,22 @@ function DynamicChatDisplay(props) {
             newMessageReceived(data);
         })
         socket.on("deleteMessage", data=> {
-            console.log("Delete Message");
-            if(props.channelId == data.channelId) {
-                let msg_ts = data.ts;
-                let flag = 0, index = 0, deleteIndex;
-                messages = messages.filter(item => {
-                    if(item.ts == msg_ts) {
-                        flag = 1;
-                        deleteIndex = index;
+            console.log("Deleted Message!");
+            let msgDiv = document.getElementById("dcd-messages-display");
+            if(data.channelid == channelId) {
+                let i, value;
+                for(i=0;i<channelMsgs.length; i++) {
+                    if(channelMsgs[i].ts == data.ts) {
+                        value = channelMsgs[i];
+                        break;
                     }
-                    else {
-                        return item;
-                    }
-                    index += 1;
-                })
-                if(flag == 1) {
-                    setMessages(messages);
-                    let msgDiv = document.getElementById("dcd-messages-display");
-                    let msg = document.getElementById("dcd-message"+ ((deleteIndex-1)));
-                    if(msgDiv && msg!=null) {
-                        let pos = msg.offsetTop;
-                        msgDiv.scrollTop = pos;
-                    }
+                }
+                channelMsgs = channelMsgs.filter(item => item !== value);
+                setMessages(channelMsgs);
+                let msg = document.getElementById("dcd-message"+ ((i-1)));
+                if(msgDiv && msg!=null) {
+                    let pos = msg.offsetTop;
+                    msgDiv.scrollTop = pos;
                 }
             }  
         })
