@@ -72,6 +72,8 @@ function DynamicChatDisplay(props) {
     function newMessageReceived(data) {
         if(data.channelid == channelId) {
                 channelMsgs.push(data);
+                console.log("Channel Messages")
+                console.log(channelMsgs);
                 setMessages(channelMsgs);
                 setFlag(0);
                 setHiddenInput('new message');
@@ -231,8 +233,8 @@ function DynamicChatDisplay(props) {
             if(response.status === 200) {
                 messages[i].content = editedMsg;
                 setMessages(messages);
-                setInputMsg('new message received');
-                setInputMsg('');
+                setHiddenInput('message edited');
+                setHiddenInput('');
                 displayEditMessage(i);
             }
         })
@@ -255,19 +257,9 @@ function DynamicChatDisplay(props) {
             setHiddenInput('');
             setFlag(0);
             channelMsgs = response.data;
+            console.log("Channel Messages fetched: ");
+            console.log(channelMsgs);
         })
-    },[channelId]);
-
-    useEffect(() => {
-        if(flag == 0) {
-            updateScroll();
-        }
-    }, [messages.length, flag]);
-
-    useEffect(() => {
-        if(currentUser!=null) {
-            currentUserEmail = currentUser.email;
-        }
         let socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
         socket.on("connection", data => {
             console.log("Socket connected!");
@@ -275,9 +267,11 @@ function DynamicChatDisplay(props) {
         })
         socket.on("newMessage", data=> {
             console.log("New Message Received");
+            console.log(channelMsgs);
             newMessageReceived(data);
         })
         socket.on("deleteMessage", data=> {
+            console.log("Delete Message");
             if(props.channelId == data.channelId) {
                 let msg_ts = data.ts;
                 let flag = 0, index = 0, deleteIndex;
@@ -300,10 +294,26 @@ function DynamicChatDisplay(props) {
                         msgDiv.scrollTop = pos;
                     }
                 }
-            }
-            
+            }  
+        })
+
+        socket.on("udpateMessage", data => {
+            console.log("Update Message");
+            console.log(data);
         })
         return () => socket.disconnect();
+    },[channelId]);
+
+    useEffect(() => {
+        if(flag == 0) {
+            updateScroll();
+        }
+    }, [messages.length, flag]);
+
+    useEffect(() => {
+        if(currentUser!=null) {
+            currentUserEmail = currentUser.email;
+        }
     }, []);
 
     if(props.channelname != 'default') {
