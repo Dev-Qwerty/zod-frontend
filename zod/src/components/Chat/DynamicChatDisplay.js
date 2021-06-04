@@ -72,8 +72,6 @@ function DynamicChatDisplay(props) {
     function newMessageReceived(data) {
         if(data.channelid == channelId) {
                 channelMsgs.push(data);
-                console.log("Channel Messages")
-                console.log(channelMsgs);
                 setMessages(channelMsgs);
                 setFlag(0);
                 setHiddenInput('new message');
@@ -229,7 +227,6 @@ function DynamicChatDisplay(props) {
     }
 
     useEffect(() => {
-        console.log("Channel ID CHANGED!");
         channelMsgs = [];
         channelId = props.channelId;
         setMessages([]);
@@ -245,21 +242,14 @@ function DynamicChatDisplay(props) {
             setHiddenInput('');
             setFlag(0);
             channelMsgs = response.data;
-            console.log("Channel Messages fetched: ");
-            console.log(channelMsgs);
         })
         let socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
-        socket.on("connection", data => {
-            console.log("Socket connected!");
-            console.log(data);
-        })
+
         socket.on("newMessage", data=> {
-            console.log("New Message Received");
-            console.log(channelMsgs);
             newMessageReceived(data);
         })
+
         socket.on("deleteMessage", data=> {
-            console.log("Deleted Message!");
             let msgDiv = document.getElementById("dcd-messages-display");
             if(data.channelid == channelId) {
                 let i, value;
@@ -280,7 +270,6 @@ function DynamicChatDisplay(props) {
         })
 
         socket.on("udpateMessage", data => {
-            console.log(data);
             if(data.channelid == channelId) {
                 let i;
                 for(i=0;i<channelMsgs.length; i++) {
