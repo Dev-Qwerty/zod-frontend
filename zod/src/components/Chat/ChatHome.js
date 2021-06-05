@@ -107,7 +107,7 @@ function ChatHome() {
                         <div className="ch-lng1" data-tip data-for="homeTip"></div>
                     </div>
                 </Link> 
-                <Link to="/projectdashboard/board" style={{ textDecoration: 'none' }}>
+                <Link to="/projectdashboard/board/bhome" style={{ textDecoration: 'none' }}>
                     <div className="pd-lng2" data-tip data-for="boardTip"></div>
                 </Link>
                 <Link to="/chat/home" style={{ textDecoration: 'none' }}><div className="ch-lng3" data-tip data-for="chatTip"></div></Link>
