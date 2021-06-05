@@ -146,7 +146,7 @@ export default class CreatePersonalBoard extends React.Component {
                                 </div>
                             </Link>
 
-                            <Link to="/chat/createChannel" style={{ textDecoration: 'none' }}>
+                            <Link to="/chat/home" style={{ textDecoration: 'none' }}>
                                 <div className="personal-cb-lng3" data-tip data-for="chatTip">
                                 </div>
                             </Link>               

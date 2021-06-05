@@ -63,8 +63,8 @@
     width: 55vw;
     border-radius: 15px;
     height: 50px;
-    margin-top: 1vw; 
-    margin-left: 2vw;
+    margin-top: 1vw;
+    margin-left: 4vw;
 }
 
 .dcd-textbox > textarea:focus-visible {
@@ -77,14 +77,14 @@
 }
 
 .dcd-attach-icon {
-    margin-left: 4vw;
+    margin-left: 1vw;
     margin-top: 3vw;
     position: fixed;
     bottom: 15px;
 }
 
 .dcd-send-icon {
-    margin-left: 68vw;
+    margin-left: 66vw;
     position: fixed;
     bottom: 12px;
 }
@@ -142,6 +142,7 @@
 .dcd-emoji-icon {
     position: fixed;
     bottom: 16px;
+    right: 69vw;
 }
 
 .dcd-members-list-wrapper {
@@ -195,8 +196,8 @@
 }
 
 #dcd-emoji-picker {
-    margin-top: -24vw;
-    margin-left: -4vw;
+    margin-top: -25vw;
+    margin-left: -79vw;
     z-index: 101;
     display: none;
 }
@@ -268,4 +269,10 @@
 
 .dcd-message:hover .dcd-edit-remove-options {
     display: table;
+}
+
+.dcd-edit-msg-input {
+    position: relative;
+    bottom: 40px;
+    display: none;
 }

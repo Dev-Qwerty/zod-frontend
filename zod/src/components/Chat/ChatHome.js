@@ -15,7 +15,6 @@ ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID +
 }
 toast.configure()
 
-let msgs = [];
 function ChatHome() {
     let [activeComponent, setActiveComponent] = useState('default'); 
     let [channelNames, setChannelName] = useState([]);
@@ -42,14 +41,32 @@ function ChatHome() {
             }
         })
     }
+
+    function chatHomeCallback(channelId) {
+        let i;
+        for(i=0;i<channelNames.length; i++) {
+            if(channelNames[i].channelid == channelId) {
+                break;
+            }
+        }
+        let channelDisplay = document.getElementById("channel"+i);
+        if(channelDisplay!=null) {
+            channelDisplay.style.fontWeight = "bold";
+        } 
+    }
     
-    function channelClicked(channel) {
+    function channelClicked(channel, index) {
         setActiveComponent(channel.channelName); 
         setActiveChannelId(channel.channelid);
         let displayValue = document.getElementById("dcd-members-list"); 
         if(displayValue != null && displayValue.style.display != "none") { 
             document.getElementById("dcd-members-list").style.display = "none";
         }
+        let channelDisplay = document.getElementById("channel" + index);
+        if(channelDisplay!=null) {
+            channelDisplay.style.fontWeight = "normal";
+        }
+
     }
     useEffect(() => {
         fetchChannels();
@@ -90,7 +107,7 @@ function ChatHome() {
                         <div className="ch-lng1" data-tip data-for="homeTip"></div>
                     </div>
                 </Link> 
-                <Link to="/projectdashboard/board" style={{ textDecoration: 'none' }}>
+                <Link to="/projectdashboard/board/bhome" style={{ textDecoration: 'none' }}>
                     <div className="pd-lng2" data-tip data-for="boardTip"></div>
                 </Link>
                 <Link to="/chat/home" style={{ textDecoration: 'none' }}><div className="ch-lng3" data-tip data-for="chatTip"></div></Link>
@@ -108,12 +125,12 @@ function ChatHome() {
             <hr></hr>
             <h3>Channels</h3>
             <div className="ch-channels-list">
-                {channelNames.map((channel, index) => <button onClick={channelClicked.bind(this, channel)}>@{channel.channelName}</button>)}
+                {channelNames.map((channel, index) => <button onClick={channelClicked.bind(this, channel, index)} id={"channel"+index}>@{channel.channelName}</button>)}
             </div>
         </div>
         <div className="ch-chat-display">
             {channelNames.length == 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={null} messages={[]}/>}
-            {channelNames.length != 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={activeChannelId} messages={allMessages}/>}
+            {channelNames.length != 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={activeChannelId} messages={allMessages} callBack={chatHomeCallback.bind(this)}/>}
         </div>
     </div>
     )

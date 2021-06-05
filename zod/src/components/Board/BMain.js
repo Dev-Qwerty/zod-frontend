@@ -9,8 +9,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import io from 'socket.io-client';
 
 let proData = JSON.parse(localStorage.getItem('pdata'));
-const API = 'https://boardservice-zode.herokuapp.com/'+ proData.projectID + '/boards';
-
+let API;
+if(proData!=null) {
+    API = 'https://boardservice-zode.herokuapp.com/'+ proData.projectID + '/boards';
+}
 /* 
     ClassName Convention Used:-
         Eg: mp-top-nav -> MyProfile-top-nav ..
@@ -310,7 +312,7 @@ export default class BMain extends React.Component {
                                 </div>
                             </Link>
 
-                            <Link to="/chat/createChannel" style={{ textDecoration: 'none' }}>
+                            <Link to="/chat/home" style={{ textDecoration: 'none' }}>
                                 <div className="c-lng3" data-tip data-for="chatTip">
                                 </div>
                             </Link>               
