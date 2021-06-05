@@ -91,9 +91,10 @@
 }
 
 .c-left-nav-grid {
-  height: 85%;
+  height: 560px;
   display: grid;
   grid-template-rows: 14% 14% 14% 14% 14% 14% 14%;
+  box-sizing: border-box;
 }
 
 .c-lng1-wrapper {

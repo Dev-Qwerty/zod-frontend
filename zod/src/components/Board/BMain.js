@@ -46,6 +46,9 @@ export default class BMain extends React.Component {
     componentDidMount() {
 
         refreshToken();
+
+        this.fetchListCard();
+
         const objB = JSON.parse(localStorage.getItem('boardobj'));
 
         this.setState({
@@ -62,38 +65,43 @@ export default class BMain extends React.Component {
 
         this.state.socket.on('createList', data=> {
 
-            console.log(data);
-            let newList = data;
-            let oldLists = this.state.listDat
-            oldLists.push(newList);
-
-            this.setState({
-                listDat : oldLists
-            });             
+            if(!this.state.listDat) {
+                console.log('wait');
+            } else {
+                
+                let newList = data;
+                let oldLists = this.state.listDat
+                oldLists.push(newList);
+    
+                this.setState({
+                    listDat : oldLists
+                });   
+            }          
         })
 
         this.state.socket.on('createCard', data=> {
-            
-            console.log(data);
-            let newCard = data;
-            let oldLists = this.state.listDat
+           
+            if(!this.state.listDat) {
+                console.log('wait');
+            } else {
 
-            for (var i = 0; i < oldLists.length; i++) {
+                let newC = data;
+                let oldL = this.state.listDat
 
-                if(oldLists[i].listId == newCard.listId) {
+                for (var i = 0; i < oldL.length; i++) {
 
-                    oldLists[i].cards.push(newCard);
-                    this.setState({
-                        listDat : oldLists
-                    });                     
+                    if(oldL[i].listId == newC.listId) {
+
+                        oldL[i].cards.push(newC);
+                        this.setState({
+                            listDat : oldL
+                        });           
+                    }
                 }
             }
-
-            console.log(this.state.listDat);
             
         })
 
-        this.fetchListCard();
     }
 
     // fetch list and card
@@ -125,7 +133,7 @@ export default class BMain extends React.Component {
                     listDat : dat.lists,
                     memDatB: dat.members
                 });  
-                //alert(JSON.stringify(this.state.cards));         
+                alert(JSON.stringify(this.state.listDat[0].cards));         
             } else {
 
             }
@@ -154,7 +162,6 @@ export default class BMain extends React.Component {
             const max = 1000;
             const rand = min + Math.random() * (max - min);
             const roundR = Math.round(rand); 
-            console.log(roundR);
         
             // Axios POST
             const tokenx = localStorage.getItem('token');
@@ -213,7 +220,6 @@ export default class BMain extends React.Component {
             const lastPos = lastObj.pos; 
             const num = 1045;
             const newPos = lastPos + num;
-            console.log(newPos);
 
             // Axios POST
             const tokenx = localStorage.getItem('token');
@@ -395,7 +401,6 @@ export default class BMain extends React.Component {
                     "dueDate": this.state.cardDue,
                     "pos": roundR,
                     "assigned": [],
-                    //"assigned": this.state.finalMemB,
                     "listId": this.state.listId
                 }
 
@@ -414,13 +419,22 @@ export default class BMain extends React.Component {
          
             let url = 'https://boardservice-zode.herokuapp.com/api/' + objy.boardId + '/card/new';
 
-            alert(JSON.stringify(reqBody));
-
-            /*axios.post(url, reqBody, config)
+            axios.post(url, reqBody, config)
             .then((res) => {
         
-                if(res.status === 201) {               
-                    alert('hoi');
+                if(res.status === 201) {   
+
+                    this.cardCloseFn();
+
+                    toast.info('Card Created!', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });                     
                 } else {
               
                 }
@@ -429,7 +443,7 @@ export default class BMain extends React.Component {
                 if(error.response.status === 401) {
                     refreshToken();
                 }
-            });*/ 
+            });
 
         } else {
 
@@ -461,7 +475,6 @@ export default class BMain extends React.Component {
                     "dueDate": this.state.cardDue,
                     "pos": newPos,
                     "assigned": [],
-                    //"assigned": this.state.finalMemB,
                     "listId": this.state.listId
                 }
 
@@ -479,15 +492,24 @@ export default class BMain extends React.Component {
             }
          
             let url = 'https://boardservice-zode.herokuapp.com/api/' + objy.boardId + '/card/new';
-        
-            alert(JSON.stringify(reqBody));
 
-            /*axios.post(url, reqBody, config)
+            axios.post(url, reqBody, config)
             .then((res) => {
         
                 if(res.status === 201) {               
                     
-                    // add toast
+                    this.cardCloseFn();
+
+                    toast.info('Card Created!', {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    }); 
+
                 } else {
               
                 }
@@ -496,7 +518,7 @@ export default class BMain extends React.Component {
                 if(error.response.status === 401) {
                     refreshToken();
                 }
-            });*/        
+            });       
             
         }  
     }  
@@ -596,23 +618,23 @@ export default class BMain extends React.Component {
                                             <div className="cblh-line"></div>
                                         </div>
 
-                                        <div className="cbl-spec-card">
+                                        { /*<div className="cbl-spec-card">
                                             <p>Empty!</p>
-                                        </div>
+                                        </div> */ }
 
                                         { !litem.cards ? (
-                                        
-                                            <p>Loading</p>
+                                            <p></p>
+
                                         ) : ( litem.cards.map((iCard, i) => (
                                         
                                             <div className="cbl-card">
                                                 <div className="cblc-taskname">
-                                                    <p>Task Name</p>
+                                                    <p>{ JSON.parse(JSON.stringify( iCard.cardName )) }</p>
                                                 </div>
                                                 
                                                 <div className="cblc-wr">
                                                     <div className="cblc-profile"><p>JD</p></div>
-                                                    <div><p className="cblc-date">20-5-2021</p></div>
+                                                    <div><p className="cblc-date">{ JSON.parse(JSON.stringify( iCard.dueDate )) }</p></div>
                                                 </div>
                                             </div>
 
