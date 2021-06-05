@@ -31,7 +31,10 @@ export default class BMain extends React.Component {
             listTitle: '',
             memDatB: '',
             finalMemB: [{ name: "", email: "", imgUrl: "" }],
-            cardDat: ''
+            cardDat: '',
+            cardName: '',
+            cardDesc: '',
+            cardDue: '',
         }
     }
 
@@ -39,6 +42,7 @@ export default class BMain extends React.Component {
         
     }
 
+    // socket + fetch list and card - GET
     componentDidMount() {
 
         refreshToken();
@@ -92,6 +96,7 @@ export default class BMain extends React.Component {
         this.fetchListCard();
     }
 
+    // fetch list and card
     fetchListCard = () => {
       
         const token1 = localStorage.getItem('token');
@@ -115,6 +120,7 @@ export default class BMain extends React.Component {
                 const dat = res.data;
                 console.log(dat);
                 
+                // set state lists and members - state array
                 this.setState({
                     listDat : dat.lists,
                     memDatB: dat.members
@@ -131,6 +137,7 @@ export default class BMain extends React.Component {
         });        
     }
 
+    // create list - modal - title
     updateListTitle = (evt) => {
         this.setState({
             listTitle: evt.target.value
@@ -262,6 +269,7 @@ export default class BMain extends React.Component {
     
     }
 
+    // Default
     backToBaseFn = () => {
         //localStorage.setItem('pdata');
         window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';       
@@ -271,12 +279,14 @@ export default class BMain extends React.Component {
         window.location.href = window.location.protocol + '//' + window.location.host + '/login';   
     }
 
+    // list modal - true
     clistBoolFn = () => {
         this.setState({
             listBool : true
         }); 
     } 
 
+    // list modal - false
     clistCloseFn = () => {
         this.setState({
             listBool : false
@@ -288,7 +298,7 @@ export default class BMain extends React.Component {
         this.setState({
             cardBool : true,
             listId: lobj.listId,
-            cardDat: lobj.cards
+            //cardDat: lobj.cards,
         }); 
     }   
 
@@ -321,17 +331,41 @@ export default class BMain extends React.Component {
             finalMemB : list
         });     
     };
-
+    
+    // card close - false
     cardCloseFn = () => {
         this.setState({
             cardBool : false
         }); 
     }
 
+    // card name - modal
+    updateCardName = (evt) => {
+        
+        this.setState({
+            cardName: evt.target.value
+        });
+    }
+
+    // card name - modal
+    updateCardDesc = (evt) => {
+
+        this.setState({
+            cardDesc: evt.target.value
+        });
+    }
+
+    // card name - modal
+    updateCardDue = (evt) => {
+
+        this.setState({
+            cardDue: evt.target.value
+        });
+    }
+
     // Submit Btn - Create Card Modal
     cardSubmitFn = () => {
 
-        alert(this.state.listId + ' and ' + this.state.cardDat.length);
         if(this.state.cardDat.length == 0) {
                         
             // Random No
@@ -343,7 +377,8 @@ export default class BMain extends React.Component {
             // Axios POST
             const tokeny = localStorage.getItem('token');
             const objy = JSON.parse(localStorage.getItem('boardobj'));
-    
+            let reqBody = ''
+
             const config = {
                 headers: {
                     'Authorization': tokeny,
@@ -352,20 +387,36 @@ export default class BMain extends React.Component {
                 }
             }
         
-            const reqBody = {
-                "cardName": "ezio",
-                "cardDescription": "this is the description",
-                "dueDate": "2021-05-02T03:22:41.864Z",
-                "pos": roundR,
-                "assigned": this.state.finalMemB,
-                "listId": this.state.listId
+            if( objy.type == 'private') {
+                
+                reqBody = {
+                    "cardName": this.state.cardName,
+                    "cardDescription": this.state.cardDesc,
+                    "dueDate": this.state.cardDue,
+                    "pos": roundR,
+                    "assigned": [],
+                    //"assigned": this.state.finalMemB,
+                    "listId": this.state.listId
+                }
+
+            } else {
+
+                reqBody = {
+                    "cardName": this.state.cardName,
+                    "cardDescription": this.state.cardDesc,
+                    "dueDate": this.state.cardDue,
+                    "pos": roundR,
+                    "assigned": this.state.finalMemB,
+                    "listId": this.state.listId
+                }        
+                        
             }
          
             let url = 'https://boardservice-zode.herokuapp.com/api/' + objy.boardId + '/card/new';
-        
+
             alert(JSON.stringify(reqBody));
 
-            axios.post(url, reqBody, config)
+            /*axios.post(url, reqBody, config)
             .then((res) => {
         
                 if(res.status === 201) {               
@@ -378,7 +429,7 @@ export default class BMain extends React.Component {
                 if(error.response.status === 401) {
                     refreshToken();
                 }
-            }); 
+            });*/ 
 
         } else {
 
@@ -392,6 +443,7 @@ export default class BMain extends React.Component {
             // Axios POST
             const tokeny = localStorage.getItem('token');
             const objy = JSON.parse(localStorage.getItem('boardobj'));
+            let reqBody = ''
     
             const config = {
                 headers: {
@@ -401,20 +453,36 @@ export default class BMain extends React.Component {
                 }
             }
         
-            const reqBody = {
-                "cardName": "auditore",
-                "cardDescription": "this is the description",
-                "dueDate": "2021-05-02T03:22:41.864Z",
-                "pos": newPos,
-                "assigned": this.state.finalMemB,
-                "listId": this.state.listId
+            if( objy.type == 'private') {
+                
+                reqBody = {
+                    "cardName": this.state.cardName,
+                    "cardDescription": this.state.cardDesc,
+                    "dueDate": this.state.cardDue,
+                    "pos": newPos,
+                    "assigned": [],
+                    //"assigned": this.state.finalMemB,
+                    "listId": this.state.listId
+                }
+
+            } else {
+
+                reqBody = {
+                    "cardName": this.state.cardName,
+                    "cardDescription": this.state.cardDesc,
+                    "dueDate": this.state.cardDue,
+                    "pos": newPos,
+                    "assigned": this.state.finalMemB,
+                    "listId": this.state.listId
+                }        
+                        
             }
          
             let url = 'https://boardservice-zode.herokuapp.com/api/' + objy.boardId + '/card/new';
         
             alert(JSON.stringify(reqBody));
 
-            axios.post(url, reqBody, config)
+            /*axios.post(url, reqBody, config)
             .then((res) => {
         
                 if(res.status === 201) {               
@@ -428,7 +496,7 @@ export default class BMain extends React.Component {
                 if(error.response.status === 401) {
                     refreshToken();
                 }
-            });         
+            });*/        
             
         }  
     }  
@@ -532,16 +600,24 @@ export default class BMain extends React.Component {
                                             <p>Empty!</p>
                                         </div>
 
-                                        {/*<div className="cbl-card">
-                                            <div className="cblc-taskname">
-                                                <p>Task Name</p>
+                                        { !litem.cards ? (
+                                        
+                                            <p>Loading</p>
+                                        ) : ( litem.cards.map((iCard, i) => (
+                                        
+                                            <div className="cbl-card">
+                                                <div className="cblc-taskname">
+                                                    <p>Task Name</p>
+                                                </div>
+                                                
+                                                <div className="cblc-wr">
+                                                    <div className="cblc-profile"><p>JD</p></div>
+                                                    <div><p className="cblc-date">20-5-2021</p></div>
+                                                </div>
                                             </div>
-                                            
-                                            <div className="cblc-wr">
-                                                <div className="cblc-profile"><p>JD</p></div>
-                                                <div><p className="cblc-date">20-5-2021</p></div>
-                                            </div>
-                                        </div>*/}
+
+                                        )))}
+
                                     </div>
                                 )))}    
 
@@ -587,13 +663,13 @@ export default class BMain extends React.Component {
                             <div className="cardM-left">
                                 
                                 <p className="cardM-namep">Card Name</p>
-                                <input type="text" className="cardM-nameinp" placeholder="Card Name"></input>
+                                <input type="text" className="cardM-nameinp" placeholder="Card Name" onChange={ this.updateCardName }></input>
                                 
                                 <p className="cardM-descp">Description</p>
-                                <textarea className="cardM-descinp"></textarea>
+                                <textarea className="cardM-descinp" onChange={ this.updateCardDesc }></textarea>
                                 
                                 <p className="cardM-duep">Due Date</p>
-                                <input type="date" placeholder="Due Date" className="cardM-dueinp"></input>
+                                <input type="date" placeholder="Due Date" className="cardM-dueinp" onChange={ this.updateCardDue }></input>
                             </div>
                             
                             <div className="cardM-right">
