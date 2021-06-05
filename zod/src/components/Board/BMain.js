@@ -35,6 +35,7 @@ export default class BMain extends React.Component {
             cardName: '',
             cardDesc: '',
             cardDue: '',
+            cardClickBool: false,
         }
     }
 
@@ -133,7 +134,7 @@ export default class BMain extends React.Component {
                     listDat : dat.lists,
                     memDatB: dat.members
                 });  
-                alert(JSON.stringify(this.state.listDat[0].cards));         
+                //alert(JSON.stringify(this.state.listDat[0].cards));         
             } else {
 
             }
@@ -367,6 +368,15 @@ export default class BMain extends React.Component {
         this.setState({
             cardDue: evt.target.value
         });
+    }
+
+    // card click modal
+    cardClickBool = (obj) => {
+        this.setState({
+            cardClickBool : true,
+            cardx: obj,
+            //cardDat: lobj.cards,
+        }); 
     }
 
     // Submit Btn - Create Card Modal
@@ -629,7 +639,8 @@ export default class BMain extends React.Component {
                                         
                                             <div className="cbl-card">
                                                 <div className="cblc-taskname">
-                                                    <p>{ JSON.parse(JSON.stringify( iCard.cardName )) }</p>
+                                                    <p className="cblc-tname">{ JSON.parse(JSON.stringify( iCard.cardName )) }</p>
+                                                    <div className="cblc-icon" onClick = { () => this.cardClickBool(iCard) }></div>
                                                 </div>
                                                 
                                                 <div className="cblc-wr">
@@ -737,6 +748,18 @@ export default class BMain extends React.Component {
                 ):(
                     <p></p>
                 )}                           
+
+                { this.state.cardClickBool ? (
+                    
+                    <div className="cardClickModal">
+ 
+                    </div>                    
+                ):(
+                    <p></p>
+                )} 
+
+
+
 
             </div>
         );

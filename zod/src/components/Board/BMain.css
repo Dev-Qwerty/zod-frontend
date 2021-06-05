@@ -324,15 +324,35 @@
 .cblc-taskname {
   font-size: 15px;
   padding-top: 15px;
-  padding-left: 15px;
+  padding-left: 25px;
   padding-right: 15px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  display: grid;
+  grid-template-columns: 96% 14%;
+}
+
+.cblc-tname {
+  
+}
+
+.cblc-icon {
+  margin-top: -8px;
+  width: 20px;
+  height: 20px;
+  background-image: url('../../assets/iCard.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;    
+}
+
+.cblc-icon:hover {
+  cursor: pointer;
 }
 
 .cblc-wr {
   padding-top: 15px;
   padding-bottom: 5px;
-  padding-left: 15px;
+  padding-left: 25px;
   padding-right: 15px;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -595,4 +615,15 @@
   margin-top: 30px;
   margin-left: 50px;
   margin-bottom: 30px;
+}
+
+.cardClickModal {
+  position: absolute;
+  left: 16%;
+  top: 16%;
+  width: 70%;
+  min-height: 75%;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: #000;    
 }
