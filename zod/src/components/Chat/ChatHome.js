@@ -15,7 +15,6 @@ ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID +
 }
 toast.configure()
 
-let msgs = [];
 function ChatHome() {
     let [activeComponent, setActiveComponent] = useState('default'); 
     let [channelNames, setChannelName] = useState([]);
@@ -41,6 +40,24 @@ function ChatHome() {
                 }, 2500);
             }
         })
+    }
+
+    function chatHomeCallback(channelId) {
+        console.log("CallBack to ChatHome!");
+        let i;
+        console.log(channelId);
+        for(i=0;i<channelNames.length; i++) {
+            console.log(channelNames[i].channelid);
+            if(channelNames[i].channelid == channelId) {
+                break;
+            }
+        }
+        let channelDisplay = document.getElementById("channel"+i);
+        console.log("channel"+i);
+        console.log(channelDisplay);
+        if(channelDisplay!=null) {
+            channelDisplay.style.fontWeight = "bold";
+        } 
     }
     
     function channelClicked(channel) {
@@ -108,12 +125,12 @@ function ChatHome() {
             <hr></hr>
             <h3>Channels</h3>
             <div className="ch-channels-list">
-                {channelNames.map((channel, index) => <button onClick={channelClicked.bind(this, channel)}>@{channel.channelName}</button>)}
+                {channelNames.map((channel, index) => <button onClick={channelClicked.bind(this, channel)} id={"channel"+index}>@{channel.channelName}</button>)}
             </div>
         </div>
         <div className="ch-chat-display">
             {channelNames.length == 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={null} messages={[]}/>}
-            {channelNames.length != 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={activeChannelId} messages={allMessages}/>}
+            {channelNames.length != 0 && <DynamicChatDisplay projectname={projectDetails.projectName} channelname={activeComponent} channelId={activeChannelId} messages={allMessages} callBack={chatHomeCallback.bind(this)}/>}
         </div>
     </div>
     )

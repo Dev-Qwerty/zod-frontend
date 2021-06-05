@@ -246,6 +246,9 @@ function DynamicChatDisplay(props) {
         let socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
 
         socket.on("newMessage", data=> {
+            if(channelId != data.channelid) {
+                props.callBack(data.channelid);
+            }
             newMessageReceived(data);
         })
 
