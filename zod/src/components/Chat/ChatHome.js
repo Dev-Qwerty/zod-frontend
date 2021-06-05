@@ -43,30 +43,30 @@ function ChatHome() {
     }
 
     function chatHomeCallback(channelId) {
-        console.log("CallBack to ChatHome!");
         let i;
-        console.log(channelId);
         for(i=0;i<channelNames.length; i++) {
-            console.log(channelNames[i].channelid);
             if(channelNames[i].channelid == channelId) {
                 break;
             }
         }
         let channelDisplay = document.getElementById("channel"+i);
-        console.log("channel"+i);
-        console.log(channelDisplay);
         if(channelDisplay!=null) {
             channelDisplay.style.fontWeight = "bold";
         } 
     }
     
-    function channelClicked(channel) {
+    function channelClicked(channel, index) {
         setActiveComponent(channel.channelName); 
         setActiveChannelId(channel.channelid);
         let displayValue = document.getElementById("dcd-members-list"); 
         if(displayValue != null && displayValue.style.display != "none") { 
             document.getElementById("dcd-members-list").style.display = "none";
         }
+        let channelDisplay = document.getElementById("channel" + index);
+        if(channelDisplay!=null) {
+            channelDisplay.style.fontWeight = "normal";
+        }
+
     }
     useEffect(() => {
         fetchChannels();
@@ -125,7 +125,7 @@ function ChatHome() {
             <hr></hr>
             <h3>Channels</h3>
             <div className="ch-channels-list">
-                {channelNames.map((channel, index) => <button onClick={channelClicked.bind(this, channel)} id={"channel"+index}>@{channel.channelName}</button>)}
+                {channelNames.map((channel, index) => <button onClick={channelClicked.bind(this, channel, index)} id={"channel"+index}>@{channel.channelName}</button>)}
             </div>
         </div>
         <div className="ch-chat-display">
