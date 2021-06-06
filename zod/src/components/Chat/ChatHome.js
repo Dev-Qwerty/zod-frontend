@@ -49,10 +49,12 @@ function ChatHome() {
                 break;
             }
         }
-        let channelDisplay = document.getElementById("channel"+i);
-        if(channelDisplay!=null) {
-            channelDisplay.style.fontWeight = "bold";
-        } 
+        if(i<channelNames.length) {
+            let channelDisplay = document.getElementById("channel"+i);
+            if(channelDisplay!=null) {
+                channelDisplay.style.fontWeight = "bold";
+            }
+        }
     }
     
     function channelClicked(channel, index) {
