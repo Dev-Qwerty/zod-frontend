@@ -9,6 +9,7 @@ import Button from 'react-bootstrap-button-loader';
 toast.configure()
 
 let emails = [];
+
 function CreateChannel() {
     const [channelName, setChannelName] = useState('');
     const [members, setMembers] = useState([{name: "", email: ""}]);

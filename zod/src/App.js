@@ -16,6 +16,7 @@ import Board from './components/Board/Board';
 import CreatePersonalBoard from './components/Board/CreatePersonalBoard';
 import CreatePublicBoard from './components/Board/CreatePublicBoard';
 import BMain from './components/Board/BMain';
+import ScheduleVC from './components/VideoCall/ScheduleVC';
 
 import {
   BrowserRouter as Router,
@@ -83,6 +84,9 @@ function App() {
         </Route>                  
         <Route path="/chat/createChannel">
           <CreateChannel />
+        </Route>
+        <Route path="/meet/scheduleNew">
+          <ScheduleVC />
         </Route>                                
       </div>
     </Router>
