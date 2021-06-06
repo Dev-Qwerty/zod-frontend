@@ -4,6 +4,7 @@ import VideoCallSVG from '../../assets/video-call-svg.svg';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap-button-loader';
+import { toast } from 'react-toastify';
 
 let emails = [];
 
@@ -13,6 +14,11 @@ function ScheduleVideoCall() {
     const [checked, setChecked] = useState(false);
     const [loading, setLoader] = useState(false);
     const [btnText, setBtnText] = useState('Schedule');
+    const [meetName, setMeetName] = useState('');
+
+    const onNameChange = (e) => {
+        setMeetName(e.target.value);
+    }
 
     const optionClicked = (e, index) => {
         if(index == emails.length) {
@@ -65,6 +71,7 @@ function ScheduleVideoCall() {
             setTimeout(() => {
                 let i;
                 for(i=0;i<allmembers.length; i++) {
+                    emails.push(allmembers[i].email);
                     let el = document.getElementById("member"+i);
                     console.log(el);
                     if(el!=null) {
@@ -107,8 +114,8 @@ function ScheduleVideoCall() {
         <img src={VideoCallSVG} className="svc-videocall-svg"></img>
         <div className="svc-details">
             <span>Meeting Name</span>
-            <input type="text" placeholder="Enter meeting name"></input>
-            <span>Members</span>
+            <input type="text" placeholder="Enter meeting name" onChange={onNameChange}></input>
+            <span className="svc-meet-members">Participants</span>
             <label>Select All Project Members</label>
             <input type="checkbox" onChange={allMembersChecked}></input>
             {members.map((x, i) => {
@@ -127,20 +134,36 @@ function ScheduleVideoCall() {
                     </div>
                 );
             })}
-            <Button variant="success" loading={loading} className="cc-create-btn" onClick={CreateChannelRequest.bind(this, channelName, channelDesc, emails)}>{btnText}</Button>
+            <Button variant="success" loading={loading} className="svc-create-btn" onClick={ScheduleVCRequest.bind(this, meetName, emails, setLoader, setBtnText)}>{btnText}</Button>
         </div>
     </div>
     )
 }
 
-function ScheduleVCRequest(name, members) {
-    let projectDetails = localStorage.getItem('pdata');
+function ScheduleVCRequest(name, members, setLoader, setBtnText) {
+    setLoader(true);
+    setBtnText('Scheduling');
+    let projectDetails = JSON.parse(localStorage.getItem('pdata'));
     const projectID = projectDetails.projectID;
-    axios.post("https://meet-zode.herokuapp.com/meet/new", {
+    axios.post("https://meet-zode.herokuapp.com/api/meet/new", {
         "meetName": name,
         "projectID": projectID,
         "members": members
-    })
+    }, {
+        headers: {
+        "Access-Control-Allow-Origin" : "*",
+        "Authorization": localStorage.getItem("token")
+    }}).then(response => {
+        if(response.status === 201) {
+            toast.success("Meeting Scheduled", {position: toast.POSITION.BOTTOM_RIGHT});
+            setBtnText('Scheduled!');
+            setLoader(false);
+        }
+    }).catch((error) => {
+        setBtnText('Schedule');
+        setLoader(false);
+        toast.error(error.message, {position: toast.POSITION.BOTTOM_RIGHT});
+    });
 }
 
 export default ScheduleVideoCall;
