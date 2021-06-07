@@ -105,6 +105,24 @@ export default class BMain extends React.Component {
             
         })
 
+        this.state.socket.on('deleteList', data=> {
+            console.log(data);
+
+            let obj = data;
+            let oldL = this.state.listDat
+
+            for (var i = 0; i < oldL.length; i++) {
+
+                if(oldL[i].listId == obj.listId) {
+ 
+                    oldL.splice(i, 1);
+                    this.setState({
+                        listDat : oldL
+                    });
+                }
+            }
+
+        })    
     }
 
     // fetch list and card
@@ -568,6 +586,47 @@ export default class BMain extends React.Component {
         console.log(e, data);
     }*/
     
+    // list delete fn
+    listDeleteFn = (lobj) => {
+
+        const token1 = localStorage.getItem('token');
+        const bobj = JSON.parse(localStorage.getItem('boardobj'));
+
+        const config = {
+            headers: {
+                'Authorization': token1,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        let url = 'https://boardservice-zode.herokuapp.com/api/' + bobj.boardId + '/list/delete/' + lobj.listId;
+
+        axios.delete(url, config)
+        .then((res) => {
+    
+            if(res.status === 201) {
+            
+                toast.info('List Deleted!', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });                 
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            if(error.response.status === 401) {
+                refreshToken();
+            }
+        });     
+        
+    }
 
     render() {
         
@@ -659,6 +718,7 @@ export default class BMain extends React.Component {
                                             <div className="cblh-wr">
                                                 <div className="cblh-p"><p>{ JSON.parse(JSON.stringify( litem.title )) }</p></div>
                                                 <div className="cblh-plus" onClick = { () => this.cardBoolFn(litem) }></div>
+                                                <div className="cblh-delete" onClick = { () => this.listDeleteFn(litem) }></div>
                                             </div>
     
                                             <div className="cblh-line"></div>

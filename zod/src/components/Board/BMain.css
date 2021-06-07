@@ -268,7 +268,8 @@
 
 .cblh-wr {
   display: grid;
-  grid-template-columns: 83% 17%;
+  /*grid-template-columns: 83% 17%;*/
+  grid-template-columns: 74% 13% 13%;
 }
 
 .cblh-p {
@@ -291,6 +292,19 @@
 .cblh-plus:hover {
   cursor: pointer;
 }  
+
+.cblh-delete {
+  background-image: url('../../assets/delete.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;    
+  width: 29px;
+  height: 29px;
+}
+
+.cblh-delete:hover {
+  cursor: pointer;
+}
 
 .cblh-line {
   margin-left: auto;
