@@ -5,6 +5,7 @@ import refreshToken from '../../functions/refreshToken';
 import ReactTooltip from "react-tooltip";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import firebase from 'firebase';
 
 /* 
     ClassName Convention Used:-
@@ -26,6 +27,14 @@ export default class Board extends React.Component {
 
     componentDidMount(){
      
+        const user = firebase.auth().currentUser
+        if (user) {
+            localStorage.setItem('photoURL', user.photoURL);
+
+        } else {
+            // Not Signed-in
+        }
+
         refreshToken();
 
         const token1 = localStorage.getItem('token');

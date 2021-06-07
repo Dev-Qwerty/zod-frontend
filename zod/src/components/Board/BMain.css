@@ -374,13 +374,9 @@
 }
 
 .cblc-profile {
-  text-align: center;
-  padding-top: 6px;
   width: 40px;
   height: 40px;
   border-radius: 50%;  
-  border: 1px solid #000;
-  font-size: 18px;
 }
 
 .cblc-date {
@@ -631,13 +627,80 @@
   margin-bottom: 30px;
 }
 
-.cardClickModal {
+/* About Card Modal */
+.aboutCardModal {
   position: absolute;
-  left: 16%;
-  top: 16%;
-  width: 70%;
-  min-height: 75%;
+  left: 27%;
+  top: 18%;
+  width: 50%;
+  min-height: 60%;
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   color: #000;    
+}
+
+.acm-close {
+  margin-top: 15px;
+  margin-bottom: 0px;
+  width: 26px;
+  height: 26px;  
+  margin-left: 96%;
+  background-image: url('../../assets/closesq.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;   
+}
+
+.acm-close:hover {
+  cursor: pointer;
+}
+
+.acm-hdn {
+  font-size: 18px;
+  /*padding-top: 35px;*/
+  padding-top: 0px;
+  padding-left: 30px;
+  margin-bottom: 5px;
+}
+
+.acm-proLine1 {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.15);  
+  margin-bottom: 30px;
+  margin-top: 0px;
+}
+
+.acm-desc-etc {
+  font-size: 17px;
+  padding-top: 0px;
+  padding-left: 30px;
+  padding-bottom: 0px;  
+}
+
+.acm-proLine2 {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.15);  
+  margin-bottom: 10px;
+  margin-top: 15%;
+}
+
+.acm-delete-hdn {
+  font-size: 17px;
+  padding-top: 0px;
+  padding-left: 30px;
+  padding-bottom: 0px;    
+}
+
+.acm-delete-btn {
+  width: 130px;
+  height: 33px;
+  margin-top: 0px;
+  color: #FF0000;
+  background-color: #fff;
+  border: 2px solid #aaa;  
+  border-radius: 5px;
+  font-size: 17px;
+  margin-left: 30px;
 }

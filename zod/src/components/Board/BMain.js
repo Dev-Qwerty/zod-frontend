@@ -7,6 +7,7 @@ import ReactTooltip from "react-tooltip";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { ToastContainer, toast } from 'react-toastify';
 import io from 'socket.io-client';
+import firebase from 'firebase';
 
 let proData = JSON.parse(localStorage.getItem('pdata'));
 const API = 'https://boardservice-zode.herokuapp.com/'+ proData.projectID + '/boards';
@@ -38,6 +39,8 @@ export default class BMain extends React.Component {
             cardDue: '',
             cardClickBool: false,
             Dragging: false,
+            avatar: '',
+            cardx: '',
         }
     }
 
@@ -46,9 +49,13 @@ export default class BMain extends React.Component {
     }
 
     // socket + fetch list and card - GET
-    componentDidMount() {
+    componentDidMount() { 
 
         refreshToken();
+
+        this.setState({
+            avatar : localStorage.getItem('photoURL')
+        }); 
 
         this.fetchListCard();
 
@@ -106,7 +113,6 @@ export default class BMain extends React.Component {
         })
 
         this.state.socket.on('deleteList', data=> {
-            console.log(data);
 
             let obj = data;
             let oldL = this.state.listDat
@@ -390,15 +396,6 @@ export default class BMain extends React.Component {
         });
     }
 
-    // card click modal
-    cardClickBool = (obj) => {
-        this.setState({
-            cardClickBool : true,
-            cardx: obj,
-            //cardDat: lobj.cards,
-        }); 
-    }
-
     // Submit Btn - Create Card Modal
     cardSubmitFn = () => {
 
@@ -628,6 +625,25 @@ export default class BMain extends React.Component {
         
     }
 
+    // card click modal
+    cardClickBool = (obj) => {
+        this.setState({
+            cardClickBool : true,
+            cardx: obj,
+            //cardDat: lobj.cards,
+        }); 
+    }
+    
+    onetwo = () => {
+        console.log(this.state.cardx);
+    }
+
+    acmCloseFn = () => {
+        this.setState({
+            cardClickBool : false,
+        });         
+    }
+
     render() {
         
         return (
@@ -740,7 +756,8 @@ export default class BMain extends React.Component {
                                                 </div>
                                                 
                                                 <div className="cblc-wr">
-                                                    <div className="cblc-profile"><p>JD</p></div>
+                                                    {/*<div className="cblc-profile"><p>JD</p></div>*/}
+                                                    <img className="cblc-profile" src = { this.state.avatar }/>
                                                     <div><p className="cblc-date">{ JSON.parse(JSON.stringify( iCard.dueDate )) }</p></div>
                                                 </div>
                                             </div>
@@ -847,10 +864,28 @@ export default class BMain extends React.Component {
                     <p></p>
                 )}                           
 
+                {/* About Card Modal - acm */}
                 { this.state.cardClickBool ? (
                     
-                    <div className="cardClickModal">
- 
+                    <div className="aboutCardModal">
+                        
+                        <div>
+                            <div className="acm-close" onClick = { this.acmCloseFn }></div>
+                            <p className="acm-hdn">Card Name: { JSON.parse(JSON.stringify( this.state.cardx.cardName )) }</p>
+                            <div className="acm-proLine1"></div>
+                        </div>
+                        
+                        <div>
+                            <p className="acm-desc-etc">Description: { JSON.parse(JSON.stringify( this.state.cardx.cardDescription ))}</p>
+                            <p className="acm-desc-etc">Created By: { JSON.parse(JSON.stringify( this.state.cardx.createdBy ))}</p>
+                            <p className="acm-desc-etc">Due Date: { JSON.parse(JSON.stringify( this.state.cardx.dueDate ))}</p>
+                            
+                            <div className="acm-proLine2"></div>
+                            
+                            <p className="acm-delete-hdn">Delete Card</p>
+                            <div><input type="submit" value="Delete" className="acm-delete-btn" onClick = { this.cardSubmitFn }></input></div>
+                        </div>    
+
                     </div>                    
                 ):(
                     <p></p>
