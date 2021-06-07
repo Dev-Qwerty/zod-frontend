@@ -128,7 +128,33 @@ export default class BMain extends React.Component {
                 }
             }
 
-        })    
+        }) 
+        
+        this.state.socket.on('deleteCard', data=> {
+
+            let obj = data;
+            let oldL = this.state.listDat
+
+            for (var i = 0; i < oldL.length; i++) {
+
+                if(oldL[i].listId == this.state.cardx.listId) {
+ 
+                    for (var j = 0; j < oldL[i].cards.length; j++) {
+                    
+                        if(oldL[i].cards[j].cardId == obj.cardId) {
+                    
+                            oldL[i].cards.splice(j, 1);
+                            this.setState({
+                                listDat : oldL
+                            });
+
+                        } 
+                    }    
+                }
+            }
+
+        })        
+
     }
 
     // fetch list and card
@@ -644,6 +670,51 @@ export default class BMain extends React.Component {
         });         
     }
 
+    /* Delete card fn */
+    acmDeleteFn = () => {
+     
+        const token1 = localStorage.getItem('token');
+        const bobj = JSON.parse(localStorage.getItem('boardobj'));
+
+        const config = {
+            headers: {
+                'Authorization': token1,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        let url = 'https://boardservice-zode.herokuapp.com/api/' + bobj.boardId + '/card/delete/' + this.state.cardx.cardId;
+
+        axios.delete(url, config)
+        .then((res) => {
+    
+            if(res.status === 201) {
+            
+                this.setState({
+                    cardClickBool : false,
+                }); 
+
+                toast.info('Card Deleted!', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });                 
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            if(error.response.status === 401) {
+                refreshToken();
+            }
+        });        
+    }
+
     render() {
         
         return (
@@ -872,7 +943,7 @@ export default class BMain extends React.Component {
                         <div>
                             <div className="acm-close" onClick = { this.acmCloseFn }></div>
                             <p className="acm-hdn">Card Name: { JSON.parse(JSON.stringify( this.state.cardx.cardName )) }</p>
-                            <div className="acm-proLine1"></div>
+                            <div className="acm-proLine1"></div>                        
                         </div>
                         
                         <div>
@@ -883,7 +954,8 @@ export default class BMain extends React.Component {
                             <div className="acm-proLine2"></div>
                             
                             <p className="acm-delete-hdn">Delete Card</p>
-                            <div><input type="submit" value="Delete" className="acm-delete-btn" onClick = { this.cardSubmitFn }></input></div>
+                            <div><input type="submit" value="Delete" className="acm-delete-btn" onClick = { this.acmDeleteFn }></input></div>
+                        
                         </div>    
 
                     </div>                    
