@@ -4,7 +4,7 @@ import React from 'react';
 import axios from 'axios';
 import refreshToken from '../../functions/refreshToken';
 import ReactTooltip from "react-tooltip";
-import Draggable from 'react-draggable';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { ToastContainer, toast } from 'react-toastify';
 import io from 'socket.io-client';
 
@@ -21,6 +21,7 @@ export default class BMain extends React.Component {
     constructor() {
      
         super();
+        this.dragItem = React.createRef();
         this.state = {
             socket: io(API, { auth: { Authorization: localStorage.getItem('token') } }),
             boardName: '',
@@ -36,6 +37,7 @@ export default class BMain extends React.Component {
             cardDesc: '',
             cardDue: '',
             cardClickBool: false,
+            Dragging: false,
         }
     }
 
@@ -533,6 +535,40 @@ export default class BMain extends React.Component {
         }  
     }  
 
+    /* Drag and Drop
+    handleStart = (e, item) => {
+
+        console.log('Dragging started for item: ', item);
+        
+        this.dragItem.current = item;
+        setTimeout(() => {
+            this.setState({
+                Dragging : true,
+            }); 
+        },0)
+
+    }
+
+    handleDrag = (e, titem) => {
+
+        console.log(titem);
+          if (this.dragItem.current == titem) {
+            console.log('not same', titem)
+        } else {
+            //console.log('dragging over item: ', item);
+        }
+    }
+
+    handleStop = () => {
+        console.log('Dragging stopped!');
+    }
+
+    handleEvent = (e, data) => {
+        console.log('Event Type', e.type);
+        console.log(e, data);
+    }*/
+    
+
     render() {
         
         return (
@@ -635,9 +671,9 @@ export default class BMain extends React.Component {
                                         { !litem.cards ? (
                                             <p></p>
 
-                                        ) : ( litem.cards.map((iCard, i) => (
-                                        
-                                            <div className="cbl-card">
+                                        ) : ( litem.cards.map((iCard, j) => (
+                                
+                                            <div className = "cbl-card">
                                                 <div className="cblc-taskname">
                                                     <p className="cblc-tname">{ JSON.parse(JSON.stringify( iCard.cardName )) }</p>
                                                     <div className="cblc-icon" onClick = { () => this.cardClickBool(iCard) }></div>
@@ -648,13 +684,15 @@ export default class BMain extends React.Component {
                                                     <div><p className="cblc-date">{ JSON.parse(JSON.stringify( iCard.dueDate )) }</p></div>
                                                 </div>
                                             </div>
-
+                                                
                                         )))}
 
                                     </div>
+                                    
                                 )))}    
 
                             </div>
+                          
     
                         </div>
 

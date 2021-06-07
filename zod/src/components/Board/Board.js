@@ -4,7 +4,8 @@ import React from 'react';
 import refreshToken from '../../functions/refreshToken';
 import ReactTooltip from "react-tooltip";
 import axios from 'axios';
- 
+import { ToastContainer, toast } from 'react-toastify';
+
 /* 
     ClassName Convention Used:-
         Eg: mp-top-nav -> MyProfile-top-nav ..
@@ -103,6 +104,60 @@ export default class Board extends React.Component {
         window.location.href = window.location.protocol + '//' + window.location.host + '/login';   
     }
 
+    // delete board
+    deleteFn = (bobj) => {
+
+        const pobj = JSON.parse(localStorage.getItem('pdata'));
+        const tokeny = localStorage.getItem('token');
+
+        const config = {
+            headers: {
+                'Authorization': tokeny,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+      
+        const reqBody = {
+            "boardId": bobj.boardId,
+            "projectId": pobj.projectID
+        }
+
+        //alert(JSON.stringify(reqBody));
+
+        const url = 'https://boardservice-zode.herokuapp.com/api/board/delete';
+
+        axios.post(url, reqBody, config)
+        .then((res) => {
+    
+            if(res.status === 200) {               
+
+                toast.info('Board Deleted!', {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                }); 
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);                
+
+            } else {
+          
+            }
+        })
+        .catch(function (error) {
+            if(error.response.status === 401) {
+                refreshToken();
+            }
+        });   
+
+    }
+
     render() {
     
         return (
@@ -186,8 +241,11 @@ export default class Board extends React.Component {
 
                                     ):( this.state.personalArr.map((pdat, i) => (
                                         
-                                        <div className="bbPersonal-card" onClick = { () => this.personalFn(pdat) }>
-                                            <p className="bbPersonal-parag">{ JSON.parse(JSON.stringify(pdat.boardName)) }</p>
+                                        <div className="bbPersonal-card">
+                                            <div className="bbPersonal-delete" onClick = { () => this.deleteFn(pdat) }></div>
+                                            <div className="bbPersonal-parag" onClick = { () => this.personalFn(pdat) }>
+                                                <p>{ JSON.parse(JSON.stringify(pdat.boardName)) }</p>
+                                            </div>
                                         </div>   
                                     )))}   
                                     
@@ -217,8 +275,11 @@ export default class Board extends React.Component {
 
                                     ):( this.state.publicArr.map((tdat, i) => (
                            
-                                        <div className="bbPublic-card" onClick = { () => this.publicFn(tdat) }>
-                                            <p className="bbPublic-parag">{ JSON.parse(JSON.stringify(tdat.boardName)) }</p>
+                                        <div className="bbPublic-card">
+                                            <div className="bbPublic-delete" onClick = { () => this.deleteFn(tdat) }></div>
+                                            <div className="bbPublic-parag" onClick = { () => this.publicFn(tdat) }>
+                                                <p>{ JSON.parse(JSON.stringify(tdat.boardName)) }</p>
+                                            </div>                                            
                                         </div>                                         
                                     )))}    
                                       
