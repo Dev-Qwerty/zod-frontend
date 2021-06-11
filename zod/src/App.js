@@ -16,7 +16,7 @@ import Board from './components/Board/Board';
 import CreatePersonalBoard from './components/Board/CreatePersonalBoard';
 import CreatePublicBoard from './components/Board/CreatePublicBoard';
 import BMain from './components/Board/BMain';
-import Calender from './components/Calender/Calender';
+import Calendar from './components/Calendar/Calendar';
 
 import {
   BrowserRouter as Router,
@@ -80,7 +80,7 @@ function App() {
           <BMain />  
         </Route>   
         <Route path="/projectdashboard/calender">
-          <Calender />  
+          <Calendar />  
         </Route>            
         <Route path="/chat/home">
           <ChatHome />

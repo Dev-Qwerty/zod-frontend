@@ -209,7 +209,7 @@ export default class Board extends React.Component {
                                 </div>
                             </Link>
 
-                            <Link to="/chat/createChannel" style={{ textDecoration: 'none' }}>
+                            <Link to="/chat/home" style={{ textDecoration: 'none' }}>
                                 <div className="b-lng3" data-tip data-for="chatTip">
                                 </div>
                             </Link>               
@@ -217,15 +217,16 @@ export default class Board extends React.Component {
                             <Link to="/projectdashboard/calender" style={{ textDecoration: 'none' }}>
                                 <div className="b-lng4" data-tip data-for="calTip"></div>
                             </Link>
-                            
-                            <div className="b-lng5" data-tip data-for="calTip"></div>
-                            <div className="b-lng6" data-tip data-for="calTip"></div>
-                            <div className="b-lng7" data-tip data-for="calTip"></div>
+
+                            <div className="b-lng5" data-tip data-for="noneTip"></div>
+                            <div className="b-lng6" data-tip data-for="noneTip"></div>
+                            <div className="b-lng7" data-tip data-for="noneTip"></div>
 
                             <ReactTooltip id="homeTip" place="right" effect="float" type="dark">Home</ReactTooltip> 
                             <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
                             <ReactTooltip id="chatTip" place="right" effect="float" type="dark">Chat</ReactTooltip> 
                             <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calender</ReactTooltip>
+                            <ReactTooltip id="noneTip" place="right" effect="float" type="dark">None</ReactTooltip>
                                                          
                         </div>
                     </div>

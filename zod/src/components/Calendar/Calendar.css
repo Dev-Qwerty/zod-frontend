@@ -1,0 +1,13 @@
+ .Calender {
+  margin: 0;
+  padding: 0;
+}
+
+.cal-wrapper {
+  margin-left: 70px;
+  margin-top: 70px;
+}
+
+.cal-p {
+  margin-top: 20px;
+}

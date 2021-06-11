@@ -774,15 +774,16 @@ export default class BMain extends React.Component {
                                 <div className="c-lng4" data-tip data-for="calTip"></div>
                             </Link>
 
-                            <div className="c-lng5" data-tip data-for="calTip"></div>
-                            <div className="c-lng6" data-tip data-for="calTip"></div>
-                            <div className="c-lng7" data-tip data-for="calTip"></div>
+                            <div className="c-lng5" data-tip data-for="noneTip"></div>
+                            <div className="c-lng6" data-tip data-for="noneTip"></div>
+                            <div className="c-lng7" data-tip data-for="noneTip"></div>
 
                             <ReactTooltip id="homeTip" place="right" effect="float" type="dark">Home</ReactTooltip> 
                             <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
                             <ReactTooltip id="chatTip" place="right" effect="float" type="dark">Chat</ReactTooltip> 
                             <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calender</ReactTooltip>
-                                                         
+                            <ReactTooltip id="noneTip" place="right" effect="float" type="dark">None</ReactTooltip>   
+
                         </div>
                     </div>
                     
