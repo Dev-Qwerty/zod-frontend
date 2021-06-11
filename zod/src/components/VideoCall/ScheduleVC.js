@@ -158,6 +158,7 @@ function ScheduleVCRequest(name, members, setLoader, setBtnText) {
             toast.success("Meeting Scheduled", {position: toast.POSITION.BOTTOM_RIGHT});
             setBtnText('Scheduled!');
             setLoader(false);
+            window.location.href = response.data.link + "?t=" + localStorage.getItem("token");
         }
     }).catch((error) => {
         setBtnText('Schedule');
