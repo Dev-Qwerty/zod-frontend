@@ -19,6 +19,15 @@ function Calendar() {
       setDateState(e)
     }
 
+    const backToBaseFn = () => {
+        //localStorage.setItem('pdata');
+        window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';       
+    }
+    
+    const logout = () => {
+        window.location.href = window.location.protocol + '//' + window.location.host + '/login';   
+    }
+
     return (
 
         <div className="Calender">
@@ -26,7 +35,7 @@ function Calendar() {
             <div className="pd-top-nav">
 
                 <div className="pd-left-wrapper">
-                    <div className="pd-lt">
+                    <div className="pd-lt" onClick={ backToBaseFn }>
                         <div className="pd-arrow"></div>
                         <div><p className="pd-lt-txt">Back to Base Dashboard</p></div>
                     </div>
@@ -38,7 +47,7 @@ function Calendar() {
                 </div>
 
                 <div className="pd-right-wrapper">
-                    <input type="submit" value="Logout" className="pd-logout-btn" ></input>
+                    <input type="submit" value="Logout" className="pd-logout-btn" onClick = { logout }></input>
                 </div>
 
             </div>               
@@ -69,7 +78,7 @@ function Calendar() {
                             <div className="pd-lng4" data-tip data-for="calTip">
                             </div>
                         </Link> 
-                        
+
                         <div className="pd-lng5" data-tip data-for="noneTip"></div>
                         <div className="pd-lng6" data-tip data-for="noneTip"></div>
                         <div className="pd-lng7" data-tip data-for="noneTip"></div>
@@ -99,7 +108,8 @@ function Calendar() {
             </div>
     
         </div>
-    );        
+    );      
+
 }
 
 export default Calendar;
