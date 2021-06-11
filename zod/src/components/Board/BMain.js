@@ -41,6 +41,7 @@ export default class BMain extends React.Component {
             Dragging: false,
             avatar: '',
             cardx: '',
+            isEmpty: false,
         }
     }
 
@@ -179,14 +180,21 @@ export default class BMain extends React.Component {
             if(res.status === 200) {
                 
                 const dat = res.data;
-                console.log(dat);
                 
                 // set state lists and members - state array
                 this.setState({
                     listDat : dat.lists,
                     memDatB: dat.members
                 });  
-                //alert(JSON.stringify(this.state.listDat[0].cards));         
+                
+                if(res.data.lists.length == 0) {
+                
+                    this.setState({ isEmpty: true });
+                } else {
+                    
+                    this.setState({ isEmpty: false }); 
+                }                
+
             } else {
 
             }
@@ -792,10 +800,18 @@ export default class BMain extends React.Component {
                             <div className="cb-list-wrapper">
 
                                 { !this.state.listDat ? (
-                                                                        
-                                    <div className="BM-loading">
-                                        <p>Loading...</p>
-                                    </div>
+                                      
+                                    this.state.isEmpty ? (
+                            
+                                        <div className="BM-loading">
+                                            <p>No Projects Found!</p>
+                                        </div>
+
+                                    ) : (
+                                        <div className="BM-loading">
+                                            <p>Loading...</p>
+                                        </div>
+                                    )                                      
 
                                 ):( this.state.listDat.map((litem, i) => (
                                 
@@ -962,9 +978,6 @@ export default class BMain extends React.Component {
                 ):(
                     <p></p>
                 )} 
-
-
-
 
             </div>
         );
