@@ -230,7 +230,7 @@
 .bbPersonal-card {
   margin-bottom: 25px;
   border: 1px solid rgba(0, 0, 0, 0.15);
-  padding-top: 45px;
+  padding-top: 0px;
   text-align: center;
   width: 210px;
   height: 110px;
@@ -239,12 +239,25 @@
   color: #000;
 }
 
+.bbPersonal-delete {
+  background-image: url('../../assets/delete.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;    
+  width: 27px;
+  height: 27px;  
+  margin-left: 85%;
+  margin-top: 8px;
+}
+
 .bbPersonal-card:hover {
   cursor: pointer;
 }
 
 .bbPersonal-parag {
-
+  width: 100%;
+  height: 60%;
+  padding-top: 10px;
 }
 
 .bbPersonal-special-card {
@@ -304,7 +317,7 @@
 .bbPublic-card {
   margin-bottom: 25px;
   border: 1px solid rgba(0, 0, 0, 0.15);
-  padding-top: 45px;
+  padding-top: 0px;
   text-align: center;
   width: 210px;
   height: 110px;
@@ -313,12 +326,25 @@
   color: #000;
 }
 
+.bbPublic-delete {
+  background-image: url('../../assets/delete.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;    
+  width: 27px;
+  height: 27px;  
+  margin-left: 85%;
+  margin-top: 8px;
+}
+
 .bbPublic-card:hover {
   cursor: pointer;
 }
 
 .bbPublic-parag {
-
+  width: 100%;
+  height: 60%;
+  padding-top: 10px;
 }
 
 .bbPublic-special-card {
