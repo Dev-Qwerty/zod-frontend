@@ -81,7 +81,10 @@ export default class ProjectD extends React.Component {
                                 </div>
                             </Link>               
 
-                            <div className="pd-lng4" data-tip data-for="calTip"></div>
+                            <Link to="/projectdashboard/calender" style={{ textDecoration: 'none' }}>
+                                <div className="pd-lng4" data-tip data-for="calTip">
+                                </div>
+                            </Link> 
                             <div className="pd-lng5" data-tip data-for="calTip"></div>
                             <div className="pd-lng6" data-tip data-for="calTip"></div>
                             <div className="pd-lng7" data-tip data-for="calTip"></div>

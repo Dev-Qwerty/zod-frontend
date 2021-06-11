@@ -211,7 +211,10 @@ export default class CreatePublicBoard extends React.Component {
                                 </div>
                             </Link>               
 
-                            <div className="public-cb-lng4" data-tip data-for="calTip"></div>
+                            <Link to="/projectdashboard/calender" style={{ textDecoration: 'none' }}>
+                                <div className="public-cb-lng4" data-tip data-for="calTip"></div>
+                            </Link>
+
                             <div className="public-cb-lng5" data-tip data-for="calTip"></div>
                             <div className="public-cb-lng6" data-tip data-for="calTip"></div>
                             <div className="public-cb-lng7" data-tip data-for="calTip"></div>

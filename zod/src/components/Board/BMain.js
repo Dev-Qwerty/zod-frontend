@@ -770,7 +770,10 @@ export default class BMain extends React.Component {
                                 </div>
                             </Link>               
 
-                            <div className="c-lng4" data-tip data-for="calTip"></div>
+                            <Link to="/projectdashboard/calender" style={{ textDecoration: 'none' }}>
+                                <div className="c-lng4" data-tip data-for="calTip"></div>
+                            </Link>
+
                             <div className="c-lng5" data-tip data-for="calTip"></div>
                             <div className="c-lng6" data-tip data-for="calTip"></div>
                             <div className="c-lng7" data-tip data-for="calTip"></div>

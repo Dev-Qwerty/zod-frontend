@@ -214,7 +214,10 @@ export default class Board extends React.Component {
                                 </div>
                             </Link>               
 
-                            <div className="b-lng4" data-tip data-for="calTip"></div>
+                            <Link to="/projectdashboard/calender" style={{ textDecoration: 'none' }}>
+                                <div className="b-lng4" data-tip data-for="calTip"></div>
+                            </Link>
+                            
                             <div className="b-lng5" data-tip data-for="calTip"></div>
                             <div className="b-lng6" data-tip data-for="calTip"></div>
                             <div className="b-lng7" data-tip data-for="calTip"></div>

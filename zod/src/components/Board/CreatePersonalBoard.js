@@ -151,7 +151,10 @@ export default class CreatePersonalBoard extends React.Component {
                                 </div>
                             </Link>               
 
-                            <div className="personal-cb-lng4" data-tip data-for="calTip"></div>
+                            <Link to="/projectdashboard/calender" style={{ textDecoration: 'none' }}>
+                                <div className="personal-cb-lng4" data-tip data-for="calTip"></div>
+                            </Link>
+                            
                             <div className="personal-cb-lng5" data-tip data-for="calTip"></div>
                             <div className="personal-cb-lng6" data-tip data-for="calTip"></div>
                             <div className="personal-cb-lng7" data-tip data-for="calTip"></div>
