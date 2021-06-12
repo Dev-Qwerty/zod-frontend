@@ -1,0 +1,52 @@
+.svc-desc-headers {
+    margin-top: 3vw;
+    margin-left: 3vw;
+}
+
+.svc-videocall-svg {
+    height: 370px;
+    position: fixed;
+    right: 25px;
+    top: 190px;
+}
+
+.svc-desc-headers > h2 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.svc-desc-headers > h3 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.svc-desc-headers > h4 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.svc-details {
+    display: grid;
+    margin-left: 3vw;
+    margin-top: 3vw;
+}
+
+.svc-details > input[type="text"] {
+    width: 500px;
+}
+
+.svc-details > input[type="checkbox"] {
+    margin-top: -17px;
+    margin-left: 200px;
+}
+
+.svc-create-btn {
+    background-color: #52D066;
+    color: #fff;
+    border: none;
+    position: relative;
+    width: 10vw;
+    height: 35px;
+    border-radius: 5px
+}
+
+.svc-meet-members {
+    margin-top: 2vw;
+}
