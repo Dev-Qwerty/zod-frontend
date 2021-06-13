@@ -149,8 +149,8 @@ function CreateProject() {
 }
 
 async function createProjectFn(pname, deadline, memberList, setBtnText, setLoader) {
-    setLoader(true);
     setBtnText('Creating...');
+    setLoader(true);
     const token = localStorage.getItem('token')
     
     const reqBody = {
