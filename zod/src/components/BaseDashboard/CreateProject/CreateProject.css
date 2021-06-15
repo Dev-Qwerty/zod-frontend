@@ -211,7 +211,7 @@
 }
 
 .cp-submit {
-  width: 100px;
+  width: fit-content;
   height: 35px;
   margin-top: 20px;
   color: #fff;

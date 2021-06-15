@@ -6,6 +6,8 @@ import ReactTooltip from "react-tooltip";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Button from 'react-bootstrap-button-loader'; 
+
  
 /* 
     ClassName Convention Used:-
@@ -20,7 +22,9 @@ export default class CreatePublicBoard extends React.Component {
         this.state = {
             bname: '',
             members: '',
-            finalMem: [{ email: "" }]
+            finalMem: [{ email: "" }],
+            loading: false,
+            btnText: 'Create'
         }
     }
 
@@ -90,7 +94,10 @@ export default class CreatePublicBoard extends React.Component {
     };
 
     submitFn = () => {
-        
+        this.setState({
+            loading: true,
+            btnText: 'Creating...'
+        })
         const tokenx = localStorage.getItem('token');
         const xobj = JSON.parse(localStorage.getItem('pdata')); 
 
@@ -111,7 +118,7 @@ export default class CreatePublicBoard extends React.Component {
         }
      
         let url = 'https://boardservice-zode.herokuapp.com/api/board/new';
-
+        refreshToken();
         axios.post(url, reqBody, config)
         .then((res) => {
     
@@ -128,11 +135,18 @@ export default class CreatePublicBoard extends React.Component {
                     progress: undefined,
                 });
                 setTimeout(() => {
+                    this.setState({
+                        loading: false,
+                        btnText: 'Created!'
+                    })
                     window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/board/bhome';
                   }, 3000);
                 
             } else {
-
+                this.setState({
+                    loading: false,
+                    btnText: 'Create'
+                })
                 toast.error('Some Error Occured!', {
                     position: "bottom-right",
                     autoClose: 5000,
@@ -143,10 +157,7 @@ export default class CreatePublicBoard extends React.Component {
                     progress: undefined,
                 });                
             }
-        })
-        .catch(function (error) {
-            console.log(error);
-        }); 
+        }) 
     }
 
     updateBname = (evt) => {
@@ -275,9 +286,7 @@ export default class CreatePublicBoard extends React.Component {
                                     );
                                 })} 
 
-
-                                <div><input type="submit" value="Create" className="xcb-g1-submit" onClick = { this.submitFn } ></input></div>                                                                             
-                                
+                                <Button variant="success" loading={this.state.loading} className="xcb-g1-submit" onClick={ this.submitFn }>{this.state.btnText}</Button>                                                                              
                             </div>
                             
                             <div className="xcb-g2">

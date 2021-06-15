@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import firebase from 'firebase';
 import refreshToken from '../../functions/refreshToken';
+import newProjectSVG from '../../assets/newProject.svg';
+import CirclesLoader from '../Loader/CirclesLoader';
 //import loader from '../Loader/Loader'
 
 export default class BaseDashboard  extends React.Component {
@@ -133,17 +135,15 @@ export default class BaseDashboard  extends React.Component {
                 </div>
     
                 <div className="full-boxes-wrapper">
-
-                    { !this.state.apiData ? (
-                        
+                { !this.state.apiData ? (        
                         this.state.isEmpty ? (
-                            
                             <div className="x-empty">
-                                <p>No Projects Found!</p>
+                                <img src={newProjectSVG} className="bd-new-svg"></img>
+                                <span>No projects found! Create a new project <Link to="/basedashboard/createproject">here.</Link></span>
                             </div>
                         ): (
                             <div className="x-loading">
-                                <p>Loading...</p>
+                                <CirclesLoader />
                             </div>
                         )                        
                     ):( this.state.apiData.map(qdata => (

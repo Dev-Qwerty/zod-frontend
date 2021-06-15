@@ -64,21 +64,15 @@
   cursor: pointer;
 }
 
-.cpi-empty {
-  width: 310px;
-  height: 75px;
-  border: 1px solid #000;
-  text-align: center;
-  padding-top: 20px;
-}
-
-.cpi-empty p {
-  font-size: 18px;
+.cpi-empty > span {
+  margin-left: 10vw;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .cpi-loading {
   position: absolute;
-  left: 50%;
+  left: 40%;
   top: 40%;
   background-color: #fff;
   /*opacity: 0.8;*/
@@ -88,11 +82,14 @@
   text-align: center;
   padding-top: 40px;
   /*border: 1px solid #aaa;*/
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .cpi-loading p {
   font-family: Pacifico;
   font-size: 30px;
   color: #4CBF53;    
+}
+
+.cpi-noinvite-svg {
+  height: 350px;
 }

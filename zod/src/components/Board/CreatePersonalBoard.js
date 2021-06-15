@@ -6,6 +6,7 @@ import refreshToken from '../../functions/refreshToken';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Button from 'react-bootstrap-button-loader'; 
  
 /* 
     ClassName Convention Used:-
@@ -19,7 +20,9 @@ export default class CreatePersonalBoard extends React.Component {
         super();
         this.state = {
             bname: '',
-            members: ''
+            members: '',
+            loading: false,
+            btnText: 'Create'
         }
     }
 
@@ -34,7 +37,10 @@ export default class CreatePersonalBoard extends React.Component {
     } 
 
     submitFn = () => {
-
+        this.setState({
+            loading: true,
+            btnText: 'Creating...'
+        })
         const tokenx = localStorage.getItem('token');
         const xobj = JSON.parse(localStorage.getItem('pdata')); 
 
@@ -55,7 +61,7 @@ export default class CreatePersonalBoard extends React.Component {
         }
 
         let url = 'https://boardservice-zode.herokuapp.com/api/board/new';
-
+        refreshToken();
         axios.post(url, reqBody, config)
         .then((res) => {
     
@@ -72,11 +78,18 @@ export default class CreatePersonalBoard extends React.Component {
                     progress: undefined,
                 });
                 setTimeout(() => {
+                    this.setState({
+                        loading: false,
+                        btnText: 'Created!'
+                    })
                     window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/board/bhome';
                   }, 3000);
                 
             } else {
-
+                this.setState({
+                    loading: false,
+                    btnText: 'Create'
+                })
                 toast.error('Some Error Occured!', {
                     position: "bottom-right",
                     autoClose: 5000,
@@ -88,11 +101,6 @@ export default class CreatePersonalBoard extends React.Component {
                 });          
             }
         })
-        .catch(function (error) {
-            if(error.response.status === 401) {
-                refreshToken();
-            }
-        }); 
     }
 
     backToBaseFn = () => {
@@ -183,7 +191,7 @@ export default class CreatePersonalBoard extends React.Component {
                                 <p className="pcb-g1-bname-label">Board Name</p>
                                 <div><input type="text" placeholder="" className="pcb-g1-bname-inp" value = { this.state.bname } onChange={ this.updateBname } ></input></div>
                                 
-                                <div><input type="submit" value="Create" className="pcb-g1-submit" onClick = { this.submitFn } ></input></div>                                                                             
+                                <Button variant="success" loading={this.state.loading} className="pcb-g1-submit" onClick={ this.submitFn }>{this.state.btnText}</Button>                                                                             
                             </div>
 
                             <div className="pcb-g2">

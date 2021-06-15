@@ -6,7 +6,8 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import firebase from 'firebase';
-import refreshToken from '../../../functions/refreshToken'; 
+import refreshToken from '../../../functions/refreshToken';
+import Button from 'react-bootstrap-button-loader'; 
 
 /* 
     ClassName Convention Used:-
@@ -19,6 +20,9 @@ function CreateProject() {
     const [deadline, setDeadlineValue] = useState('');
     const [avatar, setAvatar] = useState('');
     const [memberList, setMemberList] = useState([{ email: "", userRole: "" }]);
+    const [loading, setLoader] = useState(false);
+    const [btnText, setBtnText] = useState('Create');
+
 
     // handle input change - pname, deadline
     const handlePnameChange = (e) => setPnameValue(e.target.value);
@@ -131,9 +135,8 @@ function CreateProject() {
 
                                 </div>
                             );
-                        })}   
-                        
-                        <div><input value="Create" type="submit" className="cp-submit" onClick={createProjectFn.bind(this, pname, deadline, memberList)}></input></div>                
+                        })}                
+                        <Button variant="success" loading={loading} className="cp-submit" onClick={createProjectFn.bind(this, pname, deadline, memberList, setBtnText, setLoader)}>{btnText}</Button>
                         <ToastContainer />
                     </div>
 
@@ -145,8 +148,9 @@ function CreateProject() {
     );
 }
 
-async function createProjectFn(pname, deadline, memberList) {
-    
+async function createProjectFn(pname, deadline, memberList, setBtnText, setLoader) {
+    setBtnText('Creating...');
+    setLoader(true);
     const token = localStorage.getItem('token')
     
     const reqBody = {
@@ -164,7 +168,7 @@ async function createProjectFn(pname, deadline, memberList) {
     }
 
     //toast("Project Createed :)");
-
+    refreshToken();
     axios.post('https://projectservice-zode.herokuapp.com/api/projects/createproject', reqBody, config)
     .then((res) => {
 
@@ -180,11 +184,14 @@ async function createProjectFn(pname, deadline, memberList) {
                 progress: undefined,
             });
             setTimeout(() => {
+                setBtnText('Created!');
+                setLoader(false);
                 window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';
-              }, 3500);
+              }, 2500);
 
         } else {
-
+            setBtnText('Create');
+            setLoader(false);
             toast.error('Some Error Occured!', {
                 position: "bottom-right",
                 autoClose: 5000,
@@ -195,12 +202,7 @@ async function createProjectFn(pname, deadline, memberList) {
                 progress: undefined,
             });
         }
-    })
-    .catch(function (error) {
-        if(error.response.status === 401) {
-            refreshToken();
-        }
-    });   
+    })   
 }
 
 export default CreateProject;
