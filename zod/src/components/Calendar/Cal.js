@@ -1,23 +1,31 @@
-import './Calendar.css';
+import './Cal.css';
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import ReactTooltip from "react-tooltip";
-import Calx from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import moment from 'moment'
+//import Calx from 'react-calendar';
+//import 'react-calendar/dist/Calendar.css';
+//import moment from 'moment'
+
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import axios from 'axios';
 import firebase from 'firebase';
 import refreshToken from '../../functions/refreshToken';
 //import loader from '../Loader/Loader'
 
-function Calendar() {
+function Cal() {
 
-    const [dateState, setDateState] = useState(new Date())
+    const localizer = momentLocalizer(moment)
+    localizer.formats.yearHeaderFormat = 'YYYY'
+
+
+    /*const [dateState, setDateState] = useState(new Date())
     
     const changeDate = (e) => {
       setDateState(e)
-    }
+    }*/
 
     const backToBaseFn = () => {
         //localStorage.setItem('pdata');
@@ -96,11 +104,23 @@ function Calendar() {
                     
                     <div className="cal-wrapper">
                     
-                        <Calx
+                        {/*<Calx
                             value={dateState}
                             onChange={changeDate}
                         />
-                        <p className="cal-p">Current selected date is <b>{moment(dateState).format('MMMM Do YYYY')}</b></p>
+                        <p className="cal-p">Current selected date is <b>{moment(dateState).format('MMMM Do YYYY')}</b></p>*/}
+
+                        <Calendar
+                            localizer={localizer}
+                            events={[]}
+                            toolbar={true}
+                            views={{
+                                day: true,
+                                week: true,
+                                month: true,
+                            }}
+                        />
+
                     </div>
 
                 </div>
@@ -112,4 +132,4 @@ function Calendar() {
 
 }
 
-export default Calendar;
+export default Cal;
