@@ -20,10 +20,14 @@ export default class ProjectD extends React.Component {
             data: '',
             tlead: '',
             dline: '',
+            time: new Date(),
         }
     }
 
     componentDidMount(){
+
+        setInterval(this.update, 1000)
+
         refreshToken();
 
         const obj = JSON.parse(localStorage.getItem('pdata'));
@@ -36,6 +40,14 @@ export default class ProjectD extends React.Component {
         
     }
 
+	update = () => {
+		
+		this.setState({
+			time: new Date()
+		})
+		
+	};
+
     backToBaseFn = () => {
         //localStorage.setItem('pdata');
         window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';       
@@ -47,6 +59,10 @@ export default class ProjectD extends React.Component {
 
     render() {
     
+		const h = this.state.time.getHours()
+		const m = this.state.time.getMinutes()
+		const s = this.state.time.getSeconds()
+
         return (
             <div className="ProjectD">
                 
@@ -114,19 +130,30 @@ export default class ProjectD extends React.Component {
                         <div className="pdb-hdn-wrapper">
 
                             <div className="pdb-hdn-left">
-                                <div className="pdb-hl-1"><p>Project Name: { this.state.pname }</p></div>
-                                <div className="pdb-hl-2"><p>Team Lead: <span className="wrx">{ this.state.tlead }</span></p></div>
+                                <div className="pdb-hl-1"><p>Project Name:&nbsp;&nbsp;{ this.state.pname }</p></div>
+                                <div className="pdb-hl-2"><p>Team Lead:&nbsp;&nbsp;<span className="wrx">{ this.state.tlead }</span></p></div>
                             </div>
 
                             <div className="pdb-hdn-right">
-                                <div className="pdb-hr-1"><p>Due By: { this.state.dline }</p></div>
+                                <div className="pdb-hr-1"><p>Due By:&nbsp;&nbsp;{ this.state.dline }</p></div>
                             </div>
                         </div>
 
-                        <div className="pdb-milestones">
-                            
-                        </div>
+                        <div className="pdb-proLine"></div>
 
+                        <div className="pdb-meetings">
+
+                            <div className="pdb-m-left">
+                                <div>
+                                    <p>Scheduled Meetings</p>
+                                </div>
+                            </div>
+                            
+                            <div className="pdb-m-right">  
+                                <h1 className="digital-time-h1">{h % 12}:{(m < 10 ? '0' + m : m)}:{(s < 10 ? '0' + s : s)} {h < 12 ? 'am' : 'pm'}</h1>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
