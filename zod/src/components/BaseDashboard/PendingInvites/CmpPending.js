@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import firebase from 'firebase';
 import refreshToken from '../../../functions/refreshToken';
+import CirclesLoader from '../../Loader/CirclesLoader';
 
 /* 
     ClassName Convention Used:-
@@ -179,7 +180,7 @@ export default class CmpPending  extends React.Component {
                             </div>
                         ): (
                             <div className="cpi-loading">
-                                <p>Loading...</p>
+                                <CirclesLoader />
                             </div>
                         )
 

@@ -78,7 +78,7 @@
 
 .cpi-loading {
   position: absolute;
-  left: 50%;
+  left: 40%;
   top: 40%;
   background-color: #fff;
   /*opacity: 0.8;*/
@@ -88,7 +88,6 @@
   text-align: center;
   padding-top: 40px;
   /*border: 1px solid #aaa;*/
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .cpi-loading p {
