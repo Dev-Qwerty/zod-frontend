@@ -247,12 +247,12 @@
 }
 
 .pdb-m-left {
-  border-radius: 0px;
-  min-height: 250px;
+  border-radius: 10px;
+  min-height: 200px;
   margin-left: 50px;
   margin-right: 50px;
   /*background-color: #52D066;*/
-  border: 1px solid rgba(0, 0, 0, 0.15);  
+  border: 1px solid rgba(0, 0, 0, 0.15);
   background-color: #e6e6e6;
   color: #000;     
 }
@@ -261,6 +261,8 @@
   padding-left: 20px;
   padding-top: 20px;
   height: 60px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   width: 100%;
   background-color: #fff;
   font-size: 18px;
@@ -308,4 +310,17 @@
 .digital-time-h1 {
   font-family: 'digital-1';
   font-size: 60px;
+}
+
+.PD-loading {
+  position: absolute;
+  left: 40%;
+  top: 42%;
+  /*opacity: 0.8;*/
+  color: #000;
+  width: 250px;
+  height: 130px;
+  text-align: center;
+  padding-top: 100px;
+  /*border: 1px solid #aaa;*/
 }

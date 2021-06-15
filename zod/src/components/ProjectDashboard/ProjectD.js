@@ -4,6 +4,7 @@ import React from 'react';
 import ReactTooltip from "react-tooltip";
 import refreshToken from '../../functions/refreshToken';
 import axios from 'axios';
+import CirclesLoader from '../Loader/CirclesLoader';
 
 /* 
     HOME
@@ -18,7 +19,7 @@ export default class ProjectD extends React.Component {
      
         super();
         this.state = {
-            data: '',
+            Ldata: '',
             tlead: '',
             dline: '',
             time: new Date(),
@@ -71,7 +72,10 @@ export default class ProjectD extends React.Component {
             if(res.status === 200) {
 
                 //alert(JSON.stringify(res.data));
-
+                this.setState({
+                    Ldata : res.data,
+                }); 
+                
             } else {
 
             }
@@ -185,9 +189,19 @@ export default class ProjectD extends React.Component {
                                     <p className="pdml-hdn">Scheduled Meetings</p>
 
                                     <div className="pdml-link-wrx">
-                                        <p className="pdml-link-p">meet.google.com/psx-eauv-rad</p>
-                                        <p className="pdml-link-p">meet.google.com/psx-eauv-rad</p>
-                                        <p className="pdml-link-p">meet.google.com/psx-eauv-rad</p>
+
+                                        { !this.state.Ldata ? (
+                                        
+                                            <div className="PD-loading">
+                                                <CirclesLoader />
+                                            </div>                                    
+
+                                        ):( this.state.Ldata.map((ldat, i) => (
+                                            <p className="pdml-link-p">{ JSON.parse(JSON.stringify(ldat.meetUrl)) }</p>
+                                        )))}
+
+                                        {/*<p className="pdml-link-p">meet.google.com/psx-eauv-rad</p>*/}
+                                    
                                     </div>
                                 </div>
                             </div>
