@@ -207,17 +207,6 @@
   width: 90%;
 }
 
-.x-empty {
-  width: 310px;
-  height: 75px;
-  border: 1px solid #000;
-  text-align: center;
-  padding-top: 20px;
-}
-.x-empty p {
-  font-size: 18px;
-}
-
 .x-loading {
   position: absolute;
   left: 40%;
@@ -228,13 +217,22 @@
   width: 250px;
   height: 130px;
   text-align: center;
-  padding-top: 40px;
+  padding-top: 100px;
   /*border: 1px solid #aaa;*/
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .x-loading p {
   font-family: Pacifico;
   font-size: 30px;
   color: #4CBF53;    
+}
+
+.bd-new-svg {
+  height: 365px;
+  margin-left: 15vw;
+}
+
+.x-empty > span {
+  margin-left: 5vw;
+  font-family: 'Montserrat', sans-serif;
 }

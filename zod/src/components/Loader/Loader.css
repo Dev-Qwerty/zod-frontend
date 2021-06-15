@@ -3,3 +3,8 @@
     top: -1vw;
     left: 8vw;
 }
+
+.circles-loader-animation {
+    position: relative;
+    top: -25px;
+}
