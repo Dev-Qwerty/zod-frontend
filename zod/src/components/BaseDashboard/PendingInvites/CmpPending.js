@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import firebase from 'firebase';
+import noInvitesSVG from '../../../assets/noInvites.svg';
 import refreshToken from '../../../functions/refreshToken';
 import CirclesLoader from '../../Loader/CirclesLoader';
 
@@ -176,7 +176,8 @@ export default class CmpPending  extends React.Component {
                         this.state.isEmpty ? (
                             
                             <div className="cpi-empty">
-                                <p>No Pending Invites!</p>
+                                <img src={noInvitesSVG} className="cpi-noinvite-svg"></img>
+                                <span>No pending invites!</span>
                             </div>
                         ): (
                             <div className="cpi-loading">
