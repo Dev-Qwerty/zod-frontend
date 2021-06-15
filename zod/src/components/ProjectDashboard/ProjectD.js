@@ -3,7 +3,8 @@ import { Link, Route } from "react-router-dom";
 import React from 'react';
 import ReactTooltip from "react-tooltip";
 import refreshToken from '../../functions/refreshToken';
- 
+import axios from 'axios';
+
 /* 
     HOME
 
@@ -30,14 +31,15 @@ export default class ProjectD extends React.Component {
 
         refreshToken();
 
-        const obj = JSON.parse(localStorage.getItem('pdata'));
+        const obj1 = JSON.parse(localStorage.getItem('pdata'));
 
         this.setState({
-            pname : obj.projectName,
-            tlead: obj.teamlead,
-            dline: obj.deadline
+            pname : obj1.projectName,
+            tlead: obj1.teamlead,
+            dline: obj1.deadline
         });      
         
+        this.getMeetingLinks();
     }
 
 	update = () => {
@@ -47,6 +49,39 @@ export default class ProjectD extends React.Component {
 		})
 		
 	};
+
+    getMeetingLinks = () => {
+
+        const token1 = localStorage.getItem('token');
+        const obj = JSON.parse(localStorage.getItem('pdata'));
+
+        const config = {
+            headers: {
+                'Authorization': token1,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        let url = 'https://meet-zode.herokuapp.com/api/meet/' + obj.projectID;
+
+        axios.get(url, config)
+        .then((res) => {
+    
+            if(res.status === 200) {
+
+                //alert(JSON.stringify(res.data));
+
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            if(error.response.status === 401) {
+                refreshToken();
+            }
+        });
+    }
 
     backToBaseFn = () => {
         //localStorage.setItem('pdata');
@@ -144,8 +179,16 @@ export default class ProjectD extends React.Component {
                         <div className="pdb-meetings">
 
                             <div className="pdb-m-left">
-                                <div>
-                                    <p>Scheduled Meetings</p>
+                                
+                                <div className="">
+                
+                                    <p className="pdml-hdn">Scheduled Meetings</p>
+
+                                    <div className="pdml-link-wrx">
+                                        <p className="pdml-link-p">meet.google.com/psx-eauv-rad</p>
+                                        <p className="pdml-link-p">meet.google.com/psx-eauv-rad</p>
+                                        <p className="pdml-link-p">meet.google.com/psx-eauv-rad</p>
+                                    </div>
                                 </div>
                             </div>
                             
