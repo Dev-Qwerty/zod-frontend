@@ -36,6 +36,15 @@ function Cal() {
         window.location.href = window.location.protocol + '//' + window.location.host + '/login';   
     }
 
+    const getProfileImageURL = () => {
+        const user = firebase.auth().currentUser
+        if (user) {
+            return user.photoURL;
+        } else {
+            // Not Signed-in
+        } 
+    }
+
     return (
 
         <div className="Calender">
@@ -50,9 +59,21 @@ function Cal() {
                     <p>PROJECT&nbsp;&nbsp;DASHBOARD</p>
                 </div>
 
-                <div className="pd-right-wrapper">
-                    <input type="submit" value="Logout" className="pd-logout-btn" onClick = { logout }></input>
-                </div>
+               <div className="bd-right-wrapper">
+    
+                        <div className="bd-profile-icon-wrapper">
+    
+                            <div>
+                                <img className="bd-icon" src = { getProfileImageURL() }/>
+                            </div>
+    
+                            <div className="bd-dropdown-content">
+                                <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>Profile</p></Link>
+                                <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p>Pending Invites</p></Link>
+                                <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
+                            </div>
+                        </div>
+                    </div>
 
             </div>               
 

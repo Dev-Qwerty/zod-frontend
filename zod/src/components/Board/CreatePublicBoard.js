@@ -7,6 +7,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Button from 'react-bootstrap-button-loader'; 
+import firebase from 'firebase';
 
  
 /* 
@@ -175,6 +176,15 @@ export default class CreatePublicBoard extends React.Component {
         window.location.href = window.location.protocol + '//' + window.location.host + '/login';   
     }
 
+    getProfileImageURL() {
+        const user = firebase.auth().currentUser
+        if (user) {
+            return user.photoURL;
+        } else {
+            // Not Signed-in
+        } 
+    }
+
     render() {
     
         return (
@@ -190,9 +200,21 @@ export default class CreatePublicBoard extends React.Component {
                         <p>PROJECT&nbsp;&nbsp;DASHBOARD</p>
                     </div>
     
-                    <div className="public-cb-right-wrapper">
-                        <input type="submit" value="Logout" className="public-cb-logout-btn" onClick = { this.logout }></input>
+                    <div className="bd-right-wrapper">
+    
+                        <div className="bd-profile-icon-wrapper">
+
+                            <div>
+                                <img className="bd-icon" src = { this.getProfileImageURL() }/>
+                            </div>
+
+                        <div className="bd-dropdown-content">
+                            <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>Profile</p></Link>
+                            <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p>Pending Invites</p></Link>
+                            <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
+                        </div>
                     </div>
+                </div>
     
                 </div>
 

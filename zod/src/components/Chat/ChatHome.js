@@ -8,6 +8,8 @@ import ReactTooltip from "react-tooltip";
 import refreshToken from '../../functions/refreshToken';
 import {toast} from 'react-toastify';
 import socketIOClient from 'socket.io-client';
+import firebase from 'firebase';
+
 let projectDetails = JSON.parse(localStorage.getItem('pdata'));
 let ENDPOINT;
 if(projectDetails) {
@@ -70,6 +72,15 @@ function ChatHome() {
         }
 
     }
+
+    function getProfileImageURL() {
+        const user = firebase.auth().currentUser
+        if (user) {
+            return user.photoURL;
+        } else {
+            // Not Signed-in
+        } 
+    }
     useEffect(() => {
         fetchChannels();
         let socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
@@ -84,13 +95,13 @@ function ChatHome() {
         <div className="zod-chat-homepg">
         <div className="bd-top-nav">
                 <div className="bd-left-wrapper">
-                    <p className="bd-title">zode</p>
+                    <Link to="/basedashboard/home" style={{ textDecoration: 'none' }}><p className="bd-title">zode</p></Link>
                 </div>
     
             <div className="bd-right-wrapper">
                 <div className="bd-profile-icon-wrapper">
-                    <div className="bd-icon-1">
-                        <p className="bd-icon-txt">JD</p> 
+                    <div>
+                        <img className="bd-icon-1" src = { getProfileImageURL() }/>
                     </div>
     
                     <div className="bd-dropdown-content-1">

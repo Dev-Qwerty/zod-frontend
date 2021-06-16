@@ -6,6 +6,7 @@ import axios from 'axios';
 import Button from 'react-bootstrap-button-loader';
 import { toast } from 'react-toastify';
 import ReactTooltip from "react-tooltip";
+import firebase from 'firebase';
 
 let emails = [];
 
@@ -58,6 +59,15 @@ function ScheduleVideoCall() {
         setMembers([...members, { name: "", email: "" }]);
     };
 
+    function getProfileImageURL() {
+        const user = firebase.auth().currentUser
+        if (user) {
+            return user.photoURL;
+        } else {
+            // Not Signed-in
+        } 
+    }
+
     const allMembersChecked = () => {
         setChecked(!checked);
     }
@@ -90,13 +100,13 @@ function ScheduleVideoCall() {
         <div className="svc-page">
             <div className="bd-top-nav">
                 <div className="bd-left-wrapper">
-                    <p className="bd-title">zode</p>
+                    <Link to="/basedashboard/home" style={{ textDecoration: 'none' }}><p className="bd-title">zode</p></Link>
                 </div>
     
             <div className="bd-right-wrapper">
                 <div className="bd-profile-icon-wrapper">
-                    <div className="bd-icon-1">
-                        <p className="bd-icon-txt">JD</p> 
+                    <div>
+                        <img className="bd-icon-1" src = { getProfileImageURL() }/>
                     </div>
     
                     <div className="bd-dropdown-content-1">
