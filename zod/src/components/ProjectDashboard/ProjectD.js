@@ -22,13 +22,11 @@ export default class ProjectD extends React.Component {
             Ldata: '',
             tlead: '',
             dline: '',
-            time: new Date(),
         }
     }
 
     componentDidMount(){
 
-        setInterval(this.update, 1000)
 
         refreshToken();
 
@@ -42,14 +40,6 @@ export default class ProjectD extends React.Component {
         
         this.getMeetingLinks();
     }
-
-	update = () => {
-		
-		this.setState({
-			time: new Date()
-		})
-		
-	};
 
     getMeetingLinks = () => {
 
@@ -97,10 +87,6 @@ export default class ProjectD extends React.Component {
     }
 
     render() {
-    
-		const h = this.state.time.getHours()
-		const m = this.state.time.getMinutes()
-		const s = this.state.time.getSeconds()
 
         return (
             <div className="ProjectD">
@@ -197,17 +183,100 @@ export default class ProjectD extends React.Component {
                                             </div>                                    
 
                                         ):( this.state.Ldata.map((ldat, i) => (
-                                            <p className="pdml-link-p">{ JSON.parse(JSON.stringify(ldat.meetUrl)) }</p>
+                                            <p></p>
                                         )))}
 
-                                        {/*<p className="pdml-link-p">meet.google.com/psx-eauv-rad</p>*/}
+                                        <div className="pdml-sch-meeting">
+                                            
+                                            <div className="pdml-sch-grid-block1 cmx">
+                                                <p>Test Meeting</p>
+                                            </div>
+
+                                            <div className="pdml-sch-grid-block2 cmx">
+                                                <p>John Doe</p>
+                                            </div>
+
+                                            <div className="pdml-sch-grid-block3 cmx">
+                                                <p>30-June-2021</p>
+                                            </div>
+
+                                            <div className="pdml-sch-grid-block4 cmx">
+                                                <p>10: 20 AM</p>
+                                            </div>
+
+                                            <div className="pdml-sch-grid-block5 cmx">
+                                                <p>Join</p>
+                                            </div>
+                                        </div>
                                     
+                                        <div className="pdml-sch-meeting">
+                                            
+                                            <div className="pdml-sch-grid-block1 cmx">
+                                                <p>Test Meeting</p>
+                                            </div>
+
+                                            <div className="pdml-sch-grid-block2 cmx">
+                                                <p>John Doe</p>
+                                            </div>
+
+                                            <div className="pdml-sch-grid-block3 cmx">
+                                                <p>30-June-2021</p>
+                                            </div>
+
+                                            <div className="pdml-sch-grid-block4 cmx">
+                                                <p>10: 20 AM</p>
+                                            </div>
+
+                                            <div className="pdml-sch-grid-block5 cmx">
+                                                <p>Join</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="pdml-sch-meeting">
+                                            
+                                            <div className="pdml-sch-grid-block1 cmx">
+                                                <p>Test Meeting</p>
+                                            </div>
+
+                                            <div className="pdml-sch-grid-block2 cmx">
+                                                <p>John Doe</p>
+                                            </div>
+
+                                            <div className="pdml-sch-grid-block3 cmx">
+                                                <p>30-June-2021</p>
+                                            </div>
+
+                                            <div className="pdml-sch-grid-block4 cmx">
+                                                <p>10: 20 AM</p>
+                                            </div>
+
+                                            <div className="pdml-sch-grid-block5 cmx">
+                                                <p>Join</p>
+                                            </div>
+                                        </div>                                        
+
                                     </div>
                                 </div>
                             </div>
                             
-                            <div className="pdb-m-right">  
-                                <h1 className="digital-time-h1">{h % 12}:{(m < 10 ? '0' + m : m)}:{(s < 10 ? '0' + s : s)} {h < 12 ? 'am' : 'pm'}</h1>
+                            <div className="pdb-m-right">
+                                
+                                <div className="pdb-members-online-wrx">
+                                    
+                                    <div className="pdb-online-one">
+                                        <p>Members Online</p>
+                                    </div>
+                                    
+                                    <div className="pdb-online-two"></div>                                
+                                </div> 
+
+                                <div className="pdb-online-proLine"></div> 
+                                
+                                <div className="pdb-online-users">
+                                    <p>Test User 1</p>
+                                    <p>Test User 2</p>
+                                    <p>Test User 3</p>
+                                </div>
                             </div>
 
                         </div>
