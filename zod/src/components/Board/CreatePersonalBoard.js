@@ -7,6 +7,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Button from 'react-bootstrap-button-loader'; 
+import firebase from 'firebase';
  
 /* 
     ClassName Convention Used:-
@@ -112,6 +113,15 @@ export default class CreatePersonalBoard extends React.Component {
         window.location.href = window.location.protocol + '//' + window.location.host + '/login';   
     }
 
+    getProfileImageURL() {
+        const user = firebase.auth().currentUser
+        if (user) {
+            return user.photoURL;
+        } else {
+            // Not Signed-in
+        } 
+    }
+
     render() {
     
         return (
@@ -119,21 +129,29 @@ export default class CreatePersonalBoard extends React.Component {
                 
                 <div className="personal-cb-top-nav">
 
-                    <div className="personal-cb-left-wrapper">
-                        <div className="personal-cb-lt" onClick={ this.backToBaseFn }>
-                            <div className="personal-cb-arrow"></div>
-                            <div><p className="personal-cb-lt-txt">Back to Base Dashboard</p></div>
-                        </div>
-                        <div className="personal-cb-lb"><p className="b-title">zode</p></div>
+                    <div className="pd-left-wrapper">
+                        <div className="pd-lb"><p className="pd-title" onClick={ this.backToBaseFn }>zode</p></div>
                     </div>
-    
+                    
                     <div className="personal-cb-mid-wrapper">
                         <p>PROJECT&nbsp;&nbsp;DASHBOARD</p>
                     </div>
     
-                    <div className="personal-cb-right-wrapper">
-                        <input type="submit" value="Logout" className="personal-cb-logout-btn" onClick = { this.logout }></input>
+                    <div className="bd-right-wrapper">
+    
+                        <div className="bd-profile-icon-wrapper">
+
+                            <div>
+                                <img className="bd-icon" src = { this.getProfileImageURL() }/>
+                            </div>
+
+                        <div className="bd-dropdown-content">
+                            <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>Profile</p></Link>
+                            <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p>Pending Invites</p></Link>
+                            <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
+                        </div>
                     </div>
+                </div>
     
                 </div>
 
@@ -163,7 +181,9 @@ export default class CreatePersonalBoard extends React.Component {
                                 <div className="personal-cb-lng4" data-tip data-for="calTip"></div>
                             </Link>
 
-                            <div className="personal-cb-lng5" data-tip data-for="noneTip"></div>
+                            <Link to="/meet/scheduleNew" style={{ textDecoration: 'none' }}>
+                                <div className="personal-cb-lng5" data-tip data-for="videoCallTip"></div>
+                            </Link>
                             <div className="personal-cb-lng6" data-tip data-for="noneTip"></div>
                             <div className="personal-cb-lng7" data-tip data-for="noneTip"></div>
 
@@ -171,6 +191,7 @@ export default class CreatePersonalBoard extends React.Component {
                             <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
                             <ReactTooltip id="chatTip" place="right" effect="float" type="dark">Chat</ReactTooltip> 
                             <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calender</ReactTooltip>
+                            <ReactTooltip id="videoCallTip" place="right" effect="float" type="dark">Meet/Video Call</ReactTooltip>
                             <ReactTooltip id="noneTip" place="right" effect="float" type="dark">None</ReactTooltip>  
 
                         </div>

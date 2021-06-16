@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap-button-loader';
 import { toast } from 'react-toastify';
+import ReactTooltip from "react-tooltip";
+import firebase from 'firebase';
 
 let emails = [];
 
@@ -57,6 +59,15 @@ function ScheduleVideoCall() {
         setMembers([...members, { name: "", email: "" }]);
     };
 
+    function getProfileImageURL() {
+        const user = firebase.auth().currentUser
+        if (user) {
+            return user.photoURL;
+        } else {
+            // Not Signed-in
+        } 
+    }
+
     const allMembersChecked = () => {
         setChecked(!checked);
     }
@@ -89,13 +100,13 @@ function ScheduleVideoCall() {
         <div className="svc-page">
             <div className="bd-top-nav">
                 <div className="bd-left-wrapper">
-                    <p className="bd-title">zode</p>
+                    <Link to="/basedashboard/home" style={{ textDecoration: 'none' }}><p className="bd-title">zode</p></Link>
                 </div>
     
             <div className="bd-right-wrapper">
                 <div className="bd-profile-icon-wrapper">
-                    <div className="bd-icon-1">
-                        <p className="bd-icon-txt">JD</p> 
+                    <div>
+                        <img className="bd-icon-1" src = { getProfileImageURL() }/>
                     </div>
     
                     <div className="bd-dropdown-content-1">
@@ -106,6 +117,33 @@ function ScheduleVideoCall() {
                 </div>
             </div>
         </div>
+        <div className="ch-left-nav">
+        <div className="pd-left-nav-grid">
+                <Link to="/projectdashboard/home" style={{ textDecoration: 'none' }}>
+                    <div className="ch-lng1-wrapper">
+                        <div className="ch-lng1" data-tip data-for="homeTip"></div>
+                    </div>
+                </Link> 
+                <Link to="/projectdashboard/board/bhome" style={{ textDecoration: 'none' }}>
+                    <div className="pd-lng2" data-tip data-for="boardTip"></div>
+                </Link>
+                <Link to="/chat/home" style={{ textDecoration: 'none' }}><div className="personal-cb-lng3" data-tip data-for="chatTip"></div></Link>
+                <Link to="/projectdashboard/calender" style={{ textDecoration: 'none' }}>
+                    <div className="personal-cb-lng4" data-tip data-for="calTip"></div>
+                </Link>
+                <Link to="/meet/scheduleNew" style={{ textDecoration: 'none' }}>
+                    <div className="svc-lng5" data-tip data-for="videoCallTip"></div>
+                </Link>
+                <div className="pd-lng6"></div>
+                <div className="pd-lng7"></div>
+                <ReactTooltip id="chatTip" place="right" effect="float" type="dark">Chat</ReactTooltip> 
+                <ReactTooltip id="homeTip" place="right" effect="float" type="dark">Home</ReactTooltip> 
+                <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
+                <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calendar</ReactTooltip>
+                <ReactTooltip id="videoCallTip" place="right" effect="float" type="dark">Meet/Video Call</ReactTooltip>            
+            </div>
+        </div>
+        <div className="svc-wrapper">
         <div className="svc-desc-headers"> 
             <h2>Schedule a New Meeting</h2>
             <h3>Interact with your project members via Video Call</h3>
@@ -135,6 +173,7 @@ function ScheduleVideoCall() {
                 );
             })}
             <Button variant="success" loading={loading} className="svc-create-btn" onClick={ScheduleVCRequest.bind(this, meetName, emails, setLoader, setBtnText)}>{btnText}</Button>
+        </div>
         </div>
     </div>
     )

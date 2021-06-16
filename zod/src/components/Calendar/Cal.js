@@ -36,6 +36,15 @@ function Cal() {
         window.location.href = window.location.protocol + '//' + window.location.host + '/login';   
     }
 
+    const getProfileImageURL = () => {
+        const user = firebase.auth().currentUser
+        if (user) {
+            return user.photoURL;
+        } else {
+            // Not Signed-in
+        } 
+    }
+
     return (
 
         <div className="Calender">
@@ -43,20 +52,28 @@ function Cal() {
             <div className="pd-top-nav">
 
                 <div className="pd-left-wrapper">
-                    <div className="pd-lt" onClick={ backToBaseFn }>
-                        <div className="pd-arrow"></div>
-                        <div><p className="pd-lt-txt">Back to Base Dashboard</p></div>
-                    </div>
-                    <div className="pd-lb"><p className="pd-title">zode</p></div>
+                    <div className="pd-lb"><p className="pd-title" onClick={ backToBaseFn.bind(this) }>zode</p></div>
                 </div>
 
                 <div className="pd-mid-wrapper">
                     <p>PROJECT&nbsp;&nbsp;DASHBOARD</p>
                 </div>
 
-                <div className="pd-right-wrapper">
-                    <input type="submit" value="Logout" className="pd-logout-btn" onClick = { logout }></input>
-                </div>
+               <div className="bd-right-wrapper">
+    
+                        <div className="bd-profile-icon-wrapper">
+    
+                            <div>
+                                <img className="bd-icon" src = { getProfileImageURL() }/>
+                            </div>
+    
+                            <div className="bd-dropdown-content">
+                                <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>Profile</p></Link>
+                                <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p>Pending Invites</p></Link>
+                                <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
+                            </div>
+                        </div>
+                    </div>
 
             </div>               
 
@@ -67,8 +84,8 @@ function Cal() {
                     <div className="pd-left-nav-grid">
                         
                         <Link to="/projectdashboard/home" style={{ textDecoration: 'none' }}>
-                            <div className="pd-lng1-wrapper">
-                                <div className="pd-lng1" data-tip data-for="homeTip"></div>
+                            <div className="cal-lng1-wrapper">
+                                <div className="cal-lng1" data-tip data-for="homeTip"></div>
                             </div>
                         </Link> 
 
@@ -83,11 +100,13 @@ function Cal() {
                         </Link>               
 
                         <Link to="/projectdashboard/calender" style={{ textDecoration: 'none' }}>
-                            <div className="pd-lng4" data-tip data-for="calTip">
+                            <div className="cal-lng4" data-tip data-for="calTip">
                             </div>
                         </Link> 
 
-                        <div className="pd-lng5" data-tip data-for="noneTip"></div>
+                        <Link to="/meet/scheduleNew" style={{ textDecoration: 'none' }}>
+                            <div className="pd-lng5" data-tip data-for="videoCallTip"></div>
+                        </Link>
                         <div className="pd-lng6" data-tip data-for="noneTip"></div>
                         <div className="pd-lng7" data-tip data-for="noneTip"></div>
 
@@ -95,6 +114,7 @@ function Cal() {
                         <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
                         <ReactTooltip id="chatTip" place="right" effect="float" type="dark">Chat</ReactTooltip> 
                         <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calender</ReactTooltip>
+                        <ReactTooltip id="videoCallTip" place="right" effect="float" type="dark">Meet / Video Call</ReactTooltip>
                         <ReactTooltip id="noneTip" place="right" effect="float" type="dark">None</ReactTooltip>     
 
                     </div>

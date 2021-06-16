@@ -64,7 +64,7 @@
     border-radius: 15px;
     height: 50px;
     margin-top: 1vw;
-    margin-left: 4vw;
+    margin-left: 77px;
 }
 
 .dcd-textbox > textarea:focus-visible {
@@ -77,14 +77,14 @@
 }
 
 .dcd-attach-icon {
-    margin-left: 1vw;
+    margin-left: 21px;
     margin-top: 3vw;
     position: fixed;
     bottom: 15px;
 }
 
 .dcd-send-icon {
-    margin-left: 66vw;
+    margin-left: 1005px;
     position: fixed;
     bottom: 12px;
 }

@@ -50,3 +50,22 @@
 .svc-meet-members {
     margin-top: 2vw;
 }
+
+.svc-wrapper {
+    margin-left: 5vw;
+    margin-top: -40vw;
+}
+
+.svc-lng5 {
+    background-image: url('../../assets/vc-sidenav-icon-dark.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #fff;
+    cursor: pointer;
+    width: 84px;
+    height: 60px;
+    margin-right: auto;
+    margin-top: 3px;
+    border-radius: 8px;
+    margin-left: 1px;
+}

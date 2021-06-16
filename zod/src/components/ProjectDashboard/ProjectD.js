@@ -5,6 +5,7 @@ import ReactTooltip from "react-tooltip";
 import refreshToken from '../../functions/refreshToken';
 import axios from 'axios';
 import CirclesLoader from '../Loader/CirclesLoader';
+import firebase from 'firebase';
 
 /* 
     HOME
@@ -39,6 +40,7 @@ export default class ProjectD extends React.Component {
         });      
         
         this.getMeetingLinks();
+        this.getProfileImageURL();
     }
 
     getMeetingLinks = () => {
@@ -77,6 +79,16 @@ export default class ProjectD extends React.Component {
         });
     }
 
+    getProfileImageURL = () => {
+        const user = firebase.auth().currentUser;
+        if(user) {
+            let avatar = document.getElementById("bd-icon");
+            if(avatar != null) {
+                avatar.src = user.photoURL
+            }
+            return user.photoURL;
+        }
+    }
     backToBaseFn = () => {
         //localStorage.setItem('pdata');
         window.location.href = window.location.protocol + '//' + window.location.host + '/basedashboard/home';       
@@ -94,19 +106,27 @@ export default class ProjectD extends React.Component {
                 <div className="pd-top-nav">
 
                     <div className="pd-left-wrapper">
-                        <div className="pd-lt" onClick={ this.backToBaseFn }>
-                            <div className="pd-arrow"></div>
-                            <div><p className="pd-lt-txt">Back to Base Dashboard</p></div>
-                        </div>
-                        <div className="pd-lb"><p className="pd-title">zode</p></div>
+                        <div className="pd-lb"><p className="pd-title" onClick={ this.backToBaseFn }>zode</p></div>
                     </div>
     
                     <div className="pd-mid-wrapper">
                         <p>PROJECT&nbsp;&nbsp;DASHBOARD</p>
                     </div>
     
-                    <div className="pd-right-wrapper">
-                        <input type="submit" value="Logout" className="pd-logout-btn" onClick = { this.logout }></input>
+                    <div className="bd-right-wrapper">
+    
+                        <div className="bd-profile-icon-wrapper">
+    
+                            <div>
+                                <img className="bd-icon" id="bd-icon" src={this.getProfileImageURL()}/>
+                            </div>
+    
+                            <div className="bd-dropdown-content">
+                                <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>Profile</p></Link>
+                                <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p>Pending Invites</p></Link>
+                                <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
+                            </div>
+                        </div>
                     </div>
     
                 </div>
@@ -137,7 +157,9 @@ export default class ProjectD extends React.Component {
                                 <div className="pd-lng4" data-tip data-for="calTip">
                                 </div>
                             </Link> 
-                            <div className="pd-lng5" data-tip data-for="noneTip"></div>
+                            <Link to="/meet/scheduleNew" style={{ textDecoration: 'none' }}>
+                                <div className="pd-lng5" data-tip data-for="videoCallTip"></div>
+                            </Link>
                             <div className="pd-lng6" data-tip data-for="noneTip"></div>
                             <div className="pd-lng7" data-tip data-for="noneTip"></div>
 
@@ -145,6 +167,7 @@ export default class ProjectD extends React.Component {
                             <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
                             <ReactTooltip id="chatTip" place="right" effect="float" type="dark">Chat</ReactTooltip> 
                             <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calender</ReactTooltip>
+                            <ReactTooltip id="videoCallTip" place="right" effect="float" type="dark">Meet/Video Call</ReactTooltip>
                             <ReactTooltip id="noneTip" place="right" effect="float" type="dark">None</ReactTooltip>
                                                          
                         </div>

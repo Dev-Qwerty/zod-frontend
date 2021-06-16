@@ -8,6 +8,8 @@ import ReactTooltip from "react-tooltip";
 import refreshToken from '../../functions/refreshToken';
 import {toast} from 'react-toastify';
 import socketIOClient from 'socket.io-client';
+import firebase from 'firebase';
+
 let projectDetails = JSON.parse(localStorage.getItem('pdata'));
 let ENDPOINT;
 if(projectDetails) {
@@ -70,6 +72,15 @@ function ChatHome() {
         }
 
     }
+
+    function getProfileImageURL() {
+        const user = firebase.auth().currentUser
+        if (user) {
+            return user.photoURL;
+        } else {
+            // Not Signed-in
+        } 
+    }
     useEffect(() => {
         fetchChannels();
         let socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
@@ -84,13 +95,13 @@ function ChatHome() {
         <div className="zod-chat-homepg">
         <div className="bd-top-nav">
                 <div className="bd-left-wrapper">
-                    <p className="bd-title">zode</p>
+                    <Link to="/basedashboard/home" style={{ textDecoration: 'none' }}><p className="bd-title">zode</p></Link>
                 </div>
     
             <div className="bd-right-wrapper">
                 <div className="bd-profile-icon-wrapper">
-                    <div className="bd-icon-1">
-                        <p className="bd-icon-txt">JD</p> 
+                    <div>
+                        <img className="bd-icon-1" src = { getProfileImageURL() }/>
                     </div>
     
                     <div className="bd-dropdown-content-1">
@@ -113,13 +124,19 @@ function ChatHome() {
                     <div className="pd-lng2" data-tip data-for="boardTip"></div>
                 </Link>
                 <Link to="/chat/home" style={{ textDecoration: 'none' }}><div className="ch-lng3" data-tip data-for="chatTip"></div></Link>
-                <div className="pd-lng4"></div>
-                <div className="pd-lng5"></div>
+                <Link to="/projectdashboard/calender" style={{ textDecoration: 'none' }}>
+                    <div className="personal-cb-lng4" data-tip data-for="calTip"></div>
+                </Link>
+                <Link to="/meet/scheduleNew" style={{ textDecoration: 'none' }}>
+                    <div className="pd-lng5" data-tip data-for="videoCallTip"></div>
+                </Link>
                 <div className="pd-lng6"></div>
                 <div className="pd-lng7"></div>
                 <ReactTooltip id="chatTip" place="right" effect="float" type="dark">Chat</ReactTooltip> 
                 <ReactTooltip id="homeTip" place="right" effect="float" type="dark">Home</ReactTooltip> 
-                <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>            
+                <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
+                <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calendar</ReactTooltip>
+                <ReactTooltip id="videoCallTip" place="right" effect="float" type="dark">Meet/Video Call</ReactTooltip>            
             </div>
         </div>
         <div className="ch-leftnav-2">

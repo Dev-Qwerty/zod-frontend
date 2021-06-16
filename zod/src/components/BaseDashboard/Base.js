@@ -20,20 +20,8 @@ export default class BaseDashboard  extends React.Component {
         }
     }   
     async componentDidMount() {
-        
-        const user = firebase.auth().currentUser
-        if (user) {
-            localStorage.setItem('photoURL', user.photoURL);
-
-        } else {
-            // Not Signed-in
-        } 
-
-        refreshToken();
-        
-        this.setState({
-            avatar : localStorage.getItem('photoURL')
-        }); 
+        this.getProfileImageURL();
+        refreshToken(); 
 
         const token = localStorage.getItem('token');
         
@@ -69,6 +57,15 @@ export default class BaseDashboard  extends React.Component {
         });         
     }
 
+    getProfileImageURL() {
+        const user = firebase.auth().currentUser
+        if (user) {
+            return user.photoURL;
+        } else {
+            // Not Signed-in
+        } 
+    }
+
     componentWillUnmount() {
        
     }
@@ -94,7 +91,7 @@ export default class BaseDashboard  extends React.Component {
                         <div className="bd-profile-icon-wrapper">
     
                             <div>
-                                <img className="bd-icon" src = { this.state.avatar }/>
+                                <img className="bd-icon" src = { this.getProfileImageURL() }/>
                             </div>
     
                             <div className="bd-dropdown-content">
