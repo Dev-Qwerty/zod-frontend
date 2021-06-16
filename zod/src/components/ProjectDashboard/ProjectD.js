@@ -3,7 +3,9 @@ import { Link, Route } from "react-router-dom";
 import React from 'react';
 import ReactTooltip from "react-tooltip";
 import refreshToken from '../../functions/refreshToken';
- 
+import axios from 'axios';
+import CirclesLoader from '../Loader/CirclesLoader';
+
 /* 
     HOME
 
@@ -17,12 +19,72 @@ export default class ProjectD extends React.Component {
      
         super();
         this.state = {
-            data: ''
+            Ldata: '',
+            tlead: '',
+            dline: '',
+            time: new Date(),
         }
     }
 
     componentDidMount(){
+
+        setInterval(this.update, 1000)
+
         refreshToken();
+
+        const obj1 = JSON.parse(localStorage.getItem('pdata'));
+
+        this.setState({
+            pname : obj1.projectName,
+            tlead: obj1.teamlead,
+            dline: obj1.deadline
+        });      
+        
+        this.getMeetingLinks();
+    }
+
+	update = () => {
+		
+		this.setState({
+			time: new Date()
+		})
+		
+	};
+
+    getMeetingLinks = () => {
+
+        const token1 = localStorage.getItem('token');
+        const obj = JSON.parse(localStorage.getItem('pdata'));
+
+        const config = {
+            headers: {
+                'Authorization': token1,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        let url = 'https://meet-zode.herokuapp.com/api/meet/' + obj.projectID;
+
+        axios.get(url, config)
+        .then((res) => {
+    
+            if(res.status === 200) {
+
+                //alert(JSON.stringify(res.data));
+                this.setState({
+                    Ldata : res.data,
+                }); 
+                
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            if(error.response.status === 401) {
+                refreshToken();
+            }
+        });
     }
 
     backToBaseFn = () => {
@@ -36,6 +98,10 @@ export default class ProjectD extends React.Component {
 
     render() {
     
+		const h = this.state.time.getHours()
+		const m = this.state.time.getMinutes()
+		const s = this.state.time.getSeconds()
+
         return (
             <div className="ProjectD">
                 
@@ -103,91 +169,48 @@ export default class ProjectD extends React.Component {
                         <div className="pdb-hdn-wrapper">
 
                             <div className="pdb-hdn-left">
-                                <div className="pdb-hl-1"><p>Project Name</p></div>
-                                <div className="pdb-hl-2"><p>Team Lead: <span className="wrx">John Doe</span></p></div>
+                                <div className="pdb-hl-1"><p>Project Name:&nbsp;&nbsp;{ this.state.pname }</p></div>
+                                <div className="pdb-hl-2"><p>Team Lead:&nbsp;&nbsp;<span className="wrx">{ this.state.tlead }</span></p></div>
                             </div>
 
                             <div className="pdb-hdn-right">
-                                <div className="pdb-hr-1"><p>Due By: 30-June-2021</p></div>
+                                <div className="pdb-hr-1"><p>Due By:&nbsp;&nbsp;{ this.state.dline }</p></div>
                             </div>
                         </div>
 
-                        <div className="pdb-milestones">
+                        <div className="pdb-proLine"></div>
+
+                        <div className="pdb-meetings">
+
+                            <div className="pdb-m-left">
+                                
+                                <div className="">
+                
+                                    <p className="pdml-hdn">Scheduled Meetings</p>
+
+                                    <div className="pdml-link-wrx">
+
+                                        { !this.state.Ldata ? (
+                                        
+                                            <div className="PD-loading">
+                                                <CirclesLoader />
+                                            </div>                                    
+
+                                        ):( this.state.Ldata.map((ldat, i) => (
+                                            <p className="pdml-link-p">{ JSON.parse(JSON.stringify(ldat.meetUrl)) }</p>
+                                        )))}
+
+                                        {/*<p className="pdml-link-p">meet.google.com/psx-eauv-rad</p>*/}
+                                    
+                                    </div>
+                                </div>
+                            </div>
                             
-                            <p className="pdbm-hdn">Milestones</p>
-                            <div className="pdbm-list">
-
-                                <div className="pdbm-list-item1">
-
-                                    <div className="pdbm-dot"></div>
-                                    <div className="pdbm-task">
-                                        <p>Complete Project Service</p>
-                                    </div>
-                                    <div className="pdbm-status">
-                                        <p>Completed</p>
-                                    </div>
-                                    <div className="pdbm-name">
-                                        <p>John Doe</p>
-                                    </div>
-                                    <div className="pdbm-date">
-                                        <p>12-April-2021</p>
-                                    </div>                                                                        
-                                </div>
-
-                                <div className="pdbm-list-item1">
-
-                                    <div className="pdbm-dot"></div>
-                                    <div className="pdbm-task">
-                                        <p>Complete Project Service</p>
-                                    </div>
-                                    <div className="pdbm-status">
-                                        <p>Completed</p>
-                                    </div>
-                                    <div className="pdbm-name">
-                                        <p>John Doe</p>
-                                    </div>
-                                    <div className="pdbm-date">
-                                        <p>12-April-2021</p>
-                                    </div>                                                                        
-                                </div>
-
-                                <div className="pdbm-list-item1">
-
-                                    <div className="pdbm-dot"></div>
-                                    <div className="pdbm-task">
-                                        <p>Complete Project Service</p>
-                                    </div>
-                                    <div className="pdbm-status">
-                                        <p>Completed</p>
-                                    </div>
-                                    <div className="pdbm-name">
-                                        <p>John Doe</p>
-                                    </div>
-                                    <div className="pdbm-date">
-                                        <p>12-April-2021</p>
-                                    </div>                                                                        
-                                </div>
-
-                                <div className="pdbm-list-item1">
-
-                                    <div className="pdbm-dot"></div>
-                                    <div className="pdbm-task">
-                                        <p>Complete Project Service</p>
-                                    </div>
-                                    <div className="pdbm-status">
-                                        <p>Completed</p>
-                                    </div>
-                                    <div className="pdbm-name">
-                                        <p>John Doe</p>
-                                    </div>
-                                    <div className="pdbm-date">
-                                        <p>12-April-2021</p>
-                                    </div>                                                                        
-                                </div>
-
+                            <div className="pdb-m-right">  
+                                <h1 className="digital-time-h1">{h % 12}:{(m < 10 ? '0' + m : m)}:{(s < 10 ? '0' + s : s)} {h < 12 ? 'am' : 'pm'}</h1>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>

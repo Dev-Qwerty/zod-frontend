@@ -8,6 +8,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { ToastContainer, toast } from 'react-toastify';
 import io from 'socket.io-client';
 import firebase from 'firebase';
+import CirclesLoader from '../Loader/CirclesLoader';
 
 let proData = JSON.parse(localStorage.getItem('pdata'));
 let API;
@@ -814,8 +815,8 @@ export default class BMain extends React.Component {
                                         </div>
 
                                     ) : (
-                                        <div className="BM-loading">
-                                            <p>Loading...</p>
+                                        <div className="PD-loading">
+                                            <CirclesLoader />
                                         </div>
                                     )                                      
 

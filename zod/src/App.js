@@ -17,7 +17,7 @@ import CreatePersonalBoard from './components/Board/CreatePersonalBoard';
 import CreatePublicBoard from './components/Board/CreatePublicBoard';
 import BMain from './components/Board/BMain';
 import ScheduleVC from './components/VideoCall/ScheduleVC';
-import Calendar from './components/Calendar/Calendar';
+import Calendar from './components/Calendar/Cal';
 
 import {
   BrowserRouter as Router,
