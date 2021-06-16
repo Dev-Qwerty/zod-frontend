@@ -43,11 +43,7 @@ function Cal() {
             <div className="pd-top-nav">
 
                 <div className="pd-left-wrapper">
-                    <div className="pd-lt" onClick={ backToBaseFn }>
-                        <div className="pd-arrow"></div>
-                        <div><p className="pd-lt-txt">Back to Base Dashboard</p></div>
-                    </div>
-                    <div className="pd-lb"><p className="pd-title">zode</p></div>
+                    <div className="pd-lb"><p className="pd-title" onClick={ backToBaseFn.bind(this) }>zode</p></div>
                 </div>
 
                 <div className="pd-mid-wrapper">

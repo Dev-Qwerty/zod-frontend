@@ -108,11 +108,7 @@ export default class ProjectD extends React.Component {
                 <div className="pd-top-nav">
 
                     <div className="pd-left-wrapper">
-                        <div className="pd-lt" onClick={ this.backToBaseFn }>
-                            <div className="pd-arrow"></div>
-                            <div><p className="pd-lt-txt">Back to Base Dashboard</p></div>
-                        </div>
-                        <div className="pd-lb"><p className="pd-title">zode</p></div>
+                        <div className="pd-lb"><p className="pd-title" onClick={ this.backToBaseFn }>zode</p></div>
                     </div>
     
                     <div className="pd-mid-wrapper">

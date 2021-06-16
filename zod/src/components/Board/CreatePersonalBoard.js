@@ -119,14 +119,10 @@ export default class CreatePersonalBoard extends React.Component {
                 
                 <div className="personal-cb-top-nav">
 
-                    <div className="personal-cb-left-wrapper">
-                        <div className="personal-cb-lt" onClick={ this.backToBaseFn }>
-                            <div className="personal-cb-arrow"></div>
-                            <div><p className="personal-cb-lt-txt">Back to Base Dashboard</p></div>
-                        </div>
-                        <div className="personal-cb-lb"><p className="b-title">zode</p></div>
+                    <div className="pd-left-wrapper">
+                        <div className="pd-lb"><p className="pd-title" onClick={ this.backToBaseFn }>zode</p></div>
                     </div>
-    
+                    
                     <div className="personal-cb-mid-wrapper">
                         <p>PROJECT&nbsp;&nbsp;DASHBOARD</p>
                     </div>

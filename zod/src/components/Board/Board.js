@@ -174,12 +174,8 @@ export default class Board extends React.Component {
                 
                 <div className="b-top-nav">
 
-                    <div className="b-left-wrapper">
-                        <div className="b-lt" onClick={ this.backToBaseFn }>
-                            <div className="b-arrow"></div>
-                            <div><p className="b-lt-txt">Back to Base Dashboard</p></div>
-                        </div>
-                        <div className="b-lb"><p className="b-title">zode</p></div>
+                    <div className="pd-left-wrapper">
+                        <div className="pd-lb"><p className="pd-title" onClick={ this.backToBaseFn }>zode</p></div>
                     </div>
     
                     <div className="b-mid-wrapper">

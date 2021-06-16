@@ -182,12 +182,8 @@ export default class CreatePublicBoard extends React.Component {
                 
                 <div className="public-cb-top-nav">
 
-                    <div className="public-cb-left-wrapper">
-                        <div className="public-cb-lt" onClick={ this.backToBaseFn }>
-                            <div className="public-cb-arrow"></div>
-                            <div><p className="public-cb-lt-txt">Back to Base Dashboard</p></div>
-                        </div>
-                        <div className="public-cb-lb"><p className="b-title">zode</p></div>
+                    <div className="pd-left-wrapper">
+                        <div className="pd-lb"><p className="pd-title" onClick={ this.backToBaseFn }>zode</p></div>
                     </div>
     
                     <div className="public-cb-mid-wrapper">
