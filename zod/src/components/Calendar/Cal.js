@@ -67,8 +67,8 @@ function Cal() {
                     <div className="pd-left-nav-grid">
                         
                         <Link to="/projectdashboard/home" style={{ textDecoration: 'none' }}>
-                            <div className="pd-lng1-wrapper">
-                                <div className="pd-lng1" data-tip data-for="homeTip"></div>
+                            <div className="cal-lng1-wrapper">
+                                <div className="cal-lng1" data-tip data-for="homeTip"></div>
                             </div>
                         </Link> 
 
@@ -83,7 +83,7 @@ function Cal() {
                         </Link>               
 
                         <Link to="/projectdashboard/calender" style={{ textDecoration: 'none' }}>
-                            <div className="pd-lng4" data-tip data-for="calTip">
+                            <div className="cal-lng4" data-tip data-for="calTip">
                             </div>
                         </Link> 
 
