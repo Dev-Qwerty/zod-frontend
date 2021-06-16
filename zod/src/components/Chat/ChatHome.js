@@ -113,13 +113,15 @@ function ChatHome() {
                     <div className="pd-lng2" data-tip data-for="boardTip"></div>
                 </Link>
                 <Link to="/chat/home" style={{ textDecoration: 'none' }}><div className="ch-lng3" data-tip data-for="chatTip"></div></Link>
-                <div className="pd-lng4"></div>
-                <div className="pd-lng5"></div>
+                <Link to="/projectdashboard/calender" style={{ textDecoration: 'none' }}>
+                    <div className="personal-cb-lng4" data-tip data-for="calTip"></div>
+                </Link><div className="pd-lng5"></div>
                 <div className="pd-lng6"></div>
                 <div className="pd-lng7"></div>
                 <ReactTooltip id="chatTip" place="right" effect="float" type="dark">Chat</ReactTooltip> 
                 <ReactTooltip id="homeTip" place="right" effect="float" type="dark">Home</ReactTooltip> 
-                <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>            
+                <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
+                <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calendar</ReactTooltip>            
             </div>
         </div>
         <div className="ch-leftnav-2">
