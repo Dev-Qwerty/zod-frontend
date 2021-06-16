@@ -87,7 +87,9 @@ function Cal() {
                             </div>
                         </Link> 
 
-                        <div className="pd-lng5" data-tip data-for="noneTip"></div>
+                        <Link to="/meet/scheduleNew" style={{ textDecoration: 'none' }}>
+                            <div className="pd-lng5" data-tip data-for="videoCallTip"></div>
+                        </Link>
                         <div className="pd-lng6" data-tip data-for="noneTip"></div>
                         <div className="pd-lng7" data-tip data-for="noneTip"></div>
 
@@ -95,6 +97,7 @@ function Cal() {
                         <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
                         <ReactTooltip id="chatTip" place="right" effect="float" type="dark">Chat</ReactTooltip> 
                         <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calender</ReactTooltip>
+                        <ReactTooltip id="videoCallTip" place="right" effect="float" type="dark">Meet / Video Call</ReactTooltip>
                         <ReactTooltip id="noneTip" place="right" effect="float" type="dark">None</ReactTooltip>     
 
                     </div>

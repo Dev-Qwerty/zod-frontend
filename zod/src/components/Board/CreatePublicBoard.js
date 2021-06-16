@@ -226,7 +226,9 @@ export default class CreatePublicBoard extends React.Component {
                                 <div className="public-cb-lng4" data-tip data-for="calTip"></div>
                             </Link>
 
-                            <div className="public-cb-lng5" data-tip data-for="noneTip"></div>
+                            <Link to="/meet/scheduleNew" style={{ textDecoration: 'none' }}>
+                                <div className="public-cb-lng5" data-tip data-for="videoCallTip"></div>
+                            </Link>
                             <div className="public-cb-lng6" data-tip data-for="noneTip"></div>
                             <div className="public-cb-lng7" data-tip data-for="noneTip"></div>
 
@@ -234,6 +236,7 @@ export default class CreatePublicBoard extends React.Component {
                             <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
                             <ReactTooltip id="chatTip" place="right" effect="float" type="dark">Chat</ReactTooltip> 
                             <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calender</ReactTooltip>
+                            <ReactTooltip id="videoCallTip" place="right" effect="float" type="dark">Meet/Video Call</ReactTooltip>
                             <ReactTooltip id="noneTip" place="right" effect="float" type="dark">None</ReactTooltip>  
 
                         </div>
