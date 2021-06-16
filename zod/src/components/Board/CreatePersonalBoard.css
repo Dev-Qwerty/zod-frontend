@@ -103,11 +103,10 @@
   width: 80px;
   height: 60px;
   border-radius: 8px;
-  background-color: #fff;
 }
 
 .personal-cb-lng1 {
-  background-image: url('../../assets/home.svg');
+  background-image: url('../../assets/Home-DarkIcon.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;  
@@ -118,15 +117,18 @@
 }
 
 .personal-cb-lng2 {
-  background-image: url('../../assets/document.svg');
+  background-image: url('../../assets/board_icon_dark.svg');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;  
-  width: 35px;
-  height: 35px;
-  margin-left: auto;
+  background-size: 35px;
+  background-color: #fff;
+  cursor: pointer;
+  width: 84px;
+  height: 60px;
   margin-right: auto;
-  margin-top: 10px;    
+  margin-top: 3px;
+  border-radius: 8px;
+  margin-left: 1px;    
 }
 
 .personal-cb-lng3 {
