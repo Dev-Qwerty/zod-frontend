@@ -472,21 +472,17 @@
   position: absolute;
   left: 40%;
   top: 42%;
-  background-color: #fff;
-  /*opacity: 0.8;*/
   color: #000;
   width: 250px;
   height: 130px;
   text-align: center;
   padding-top: 40px;
-  /*border: 1px solid #aaa;*/
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.BM-loading p {
-  font-family: Pacifico;
-  font-size: 30px;
-  color: #4CBF53;    
+.BM-loading span {
+  font-size: 24px;
+  font-family: 'Montserrat';
+  font-weight: bold;    
 }
 
 /* Modal - Create New Card */
@@ -718,4 +714,8 @@
   border-radius: 5px;
   font-size: 17px;
   margin-left: 30px;
+}
+
+.bm-noboards-svg {
+  height: 200px;
 }

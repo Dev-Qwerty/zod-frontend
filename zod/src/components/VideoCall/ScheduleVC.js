@@ -106,10 +106,10 @@ function ScheduleVideoCall() {
             <div className="bd-right-wrapper">
                 <div className="bd-profile-icon-wrapper">
                     <div>
-                        <img className="bd-icon-1" src = { getProfileImageURL() }/>
+                        <img className="bd-icon" src = { getProfileImageURL() }/>
                     </div>
     
-                    <div className="bd-dropdown-content-1">
+                    <div className="bd-dropdown-content">
                         <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>My Profile</p></Link>
                         <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p>Pending Invites</p></Link>
                         <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
