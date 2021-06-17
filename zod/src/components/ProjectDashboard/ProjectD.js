@@ -271,7 +271,7 @@ export default class ProjectD extends React.Component {
                                         { !this.state.Ldata ? (
 
                                             this.state.isEmpty ? (
-                                                <p>hello</p>
+                                                <p></p>
                                             ): (
                                                 <div className="PD-loading">
                                                     <CirclesLoader />
