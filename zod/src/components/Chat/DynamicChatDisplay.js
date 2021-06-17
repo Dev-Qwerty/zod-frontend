@@ -148,6 +148,9 @@ function DynamicChatDisplay(props) {
     }
 
     function sendMessage() {
+        if(inputMsg == '') {
+            return;
+        }
         let channelId = props.channelId;
         let url = "https://chatservice-zode.herokuapp.com/api/chat/"+ channelId +"/messages";
         axios.post(url, {
