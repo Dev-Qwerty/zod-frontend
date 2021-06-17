@@ -207,11 +207,12 @@
     border: none;
     outline: none;
     position: relative;
-    left: 8vw;
+    left: 9vw;
     top: -37px;
     color: #fff;
     border-radius: 14px;
     font-weight: bold;
+    z-index: 100;
 }
 
 .dcd-messages-display {

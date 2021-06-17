@@ -82,10 +82,6 @@ export default class BaseDashboard  extends React.Component {
                         <p className="bd-title">zode</p>
                     </div>
     
-                    <div className="bd-mid-wrapper">
-                        <p>BASE&nbsp;&nbsp;DASHBOARD</p>
-                    </div>
-    
                     <div className="bd-right-wrapper">
     
                         <div className="bd-profile-icon-wrapper">

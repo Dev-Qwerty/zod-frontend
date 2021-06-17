@@ -196,10 +196,6 @@ export default class CreatePublicBoard extends React.Component {
                         <div className="pd-lb"><p className="pd-title" onClick={ this.backToBaseFn }>zode</p></div>
                     </div>
     
-                    <div className="public-cb-mid-wrapper">
-                        <p>PROJECT&nbsp;&nbsp;DASHBOARD</p>
-                    </div>
-    
                     <div className="bd-right-wrapper">
     
                         <div className="bd-profile-icon-wrapper">
