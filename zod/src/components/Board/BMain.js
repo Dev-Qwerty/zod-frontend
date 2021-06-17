@@ -726,6 +726,15 @@ export default class BMain extends React.Component {
         });        
     }
 
+    getProfileImageURL() {
+        const user = firebase.auth().currentUser
+        if (user) {
+            return user.photoURL;
+        } else {
+            // Not Signed-in
+        } 
+    }    
+
     render() {
         
         return (
@@ -733,27 +742,49 @@ export default class BMain extends React.Component {
                 
                 <div className="c-top-nav">
 
-                    <div className="c-left-wrapper">
+                    {/*<div className="c-left-wrapper">
                         <div className="c-lt" onClick={ this.backToBaseFn }>
                             <div className="c-arrow"></div>
                             <div><p className="c-lt-txt">Back to Base Dashboard</p></div>
                         </div>
                         <div className="c-lb"><p className="b-title">zode</p></div>
-                    </div>
+                    </div>*/}
+
+                    <div className="pd-left-wrapper">
+                        <div className="pd-lb"><p className="pd-title" onClick={ this.backToBaseFn }>zode</p></div>
+                    </div>                    
     
                     <div className="c-mid-wrapper">
                         <p>PROJECT&nbsp;&nbsp;DASHBOARD</p>
                     </div>
     
-                    <div className="c-right-wrapper">
+                    {/*<div className="c-right-wrapper">
                         <input type="submit" value="Logout" className="c-logout-btn" onClick = { this.logout }></input>
-                    </div>
+                    </div>*/}
     
+                    <div className="bd-right-wrapper">
+                        
+                        <div className="bd-profile-icon-wrapper">
+
+                            <div>
+                                <img className="bd-icon" src = { this.getProfileImageURL() }/>
+                            </div>
+
+                            <div className="bd-dropdown-content">
+                                <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>Profile</p></Link>
+                                <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p>Pending Invites</p></Link>
+                                <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
+                            </div>
+                        
+                        </div>
+
+                    </div>
+
                 </div>
 
                 <div className="c-body-wrapper">
 
-                    <div className="c-left-nav">
+                    {/*<div className="c-left-nav">
                         
                         <div className="c-left-nav-grid">
                             
@@ -788,6 +819,46 @@ export default class BMain extends React.Component {
                             <ReactTooltip id="noneTip" place="right" effect="float" type="dark">None</ReactTooltip>   
 
                         </div>
+                    </div>*/}
+
+                    <div className="b-left-nav">
+                        
+                        <div className="b-left-nav-grid">
+                            
+                            <Link to="/projectdashboard/home" style={{ textDecoration: 'none' }}>
+                                <div className="b-lng1-wrapper">
+                                    <div className="b-lng1" data-tip data-for="homeTip"></div>
+                                </div>
+                            </Link> 
+
+                            <Link to="/projectdashboard/board/bhome" style={{ textDecoration: 'none' }}>
+                                <div className="b-lng2" data-tip data-for="boardTip">
+                                </div>
+                            </Link>
+
+                            <Link to="/chat/home" style={{ textDecoration: 'none' }}>
+                                <div className="b-lng3" data-tip data-for="chatTip">
+                                </div>
+                            </Link>               
+
+                            <Link to="/projectdashboard/calender" style={{ textDecoration: 'none' }}>
+                                <div className="b-lng4" data-tip data-for="calTip"></div>
+                            </Link>
+
+                            <Link to="/meet/scheduleNew" style={{ textDecoration: 'none' }}>
+                                <div className="b-lng5" data-tip data-for="videoCallTip"></div>
+                            </Link>
+                            <div className="b-lng6" data-tip data-for="noneTip"></div>
+                            <div className="b-lng7" data-tip data-for="noneTip"></div>
+
+                            <ReactTooltip id="homeTip" place="right" effect="float" type="dark">Home</ReactTooltip> 
+                            <ReactTooltip id="boardTip" place="right" effect="float" type="dark">Board</ReactTooltip>
+                            <ReactTooltip id="chatTip" place="right" effect="float" type="dark">Chat</ReactTooltip> 
+                            <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calender</ReactTooltip>
+                            <ReactTooltip id="videoCallTip" place="right" effect="float" type="dark">Meet/Video Call</ReactTooltip>
+                            <ReactTooltip id="noneTip" place="right" effect="float" type="dark">None</ReactTooltip>
+                                                         
+                        </div>                    
                     </div>
                     
                     <div className="c-body">

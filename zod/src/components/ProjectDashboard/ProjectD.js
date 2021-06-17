@@ -63,7 +63,7 @@ export default class ProjectD extends React.Component {
     
             if(res.status === 200) {
 
-                //alert(JSON.stringify(res.data));
+                alert(JSON.stringify(res.data));
                 this.setState({
                     Ldata : res.data,
                 }); 
