@@ -195,14 +195,15 @@ export default class Board extends React.Component {
                                 <img className="bd-icon" src = { this.getProfileImageURL() }/>
                             </div>
 
-                        <div className="bd-dropdown-content">
-                            <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>Profile</p></Link>
-                            <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p>Pending Invites</p></Link>
-                            <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
+                            <div className="bd-dropdown-content">
+                                <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>Profile</p></Link>
+                                <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p>Pending Invites</p></Link>
+                                <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
+                            </div>
                         </div>
                     </div>
+                    
                 </div>
-            </div>
 
                 <div className="b-body-wrapper">
 
