@@ -107,7 +107,8 @@ function ChatHome() {
                 </div>
             </div>
         </div>
-        <div className="ch-left-nav">
+        <div className="pd-body-wrapper">
+        <div className="pd-left-nav">
                         
             <div className="pd-left-nav-grid">
                 <Link to="/projectdashboard/home" style={{ textDecoration: 'none' }}>
@@ -133,6 +134,7 @@ function ChatHome() {
                 <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calendar</ReactTooltip>
                 <ReactTooltip id="videoCallTip" place="right" effect="float" type="dark">Meet/Video Call</ReactTooltip>            
             </div>
+        </div>
         </div>
         <div className="ch-leftnav-2">
             <h2 className="ch-project-title">{projectDetails.projectName}</h2>
