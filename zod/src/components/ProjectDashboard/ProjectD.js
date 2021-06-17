@@ -23,6 +23,7 @@ export default class ProjectD extends React.Component {
             Ldata: '',
             tlead: '',
             dline: '',
+            memebrs: '',
         }
     }
 
@@ -41,6 +42,41 @@ export default class ProjectD extends React.Component {
         
         this.getMeetingLinks();
         this.getProfileImageURL();
+        this.getMembers();
+    }
+
+    getMembers = () => {
+   
+        const token1 = localStorage.getItem('token');
+        const obj = JSON.parse(localStorage.getItem('pdata'))
+
+        const config = {
+            headers: {
+                'Authorization': token1,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        let url = 'https://projectservice-zode.herokuapp.com/api/projects/' + obj.projectID + '/members';
+
+        axios.get(url, config)
+        .then((res) => {
+    
+            if(res.status === 200) {
+
+                const Data = res.data.projectMembers
+                this.setState({ members: Data });
+                alert(JSON.stringify(Data))
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            if(error.response.status === 401) {
+                refreshToken();
+            };
+        });         
     }
 
     getMeetingLinks = () => {
@@ -63,7 +99,7 @@ export default class ProjectD extends React.Component {
     
             if(res.status === 200) {
 
-                alert(JSON.stringify(res.data));
+                //alert(JSON.stringify(res.data));
                 this.setState({
                     Ldata : res.data,
                 }); 
