@@ -291,11 +291,11 @@ export default class ProjectD extends React.Component {
                                                 </div>
 
                                                 <div className="pdml-sch-grid-block3 cmx">
-                                                    <p>-</p>
+                                                    <p>{ JSON.parse(JSON.stringify(ldat.date)) }</p>
                                                 </div>
 
                                                 <div className="pdml-sch-grid-block4 cmx">
-                                                    <p>-</p>
+                                                    <p>{ JSON.parse(JSON.stringify(ldat.time)) }</p>
                                                 </div>
 
                                                 <div className="pdml-sch-grid-block5 cmx">
