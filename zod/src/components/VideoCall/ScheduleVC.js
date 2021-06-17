@@ -186,7 +186,7 @@ function ScheduleVCRequest(name, members, setLoader, setBtnText) {
     const projectID = projectDetails.projectID;
     axios.post("https://meet-zode.herokuapp.com/api/meet/new", {
         "meetName": name,
-        "projectID": projectID,
+        "projectId": projectID,
         "members": members
     }, {
         headers: {

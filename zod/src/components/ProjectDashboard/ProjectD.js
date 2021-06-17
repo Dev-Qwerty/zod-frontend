@@ -202,77 +202,31 @@ export default class ProjectD extends React.Component {
                                             </div>                                    
 
                                         ):( this.state.Ldata.map((ldat, i) => (
-                                            <p></p>
-                                        )))}
-
-                                        <div className="pdml-sch-meeting">
                                             
-                                            <div className="pdml-sch-grid-block1 cmx">
-                                                <p>Test Meeting</p>
-                                            </div>
+                                            <div className="pdml-sch-meeting">
+                                                
+                                                <div className="pdml-sch-grid-block1 cmx">
+                                                    <p>{ JSON.parse(JSON.stringify(ldat.meetName)) }</p>
+                                                </div>
 
-                                            <div className="pdml-sch-grid-block2 cmx">
-                                                <p>John Doe</p>
-                                            </div>
+                                                <div className="pdml-sch-grid-block2 cmx">
+                                                    <p>{ JSON.parse(JSON.stringify(ldat.createdBy)) }</p>
+                                                </div>
 
-                                            <div className="pdml-sch-grid-block3 cmx">
-                                                <p>30-June-2021</p>
-                                            </div>
+                                                <div className="pdml-sch-grid-block3 cmx">
+                                                    <p>-</p>
+                                                </div>
 
-                                            <div className="pdml-sch-grid-block4 cmx">
-                                                <p>10: 20 AM</p>
-                                            </div>
+                                                <div className="pdml-sch-grid-block4 cmx">
+                                                    <p>-</p>
+                                                </div>
 
-                                            <div className="pdml-sch-grid-block5 cmx">
-                                                <p>Join</p>
-                                            </div>
-                                        </div>
-                                    
-                                        <div className="pdml-sch-meeting">
+                                                <div className="pdml-sch-grid-block5 cmx">
+                                                    <p>Join</p>
+                                                </div>
+                                            </div>                                           
                                             
-                                            <div className="pdml-sch-grid-block1 cmx">
-                                                <p>Test Meeting</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block2 cmx">
-                                                <p>John Doe</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block3 cmx">
-                                                <p>30-June-2021</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block4 cmx">
-                                                <p>10: 20 AM</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block5 cmx">
-                                                <p>Join</p>
-                                            </div>
-                                        </div>
-
-                                        <div className="pdml-sch-meeting">
-                                            
-                                            <div className="pdml-sch-grid-block1 cmx">
-                                                <p>Test Meeting</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block2 cmx">
-                                                <p>John Doe</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block3 cmx">
-                                                <p>30-June-2021</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block4 cmx">
-                                                <p>10: 20 AM</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block5 cmx">
-                                                <p>Join</p>
-                                            </div>
-                                        </div>                                        
+                                        )))}                               
 
                                     </div>
                                 </div>
