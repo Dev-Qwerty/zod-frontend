@@ -134,6 +134,11 @@ export default class ProjectD extends React.Component {
         window.location.href = window.location.protocol + '//' + window.location.host + '/login';   
     }
 
+    joinBtn = (dat) => {
+        //alert(JSON.stringify(dat.meetUrl));
+        window.location.href = dat.meetUrl;
+    }
+
     render() {
 
         return (
@@ -229,25 +234,25 @@ export default class ProjectD extends React.Component {
             
                                     <p className="pdml-hdn">Scheduled Meetings</p>
 
-                                    <div className="pdml-sch-meeting">
+                                    <div className="Xpdml-sch-meeting">
                                         
-                                        <div className="pdml-sch-grid-block1 cmx">
+                                        <div className="Xpdml-sch-grid-block1 cmx">
                                             <p>Meeting Name</p>
                                         </div>  
 
-                                        <div className="pdml-sch-grid-block2 cmx">
+                                        <div className="Xpdml-sch-grid-block2 cmx">
                                             <p>Email</p>
                                         </div>
 
-                                        <div className="pdml-sch-grid-block3 cmx">
+                                        <div className="Xpdml-sch-grid-block3 cmx">
                                             <p>Date</p>
                                         </div>
 
-                                        <div className="pdml-sch-grid-block4 cmx">
+                                        <div className="Xpdml-sch-grid-block4 cmx">
                                             <p>Time</p>
                                         </div>
 
-                                        <div className="pdml-sch-grid-block5 cmx">
+                                        <div className="Xpdml-sch-grid-block5 cmx">
                                             <p>Join</p>
                                         </div>                                                                                                                                                                                                      
                                     </div>
@@ -283,7 +288,7 @@ export default class ProjectD extends React.Component {
                                                 </div>
 
                                                 <div className="pdml-sch-grid-block5 cmx">
-                                                    <p>Join</p>
+                                                    <p onClick={ () => this.joinBtn(ldat) }>Join</p>
                                                 </div>
                                             </div>                                           
                                             

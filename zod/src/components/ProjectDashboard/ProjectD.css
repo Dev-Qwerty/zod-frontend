@@ -260,6 +260,40 @@
   padding-top: 0px;
 }
 
+.Xpdml-sch-meeting {
+  width: 100%;
+  height: 35px;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.Xpdml-sch-grid-block1 {
+  /*background-color: red;*/
+  height: 35px;
+}
+
+.Xpdml-sch-grid-block2 {
+  /*background-color: orange;*/
+  height: 35px;
+}
+
+.Xpdml-sch-grid-block3 {
+  /*background-color: green;*/
+  height: 35px;
+}
+
+.Xpdml-sch-grid-block4 {
+  /*background-color: blue;*/
+  height: 35px;
+}
+
+.Xpdml-sch-grid-block5 {
+  /*background-color: yellow;*/
+  height: 35px;
+}
+
 .pdml-sch-meeting {
   width: 100%;
   height: 35px;
@@ -294,6 +328,10 @@
   height: 35px;
   color: #52D066;
   font-weight: bold;
+}
+
+.pdml-sch-grid-block5:hover {
+  cursor: pointer;
 }
 
 .cmx {
