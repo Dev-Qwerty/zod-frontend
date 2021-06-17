@@ -231,7 +231,7 @@ function ScheduleVCRequest(name, members, setLoader, setBtnText, meetDate, meetT
     
     axios.post("https://meet-zode.herokuapp.com/api/meet/new", {
         "meetName": name,
-        "projectID": projectID,
+        "projectId": projectID,
         "members": members,
         "date": meetDate,
         "time": meetTime
