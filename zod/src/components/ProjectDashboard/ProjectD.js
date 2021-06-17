@@ -20,10 +20,11 @@ export default class ProjectD extends React.Component {
      
         super();
         this.state = {
-            Ldata: '',
+            Ldata: null,
             tlead: '',
             dline: '',
             memebrs: '',
+            isEmpty: false,
         }
     }
 
@@ -103,6 +104,12 @@ export default class ProjectD extends React.Component {
                 this.setState({
                     Ldata : res.data,
                 }); 
+
+                if(res.data == null) {
+                    this.setState({ isEmpty: true });
+                } else {
+                    this.setState({ isEmpty: false }); 
+                }                
                 
             } else {
 
@@ -262,10 +269,14 @@ export default class ProjectD extends React.Component {
                                     <div className="pdml-link-wrx">
 
                                         { !this.state.Ldata ? (
-                                        
-                                            <div className="PD-loading">
-                                                <CirclesLoader />
-                                            </div>                                    
+
+                                            this.state.isEmpty ? (
+                                                <p>hello</p>
+                                            ): (
+                                                <div className="PD-loading">
+                                                    <CirclesLoader />
+                                                </div> 
+                                            )                                   
 
                                         ):( this.state.Ldata.map((ldat, i) => (
                                             
