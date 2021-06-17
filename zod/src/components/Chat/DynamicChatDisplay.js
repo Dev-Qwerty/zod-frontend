@@ -43,6 +43,33 @@ function DynamicChatDisplay(props) {
     }
     
     const modalHandleClose = () => setShowModal(false);
+    const addNewMemberRequest = () => {
+        setShowModal(false);
+        let email = document.getElementById("new-members").value;
+        let url = "https://zode-chat-service-test.herokuapp.com/api/channel/" + projectDetails.projectID +"/"+ channelId +"/members";
+        axios.post(url, {
+            "members": [
+                {
+                    "email": email
+                }
+            ]
+        }, {
+            headers: {
+            "Access-Control-Allow-Origin" : "*",
+            "Authorization": localStorage.getItem("token")
+            }
+        }).then(response => {
+            if(response.status === 200) {
+                let url = "https://zode-chat-service-test.herokuapp.com/api/channel/" + projectDetails.projectID + "/" + channelId + "/members";
+                axios.get(url, {headers: {
+                    "Access-Control-Allow-Origin" : "*",
+                    "Authorization": localStorage.getItem("token")
+                }}).then(response => {
+                setChannelMembers(response.data);
+                })
+            }
+        })
+    }
     const modalHandleShow = () => {
         setShowModal(true);
         fetchNewMembers();
@@ -148,7 +175,9 @@ function DynamicChatDisplay(props) {
     }
 
     function sendMessage() {
+        inputMsg = inputMsg.trim();
         if(inputMsg == '') {
+            setInputMsg('');
             return;
         }
         let channelId = props.channelId;
@@ -249,6 +278,7 @@ function DynamicChatDisplay(props) {
         let socket = socketIOClient(ENDPOINT, {auth: {Authorization: localStorage.getItem('token')}});
 
         socket.on("newMessage", data=> {
+            console.log("New message received!");
             if(channelId != data.channelid) {
                 props.callBack(data.channelid);
             }
@@ -275,7 +305,7 @@ function DynamicChatDisplay(props) {
             }  
         })
 
-        socket.on("udpateMessage", data => {
+        socket.on("updateMessage", data => {
             if(data.channelid == channelId) {
                 let i;
                 for(i=0;i<channelMsgs.length; i++) {
@@ -329,7 +359,7 @@ function DynamicChatDisplay(props) {
                     <Modal.Title>Add New Member</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <select>
+                    <select id="new-members">
                         <option value="none" selected disabled hidden> Select New Member </option>
                         {newMembers.map((x,i) => <option value={x.email}>{x.name}</option>)}
                     </select>
@@ -338,7 +368,7 @@ function DynamicChatDisplay(props) {
                     <Button variant="secondary" onClick={modalHandleClose}>
                     Close
                     </Button>
-                    <Button variant="primary" onClick={modalHandleClose}>
+                    <Button variant="primary" onClick={addNewMemberRequest.bind(this)}>
                     Add
                     </Button>
                 </Modal.Footer>
