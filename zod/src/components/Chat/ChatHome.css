@@ -164,3 +164,14 @@
     margin-left: 20vw;
     font-size: 20px;
 }
+
+.ch-newchannel-btn {
+    background-color: #2BD428;
+    border: none;
+    outline: none;
+    border-radius: 14px;
+    color: #fff;
+    height: 26px;
+    font-size: 15px;
+    margin-left: 70px;
+}

@@ -104,12 +104,6 @@ function ChatHome() {
                     <div>
                         <img className="bd-icon" src = { getProfileImageURL() }/>
                     </div>
-    
-                    <div className="bd-dropdown-content">
-                        <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>My Profile</p></Link>
-                        <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p>Pending Invites</p></Link>
-                        <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
-                    </div>
                 </div>
             </div>
         </div>
@@ -143,7 +137,7 @@ function ChatHome() {
         <div className="ch-leftnav-2">
             <h2 className="ch-project-title">{projectDetails.projectName}</h2>
             <hr></hr>
-            <h3>Channels</h3>
+            <h3>Channels <Link to="/chat/createChannel"><button className="ch-newchannel-btn">+New</button></Link></h3>
             <div className="ch-channels-list">
                 {channelNames.map((channel, index) => <button onClick={channelClicked.bind(this, channel, index)} id={"channel"+index}>@{channel.channelName}</button>)}
             </div>
