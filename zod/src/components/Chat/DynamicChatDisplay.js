@@ -21,7 +21,6 @@ ENDPOINT = 'https://chatservice-zode.herokuapp.com/'+ projectDetails.projectID +
 let index = 0;
 let currentUserEmail = '';
 let channelId = '';
-let channelChanged = false;
 
 function DynamicChatDisplay(props) {
     let currentUser = firebase.auth().currentUser;
@@ -34,7 +33,6 @@ function DynamicChatDisplay(props) {
     const [flag, setFlag] = useState(0);
     const [editedMsg, setEditMsg] = useState('');
     let [hiddenInput, setHiddenInput] = useState('');
-    let prevMsgRef = useRef();
 
     let channelMsgs = [];
 
