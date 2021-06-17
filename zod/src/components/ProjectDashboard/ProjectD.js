@@ -226,8 +226,33 @@ export default class ProjectD extends React.Component {
                             <div className="pdb-m-left">
                                 
                                 <div className="">
-                
+            
                                     <p className="pdml-hdn">Scheduled Meetings</p>
+
+                                    <div className="pdml-sch-meeting">
+                                        
+                                        <div className="pdml-sch-grid-block1 cmx">
+                                            <p>Meeting Name</p>
+                                        </div>  
+
+                                        <div className="pdml-sch-grid-block2 cmx">
+                                            <p>Email</p>
+                                        </div>
+
+                                        <div className="pdml-sch-grid-block3 cmx">
+                                            <p>Date</p>
+                                        </div>
+
+                                        <div className="pdml-sch-grid-block4 cmx">
+                                            <p>Time</p>
+                                        </div>
+
+                                        <div className="pdml-sch-grid-block5 cmx">
+                                            <p>Join</p>
+                                        </div>                                                                                                                                                                                                      
+                                    </div>
+
+                                    <div className="pdml-proLineX"></div>
 
                                     <div className="pdml-link-wrx">
 
