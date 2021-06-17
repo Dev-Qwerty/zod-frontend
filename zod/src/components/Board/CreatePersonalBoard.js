@@ -132,10 +132,6 @@ export default class CreatePersonalBoard extends React.Component {
                     <div className="pd-left-wrapper">
                         <div className="pd-lb"><p className="pd-title" onClick={ this.backToBaseFn }>zode</p></div>
                     </div>
-                    
-                    <div className="personal-cb-mid-wrapper">
-                        <p>PROJECT&nbsp;&nbsp;DASHBOARD</p>
-                    </div>
     
                     <div className="bd-right-wrapper">
     

@@ -76,9 +76,9 @@
     background-size: contain;
     width: 35px;
     height: 35px;
-    margin-left: auto;
+    margin-left: 11px;
     margin-right: auto;
-    margin-top: 10px;
+    margin-top: 22px;
 }
 
 .ch-lng3 {
@@ -163,4 +163,15 @@
     margin-top: 3vw;
     margin-left: 20vw;
     font-size: 20px;
+}
+
+.ch-newchannel-btn {
+    background-color: #2BD428;
+    border: none;
+    outline: none;
+    border-radius: 14px;
+    color: #fff;
+    height: 26px;
+    font-size: 15px;
+    margin-left: 70px;
 }

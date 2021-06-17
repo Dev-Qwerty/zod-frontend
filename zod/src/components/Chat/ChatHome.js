@@ -76,6 +76,7 @@ function ChatHome() {
     function getProfileImageURL() {
         const user = firebase.auth().currentUser
         if (user) {
+            console.log(user.photoURL);
             return user.photoURL;
         } else {
             // Not Signed-in
@@ -101,13 +102,7 @@ function ChatHome() {
             <div className="bd-right-wrapper">
                 <div className="bd-profile-icon-wrapper">
                     <div>
-                        <img className="bd-icon-1" src = { getProfileImageURL() }/>
-                    </div>
-    
-                    <div className="bd-dropdown-content-1">
-                        <Link to="/basedashboard/myprofile/profile" style={{ textDecoration: 'none' }}><p>My Profile</p></Link>
-                        <Link to="/basedashboard/myprofile/pendinginvites" style={{ textDecoration: 'none' }}><p>Pending Invites</p></Link>
-                        <Link to="/login" style={{ textDecoration: 'none' }}><p>Logout</p></Link>
+                        <img className="bd-icon" src = { getProfileImageURL() }/>
                     </div>
                 </div>
             </div>
@@ -142,7 +137,7 @@ function ChatHome() {
         <div className="ch-leftnav-2">
             <h2 className="ch-project-title">{projectDetails.projectName}</h2>
             <hr></hr>
-            <h3>Channels</h3>
+            <h3>Channels <Link to="/chat/createChannel"><button className="ch-newchannel-btn">+New</button></Link></h3>
             <div className="ch-channels-list">
                 {channelNames.map((channel, index) => <button onClick={channelClicked.bind(this, channel, index)} id={"channel"+index}>@{channel.channelName}</button>)}
             </div>
