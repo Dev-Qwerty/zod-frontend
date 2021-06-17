@@ -215,9 +215,11 @@ function ScheduleVideoCall() {
 function ScheduleVCRequest(name, members, setLoader, setBtnText, meetDate, meetTime) {
     setLoader(true);
     setBtnText('Scheduling');
+    let redirectFlag = 0;
     let projectDetails = JSON.parse(localStorage.getItem('pdata'));
     const projectID = projectDetails.projectID;
     if(meetDate == '') {
+        redirectFlag = 1;
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -242,6 +244,15 @@ function ScheduleVCRequest(name, members, setLoader, setBtnText, meetDate, meetT
             toast.success("Meeting Scheduled", {position: toast.POSITION.BOTTOM_RIGHT});
             setBtnText('Scheduled!');
             setLoader(false);
+            if(redirectFlag == 0) {
+                setTimeout(() => {
+                    window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/home';
+                }, 2000);
+            }
+            else {
+                window.open(response.data.link + "?t=" + localStorage.getItem("token"), '_blank');
+                window.location.href = window.location.protocol + '//' + window.location.host + '/projectdashboard/home';
+            }
             //window.location.href = response.data.link + "?t=" + localStorage.getItem("token");
         }
     }).catch((error) => {
