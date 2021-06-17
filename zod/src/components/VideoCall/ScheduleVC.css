@@ -44,7 +44,8 @@
     position: relative;
     width: 10vw;
     height: 35px;
-    border-radius: 5px
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
 .svc-meet-members {
@@ -68,4 +69,12 @@
     margin-top: 3px;
     border-radius: 8px;
     margin-left: 1px;
+}
+
+.svc-schedulelater-inputs {
+    display: none;
+}
+
+.svc-schedulelater-inputs > input {
+    height: 30px;
 }

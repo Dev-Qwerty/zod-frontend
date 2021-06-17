@@ -17,6 +17,9 @@ function ScheduleVideoCall() {
     const [loading, setLoader] = useState(false);
     const [btnText, setBtnText] = useState('Schedule');
     const [meetName, setMeetName] = useState('');
+    const [meetDate, setDate] = useState('');
+    const [meetTime, setTime] = useState('');
+    const [laterChecked, setLaterChecked] = useState(false);
 
     const onNameChange = (e) => {
         setMeetName(e.target.value);
@@ -25,11 +28,11 @@ function ScheduleVideoCall() {
     const optionClicked = (e, index) => {
         if(index == emails.length) {
             if(!emails.includes(e.target.value)) {
-                emails.push({email: e.target.value});
+                emails.push(e.target.value);
             }
         }
         else if(index < emails.length) {
-            emails[index].email = e.target.value;
+            emails[index] = e.target.value;
         }
     }
 
@@ -71,6 +74,20 @@ function ScheduleVideoCall() {
     const allMembersChecked = () => {
         setChecked(!checked);
     }
+
+    const scheduleLaterChecked = () => {
+        setLaterChecked(!laterChecked);
+    }
+
+    const onDateChange = (e) => {
+        console.log(e.target.value);
+        setDate(e.target.value)
+    }
+
+    const onTimeChange = (e) => {
+        console.log(e.target.value);
+        setTime(e.target.value);
+    }
     
     useEffect(() => {
         getMembers();
@@ -84,7 +101,6 @@ function ScheduleVideoCall() {
                 for(i=0;i<allmembers.length; i++) {
                     emails.push(allmembers[i].email);
                     let el = document.getElementById("member"+i);
-                    console.log(el);
                     if(el!=null) {
                         el.selectedIndex = i+1;
                     }
@@ -95,6 +111,15 @@ function ScheduleVideoCall() {
             setMembers([{name: "", email: ""}]);
         }
     }, [checked])
+
+    useEffect(() => {
+        if(laterChecked == true) {
+            document.getElementById('svc-schedulelater-inputs').style.display = "block";
+        }
+        else {
+            document.getElementById('svc-schedulelater-inputs').style.display = "none";
+        }
+    })
     
     return(
         <div className="svc-page">
@@ -117,7 +142,8 @@ function ScheduleVideoCall() {
                 </div>
             </div>
         </div>
-        <div className="ch-left-nav">
+        <div className="pd-body-wrapper">
+        <div className="pd-left-nav">
         <div className="pd-left-nav-grid">
                 <Link to="/projectdashboard/home" style={{ textDecoration: 'none' }}>
                     <div className="ch-lng1-wrapper">
@@ -142,6 +168,7 @@ function ScheduleVideoCall() {
                 <ReactTooltip id="calTip" place="right" effect="float" type="dark">Calendar</ReactTooltip>
                 <ReactTooltip id="videoCallTip" place="right" effect="float" type="dark">Meet/Video Call</ReactTooltip>            
             </div>
+        </div>
         </div>
         <div className="svc-wrapper">
         <div className="svc-desc-headers"> 
@@ -172,22 +199,40 @@ function ScheduleVideoCall() {
                     </div>
                 );
             })}
-            <Button variant="success" loading={loading} className="svc-create-btn" onClick={ScheduleVCRequest.bind(this, meetName, emails, setLoader, setBtnText)}>{btnText}</Button>
+            <label>Schedule for Later</label>
+            <input type = "checkbox" onChange={scheduleLaterChecked}></input>
+            <div className="svc-schedulelater-inputs" id="svc-schedulelater-inputs">
+                <input type = "date" placeholder="Date" onChange={onDateChange} value={meetDate}></input>
+                <input type = "time" placeholder="Time" onChange={onTimeChange} value={meetTime}></input>
+            </div>
+            <Button variant="success" loading={loading} className="svc-create-btn" onClick={ScheduleVCRequest.bind(this, meetName, emails, setLoader, setBtnText, meetDate, meetTime)}>{btnText}</Button>
         </div>
         </div>
     </div>
     )
 }
 
-function ScheduleVCRequest(name, members, setLoader, setBtnText) {
+function ScheduleVCRequest(name, members, setLoader, setBtnText, meetDate, meetTime) {
     setLoader(true);
     setBtnText('Scheduling');
     let projectDetails = JSON.parse(localStorage.getItem('pdata'));
     const projectID = projectDetails.projectID;
+    if(meetDate == '') {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '/' + mm + '/' + dd;
+        meetDate = today;
+        meetTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+    }
+    
     axios.post("https://meet-zode.herokuapp.com/api/meet/new", {
         "meetName": name,
         "projectID": projectID,
-        "members": members
+        "members": members,
+        "date": meetDate,
+        "time": meetTime
     }, {
         headers: {
         "Access-Control-Allow-Origin" : "*",
@@ -197,7 +242,7 @@ function ScheduleVCRequest(name, members, setLoader, setBtnText) {
             toast.success("Meeting Scheduled", {position: toast.POSITION.BOTTOM_RIGHT});
             setBtnText('Scheduled!');
             setLoader(false);
-            window.location.href = response.data.link + "?t=" + localStorage.getItem("token");
+            //window.location.href = response.data.link + "?t=" + localStorage.getItem("token");
         }
     }).catch((error) => {
         setBtnText('Schedule');
