@@ -20,9 +20,11 @@ export default class ProjectD extends React.Component {
      
         super();
         this.state = {
-            Ldata: '',
+            Ldata: null,
             tlead: '',
             dline: '',
+            memebrs: '',
+            isEmpty: false,
         }
     }
 
@@ -41,6 +43,41 @@ export default class ProjectD extends React.Component {
         
         this.getMeetingLinks();
         this.getProfileImageURL();
+        this.getMembers();
+    }
+
+    getMembers = () => {
+   
+        const token1 = localStorage.getItem('token');
+        const obj = JSON.parse(localStorage.getItem('pdata'))
+
+        const config = {
+            headers: {
+                'Authorization': token1,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+            }
+        }
+    
+        let url = 'https://projectservice-zode.herokuapp.com/api/projects/' + obj.projectID + '/members';
+
+        axios.get(url, config)
+        .then((res) => {
+    
+            if(res.status === 200) {
+
+                const Data = res.data.projectMembers
+                this.setState({ members: Data });
+                //alert(JSON.stringify(Data))
+            } else {
+
+            }
+        })
+        .catch(function (error) {
+            if(error.response.status === 401) {
+                refreshToken();
+            };
+        });         
     }
 
     getMeetingLinks = () => {
@@ -63,10 +100,16 @@ export default class ProjectD extends React.Component {
     
             if(res.status === 200) {
 
-                alert(JSON.stringify(res.data));
+                //alert(JSON.stringify(res.data));
                 this.setState({
                     Ldata : res.data,
                 }); 
+
+                if(res.data == null) {
+                    this.setState({ isEmpty: true });
+                } else {
+                    this.setState({ isEmpty: false }); 
+                }                
                 
             } else {
 
@@ -96,6 +139,11 @@ export default class ProjectD extends React.Component {
 
     logout = () => {
         window.location.href = window.location.protocol + '//' + window.location.host + '/login';   
+    }
+
+    joinBtn = (dat) => {
+        //alert(JSON.stringify(dat.meetUrl));
+        window.location.href = dat.meetUrl;
     }
 
     render() {
@@ -190,89 +238,72 @@ export default class ProjectD extends React.Component {
                             <div className="pdb-m-left">
                                 
                                 <div className="">
-                
+            
                                     <p className="pdml-hdn">Scheduled Meetings</p>
+
+                                    <div className="Xpdml-sch-meeting">
+                                        
+                                        <div className="Xpdml-sch-grid-block1 cmx">
+                                            <p>Meeting Name</p>
+                                        </div>  
+
+                                        <div className="Xpdml-sch-grid-block2 cmx">
+                                            <p>Email</p>
+                                        </div>
+
+                                        <div className="Xpdml-sch-grid-block3 cmx">
+                                            <p>Date</p>
+                                        </div>
+
+                                        <div className="Xpdml-sch-grid-block4 cmx">
+                                            <p>Time</p>
+                                        </div>
+
+                                        <div className="Xpdml-sch-grid-block5 cmx">
+                                            <p>Join</p>
+                                        </div>                                                                                                                                                                                                      
+                                    </div>
+
+                                    <div className="pdml-proLineX"></div>
 
                                     <div className="pdml-link-wrx">
 
                                         { !this.state.Ldata ? (
-                                        
-                                            <div className="PD-loading">
-                                                <CirclesLoader />
-                                            </div>                                    
+
+                                            this.state.isEmpty ? (
+                                                <p></p>
+                                            ): (
+                                                <div className="PD-loading">
+                                                    <CirclesLoader />
+                                                </div> 
+                                            )                                   
 
                                         ):( this.state.Ldata.map((ldat, i) => (
-                                            <p></p>
-                                        )))}
-
-                                        <div className="pdml-sch-meeting">
                                             
-                                            <div className="pdml-sch-grid-block1 cmx">
-                                                <p>Test Meeting</p>
-                                            </div>
+                                            <div className="pdml-sch-meeting">
+                                                
+                                                <div className="pdml-sch-grid-block1 cmx">
+                                                    <p>{ JSON.parse(JSON.stringify(ldat.meetName)) }</p>
+                                                </div>
 
-                                            <div className="pdml-sch-grid-block2 cmx">
-                                                <p>John Doe</p>
-                                            </div>
+                                                <div className="pdml-sch-grid-block2 cmx">
+                                                    <p>{ JSON.parse(JSON.stringify(ldat.createdBy)) }</p>
+                                                </div>
 
-                                            <div className="pdml-sch-grid-block3 cmx">
-                                                <p>30-June-2021</p>
-                                            </div>
+                                                <div className="pdml-sch-grid-block3 cmx">
+                                                    <p>-</p>
+                                                </div>
 
-                                            <div className="pdml-sch-grid-block4 cmx">
-                                                <p>10: 20 AM</p>
-                                            </div>
+                                                <div className="pdml-sch-grid-block4 cmx">
+                                                    <p>-</p>
+                                                </div>
 
-                                            <div className="pdml-sch-grid-block5 cmx">
-                                                <p>Join</p>
-                                            </div>
-                                        </div>
-                                    
-                                        <div className="pdml-sch-meeting">
+                                                <div className="pdml-sch-grid-block5 cmx">
+                                                    <p onClick={ () => this.joinBtn(ldat) }>Join</p>
+                                                </div>
+                                            </div>                                           
                                             
-                                            <div className="pdml-sch-grid-block1 cmx">
-                                                <p>Test Meeting</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block2 cmx">
-                                                <p>John Doe</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block3 cmx">
-                                                <p>30-June-2021</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block4 cmx">
-                                                <p>10: 20 AM</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block5 cmx">
-                                                <p>Join</p>
-                                            </div>
-                                        </div>
-
-                                        <div className="pdml-sch-meeting">
-                                            
-                                            <div className="pdml-sch-grid-block1 cmx">
-                                                <p>Test Meeting</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block2 cmx">
-                                                <p>John Doe</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block3 cmx">
-                                                <p>30-June-2021</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block4 cmx">
-                                                <p>10: 20 AM</p>
-                                            </div>
-
-                                            <div className="pdml-sch-grid-block5 cmx">
-                                                <p>Join</p>
-                                            </div>
-                                        </div>                                        
+                                        )))}                               
 
                                     </div>
                                 </div>
@@ -292,9 +323,17 @@ export default class ProjectD extends React.Component {
                                 <div className="pdb-online-proLine"></div> 
                                 
                                 <div className="pdb-online-users">
-                                    <p>Test User 1</p>
-                                    <p>Test User 2</p>
-                                    <p>Test User 3</p>
+
+                                    { !this.state.members ? (
+                                        
+                                        <div className="PD-loading">
+                                            <CirclesLoader />
+                                        </div>                                    
+
+                                    ):( this.state.members.map((mem, i) => (
+                                        <p>{ JSON.parse(JSON.stringify(mem.name)) }</p>
+                                    )))} 
+
                                 </div>
                             </div>
 

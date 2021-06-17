@@ -202,7 +202,7 @@ export default class Board extends React.Component {
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <div className="b-body-wrapper">
