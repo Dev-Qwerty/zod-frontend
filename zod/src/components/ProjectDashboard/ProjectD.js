@@ -67,7 +67,7 @@ export default class ProjectD extends React.Component {
 
                 const Data = res.data.projectMembers
                 this.setState({ members: Data });
-                alert(JSON.stringify(Data))
+                //alert(JSON.stringify(Data))
             } else {
 
             }
@@ -282,9 +282,17 @@ export default class ProjectD extends React.Component {
                                 <div className="pdb-online-proLine"></div> 
                                 
                                 <div className="pdb-online-users">
-                                    <p>Test User 1</p>
-                                    <p>Test User 2</p>
-                                    <p>Test User 3</p>
+
+                                    { !this.state.members ? (
+                                        
+                                        <div className="PD-loading">
+                                            <CirclesLoader />
+                                        </div>                                    
+
+                                    ):( this.state.members.map((mem, i) => (
+                                        <p>{ JSON.parse(JSON.stringify(mem.name)) }</p>
+                                    )))} 
+
                                 </div>
                             </div>
 
