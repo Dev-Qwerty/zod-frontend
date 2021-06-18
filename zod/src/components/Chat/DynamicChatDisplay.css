@@ -12,9 +12,9 @@
 }
 
 .dcd-icon-tray {
-    left: 550px;
     margin-top: 11px;
-    position: relative;
+    position: fixed;
+    right: 45px;
 }
 
 .dcd-icon-tray>img {
@@ -188,7 +188,7 @@
     width: 20px;
     position: fixed;
     left: 73vw;
-    top: 19.6vw;
+    top: 323px;
     background-color: #fff;
     border: none;
     outline: none;
@@ -216,13 +216,14 @@
 }
 
 .dcd-messages-display {
-    top: 153px;
-    height: 524px;
+    top: 154px;
+    height: 500px;
     width: 74vw;
     border: 1px solid;
     overflow-x: hidden;
     overflow-y: auto;
     z-index: 1;
+    position: fixed;
 }
 
 .dcd-message > h3 {
